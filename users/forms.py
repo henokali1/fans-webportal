@@ -18,10 +18,10 @@ class CustomUserChangeForm(UserChangeForm):
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=50, label='First Name')
     last_name = forms.CharField(max_length=50, label='Last Name')
-    gender = forms.CharField(max_length=10, label='Gender')
+    gender = forms.CharField(max_length=10, label='Gender', widget=forms.TextInput(attrs={'class': "gender-autocomplete"}))
     id_number = forms.CharField(max_length=10, label='ID Number')
-    department = forms.CharField(max_length=50, label='Department')
-    job_title = forms.CharField(max_length=50, label="Job Title")
+    department = forms.CharField(max_length=50, label='Department', widget=forms.TextInput(attrs={'class': "department-autocomplete"}))
+    job_title = forms.CharField(max_length=50, label="Job Title", widget=forms.TextInput(attrs={'class': "job-title-autocomplete"}))
 
 
     def signup(self, request, user):

@@ -1,6 +1,62 @@
-<h2>Sign Up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign Up</button>
-</form>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="container white z-depth-2"> 
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary" >Sign Up</button>
+            </form>
+        </div>
+      </div>
+<br>
+<br>
+<br>
+{% endblock content %}
+</div>
+{% block script_tag %}
+<script>
+  $(document).ready(function () {
+    // Init gender autocomplete
+    $('.gender-autocomplete').autocomplete({
+        data: {
+          "Female": null,
+          "Male": null,
+        },
+        limit: 20,
+        minLength: 0
+      });
+
+    // Init department autocomplete
+    $('.department-autocomplete').autocomplete({
+        data: {
+          "ATS": null,
+          "CNS": null,
+          "GSD": null,
+          "SAFETY": null,
+          "TSD": null,
+          "Other": null,
+        },
+        limit: 20,
+        minLength: 0
+      });
+
+    // Init job title autocomplete
+    $('.job-title-autocomplete').autocomplete({
+        data: {
+          "ATS Manager": null,
+          "CNS Chief Engineer": null,
+          "CNS Supervisor": null,
+          "CNS Engineer": null,
+          "CNS Technician": null,
+          "CNS Helper": null,
+          "Other": null,
+        },
+        limit: 20,
+        minLength: 0
+      });
+});
+</script>
+{% endblock script_tag %}

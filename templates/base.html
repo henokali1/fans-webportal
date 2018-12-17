@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Link Favicon -->
+    <link rel="shortcut icon" href="{% static "pages/img/favicon.png" %}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
+    <link rel="stylesheet" href="{% static "pages/css/home_style.css" %}">
+    {% block linktag %} {% endblock linktag %}
+    <!-- Title block -->
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+
+<body>
+        <header>
+                <div class="navbar-fixed">
+                    <nav class="blue darken-4">
+                        <div class="nav-wrapper">
+                            <a href="/" class="brand-logo"></a>
+                            <a href="/" data-activates="mobile-demo" class="button-collapse show-on-large">
+                                <i class="material-icons">menu</i>
+                            </a>
+                            <ul class="right hide-on-med-and-down">
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                <li>
+                                        <a href="/accounts/logout">Logout</a>
+                                </li>
+                                <li>
+                                        <a href="/accounts/password_change">Change Password</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="/accounts/signup">Sign Up</a>
+                                </li>
+                                <li>
+                                    <a href="/accounts/login">Login</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <!-- Move the sidenav outside of .navbar-fixed -->
+                <ul class="side-nav" id="mobile-demo">
+                    <ul id="slide-out" class="sidenav">
+                            {% if user.is_authenticated %}
+                        <li>
+                            <div class="user-view">
+                                <div class="background">
+                                    <img src="{% static "pages/img/ocean.jpg" %}">
+                                </div>
+                                <a href="#user">                                                             
+                                        <img class="circle" src="{% static "pages/img/male_profile_default.png" %}">
+                                </a>
+                                <a href="#name">
+                                    <span class="white-text name">User Name</span>
+                                </a>
+                                <a href="#email">
+                                    <span class="white-text email">Email Address</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                                <a href="/">Home</a>
+                            </li>
+                            
+                            <li>
+                                    <a href="/accounts/logout">Logout</a>
+                            </li>
+                            <li>
+                                    <a href="/accounts/password_change">Change Password</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="/accounts/signup">Sign Up</a>
+                            </li>
+                            <li>
+                                <a href="/accounts/login">Login</a>
+                            </li>
+                            {% endif %}
+                        <li>
+                            <div class="divider"></div>
+                        </li>
+                        <li>
+                            <p></p>
+                        </li>
+                    </ul>
+                </ul>
+            </header>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static "pages/js/jquery-3.2.1.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "pages/js/ajax-jquery.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "pages/js/materialize.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+    {% block script_tag %}
+    {% endblock script_tag %}
+</body>
+</html>
