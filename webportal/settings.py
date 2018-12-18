@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # Local
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
+    'mso',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
