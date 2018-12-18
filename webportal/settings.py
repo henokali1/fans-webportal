@@ -158,3 +158,5 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
+
+ACCOUNT_ADAPTER = 'users.adapter.AccountAdapter'

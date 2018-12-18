@@ -33,3 +33,4 @@ class CustomSignupForm(SignupForm):
         user.job_title = self.cleaned_data['job_title']
         user.save()
         return user
+    
