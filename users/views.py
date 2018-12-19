@@ -58,4 +58,3 @@ def setup_account(request):
                 'all_pages': all_pages,
             }
         )
-
