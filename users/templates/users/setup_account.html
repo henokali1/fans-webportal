@@ -36,12 +36,10 @@
         <!-- Departmet -->
         <div class="input-field">
                 <select name="department">
-                  <option value="" disabled selected>Select Department</option>
-                  <option value="atc">ATC</option>
-                  <option value="cns">CNS</option>
-                  <option value="safety">Safety</option>
-                  <option value="tsd">TSD</option>
-                  <option value="other">Other</option>
+                    <option value="" disabled selected>Select Department</option>
+                    {% for i in all_departments %}
+                        <option value="{{ i.department }}">{{ i.department }}</option>
+                    {% endfor %}
                 </select>
                 <label>Department</label>
         </div>
@@ -50,15 +48,23 @@
         <div class="input-field">
                 <select name="job_title">
                   <option value="" disabled selected>Select Job Title</option>
-                  <option value="atc_manager">ATC Manager</option>
-                  <option value="cns_chief_engineer">CNS Chief Engineer</option>
-                  <option value="cns_supervisor">CNS Supervisor</option>
-                  <option value="cns_engineer">CNS Engineer</option>
-                  <option value="cns_technician">CNS Technician</option>
-                  <option value="cns_helper">CNS Helper</option>
+                  {% for i in all_job_titles %}
+                        <option value="{{ i.job_title }}">{{ i.job_title }}</option>
+                  {% endfor %}
                 </select>
                 <label>Job Title</label>
         </div>
+
+        <!-- Page Access -->
+        <div class="input-field">
+                <select name="page_access" multiple>
+                    <option value="" disabled selected>Access</option>
+                    {% for i in all_pages %}
+                    <option value="{{ i.page }}">{{ i.page }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>

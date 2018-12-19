@@ -1,8 +1,13 @@
 from django.shortcuts import render
-from .models import CustomUser
+from .models import (
+    CustomUser,
+    Department,
+    JobTitle,
+    PageAccess,
+)
 
-# User Profile Setup
-def setup_profile(request):
+# User Account Setup
+def setup_account(request):
     if request.method == 'POST':
         email = request.POST['email']
         gender = request.POST['gender']
@@ -15,11 +20,35 @@ def setup_profile(request):
         print(id_number)
         print(department)
         print(job_title)
-        return render(request, 'users/setup_profile.html',
-            {'all_users': all_users})
+        
+        all_users = CustomUser.objects.all()
+        all_departments = Department.objects.all()
+        all_job_titles = JobTitle.objects.all()
+        all_pages = PageAccess.objects.all()
+        return render(
+            request,
+            'users/setup_account.html',
+            {
+                'all_users': all_users,
+                'all_departments': all_departments,
+                'all_job_titles': all_job_titles,
+                'all_pages': all_pages,
+            }
+        )
     else:
         # Get all Users
         all_users = CustomUser.objects.all()
-        return render(request, 'users/setup_profile.html',
-            {'all_users': all_users})
+        all_departments = Department.objects.all()
+        all_job_titles = JobTitle.objects.all()
+        all_pages = PageAccess.objects.all()
+        return render(
+            request,
+            'users/setup_account.html',
+            {
+                'all_users': all_users,
+                'all_departments': all_departments,
+                'all_job_titles': all_job_titles,
+                'all_pages': all_pages,
+            }
+        )
 
