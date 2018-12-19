@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
 
 # User Account Setup Form
 class SetupUserAccount(models.Model):
+    email = models.EmailField(max_length=254, default='')
     id_number = models.CharField(max_length=50, default='')
     gender = models.CharField(max_length=10, default='')
     department = models.CharField(max_length=50, default='')
@@ -19,7 +20,7 @@ class SetupUserAccount(models.Model):
     page_access = models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return self.id_number
+        return self.email
 
 # All Departments
 class Department(models.Model):

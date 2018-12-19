@@ -1,75 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    <div class="container">
-            <center><h5>Setup User Account</h5></center>
-            <br>
-            <br>
-          <!-- User email-->
-        <div class="input-field">
-            <select name="email">
-              <option value="" disabled selected>Select User</option>
-              {% for user in all_users %}
-                <option value="{{ user.email }}">{{ user.email }}</option>
-              {% endfor %}
-            </select>
-            <label>User</label>
+<div class="container white z-depth-2">
+        <div class="form-container">
+                <center><h5>Setup User Account</h5></center>
+                <form method="post">
+                        {% csrf_token %}
+                              <!-- User email-->          
+                            <div class="input-field">
+                                <select name="email">
+                                  <option value="" disabled selected>Select User</option>
+                                  {% for user in all_users %}
+                                    <option value="{{ user.email }}">{{ user.email }}</option>
+                                  {% endfor %}
+                                </select>
+                                <label>User</label>
+                            </div>
+                            
+                            <!-- Gender -->
+                            <div class="input-field">
+                                    <select name="gender">
+                                      <option value="" disabled selected>Select Gender</option>
+                                      <option value="female">Female</option>
+                                      <option value="male">Male</option>
+                                    </select>
+                                    <label>Gender</label>
+                            </div>
+                        
+                            <!-- ID Number -->
+                            <div class="input-field">
+                                <input id="id_number" type="text" name="id_number" required>
+                                <label for="id_number">ID Number</label>
+                            </div>
+                    
+                            <!-- Departmet -->
+                            <div class="input-field">
+                                    <select name="department">
+                                        <option value="" disabled selected>Select Department</option>
+                                        {% for i in all_departments %}
+                                            <option value="{{ i.department }}">{{ i.department }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>Department</label>
+                            </div>
+                            
+                            <!-- Job Title -->
+                            <div class="input-field">
+                                    <select name="job_title">
+                                      <option value="" disabled selected>Select Job Title</option>
+                                      {% for i in all_job_titles %}
+                                            <option value="{{ i.job_title }}">{{ i.job_title }}</option>
+                                      {% endfor %}
+                                    </select>
+                                    <label>Job Title</label>
+                            </div>
+                    
+                            <!-- Page Access -->
+                            <div class="input-field">
+                                    <select name="access" multiple>
+                                        <option value="" disabled selected>Access</option>
+                                        {% for i in all_pages %}
+                                        <option value="{{ i.page }}">{{ i.page }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
         </div>
-    
-        <!-- Gender -->
-        <div class="input-field">
-                <select name="gender">
-                  <option value="" disabled selected>Select Gender</option>
-                  <option value="female">Female</option>
-                  <option value="male">Male</option>
-                </select>
-                <label>Gender</label>
-        </div>
-    
-        <!-- ID Number -->
-        <div class="input-field">
-            <input id="id_number" type="text" name="id_number" required>
-            <label for="id_number">ID Number</label>
-        </div>
-
-        <!-- Departmet -->
-        <div class="input-field">
-                <select name="department">
-                    <option value="" disabled selected>Select Department</option>
-                    {% for i in all_departments %}
-                        <option value="{{ i.department }}">{{ i.department }}</option>
-                    {% endfor %}
-                </select>
-                <label>Department</label>
-        </div>
-        
-        <!-- Job Title -->
-        <div class="input-field">
-                <select name="job_title">
-                  <option value="" disabled selected>Select Job Title</option>
-                  {% for i in all_job_titles %}
-                        <option value="{{ i.job_title }}">{{ i.job_title }}</option>
-                  {% endfor %}
-                </select>
-                <label>Job Title</label>
-        </div>
-
-        <!-- Page Access -->
-        <div class="input-field">
-                <select name="access" multiple>
-                    <option value="" disabled selected>Access</option>
-                    {% for i in all_pages %}
-                    <option value="{{ i.page }}">{{ i.page }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-</form>
-
-
+</div>
 
 {% endblock content %}
 
@@ -78,6 +76,6 @@
         $(document).ready(function () {
             // Init Select list
              $('select').material_select();
-            });        
+            });     
     </script>
 {% endblock script_tag %}

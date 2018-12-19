@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import (
+    SetupUserAccount,
     CustomUser,
     Department,
     JobTitle,
@@ -8,26 +9,33 @@ from .models import (
 
 # User Account Setup
 def setup_account(request):
+    # Get users, departments, job titles and pages
+    all_users = CustomUser.objects.all()
+    all_departments = Department.objects.all()
+    all_job_titles = JobTitle.objects.all()
+    all_pages = PageAccess.objects.all()
+
     if request.method == 'POST':
+        # Get all users email
+        all_accounts_email = list(SetupUserAccount.objects.all().values_list('email', flat=True))
+
+        # Get current users email
         email = request.POST['email']
-        gender = request.POST['gender']
-        id_number = request.POST['id_number']
-        department = request.POST['department']
-        job_title = request.POST['job_title']
-        access = request.POST.getlist('access')
 
+        # Check if this account is already setup
+        if email in all_accounts_email:
+            print('Existing Account')
+        else:
+            new_account_setup = SetupUserAccount(
+                email=email,
+                gender=request.POST['gender'],
+                id_number=request.POST['id_number'],
+                department=request.POST['department'],
+                job_title=request.POST['job_title'],
+                page_access=request.POST.getlist('access')
+            )
 
-        print(email)
-        print(gender)
-        print(id_number)
-        print(department)
-        print(job_title)
-        print(access)
-        
-        all_users = CustomUser.objects.all()
-        all_departments = Department.objects.all()
-        all_job_titles = JobTitle.objects.all()
-        all_pages = PageAccess.objects.all()
+            new_account_setup.save()
         
         return render(
             request,
@@ -40,11 +48,6 @@ def setup_account(request):
             }
         )
     else:
-        # Get all Users
-        all_users = CustomUser.objects.all()
-        all_departments = Department.objects.all()
-        all_job_titles = JobTitle.objects.all()
-        all_pages = PageAccess.objects.all()
         return render(
             request,
             'users/setup_account.html',
