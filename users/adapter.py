@@ -1,6 +1,11 @@
 from allauth.account.adapter import DefaultAccountAdapter
 
-class AccountAdapter(DefaultAccountAdapter):
+# User job title
+def get_job_title(email):
+    return email
+
+
+class AccountAdapter(DefaultAccountAdapter): 
     def get_login_redirect_url(self, request):
         url = super(AccountAdapter, self).get_login_redirect_url(request)
         user = request.user

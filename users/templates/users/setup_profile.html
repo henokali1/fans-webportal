@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+            <center><h5>Setup User Profile</h5></center>
+            <br>
+            <br>
+          <!-- User email-->
+        <div class="input-field">
+            <select name="email">
+              <option value="" disabled selected>Select User</option>
+              {% for user in all_users %}
+                <option value="{{ user.email }}">{{ user.email }}</option>
+              {% endfor %}
+            </select>
+            <label>User</label>
+        </div>
+    
+        <!-- Gender -->
+        <div class="input-field">
+                <select name="gender">
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                </select>
+                <label>Gender</label>
+        </div>
+    
+        <!-- ID Number -->
+        <div class="input-field">
+            <input id="id_number" type="text" name="id_number" required>
+            <label for="id_number">ID Number</label>
+        </div>
+
+        <!-- Departmet -->
+        <div class="input-field">
+                <select name="department">
+                  <option value="" disabled selected>Select Department</option>
+                  <option value="atc">ATC</option>
+                  <option value="cns">CNS</option>
+                  <option value="safety">Safety</option>
+                  <option value="tsd">TSD</option>
+                  <option value="other">Other</option>
+                </select>
+                <label>Department</label>
+        </div>
+        
+        <!-- Job Title -->
+        <div class="input-field">
+                <select name="job_title">
+                  <option value="" disabled selected>Select Job Title</option>
+                  <option value="atc_manager">ATC Manager</option>
+                  <option value="cns_chief_engineer">CNS Chief Engineer</option>
+                  <option value="cns_supervisor">CNS Supervisor</option>
+                  <option value="cns_engineer">CNS Engineer</option>
+                  <option value="cns_technician">CNS Technician</option>
+                  <option value="cns_helper">CNS Helper</option>
+                </select>
+                <label>Job Title</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+
+
+{% endblock content %}
+
+{% block script_tag %}
+    <script>
+        $(document).ready(function () {
+            // Init Select list
+             $('select').material_select();
+            });        
+    </script>
+{% endblock script_tag %}
