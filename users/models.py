@@ -10,8 +10,8 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
-# User Profile Setup Form
-class SetupUserProfile(models.Model):
+# User Account Setup Form
+class SetupUserAccount(models.Model):
     id_number = models.CharField(max_length=50, default='')
     gender = models.CharField(max_length=10, default='')
     department = models.CharField(max_length=50, default='')

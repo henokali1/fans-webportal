@@ -14,17 +14,21 @@ def setup_account(request):
         id_number = request.POST['id_number']
         department = request.POST['department']
         job_title = request.POST['job_title']
+        access = request.POST.getlist('access')
+
 
         print(email)
         print(gender)
         print(id_number)
         print(department)
         print(job_title)
+        print(access)
         
         all_users = CustomUser.objects.all()
         all_departments = Department.objects.all()
         all_job_titles = JobTitle.objects.all()
         all_pages = PageAccess.objects.all()
+        
         return render(
             request,
             'users/setup_account.html',

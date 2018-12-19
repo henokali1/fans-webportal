@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import (
     CustomUser,
-    SetupUserProfile,
+    SetupUserAccount,
     Department,
     JobTitle,
     PageAccess,
@@ -23,7 +23,7 @@ class CustomUserAdmin(UserAdmin):
     ]
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(SetupUserProfile)
+admin.site.register(SetupUserAccount)
 admin.site.register(Department)
 admin.site.register(JobTitle)
 admin.site.register(PageAccess)

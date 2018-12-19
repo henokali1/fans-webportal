@@ -3,7 +3,7 @@
 <form method="post">
     {% csrf_token %}
     <div class="container">
-            <center><h5>Setup User Profile</h5></center>
+            <center><h5>Setup User Account</h5></center>
             <br>
             <br>
           <!-- User email-->
@@ -57,7 +57,7 @@
 
         <!-- Page Access -->
         <div class="input-field">
-                <select name="page_access" multiple>
+                <select name="access" multiple>
                     <option value="" disabled selected>Access</option>
                     {% for i in all_pages %}
                     <option value="{{ i.page }}">{{ i.page }}</option>
