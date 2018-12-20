@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
+from users.models import SetupUserAccount, CustomUser
+from . import helper
 
 
 def all_msos(request):
@@ -42,4 +43,9 @@ def new_mso(request):
             print(i, lst[i])
         return render(request, 'mso/new_mso.html')
     else:
+        # Get list of CNS staff (Engineers, Technicians...)
+        all_cns_staff = list(SetupUserAccount.objects.values_list('email', flat=True).filter(department="CNS"))
+        #print(all_cns_staff)
+        print(helper.get_full_name('cns.manager@email.com'))
+            
         return render(request, 'mso/new_mso.html')
