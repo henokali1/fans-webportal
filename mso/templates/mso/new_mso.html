@@ -94,8 +94,8 @@
             <div class="input-field">
                 <select name="work_completed_by" multiple>
                     <option value="" disabled selected>Work Completed By</option>
-                    {% for technician in technicians %}
-                    <option value="{{ technician }}">{{ technician }}</option>
+                    {% for full_name in full_names %}
+                    <option value="{{ full_name }}">{{ full_name }}</option>
                     {% endfor %}
                 </select>
             </div>

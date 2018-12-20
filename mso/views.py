@@ -45,7 +45,7 @@ def new_mso(request):
     else:
         # Get list of CNS staff (Engineers, Technicians...)
         all_cns_staff = list(SetupUserAccount.objects.values_list('email', flat=True).filter(department="CNS"))
-        #print(all_cns_staff)
-        print(helper.get_full_name('cns.manager@email.com'))
-            
-        return render(request, 'mso/new_mso.html')
+        # Extract full name only
+        full_names = [helper.get_full_name(email) for email in all_cns_staff]
+                    
+        return render(request, 'mso/new_mso.html', {'full_names':full_names})
