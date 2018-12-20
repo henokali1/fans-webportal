@@ -39,13 +39,4 @@ class AccountAdapter(DefaultAccountAdapter):
         print(get_job_title(user))
         print(get_department(user))
         print(url)
-        '''
-        # pseudocode, change it to actual logic
-        # check user role and return a different URL
-        role = get_user_role(user)
-        if role == 'student':
-            url = student_login_redirect_url
-        if role == 'teacher':
-            url = teacher_login_redirect_url
-        '''
         return url

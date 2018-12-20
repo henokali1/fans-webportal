@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block linktag %}<link rel="stylesheet" href="{% static "pages/css/home_style.css" %}">{% endblock linktag %}
 {% block content %}
 <div class="container white z-depth-2">
     <div class="form-container">

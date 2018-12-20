@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import (
     SetupUserAccount,
     CustomUser,
@@ -7,7 +8,9 @@ from .models import (
     PageAccess,
 )
 
+
 # User Account Setup
+@login_required
 def setup_account(request):
     # Get users, departments, job titles and pages
     all_users = CustomUser.objects.all()

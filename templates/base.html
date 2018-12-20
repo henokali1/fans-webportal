@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
-    <link rel="stylesheet" href="{% static "pages/css/home_style.css" %}">
     {% block linktag %} {% endblock linktag %}
     <!-- Title block -->
     <title>{% block title %}{% endblock title %}</title>
@@ -32,6 +31,9 @@
                                     <a href="/">Home</a>
                                 </li>
                                 {% if user.is_authenticated %}
+                                <li>
+                                        <a href="/mso/new-mso">New MSO</a>
+                                </li>
                                 <li>
                                         <a href="/accounts/logout">Logout</a>
                                 </li>
@@ -75,6 +77,9 @@
                         </li>
                         <li>
                                 <a href="/">Home</a>
+                            </li>
+                            <li>
+                                    <a href="/mso/new-mso">New MSO</a>
                             </li>
                             
                             <li>
