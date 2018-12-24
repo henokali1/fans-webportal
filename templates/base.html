@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}"  media="screen,projection" />
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/fans_index_style.css" %}">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Additional Linktags -->
@@ -48,41 +47,7 @@
     {% endblock content %}
 
 
-    <!-- Footer -->
-    <footer class="page-footer blue">
-        <div class="container">
-            <div class="row">
-                <div class="col l6 s12">
-                    <h4>Follow Us</h4>
-                    <a href="htttps://facebook.com" target="_blank" class="white-text">
-                        <i class="fab fa-facebook fa-4x"></i>
-                    </a>
-                    <a href="htttps://twitter.com" target="_blank" class="white-text">
-                        <i class="fab fa-twitter fa-4x"></i>
-                    </a>
-                    <a href="htttps://linkedin.com" target="_blank" class="white-text">
-                        <i class="fab fa-linkedin fa-4x"></i>
-                    </a>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <ul>
-                        {% block footerlinks %}
-                        {% endblock footerlinks %}
-                    </ul> 
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright blue darken-1">
-            <div class="container">
-                fans.ae &copy;
-                <script>
-                    var date = new Date();
-                    var year = date.getFullYear();
-                    document.write(year);
-                </script>
-            </div>
-        </div>
-    </footer>
+
     <!-- Navbar Dropdown Menu-->
     {% block dropdown-menu %}
     {% endblock dropdown-menu %}

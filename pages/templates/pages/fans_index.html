@@ -219,28 +219,58 @@
 </section>
 {% endblock content %}
 
-
-<!-- Footer Links -->
-{% block footerlinks %}
-<li>
-        <a class="grey-text text-lighten-3" href="">Home</a>
-    </li>
-    <li>
-        <a class="grey-text text-lighten-3" href="">Who We Are</a>
-    </li>
-    <li>
-        <a class="grey-text text-lighten-3" href="">Our Courses</a>
-    </li>
-    <li>
-        <a class="grey-text text-lighten-3" href="#gallery">Photo Gallery</a>
-    </li>
-    <li>
-        <a class="grey-text text-lighten-3" href="#contact">Contact Us</a>
-    </li>
-    <li>
-        <a class="grey-text text-lighten-3" href="">Terms & Conditions</a>
-</li>
-{% endblock footerlinks %}
+    <!-- Footer -->
+    <footer class="page-footer blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h4>Follow Us</h4>
+                        <a href="htttps://facebook.com" target="_blank" class="white-text">
+                            <i class="fab fa-facebook fa-4x"></i>
+                        </a>
+                        <a href="htttps://twitter.com" target="_blank" class="white-text">
+                            <i class="fab fa-twitter fa-4x"></i>
+                        </a>
+                        <a href="htttps://linkedin.com" target="_blank" class="white-text">
+                            <i class="fab fa-linkedin fa-4x"></i>
+                        </a>
+                    </div>
+                    <!-- Footer Links -->
+                    <div class="col l4 offset-l2 s12">
+                        <ul>
+                                <li>
+                                        <a class="grey-text text-lighten-3" href="">Home</a>
+                                    </li>
+                                    <li>
+                                        <a class="grey-text text-lighten-3" href="">Who We Are</a>
+                                    </li>
+                                    <li>
+                                        <a class="grey-text text-lighten-3" href="">Our Courses</a>
+                                    </li>
+                                    <li>
+                                        <a class="grey-text text-lighten-3" href="#gallery">Photo Gallery</a>
+                                    </li>
+                                    <li>
+                                        <a class="grey-text text-lighten-3" href="#contact">Contact Us</a>
+                                    </li>
+                                    <li>
+                                        <a class="grey-text text-lighten-3" href="">Terms & Conditions</a>
+                                </li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright blue darken-1">
+                <div class="container">
+                    fans.ae &copy;
+                    <script>
+                        var date = new Date();
+                        var year = date.getFullYear();
+                        document.write(year);
+                    </script>
+                </div>
+            </div>
+        </footer>
 
 {% block dropdown-menu %}
 <!-- DROPDOWN MENU -->

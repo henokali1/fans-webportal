@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block linktag %}<link rel="stylesheet" href="{% static "pages/css/home_style.css" %}">{% endblock linktag %}
+{% block title %}Log In{% endblock title %}
 
 {% block navbar-li %}
 <li>
@@ -31,7 +32,4 @@
         </form>
     </div>
 </div>
-<!-- MOVES CONTENT UP -->
-<div style="margin-top: 200px;"></div>
 {% endblock content %}	
-
