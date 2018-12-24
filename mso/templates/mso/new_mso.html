@@ -7,7 +7,10 @@
 {% block navbar-li %}
 {% if user.is_authenticated %}
 <li>
-    <a href="/mso/new-mso">New MSO</a>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
 </li>
 <li>
     <a href="/accounts/password/change">Change Password</a>
@@ -32,7 +35,10 @@
 {% block side-navbar-li %}
 {% if user.is_authenticated %}
 <li>
-        <a href="/mso/new-mso">New MSO</a>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
 </li>
 <li>
     <a href="/accounts/password/change">Change Password</a>
@@ -119,7 +125,7 @@
                     <!-- ACTUAL WORK DESCRIPTION -->
                     <div class="input-field">
                         <i class="material-icons prefix">assignment_turned_in</i>
-                        <textarea id="actual_work_description" class="materialize-textarea" name="actual_work_description"  required></textarea> </textarea>
+                        <textarea id="actual_work_description" class="materialize-textarea" name="actual_work_descripition"  required></textarea> </textarea>
                         <label for="actual_work_description">Actual Work Description</label>
                     </div>
                 </div>

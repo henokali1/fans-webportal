@@ -1,7 +1,101 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %} All MSO's {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+<!-- Navbar Links -->
+{% block navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock navbar-li %}
+
+<!-- Side Nav Links -->
+{% block side-navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock side-navbar-li %}
+
+
 {% block content %}
 <div class="container">
-    <h5>All MSO's.</h5>
-    {{ data }}
+        <h5>{{msg}}</h5>
+        {%for mso in msos %}
+        <div class="row mso_row" id="r{{mso.id}}">
+            <div class="col s12">
+                <br>
+                <a id="read_mode_a" href="/mso/{{mso.id}}">
+                    <div class="chip">
+                        <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by }}
+                    </div>
+                    <div class="chip">
+                        {{mso.posted_on}}
+                    </div>
+                    <div class="chip">CNS-{{mso.id}}</div>
+                    <span class="title mso_title">Description of Service</span>
+                    <blockquote>{{mso.description_of_service}}</blockquote>
+                    <span class="title mso_title">Actual Work Description</span>
+                    <blockquote>{{mso.actual_work_descripition}}</blockquote>
+    
+                    {{mso.can_edit}}</a>
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn modal-trigger">Delete</a>
+                <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
+                
+                <a href="#" class="waves-effect waves-light green disabled btn modal-trigger">Complete MSO</a>
+                <a href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Complete MSO</a>
+                <a href="#" class="waves-effect waves-light green disabled btn modal-trigger">Complete MSO</a>
+                <a id="read_mode_a" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green disabled btn modal-trigger">Edit</a>
+                <a id="read_mode_a" href="/mso/delete/{{mso.id}}" class="waves-effect waves-light red disabled btn modal-trigger">Delete</a>
+                <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
+                <br>
+                <br>
+            </div>
+        </div>
+        {% endfor %}
 </div>
 {% endblock content %}
