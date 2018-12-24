@@ -1,16 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block linktag %}<link rel="stylesheet" href="{% static "pages/css/home_style.css" %}">{% endblock linktag %}
+
+{% block navbar-li %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+ </li>
+{% endblock navbar-li %}
+
+{% block side-navbar-li %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endblock side-navbar-li %}
+
 {% block content %}
-<div class="container white z-depth-2">
+<div class="container login-logout-container white z-depth-2">
     <div class="form-container">
         <h2>Log In</h2>
         <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn btn-primary">Log In</button>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary blue">Log In</button>
         </form>
     </div>
-  
-{% endblock content %}
 </div>
+<!-- MOVES CONTENT UP -->
+<div style="margin-top: 200px;"></div>
+{% endblock content %}	
+
