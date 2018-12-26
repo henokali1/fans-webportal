@@ -91,5 +91,28 @@
             </div>
         </div>
         {% endfor %}
+
+        <br>
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if msos.has_previous %}
+                    <a href="?page=1" class="waves-effect waves-light blue btn modal-trigger">&laquo; first</a>
+                    <a href="?page={{ msos.previous_page_number }}" class="waves-effect waves-light blue btn modal-trigger">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ msos.number }} of {{ msos.paginator.num_pages }}.
+                </span>
+        
+                {% if msos.has_next %}
+                    <a href="?page={{ msos.next_page_number }}" class="waves-effect waves-light blue btn modal-trigger">next</a>
+                    <a href="?page={{ msos.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
 </div>
 {% endblock content %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from users.models import SetupUserAccount, CustomUser
 from . import helper
@@ -11,11 +12,18 @@ def all_msos(request):
     all_msos = MsoCns.objects.all().order_by('-pk')
     current_user_name = helper.get_full_name(request.user)
     print(current_user_name)
+    
+
+    paginator = Paginator(all_msos, 10)
+
+    page = request.GET.get('page')
+    msos = paginator.get_page(page)
     args = {
-        'msos': all_msos,
+        'msos': msos,
         'current_user_name': str(current_user_name),
-         'current_user_email': str(request.user),
+        'current_user_email': str(request.user),
     }
+
     return render(request, 'mso/all_msos.html', args)
 
 def approve(request):
