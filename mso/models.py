@@ -18,6 +18,7 @@ class MsoCns(models.Model):
     supervisor_approval_date = models.DateTimeField(auto_now=False, null=True)
     posted_on = models.DateTimeField(auto_now=True)
     posted_by = models.EmailField(max_length=254, default='')
+    posted_by_name = models.CharField(max_length=254, default='')
     requested_by_other_department = models.BooleanField(default=False)
     completed = models.BooleanField(default=False)
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from users.models import SetupUserAccount, CustomUser
 from . import helper
@@ -9,8 +9,14 @@ from .models import MsoCns
 @login_required
 def all_msos(request):
     all_msos = MsoCns.objects.all().order_by('-pk')
-    context = {'msos': all_msos}
-    return render(request, 'mso/all_msos.html', context)
+    current_user_name = helper.get_full_name(request.user)
+    print(current_user_name)
+    args = {
+        'msos': all_msos,
+        'current_user_name': str(current_user_name),
+         'current_user_email': str(request.user),
+    }
+    return render(request, 'mso/all_msos.html', args)
 
 def approve(request):
     context = {'data': 'data from server'}
@@ -36,9 +42,18 @@ def new_mso(request):
         new_mso.date_started = request.POST['date_started']
         new_mso.date_completed = request.POST['date_completed']
         new_mso.work_compleated_by = request.POST.getlist('work_compleated_by')
+        new_mso.posted_by = request.user
+        new_mso.posted_by_name = helper.get_full_name(request.user)
 
         # Commit to Database
         new_mso.save()
-        return render(request, 'mso/new_mso.html', {'full_names':full_names})
+        return redirect('/mso/all')
     else:                    
         return render(request, 'mso/new_mso.html', {'full_names':full_names})
+
+
+# MSO Detail
+@login_required
+def mso(request, pk):
+    mso = MsoCns.objects.all().filter(pk=pk)
+    return render(request, 'mso/mso_detail.html', {'mso': mso[0]})

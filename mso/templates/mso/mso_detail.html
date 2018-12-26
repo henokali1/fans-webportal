@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} All MSO's {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+<!-- Navbar Links -->
+{% block navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock navbar-li %}
+
+<!-- Side Nav Links -->
+{% block side-navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock side-navbar-li %}
+
+
+{% block content %}
+<div class="container">
+        <h5>{{msg}}</h5>
+        <ol>
+            <li>
+                <p>requested_by: {{ mso.requested_by }}</p>
+            </li>
+            <li>
+                <p>section: {{ mso.section }}</p>
+            </li>
+            <li>
+                <p>department_head: {{ mso.department_head }}</p>
+            </li>
+            <li>
+                <p>location:{{ mso.location }}</p>
+            </li>
+            <li>
+                <p>description_of_service: {{ mso.description_of_service }}</p>
+            </li>
+            <li>
+                <p>tsm_approval: {{ mso.tsm_approval }}</p>
+            </li>
+            <li>
+                <p>tsm_approval_date: {{ mso.tsm_approval_date }}</p>
+            </li>
+            <li>
+                <p>actual_work_descripition: {{ mso.actual_work_descripition }}</p>
+            </li>
+            <li>
+                <p>date_started: {{ mso.date_started }}</p>
+            </li>
+            <li>
+                <p>date_completed: {{ mso.date_completed }}</p>
+            </li>
+            <li>
+                <p>work_compleated_by: {{ mso.work_compleated_by }}</p>
+            </li>
+            <li>
+                <p>id_number: {{ mso.id_number }}</p>
+            </li>
+            <li>
+                <p>supervisor_approval: {{ mso.supervisor_approval }}</p>
+            </li>
+            <li>
+                <p>supervisor_approval_date: {{ mso.supervisor_approval_date }}</p>
+            </li>
+            <li>
+                <p>posted_on: {{ mso.posted_on }}</p>
+            </li>
+            <li>
+                <p>posted_by: {{ mso.posted_by }}</p>
+            </li>
+            <li>
+                <p>posted_by_name: {{ mso.posted_by_name }}</p>
+            </li>
+            <li>
+                <p>requested_by_other_department: {{ mso.requested_by_other_department }}</p>
+            </li>
+            <li>
+                <p>completed: {{ mso.completed }}</p>
+            </li>
+        </ol>
+</div>
+{% endblock content %}
