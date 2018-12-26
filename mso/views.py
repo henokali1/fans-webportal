@@ -57,3 +57,28 @@ def new_mso(request):
 def mso(request, pk):
     mso = MsoCns.objects.all().filter(pk=pk)
     return render(request, 'mso/mso_detail.html', {'mso': mso[0]})
+
+
+# MSO Edit
+@login_required
+def edit_mso(request, pk):
+    if request.method == 'POST':
+        mso = MsoCns.objects.filter(pk=pk).update(
+            requested_by=request.POST['requested_by'],
+            section = request.POST['section'],
+            department_head = request.POST['department_head'],
+            location = request.POST['location'],
+            description_of_service = request.POST['description_of_service'],
+            actual_work_descripition = request.POST['actual_work_descripition'],
+            date_started = request.POST['date_started'],
+            date_completed = request.POST['date_completed'],
+            work_compleated_by = request.POST.getlist('work_compleated_by'),
+        )
+        return redirect('/mso/all')
+    else:
+        # Get list of CNS staff (Engineers, Technicians...)
+        all_cns_staff = list(SetupUserAccount.objects.values_list('email', flat=True).filter(department="CNS"))
+        # Extract full name only
+        full_names = [helper.get_full_name(email) for email in all_cns_staff]
+        mso = MsoCns.objects.all().filter(pk=pk)
+        return render(request, 'mso/edit_mso.html', {'mso': mso[0], 'full_names':full_names})

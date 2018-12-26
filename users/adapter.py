@@ -28,7 +28,6 @@ def get_redirect_url(email):
         elif job_title in ['CNS Engineer', 'CNS Technician', 'CNS Helper']:
             return '/mso/'
         else:
-            print('unknow url for', (department, job_title))
             return '/user/setup-account/'
 
 class AccountAdapter(DefaultAccountAdapter): 
@@ -36,7 +35,4 @@ class AccountAdapter(DefaultAccountAdapter):
         #url = super(AccountAdapter, self).get_login_redirect_url(request)
         user = request.user
         url = get_redirect_url(user)
-        print(get_job_title(user))
-        print(get_department(user))
-        print(url)
         return url
