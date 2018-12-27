@@ -8,7 +8,7 @@ from .models import MsoCns
 
 # All MSO's
 @login_required
-def all_msos(request):
+def all_msos(request, msg=''):
     all_msos = MsoCns.objects.all().order_by('-pk')
     current_user_name = helper.get_full_name(request.user)
     print(current_user_name)
@@ -22,6 +22,7 @@ def all_msos(request):
         'msos': msos,
         'current_user_name': str(current_user_name),
         'current_user_email': str(request.user),
+        'msg': msg,
     }
 
     return render(request, 'mso/all_msos.html', args)
@@ -55,7 +56,7 @@ def new_mso(request):
 
         # Commit to Database
         new_mso.save()
-        return redirect('/mso/all')
+        return all_msos(request, msg='MSO Created Successfully!')
     else:                    
         return render(request, 'mso/new_mso.html', {'full_names':full_names})
 
@@ -90,3 +91,8 @@ def edit_mso(request, pk):
         full_names = [helper.get_full_name(email) for email in all_cns_staff]
         mso = MsoCns.objects.all().filter(pk=pk)
         return render(request, 'mso/edit_mso.html', {'mso': mso[0], 'full_names':full_names})
+
+
+@login_required
+def delete_mso(request, pk):
+    return 'Delete MSO # ' + str(pk)

@@ -63,33 +63,32 @@
 
 {% block content %}
 <div class="container">
-        <h5>{{msg}}</h5>
-        {%for mso in msos %}
-        <h5>{{ current_user }}</h5>
-        <div class="row mso_row" id="r{{mso.id}}">
-            <div class="col s12">
-                <br>
-                <a id="read_mode_a" href="/mso/{{mso.id}}">
-                    <div class="chip">
-                        <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by_name }}
-                    </div>
-                    <div class="chip">
-                        {{mso.posted_on}}
-                    </div>
-                    <div class="chip">MSO-{{mso.id}}</div>
-                    <span class="title mso_title">Description of Service</span>
-                    <blockquote>{{mso.description_of_service}}</blockquote>
-                    <span class="title mso_title">Actual Work Description</span>
-                    <blockquote>{{mso.actual_work_descripition}}</blockquote>
-                    </a>
+    {%for mso in msos %}
+    <h5>{{ current_user }}</h5>
+    <div class="row mso_row" id="r{{mso.id}}">
+        <div class="col s12">
+            <br>
+            <a id="read_mode_a" href="/mso/{{mso.id}}">
+                <div class="chip">
+                    <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by_name }}
+                </div>
+                <div class="chip">
+                    {{mso.posted_on}}
+                </div>
+                <div class="chip">MSO-{{mso.id}}</div>
+                <span class="title mso_title">Description of Service</span>
+                <blockquote>{{mso.description_of_service}}</blockquote>
+                <span class="title mso_title">Actual Work Description</span>
+                <blockquote>{{mso.actual_work_descripition}}</blockquote>
+                </a>
 
-                    <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Edit</a>
-                    <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn modal-trigger">Delete</a>
-                    <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
-                <br>
-                <br>
-            </div>
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn modal-trigger">Delete</a>
+                <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
+            <br>
+            <br>
         </div>
+    </div>
         {% endfor %}
 
         <br>
@@ -97,8 +96,11 @@
         <div class="pagination">
             <span class="step-links">
                 {% if msos.has_previous %}
-                    <a href="?page=1" class="waves-effect waves-light blue btn modal-trigger">&laquo; first</a>
-                    <a href="?page={{ msos.previous_page_number }}" class="waves-effect waves-light blue btn modal-trigger">previous</a>
+                    <li class="waves-effect material-icons large">
+                            <a href="?page={{ msos.previous_page_number }}">
+                            <i class="material-icons large">chevron_left</i>
+                        </a>
+                    </li>
                 {% endif %}
         
                 <span class="current">
@@ -106,8 +108,13 @@
                 </span>
         
                 {% if msos.has_next %}
-                    <a href="?page={{ msos.next_page_number }}" class="waves-effect waves-light blue btn modal-trigger">next</a>
-                    <a href="?page={{ msos.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a>
+                    
+                    <!-- <a href="?page={{ msos.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a> -->
+                    <li class="waves-effect">
+                            <a href="?page={{ msos.next_page_number }}">
+                            <i class="material-icons large">chevron_right</i>
+                        </a>
+                    </li>
                 {% endif %}
             </span>
         </div>
@@ -116,3 +123,12 @@
         <br>
 </div>
 {% endblock content %}
+
+{% if msg %}
+    {% block script_tag %}
+        <script>
+            Materialize.toast('{{ msg }}', 5000, 'rounded');
+        </script>
+    {% endblock script_tag %}
+{% endif %}
+
