@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from users.models import SetupUserAccount, CustomUser
@@ -97,6 +98,11 @@ def edit_mso(request, pk):
         return render(request, 'mso/edit_mso.html', {'mso': mso[0], 'full_names':full_names})
 
 
+# Delete MSO
 @login_required
 def delete_mso(request, pk):
-    return 'Delete MSO # ' + str(pk)
+    MsoCns.objects.filter(pk=pk).delete()
+    args = {
+        'res': 'JSON response',
+    }
+    return JsonResponse(args)

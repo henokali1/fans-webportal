@@ -124,11 +124,11 @@
 </div>
 {% endblock content %}
 
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
 {% if msg %}
-    {% block script_tag %}
-        <script>
-            Materialize.toast('{{ msg }}', 8000, 'rounded');
-        </script>
-    {% endblock script_tag %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
 {% endif %}
-
+{% endblock script_tag %}

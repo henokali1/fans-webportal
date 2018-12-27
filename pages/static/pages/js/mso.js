@@ -102,12 +102,25 @@ $('.delete').click(function(e) {
     .attr('id');
   var msoNumber = parseInt(event.target.id);
   console.log(msoNumber);
-  Materialize.toast('MSO-' + msoNumber + ' Deleted!', 5000);
-  e.preventDefault();
-  $('#' + divId).toggle(1000, 'swing', function() {});
+  // Materialize.toast('MSO-' + msoNumber + ' Deleted!', 5000);
+  // e.preventDefault();
+  // $('#' + divId).toggle(1000, 'swing', function() {});
 
-  $.getJSON('/mso/delete/' + msoNumber, function(data) {
-     //do nothing
-   });
-   return false;
+  // $.getJSON('/mso/delete/' + msoNumber, function(data) {
+  //    //do nothing
+  //  });
+  //  return false;
+});
+
+$.ajax({
+  url: '/mso/delete/44/',
+  datatype: 'json',
+  type: 'GET',
+  success: function(data) {
+      $.each(data.events, function(index, element) {
+          $('body').append($('<div>', {
+              text: element.name
+          }));
+      });
+  }
 });
