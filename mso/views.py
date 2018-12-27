@@ -10,10 +10,9 @@ from .models import MsoCns
 @login_required
 def all_msos(request, msg=''):
     all_msos = MsoCns.objects.all().order_by('-pk')
-    current_user_name = helper.get_full_name(request.user)
-    print(current_user_name)
-    
+    current_user_name = helper.get_full_name(request.user)   
 
+    # Pagination
     paginator = Paginator(all_msos, 10)
 
     page = request.GET.get('page')
@@ -83,7 +82,12 @@ def edit_mso(request, pk):
             date_completed = request.POST['date_completed'],
             work_compleated_by = request.POST.getlist('work_compleated_by'),
         )
-        return redirect('/mso/all')
+
+        return all_msos(
+            request,
+            msg='MSO-' + str(pk) + ' Updated Successfully!',
+        )
+
     else:
         # Get list of CNS staff (Engineers, Technicians...)
         all_cns_staff = list(SetupUserAccount.objects.values_list('email', flat=True).filter(department="CNS"))
