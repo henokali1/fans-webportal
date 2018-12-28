@@ -1,4 +1,135 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block title %} Approve MSO's {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+<!-- Navbar Links -->
+{% block navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock navbar-li %}
+
+<!-- Side Nav Links -->
+{% block side-navbar-li %}
+{% if user.is_authenticated %}
+<li>
+    <a href="/mso/new">New MSO</a>
+</li>
+<li>
+    <a href="/mso/all">All MSO's</a>
+</li>
+<li>
+    <a href="/accounts/password/change">Change Password</a>
+</li>
+<li>
+    <a href="/user/setup-account">Setup User Account</a>
+</li>
+<li>
+    <a href="/accounts/logout">Logout</a>
+</li>
+{% else %}
+<li>
+    <a href="/accounts/signup">Sign Up</a>
+</li>
+<li>
+    <a href="/accounts/login">Login</a>
+</li>
+{% endif %}
+{% endblock side-navbar-li %}
+
+
 {% block content %}
-<h1>MSO Approve </h1>
+<p id="job_title" style="display: none;">{{ job_title }}</p>
+<div class="container">
+    {%for mso in msos %}
+    <h5>{{ current_user }}</h5>
+    <div class="row mso_row" id="r{{mso.id}}">
+        <div class="col s12">
+            <br>
+            <a id="read_mode_a" href="/mso/{{mso.id}}">
+                <div class="chip">
+                    <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by_name }}
+                </div>
+                <div class="chip">
+                    {{mso.posted_on}}
+                </div>
+                <div class="chip">MSO-{{mso.id}}</div>
+                <span class="title mso_title">Description of Service</span>
+                <blockquote>{{mso.description_of_service}}</blockquote>
+                <span class="title mso_title">Actual Work Description</span>
+                <blockquote>{{mso.actual_work_descripition}}</blockquote>
+                </a>
+
+                <a id="{{mso.id}}" href="#" class="approve waves-effect waves-light green btn btn-small">Approve</a>
+                <a id="deny_a" class="deny_modal waves-effect waves-light red btn btn-small modal-trigger" href="#deny_modal">Deny</a>
+                <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Read More</a>
+            <br>
+            <br>
+        </div>
+    </div>
+        {% endfor %}
+
+        <br>
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if msos.has_previous %}
+                    <li class="waves-effect material-icons large">
+                            <a href="?page={{ msos.previous_page_number }}">
+                            <i class="material-icons large">chevron_left</i>
+                        </a>
+                    </li>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ msos.number }} of {{ msos.paginator.num_pages }}.
+                </span>
+        
+                {% if msos.has_next %}
+                    
+                    <!-- <a href="?page={{ msos.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a> -->
+                    <li class="waves-effect">
+                            <a href="?page={{ msos.next_page_number }}">
+                            <i class="material-icons large">chevron_right</i>
+                        </a>
+                    </li>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+</div>
 {% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
+{% endif %}
+{% endblock script_tag %}

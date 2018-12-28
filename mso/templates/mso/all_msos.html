@@ -64,7 +64,6 @@
 {% block content %}
 <div class="container">
     {%for mso in msos %}
-    <h5>{{ current_user }}</h5>
     <div class="row mso_row" id="r{{mso.id}}">
         <div class="col s12">
             <br>
@@ -81,9 +80,19 @@
                 <span class="title mso_title">Actual Work Description</span>
                 <blockquote>{{mso.actual_work_descripition}}</blockquote>
                 </a>
-
+                {% if current_user_name == mso.posted_by_name %}
+                {% if mso.manager_approval == False or mso.supervisor_approval == False or mso.completed %}
                 <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Edit</a>
                 <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn modal-trigger">Delete</a>
+                {% endif %}
+                {% elif current_user_name != mso.posted_by_name %}
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light disabled green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red disabled btn modal-trigger">Delete</a>
+                {% else %}
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light disabled green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red disabled btn modal-trigger">Delete</a>
+                {% endif %}
+                
                 <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
             <br>
             <br>

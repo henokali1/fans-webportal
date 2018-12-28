@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -6,6 +7,7 @@ from users.models import SetupUserAccount, CustomUser
 from . import helper
 from .models import MsoCns
 
+import datetime
 
 # All MSO's
 @login_required
@@ -26,10 +28,6 @@ def all_msos(request, msg=''):
     }
 
     return render(request, 'mso/all_msos.html', args)
-
-def approve(request):
-    context = {'data': 'data from server'}
-    return render(request, 'mso/approve.html', context)
 
 
 # New MSO
@@ -98,11 +96,61 @@ def edit_mso(request, pk):
         return render(request, 'mso/edit_mso.html', {'mso': mso[0], 'full_names':full_names})
 
 
-# Delete MSO
+# Delete MSO through AJAX request
 @login_required
 def delete_mso(request, pk):
     MsoCns.objects.filter(pk=pk).delete()
     args = {
-        'res': 'JSON response',
+        'res': 'MSO-' + str(pk) + 'Deleted!',
+    }
+    return JsonResponse(args)
+
+
+@login_required
+def approve(request, msg=''):
+    # User Job Title
+    job_title = helper.get_job_title(request.user)
+    if job_title == 'CNS Manager':
+        all_msos = MsoCns.objects.all().order_by('-pk').filter(manager_approval=False)
+    elif job_title == 'CNS Supervisor':
+        all_msos = MsoCns.objects.all().order_by('-pk').filter(supervisor_approval=False)
+    else:
+        print('This is niether Manager or Supervisor account. Not authorized to approve MSO\'S')
+    
+    
+    print(job_title)
+    # Pagination
+    paginator = Paginator(all_msos, 10)
+
+    page = request.GET.get('page')
+    msos = paginator.get_page(page)
+    args = {
+        'msos': msos,
+        'msg': msg,
+        'job_title': job_title,
+    }
+    return render(request, 'mso/approve.html', args)
+
+
+# Approve MSO through AJAX request
+@login_required
+def approve_mso(request, pk, job_title):
+    if job_title == 'CNS Manager':
+        mso = MsoCns.objects.filter(pk=pk).update(
+            manager_approval = True,
+            manager_approval_date = datetime.datetime.now(tz=timezone.utc),
+        )
+        print('CNS Manager approved MSO', pk)
+    elif job_title == 'CNS Supervisor':
+        mso = MsoCns.objects.filter(pk=pk).update(
+            supervisor_approval = True,
+            supervisor_approval_date = datetime.datetime.now(tz=timezone.utc),
+        )       
+        print('CNS Supervisor approved MSO', pk)
+    else:
+        print('unknown account')
+    
+    args = {
+        'res': 'MSO-' + str(pk) + 'Approved!',
     }
     return JsonResponse(args)

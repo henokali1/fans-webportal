@@ -66,11 +66,9 @@ $(document).ready(function() {
   });
 
   $('#comment_modal').click(function() {
-    console.log('Modal Comment Clicke');
   });
 
   $('#cancel_modal').click(function() {
-    console.log('Modal Cancel Clicked');
   });
 });
 
@@ -84,7 +82,11 @@ $('.approve').click(function(e) {
   e.preventDefault();
   $('#' + divId).toggle(1000, 'swing', function() {});
 
-  $.getJSON('/approve_mso/' + msoNumber, function(data) {
+  // Get Job job title
+  var job_title = $('p').text();
+
+  $.getJSON('/mso/approve_mso/' + msoNumber + '/' + job_title, function(data) {
+    console.log()
     //do nothing
   });
   return false;
@@ -101,15 +103,14 @@ $('.delete').click(function(e) {
     .parents('.mso_row')
     .attr('id');
   var msoNumber = parseInt(event.target.id);
-  console.log(msoNumber);
-  // Materialize.toast('MSO-' + msoNumber + ' Deleted!', 5000);
-  // e.preventDefault();
-  // $('#' + divId).toggle(1000, 'swing', function() {});
+  Materialize.toast('MSO-' + msoNumber + ' Deleted!', 5000);
+  e.preventDefault();
+  $('#' + divId).toggle(1000, 'swing', function() {});
 
-  // $.getJSON('/mso/delete/' + msoNumber, function(data) {
-  //    //do nothing
-  //  });
-  //  return false;
+  $.getJSON('/mso/delete/' + msoNumber, function(data) {
+     //do nothing
+   });
+   return false;
 });
 
 $.ajax({
