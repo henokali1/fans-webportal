@@ -61,8 +61,20 @@ def new_mso(request):
         # Commit to Database
         new_mso.save()
         return all_msos(request, msg='MSO Created Successfully!')
-    else:                    
-        return render(request, 'mso/new_mso.html', {'full_names':full_names})
+    else:       
+        gender = helper.get_gender(request.user)
+        department = helper.get_department(request.user)
+        current_user_name = helper.get_full_name(request.user)
+        job_title = helper.get_job_title(request.user)  
+        args = {
+            'current_user_name': str(current_user_name),
+            'current_user_email': str(request.user),
+            'current_user_gender': str(gender),
+            'department': str(department),
+            'job_title': str(job_title),
+            'full_names':full_names,
+        }           
+        return render(request, 'mso/new_mso.html', args)
 
 
 # MSO Detail
@@ -114,14 +126,11 @@ def delete_mso(request, pk):
 
 @login_required
 def approve(request, msg=''):
-    # User Job Title
     job_title = helper.get_job_title(request.user)
     if job_title == 'CNS Manager':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(manager_approval=False)
-        print(unapproved)
     elif job_title == 'CNS Supervisor':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(supervisor_approval=False)
-        print(unapproved)
     else:
         print('This is niether Manager or Supervisor account. Not authorized to approve MSO\'S')
     
@@ -132,11 +141,19 @@ def approve(request, msg=''):
 
     page = request.GET.get('page')
     msos = paginator.get_page(page)
+    gender = helper.get_gender(request.user)
+    department = helper.get_department(request.user)
+    current_user_name = helper.get_full_name(request.user)
     args = {
         'msos': msos,
+        'current_user_name': str(current_user_name),
+        'current_user_email': str(request.user),
+        'current_user_gender': str(gender),
+        'department': str(department),
+        'job_title': str(job_title),
         'msg': msg,
-        'job_title': job_title,
     }
+
     return render(request, 'mso/approve.html', args)
 
 
@@ -157,8 +174,32 @@ def approve_mso(request, pk, job_title):
         print('CNS Supervisor approved MSO', pk)
     else:
         print('unknown account')
-    
     args = {
         'res': 'MSO-' + str(pk) + 'Approved!',
     }
     return JsonResponse(args)
+
+
+# My MSO's
+def my_msos(request, msg=''):
+    all_msos = MsoCns.objects.all().filter(posted_by=request.user).order_by('-pk')
+    current_user_name = helper.get_full_name(request.user)   
+
+    # Pagination
+    paginator = Paginator(all_msos, 10)
+
+    page = request.GET.get('page')
+    msos = paginator.get_page(page)
+    gender = helper.get_gender(request.user)
+    department = helper.get_department(request.user)
+    job_title = helper.get_job_title(request.user)
+    args = {
+        'msos': msos,
+        'current_user_name': str(current_user_name),
+        'current_user_email': str(request.user),
+        'current_user_gender': str(gender),
+        'department': str(department),
+        'job_title': str(job_title),
+        'msg': msg,
+    }
+    return render(request, 'mso/my_msos.html', args)

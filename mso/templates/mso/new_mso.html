@@ -1,63 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'cns_base.html' %}
 {% load static %}
 {% block title %} New MSO {% endblock title %}
 {% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
-
-<!-- Navbar Links -->
-{% block navbar-li %}
-{% if user.is_authenticated %}
-<li>
-    <a href="/mso/new">New MSO</a>
-</li>
-<li>
-    <a href="/mso/all">All MSO's</a>
-</li>
-<li>
-    <a href="/accounts/password/change">Change Password</a>
-</li>
-<li>
-    <a href="/user/setup-account">Setup User Account</a>
-</li>
-<li>
-    <a href="/accounts/logout">Logout</a>
-</li>
-{% else %}
-<li>
-    <a href="/accounts/signup">Sign Up</a>
-</li>
-<li>
-    <a href="/accounts/login">Login</a>
-</li>
-{% endif %}
-{% endblock navbar-li %}
-
-<!-- Side Nav Links -->
-{% block side-navbar-li %}
-{% if user.is_authenticated %}
-<li>
-    <a href="/mso/new">New MSO</a>
-</li>
-<li>
-    <a href="/mso/all">All MSO's</a>
-</li>
-<li>
-    <a href="/accounts/password/change">Change Password</a>
-</li>
-<li>
-    <a href="/user/setup-account">Setup User Account</a>
-</li>
-<li>
-    <a href="/accounts/logout">Logout</a>
-</li>
-{% else %}
-<li>
-    <a href="/accounts/signup">Sign Up</a>
-</li>
-<li>
-    <a href="/accounts/login">Login</a>
-</li>
-{% endif %}
-{% endblock side-navbar-li %}
 
 <!-- Main Content -->
 {% block content %}

@@ -7,6 +7,7 @@ urlpatterns = [
     path('approve/', views.approve, name='approve.html'),
     path('new/', views.new_mso, name="new_mso.html"),
     path('all/', views.all_msos, name="all_msos.html"),
+    path('my/', views.my_msos, name="my_msos.html"),
     path('<int:pk>/', views.mso, name='mso_detail.html'),
     path('edit/<int:pk>/', views.edit_mso, name='edit_mso.html'),
     path('delete/<int:pk>/', views.delete_mso),

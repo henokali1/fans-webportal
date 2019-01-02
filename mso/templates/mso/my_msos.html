@@ -1,0 +1,82 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All MSO's {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    {%for mso in msos %}
+    <div class="row mso_row" id="r{{mso.id}}">
+        <div class="col s12">
+            <br>
+            <a id="read_mode_a" href="/mso/{{mso.id}}">
+                <div class="chip">
+                    <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by_name }}
+                </div>
+                <div class="chip">
+                    {{mso.posted_on}}
+                </div>
+                <div class="chip">MSO-{{mso.id}}</div>
+                <span class="title mso_title">Description of Service</span>
+                <blockquote>{{mso.description_of_service}}</blockquote>
+                <span class="title mso_title">Actual Work Description</span>
+                <blockquote>{{mso.actual_work_descripition}}</blockquote>
+                </a>
+                {% if mso.manager_approval == True or mso.supervisor_approval == True or mso.completed %}
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn disabled modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn disabled modal-trigger">Delete</a>
+                {% elif current_user_name != mso.posted_by_name %}
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light disabled green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red disabled btn modal-trigger">Delete</a>
+                {% else %}
+                <a id="" href="/mso/edit/{{mso.id}}" class="waves-effect waves-light green btn modal-trigger">Edit</a>
+                <a id="{{mso.id}}" href="#" class="delete waves-effect waves-light red btn modal-trigger">Delete</a>
+                {% endif %}
+                <a href="/mso/{{mso.id}}" class="waves-effect waves-light blue btn modal-trigger">Preview</a>
+            <br>
+            <br>
+        </div>
+    </div>
+        {% endfor %}
+
+        <br>
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if msos.has_previous %}
+                    <li class="waves-effect material-icons large">
+                            <a href="?page={{ msos.previous_page_number }}">
+                            <i class="material-icons large">chevron_left</i>
+                        </a>
+                    </li>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ msos.number }} of {{ msos.paginator.num_pages }}.
+                </span>
+        
+                {% if msos.has_next %}
+                    <li class="waves-effect">
+                            <a href="?page={{ msos.next_page_number }}">
+                            <i class="material-icons large">chevron_right</i>
+                        </a>
+                    </li>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
+{% endif %}
+{% endblock script_tag %}
