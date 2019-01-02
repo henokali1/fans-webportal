@@ -20,10 +20,16 @@ def all_msos(request, msg=''):
 
     page = request.GET.get('page')
     msos = paginator.get_page(page)
+    gender = helper.get_gender(request.user)
+    department = helper.get_department(request.user)
+    job_title = helper.get_job_title(request.user)
     args = {
         'msos': msos,
         'current_user_name': str(current_user_name),
         'current_user_email': str(request.user),
+        'current_user_gender': str(gender),
+        'department': str(department),
+        'job_title': str(job_title),
         'msg': msg,
     }
 
@@ -112,8 +118,10 @@ def approve(request, msg=''):
     job_title = helper.get_job_title(request.user)
     if job_title == 'CNS Manager':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(manager_approval=False)
+        print(unapproved)
     elif job_title == 'CNS Supervisor':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(supervisor_approval=False)
+        print(unapproved)
     else:
         print('This is niether Manager or Supervisor account. Not authorized to approve MSO\'S')
     
