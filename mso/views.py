@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from users.models import SetupUserAccount, CustomUser
 from . import helper
 from .models import MsoCns
-
+import ast
 import datetime
 
 # All MSO's
@@ -210,5 +210,15 @@ def my_msos(request, msg=''):
 @login_required
 def mso_preview(request, pk, mso=''):
     mso = MsoCns.objects.all().filter(pk=pk)
-    args={'mso': mso[0]}
+    work_compleated_by_list = (ast.literal_eval(mso[0].work_compleated_by))
+    work_compleated_by_names = ''
+
+    for i in work_compleated_by_list:
+        work_compleated_by_names += i + ', '
+    print(work_compleated_by_names[0:-2])
+    
+    args={
+        'mso': mso[0],
+        'work_compleated_by_names': work_compleated_by_names[0:-2],
+    }
     return render(request, 'mso/mso_preview.html', args)
