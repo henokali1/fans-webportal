@@ -181,6 +181,7 @@ def approve_mso(request, pk, job_title):
 
 
 # My MSO's
+@login_required
 def my_msos(request, msg=''):
     all_msos = MsoCns.objects.all().filter(posted_by=request.user).order_by('-pk')
     current_user_name = helper.get_full_name(request.user)   
@@ -203,3 +204,11 @@ def my_msos(request, msg=''):
         'msg': msg,
     }
     return render(request, 'mso/my_msos.html', args)
+
+
+# MSO Preview
+@login_required
+def mso_preview(request, pk, mso=''):
+    mso = MsoCns.objects.all().filter(pk=pk)
+    args={'mso': mso[0]}
+    return render(request, 'mso/mso_preview.html', args)
