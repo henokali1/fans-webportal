@@ -71,20 +71,17 @@
 			doc.text(60, 58, 'TECHNICAL SERVICES DEPARTMENT')
 			doc.text(64.5, 64, 'MAINTENANCE SERVICE ORDER')
 
-
-
-
 			doc.setFontSize(9)
 			doc.setFontType('normal')
 
 			doc.text(33, 76.4, '')
 
-			var dateTime = "{{mso.posted_on}}".split(" ");
-			var date = dateTime[0].split("-");
-			var time = dateTime[1];
+			var dateTime = "{{mso.posted_on}}".split(",");
+			var date = dateTime[0]+dateTime[1];
+			var time = dateTime[2];
 
-			doc.text(113.7, 76.4, "{{mso.posted_on}}")
-			doc.text(158.7, 76.4, time)
+			doc.text(113.7, 76.4, date)
+			doc.text(158.7, 76.4, time.toUpperCase())
 			doc.text(46.4, 85.6, "{{mso.requested_by}}".toUpperCase())
 			doc.text(138, 85.6, "{{mso.section}}")
 			doc.text(56, 93.8, "{{mso.department_head}}".toUpperCase())
@@ -103,7 +100,7 @@
 				doc.addImage(tsm_sig, 'PNG', 40, 260, 0, 0)
 			{% endif %}
 
-            doc.text(162, 170.5, date_parser("{{mso.manager_approval_date}}"))
+            doc.text(162, 170.5, "{{ mgr_approval_date }}")
 
             var actual_work_descripition = "{{ mso.actual_work_descripition }}".toUpperCase();
             var split_actual_work_descripition = doc.splitTextToSize(actual_work_descripition, 175);
@@ -114,7 +111,7 @@
 			doc.text(28, 255, "")
             
 			doc.text(61, 264.5, "{{work_compleated_by_names}}".toUpperCase())
-			doc.text(162, 275, date_parser("{{mso.supervisor_approval_date}}"))
+			doc.text(162, 275, "{{ supervisor_approval_date }}")
 
 			doc.setFontSize(11)
 			doc.text(9.9, 33, "FIATSDFORM001")
@@ -129,7 +126,7 @@
 			doc.line(136, 25, 136, 41.8)
 
 			doc.setLineWidth(0.4)
-			var lines_w_0p4 = [33, 76.9, 99.3, 76.9, 113.7, 76.9, 143.5, 76.9, 158.7, 76.9, 196.5, 76.9, 46.4, 86.1, 115, 86.1, 138, 86.1, 196.5, 86.1, 56, 94.3, 113, 94.3, 72, 240, 140.5, 240, 159, 240, 196.5, 240, 46.5, 247.5, 119.5, 247.5, 159, 247.5, 196.5, 247.5, 28, 255.6, 138, 255.6, 180, 255, 196, 255, 61, 265.1, 196.5, 265.1, 42, 275.4, 147.5, 275.4, 162, 275.4, 196.6, 275.4]
+			var lines_w_0p4 = [33, 76.9, 99.3, 76.9, 113.7, 76.9, 143.5, 76.9, 158.7, 76.9, 196.5, 76.9, 46.4, 86.1, 115, 86.1, 138, 86.1, 196.5, 86.1, 56, 94.3, 113, 94.3, 140, 94.3, 196.5, 94.3, 72, 240, 140.5, 240, 159, 240, 196.5, 240, 46.5, 247.5, 119.5, 247.5, 159, 247.5, 196.5, 247.5, 28, 255.6, 138, 255.6, 180, 255, 196, 255, 61, 265.1, 196.5, 265.1, 42, 275.4, 147.5, 275.4, 162, 275.4, 196.6, 275.4]
 
 
 			for (var i = 0; i <= 119; i += 4) {

@@ -1,4 +1,5 @@
 from users.models import CustomUser, SetupUserAccount
+import pytz
 
 
 # Returns full name of a given user(emal)
@@ -21,3 +22,11 @@ def get_gender(email):
 def get_department(email):
     department = SetupUserAccount.objects.values_list('department', flat=True).filter(email=email)[0]
     return department    
+
+# Returns date, time of a given timestapm
+def parse_date(timestamp):
+    local_tz = pytz.timezone('Asia/Dubai')
+    ts = str(timestamp.astimezone(local_tz)).split(' ')
+    d = ts[0].split('-')
+    date = d[2] + '-' + d[1] + '-' + d[0]
+    return date

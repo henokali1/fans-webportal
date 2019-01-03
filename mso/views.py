@@ -9,6 +9,8 @@ from .models import MsoCns
 import ast
 import datetime
 
+
+
 # All MSO's
 @login_required
 def all_msos(request, msg=''):
@@ -215,10 +217,26 @@ def mso_preview(request, pk, mso=''):
 
     for i in work_compleated_by_list:
         work_compleated_by_names += i + ', '
-    print(work_compleated_by_names[0:-2])
     
+    
+    mgr_app_date = mso[0].manager_approval_date
+    supervisor_approval_date = mso[0].supervisor_approval_date
+
+    if mgr_app_date != None:
+        mgr_approval_date = helper.parse_date(mgr_app_date)
+    else:
+        mgr_approval_date = ''
+
+    if supervisor_approval_date != None:
+        supervisor_approval_date = helper.parse_date(supervisor_approval_date)
+    else:
+        supervisor_approval_date = ''
+
     args={
+        'mgr_approval_date': mgr_approval_date,
+        'supervisor_approval_date': supervisor_approval_date,
         'mso': mso[0],
         'work_compleated_by_names': work_compleated_by_names[0:-2],
     }
+    
     return render(request, 'mso/mso_preview.html', args)
