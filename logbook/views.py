@@ -12,8 +12,6 @@ def new_log(request):
 
         new_log.posted_by = request.user
         new_log.posted_by_name = get_full_name(request.user)
-        new_log.date = request.POST['date']
-        new_log.time = request.POST['time']
         new_log.logbook_name = request.POST['logbook_name']
         new_log.description = request.POST['description']
 
@@ -37,5 +35,8 @@ def new_log(request):
 # All Logs
 @login_required
 def all_logs(request):
-    args={}
+    args={
+        'msg': 'MSG',
+        'logs': NewLog.objects.all(),
+    }
     return render(request, 'logbook/all_logs.html', args)

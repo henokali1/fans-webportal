@@ -1,1 +1,75 @@
-<h1>all logs</h1>
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All Log's {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    {%for log in logs %}
+    <div class="row mso_row">
+        <div class="col s12">
+            <br>
+                <div class="chip">                                                             
+                        <img src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">By: {{ log.posted_by_name }}
+                </div>
+                <div class="chip">
+                    Date & Time: {{log.posted_on}}
+                </div>
+
+                <div class="chip">
+                    Logbook: {{log.logbook_name}}
+                </div>
+                
+
+                <!-- Description -->
+                <span class="title mso_title">Description</span>
+                <blockquote>{{log.description}}</blockquote>
+            <br>
+            <br>
+        </div>
+    </div>
+        {% endfor %}
+
+        <br>
+        <br>
+        <div class="pagination">
+            <span class="step-links">
+                {% if logs.has_previous %}
+                    <li class="waves-effect material-icons large">
+                            <a href="?page={{ logs.previous_page_number }}">
+                            <i class="material-icons large">chevron_left</i>
+                        </a>
+                    </li>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ logs.number }} of {{ logs.paginator.num_pages }}.
+                </span>
+        
+                {% if logs.has_next %}
+                    
+                    <li class="waves-effect">
+                            <a href="?page={{ logs.next_page_number }}">
+                            <i class="material-icons large">chevron_right</i>
+                        </a>
+                    </li>
+                {% endif %}
+            </span>
+        </div>
+        <br>
+        <br>
+        <br>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
+{% endif %}
+{% endblock script_tag %}
