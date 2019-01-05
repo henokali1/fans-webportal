@@ -12,8 +12,12 @@
         <div class="col s12">
             <br>
             <a id="read_mode_a" href="/mso/{{mso.id}}">
-                <div class="chip">
-                    <img src="{% static "pages/img/person1.jpg" %}" alt="Contact Person">By: {{ mso.posted_by_name }}
+                <div class="chip">                                                             
+                    {% if current_user_gender == 'male' %}
+                        <img src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">By: {{ mso.posted_by_name }}
+                    {% else %}
+                        <img src="{% static "pages/img/female_profile_default.png" alt="female_profile_default" %}">By: {{ mso.posted_by_name }}
+                    {% endif %}
                 </div>
                 <div class="chip">
                     {{mso.posted_on}}

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pages.apps.PagesConfig',
     'mso',
+    'logbook',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
