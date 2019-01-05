@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import LogbookName
+from .models import *
 
 
 admin.site.register(LogbookName)
+admin.site.register(NewLog)
