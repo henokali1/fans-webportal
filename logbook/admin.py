@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LogbookNames
+from .models import LogbookName
 
 
-admin.site.register(LogbookNames)
+admin.site.register(LogbookName)

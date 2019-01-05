@@ -1,0 +1,82 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Logbook {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <form method="POST">
+            {% csrf_token %}
+        <h4 class="center">Logbook</h4>
+        <!-- Select Logbook -->
+        <div class="input-field">
+            <select>
+              <option value="" disabled selected>Logbook</option>
+              {% for i in all_logbook_names %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}
+            </select>
+            <label>Select Logbook</label>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col s12 m6 input-field">
+                    <input type="text" class="datepicker" id="date">
+                    <label for="date">Date</label>
+            </div>
+            <div class="col s12 m6 input-field">
+                    <input type="text" class="timepicker" id="time">
+        <label for="time">Time</label>
+                </div>
+        </div>
+
+        <br>
+        <br>
+
+
+        <!-- Description -->
+        <div class="input-field">
+            <textarea placeholder="Description" id="description" class="materialize-textarea"></textarea>
+            <label for="description">Description</label>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div>
+                    <input type="submit" value="Submit" class="btn left blue">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script>
+    $(document).ready(function () {
+        // INIT SELECT LIST
+        $('select').material_select();
+
+        // INIT DATEPICKER
+      $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 15,
+        closeOnSelect: true
+      });
+
+      // INIT TIMEPICKER
+      $('.timepicker').pickatime({
+        default: 'now',
+        twelvehour: true,
+        donetext: 'ok',
+        cleartext: 'clear',
+        canceltext: 'cancel',
+        autoclose: true
+      });
+    });
+</script>
+{% endblock script_tag %}
