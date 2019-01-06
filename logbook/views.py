@@ -1,7 +1,19 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import *
-from mso.helper import get_full_name
+from mso.helper import get_full_name, get_department, get_job_title
+
+
+# All Logs
+@login_required
+def all_logs(request, msg=''):
+    args={
+        'msg': msg,
+        'department': get_department(request.user),
+        'job_title': get_job_title(request.user),
+        'logs': NewLog.objects.all().order_by('-pk'),
+    }
+    return render(request, 'logbook/all_logs.html', args)
 
 
 # New Logbook data
@@ -18,25 +30,17 @@ def new_log(request):
         # Commit to Database
         new_log.save()
 
-        args = {
-            'msg': 'Data Logged Successfully!'
-        }
-        return render(request, 'logbook/new_log.html', args)
+        msg = 'Data Logged Successfully!'
+
+        return all_logs(request, msg)
 
     else:
         # Get list of all logbooks
         args={
             'all_logbook_names':  LogbookName.objects.all(),
+            'department': get_department(request.user),
+            'job_title': get_job_title(request.user),
         }
 
         return render(request, 'logbook/new_log.html', args)
 
-
-# All Logs
-@login_required
-def all_logs(request):
-    args={
-        'msg': 'MSG',
-        'logs': NewLog.objects.all(),
-    }
-    return render(request, 'logbook/all_logs.html', args)
