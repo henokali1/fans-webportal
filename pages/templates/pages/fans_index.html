@@ -1,350 +1,269 @@
-{% extends 'base.html' %}
+{% extends 'fans-index-base.html' %}
 {% load static %}
 <title>{% block title %}FANS{% endblock title %}</title>
-
-<!-- Navbar Links -->
-{% block navbar-li %}
-<li>
-        <a href="#home">Home</a>
-    </li>
-    <li>
-        <a href="">Who We Are</a>
-    </li>
-    <li>
-        <a class="dropdown-button" data-activates="my-dropdown" href="#!">Our Courses
-          <i class="material-icons right">arrow_drop_down</i>
-        </a>
-      </li>
-    <li>
-        <a href="#gallery">Photo Gallery</a>
-    </li>
-    <li>
-        <a href="#contact">Contact Us</a>
-</li>
-{% endblock navbar-li %}
-
-{% block side-navbar-li %}
-<li>
-        <a href="#home">Home</a>
-    </li>
-    <li>
-        <a href="">Who We Are</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-      </li>
-    <li>
-        <a href="#popular">Our Courses</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-      </li>
-    <li>
-        <a href="#gallery">Photo Gallery</a>
-    </li>
-    <li>
-        <a href="#contact">Contact Us</a>
-</li>
-{% endblock side-navbar-li %}
 
 <!-- Body Content -->
 {% block content %}
 <!-- Section: Slider -->
 <div class="slider">
-        <ul class="slides">
-          <li>
-              <img src="{% static "pages/img/fans-logo-02.jpg" %}">
-          </li>
-          <li>
-            <img src="{% static "pages/img/dca-banner.jpg" %}">
+    <ul class="slides">
+        <li>
+            <a href="#">
+                <img class="responsive-img" src="{% static "pages/img/dca-banner.jpg" %}">
+            </a>
         </li>
-          <li>
-            <img src="{% static "pages/img/img3.jpg" %}">
-            <!-- CENTER ALIGN CAPTION -->
-            <div class="caption left-align">
-              <h3 class="light grey-text text-lighten-3">Fujairah Air Navigation Services</h3>
-              <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
-            </div>
-          </li>
-          <li>
-            <img src="{% static "pages/img/img1.jpg" %}">
-            <!-- LEFT ALIGN CAPTION -->
-            <div class="caption left-align">
-              <h3 class="light grey-text text-lighten-3">Fujairah Air Navigation Services</h3>
-              <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
-            </div>
-          </li>
-          <li>
-            <img src="{% static "pages/img/img8.jpg" %}">
-            <!-- RIGHT ALIGN CAPTION -->
-            <div class="caption right-align">
-              <h3>Fujairah Air Navigation Services</h3>
-              <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
-            </div>
-          </li>
-        </ul>
+        <li>
+            <a href="#">
+                <img class="responsive-img" src="{% static "pages/img/fujairah-atc1.jpg" %}">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="{% static "pages/img/img1.jpg" %}">
+                <!-- LEFT ALIGN CAPTION -->
+                <div class="caption left-align">
+                    <h3 class="light grey-text text-lighten-3">Fujairah Air Navigation Services</h3>
+                    <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="{% static "pages/img/img8.jpg" %}">
+                <!-- RIGHT ALIGN CAPTION -->
+                <div class="caption right-align">
+                    <h3>Fujairah Air Navigation Services</h3>
+                    <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
+                </div>
+            </a>
+        </li>
+    </ul>
 </div>
 
-<!-- CARD PANELS & SHADOW -->
+<!-- Welcome to FANS Card -->
 <section>
-        <div class="container">
-            <div class="row">
-                    <div class="col s12 m6 l3">
-                        <div class="card-panel blue">
-                          <span class="white-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam magni aut mollitia quis? Ab voluptate quaerat libero
-                            voluptatibus quisquam in dolorum nobis hic. Suscipit dignissimos laboriosam id nesciunt debitis exercitationem.
-                          </span>
-                        </div>
-                      </div>
-                
-                <div class="col s12 m6 l3">
-                  <div class="card-panel blue">
-                    <span class="white-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam magni aut mollitia quis? Ab voluptate quaerat libero
-                      voluptatibus quisquam in dolorum nobis hic. Suscipit dignissimos laboriosam id nesciunt debitis exercitationem.
-                    </span>
-                  </div>
-                </div>
-                <div class="col s12 m6 l3">
-                  <div class="card-panel blue">
-                    <span class="white-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam magni aut mollitia quis? Ab voluptate quaerat libero
-                      voluptatibus quisquam in dolorum nobis hic. Suscipit dignissimos laboriosam id nesciunt debitis exercitationem.
-                    </span>
-                  </div>
-                </div>
-                <div class="col s12 m6 l3">
-                  <div class="card-panel blue">
-                    <span class="white-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam magni aut mollitia quis? Ab voluptate quaerat libero
-                      voluptatibus quisquam in dolorum nobis hic. Suscipit dignissimos laboriosam id nesciunt debitis exercitationem.
-                    </span>
-                  </div>
-                </div>
-              </div>
-        </div>
-</section>
-
-<!-- Section: Gallery -->
-<section id="gallery" class="section section-gallery scrollspy">
-        <div class="container">
-            <h4 class="center">
-        <span class="blue-text">Photo Gallery</span> 
-      </h4>
-            <div class="row">
-                <div class="col s12 m6 l3">
-                    <img class="materialboxed responsive-img" src="{% static "pages/img/img7.jpg" %}"  alt="" width="1600" height="900">
-                </div>
-                <div class="col s12 m6 l3">
-                    <img class="materialboxed responsive-img" src="{% static "pages/img/img8.jpg" %}"  alt="" width="1600" height="900">
-                </div>
-                <div class="col s12 m6 l3">
-                    <img class="materialboxed responsive-img" src="{% static "pages/img/img9.jpg" %}"  alt="" width="1600" height="900">
-                </div>
-                <div class="col s12 m6 l3">
-                    <img class="materialboxed responsive-img" src="{% static "pages/img/img12.jpg" %}"  alt="" width="1600" height="900">
-                </div>
-            </div>
-
-            <div class="row">
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img10.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img9.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img8.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img7.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                </div>
-
-            <div class="row">
-                <div class="row">
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img7.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img8.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img9.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <img class="materialboxed responsive-img" src="{% static "pages/img/img12.jpg" %}"  alt="" width="1600" height="900">
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col l12">
+            <div class="card-panel blue">
+                <h5>Welcome To Fujairah Air Navigation Services</h5>
+                <span class="white-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus maxime soluta aut
+                    possimus. Impedit illum dicta laborum perferendis voluptatibus mollitia quo et nisi consequuntur
+                    eveniet maiores commodi nesciunt est ipsa quibusdam, quis repellat voluptate ullam quisquam placeat
+                    reprehenderit veritatis ipsam? Incidunt ab quis quibusdam, architecto magni debitis sapiente cumque
+                    pariatur tempore fuga accusantium aliquam assumenda corporis tenetur totam soluta nulla doloremque
+                    alias fugiat! Porro modi labore molestiae? Assumenda similique atque perspiciatis, eos ab dolores
+                    sed. Rem minus fugiat assumenda. Dolorum quod fugit, repudiandae distinctio fuga obcaecati
+                    doloribus incidunt quis ea cum, aliquam dolorem vel! Quasi porro facilis ad necessitatibus omnis
+                    natus sit quis, ducimus voluptate accusantium quo quae aperiam. Excepturi commodi eum saepe quasi,
+                    reprehenderit aliquid delectus facilis error placeat vero est, molestiae vel! Similique mollitia
+                    vitae maiores, totam quidem in odio voluptatibus repudiandae neque eius sit perspiciatis deserunt
+                    consectetur ipsum facilis, expedita eos consequatur, beatae laborum ab commodi? Neque illum cum
+                    inventore animi necessitatibus, molestiae voluptate iusto laudantium cupiditate quae exercitationem
+                    et tempora hic. Magnam aut numquam soluta voluptatum dicta ullam aperiam blanditiis, aliquam illum
+                    neque aliquid aspernatur labore ad quam eaque nam libero distinctio. Voluptate, deserunt. Atque
+                    voluptatem, perferendis, quod error ullam nemo modi consectetur explicabo qui obcaecati maiores quo
+                    minima, veniam repellat accusantium sint? Deleniti perferendis aliquid ut eum enim architecto
+                    voluptatibus eos doloremque facilis reiciendis modi, pariatur in, rerum, tempora ab est cum
+                    veritatis nesciunt! Repudiandae impedit totam similique, dolor, unde eveniet blanditiis veniam iste
+                    nesciunt dolores in? Autem, deserunt repudiandae veritatis labore a beatae accusamus veniam tempora
+                    officiis quae minus necessitatibus, quod consectetur consequuntur. Laudantium corrupti quidem
+                    cupiditate unde consequuntur facilis similique, excepturi placeat at adipisci modi, ut autem
+                    deleniti porro molestias optio nihil labore est sapiente rerum sequi animi accusamus voluptatem
+                    totam? Dignissimos recusandae, quibusdam eos tempore unde veritatis id illo repudiandae sit harum
+                    eligendi provident aut laboriosam adipisci at impedit optio dicta explicabo mollitia deleniti?
+                    Natus non aliquam sequi expedita optio nulla voluptatibus. Veniam, assumenda a iusto odio, ea dolor
+                    nulla deserunt dignissimos sint cupiditate, dolore fuga itaque impedit autem sit earum repudiandae
+                    esse molestiae? Harum nihil, nulla excepturi perspiciatis vel fugit pariatur eaque accusamus
+                    voluptatibus consequatur repellendus? Aliquam asperiores optio in quod veritatis reprehenderit, a
+                    harum repellendus impedit? Iure neque temporibus optio doloremque expedita vitae, maxime provident
+                    reiciendis quia, est ut animi ipsa ullam eaque qui, quaerat totam inventore. Ducimus, impedit
+                    eligendi. Provident vel cum, ipsa ex quas beatae perspiciatis earum.
+                </span>
             </div>
         </div>
+    </div>
 </section>
+
+<!-- Cards -->
+<div class="row">
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/img1.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator">Service 1
+                    <i class="material-icons">more_vert</i>
+                </span>
+                <p>
+                    <!-- add activator to anything -->
+                    <a href="#!" class="activator">Read More</a>
+                </p>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal">
+                <span class="card-title">Service 1 Title
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
+                    iusto dolor
+                    in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/img8.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator">Service 2
+                    <i class="material-icons">more_vert</i>
+                </span>
+                <p>
+                    <!-- add activator to anything -->
+                    <a href="#!" class="activator">Read More</a>
+                </p>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal">
+                <span class="card-title">Service 2 Title
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
+                    iusto dolor
+                    in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/img9.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator">Service 3
+                    <i class="material-icons">more_vert</i>
+                </span>
+                <p>
+                    <!-- add activator to anything -->
+                    <a href="#!" class="activator">Read More</a>
+                </p>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal">
+                <span class="card-title">Service 3 Title
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
+                    iusto dolor
+                    in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Section: Sponsors -->
 <section class="section section-language">
-    <div class="container">
-      <div class="row">
+    <div class="row">
         <br>
         <br>
         <div class="row">
-          <div class="col s4">
-            <img src="{% static "pages/img/fng-logo.png" %}" class="responsive-img" alt="">
-          </div>
-          <div class="col s4">
-            <img src="{% static "pages/img/fia-logo.png" %}" class="responsive-img" alt="">
-          </div>
-          <div class="col s4">
-            <img src="{% static "pages/img/faa-logo-3.jpg" %}" class="responsive-img right" alt="">
-          </div>
+            <div class="col s3">
+                <img src="{% static "pages/img/fuj-gov-02.png" %}" class="responsive-img" alt="">
+            </div>
+            <div class="col s3">
+                <img src="{% static "pages/img/fng-logo.png" %}" class="responsive-img" alt="">
+            </div>
+            <div class="col s3">
+                <img src="{% static "pages/img/fia-logo.png" %}" class="responsive-img" alt="">
+            </div>
+            <div class="col s3">
+                <img src="{% static "pages/img/faa-logo.gif" %}" class="responsive-img right" alt="">
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
+
 
 <!-- Section: Contact -->
 <section id="contact" class="section section-contact scrollspy">
-        <div class="container">
-                <div class="col s12 m6">
-                    <form method="POST">
-                        <div class="card-panel grey lighten-3">
-                            <h5>Contact Us For Any Enquiries</h5>
-                            <p>Phone: +97100000000</p>
-                            <p>Email: email@fans.ae</p>
-                            <br>
-                            <div class="input-field">
-                                <input type="text" placeholder="Optional" id="name">
-                                <label for="name">Name</label>
-                            </div>
-                            <div class="input-field">
-                                <input type="email" placeholder="Email" id="email" required>
-                                <label for="email">Email*</label>
-                            </div>
-                            <div class="input-field">
-                                <input type="text" placeholder="Optional" id="phone">
-                                <label for="phone">Phone</label>
-                            </div>
-                            <div class="input-field">
-                                <textarea class="materialize-textarea" placeholder="Enter Message" id="message" required></textarea>
-                                <label for="message">Message*</label>
-                            </div>
-                            <input type="submit" value="Submit" class="btn blue">
-                        </div>
-                    </form>
+    <div class="col s12 m6">
+        <form method="POST">
+            <div class="card-panel grey lighten-3">
+                <h5>Contact Us For Any Enquiries</h5>
+                <p>Phone: +97100000000</p>
+                <p>Email: email@fans.ae</p>
+                <br>
+                <div class="input-field">
+                    <input type="text" placeholder="Optional" id="name">
+                    <label for="name">Name</label>
                 </div>
-        </div>
-        </div>
+                <div class="input-field">
+                    <input type="email" placeholder="Email" id="email" required>
+                    <label for="email">Email*</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" placeholder="Optional" id="phone">
+                    <label for="phone">Phone</label>
+                </div>
+                <div class="input-field">
+                    <textarea class="materialize-textarea" placeholder="Enter Message" id="message" required></textarea>
+                    <label for="message">Message*</label>
+                </div>
+                <input type="submit" value="Submit" class="btn blue">
+            </div>
+        </form>
+    </div>
+    </div>
 </section>
 
 <!-- Google Maps Location -->
 <section>
-        <div class="container">
-            <!--The div element for the map -->
-            <div id="map"></div>
-          </div>
-          <br>
-          <br>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <br>
+    <br>
 </section>
 
-<!-- Footer -->
-<footer class="page-footer blue">
-    <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h4>Follow Us</h4>
-                <a href="htttps://facebook.com" target="_blank" class="white-text">
-                    <i class="fab fa-facebook fa-4x"></i>
-                </a>
-                <a href="htttps://twitter.com" target="_blank" class="white-text">
-                    <i class="fab fa-twitter fa-4x"></i>
-                </a>
-                <a href="htttps://linkedin.com" target="_blank" class="white-text">
-                    <i class="fab fa-linkedin fa-4x"></i>
-                </a>
-            </div>
-            <!-- Footer Links -->
-            <div class="col l4 offset-l2 s12">
-                <ul>
-                        <li>
-                                <a class="grey-text text-lighten-3" href="">Home</a>
-                            </li>
-                            <li>
-                                <a class="grey-text text-lighten-3" href="">Who We Are</a>
-                            </li>
-                            <li>
-                                <a class="grey-text text-lighten-3" href="">Our Courses</a>
-                            </li>
-                            <li>
-                                <a class="grey-text text-lighten-3" href="#gallery">Photo Gallery</a>
-                            </li>
-                            <li>
-                                <a class="grey-text text-lighten-3" href="#contact">Contact Us</a>
-                            </li>
-                            <li>
-                                <a class="grey-text text-lighten-3" href="">Terms & Conditions</a>
-                        </li>
-                </ul> 
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright blue darken-1">
-        <div class="container">
-            fans.ae &copy;
-            <script>
-                var date = new Date();
-                var year = date.getFullYear();
-                document.write(year);
-            </script>
-        </div>
-    </div>
-</footer>
+
 {% endblock content %}
 
-{% block dropdown-menu %}
-<!-- DROPDOWN MENU -->
-<ul id="my-dropdown" class="dropdown-content">
-        <li>
-          <a class="blue-text" href="#">Course 1</a>
-        </li>
-        <li>
-          <a class="blue-text" href="#">Course 2</a>
-        </li>
-        <li>
-          <a class="blue-text" href="#">Course 3</a>
-        </li>
-</ul>
-{% endblock dropdown-menu %}
 
 {% block script_tag %}
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBdhrXViyFb_0V9mmU3f4zB5Xn9UXZhQs&callback=initMap"> </script>
 
 <script>
-    $(document).ready(function() {
-        // Init Side nav
+    $(document).ready(function () {
         // Init Slider
         $('.slider').slider({
-              indicators: true,
-              height: 500,
-              transition: 700,
-              interval: 3000
-            });
-            
-            // Dropdown
-            $('.dropdown-button').dropdown({
-              constrainWidth: false,
-              hover: true,
-              belowOrigin: true,
-              alignment: 'left'
-            });
-            // Init Scrollspy
-            $('.scrollspy').scrollSpy();
+            indicators: true,
+            height: 500,
+            transition: 700,
+            interval: 3000
         });
+
+        // Init Scrollspy
+        $('.scrollspy').scrollSpy();
+    });
 </script>
 <script>
     function initMap() {
         // The location of Uluru
-        var uluru = {lat: 25.111784, lng: 56.334965};
+        var uluru = { lat: 25.111784, lng: 56.334965 };
         // The map, centered at Uluru
         var map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 14, center: uluru}
-            );
+            document.getElementById('map'), { zoom: 14, center: uluru }
+        );
         // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({position: uluru, map: map});}
+        var marker = new google.maps.Marker({ position: uluru, map: map });
+    }
 </script>
 {% endblock script_tag %}
