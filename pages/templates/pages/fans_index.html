@@ -186,81 +186,52 @@
 
 <!-- Section: Contact 2 -->
 <section id="contact" class="section-contact scrollspy">
-        <div class="row">
-                <div class="col s12 m4">
-                        <div class="card-panel blue lighten-0" id="address_card">
-                                <h4 class="section-title center">Contact Information</h4><br>
-                                <p></p><strong><a class="black-text" href="tel:97192226222"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;" class="material-icons medium black-text">phone</i>+971 9 0000000</a></strong></p>
-                                <p></p><strong><a class="black-text" href="mailto:info@fans.ae"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;" class="material-icons medium black-text">email</i> info@fans.ae</a></strong></p>
-                                <p><strong><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;" class="material-icons medium black-text">location_on</i>Fujairah - United Arab Emirates</strong></p>
-                    </div>
-                </div>
-            
-                <!-- Contact us form -->
-                <div class="col s12 m8">
-                        <div class="card-panel blue lighten-0" id="contact_us_card">
-                                <form>
-                                        <div class="row">
-                                          <div class="col s12"><h4 class="section-title center">Contact Us</h4></div>
-                                          <div class="input-field col s6">
-                                            <i class="material-icons prefix black-text text-darken-4">account_circle</i>
-                                            <input id="name" type="text" required>
-                                            <label class="black-text" for="name">Name</label>
-                                          </div>
-                                          <div class="input-field col s6">
-                                            <i class="material-icons prefix black-text text-darken-4">mail</i>
-                                            <input id="email" type="email" required>
-                                            <label class="black-text" for="email">Email</label>
-                                          </div>
-                                          <div class="input-field col s12">
-                                            <i class="material-icons prefix black-text text-darken-4">comment</i>
-                                            <textarea id="message" class="materialize-textarea" style="height: 45px;" required></textarea>
-                                            <label class="black-text" for="message">Message</label>
-                                            <button class="btn red waves-effect waves-light btn-large right" type="submit" name="action">Submit
-                                              <i class="material-icons right">send</i>
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </form>
+    <div class="row">
+        <div class="col s12 m4">
+            <div class="card-panel blue lighten-0" id="address_card">
+                <h4 class="section-title center">Contact Information</h4><br>
+                <p></p><strong><a class="black-text" href="tel:97192226222"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;"
+                            class="material-icons medium black-text">phone</i>+971 9 0000000</a></strong></p>
+                <p></p><strong><a class="black-text" href="mailto:info@fans.ae"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;"
+                            class="material-icons medium black-text">email</i> info@fans.ae</a></strong></p>
+                <p><strong><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;" class="material-icons medium black-text">location_on</i>Fujairah
+                        - United Arab Emirates</strong></p>
+            </div>
+        </div>
+
+        <!-- Contact us form -->
+        <div class="col s12 m8">
+            <div class="card-panel blue lighten-0" id="contact_us_card">
+                <form>
+                    <div class="row">
+                        <div class="col s12">
+                            <h4 class="section-title center">Contact Us</h4>
                         </div>
-                        
-                </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix black-text text-darken-4">account_circle</i>
+                            <input id="name" type="text" required>
+                            <label class="black-text" for="name">Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix black-text text-darken-4">mail</i>
+                            <input id="email" type="email" required>
+                            <label class="black-text" for="email">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix black-text text-darken-4">comment</i>
+                            <textarea id="message" class="materialize-textarea" style="height: 45px;" required></textarea>
+                            <label class="black-text" for="message">Message</label>
+                            <button class="btn red waves-effect waves-light btn-large right" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
+
+        </div>
+    </div>
 </section>
-
-
-
-<!-- Section: Contact -->
-<!-- <section id="contact" class="section section-contact scrollspy">
-    <div class="col s12 m6">
-        <form method="POST">
-            <div class="card-panel grey lighten-3">
-                <h5>Contact Us For Any Enquiries</h5>
-                <p>Phone: +97100000000</p>
-                <p>Email: email@fans.ae</p>
-                <br>
-                <div class="input-field">
-                    <input type="text" placeholder="Optional" id="name">
-                    <label for="name">Name</label>
-                </div>
-                <div class="input-field">
-                    <input type="email" placeholder="Email" id="email" required>
-                    <label for="email">Email*</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" placeholder="Optional" id="phone">
-                    <label for="phone">Phone</label>
-                </div>
-                <div class="input-field">
-                    <textarea class="materialize-textarea" placeholder="Enter Message" id="message" required></textarea>
-                    <label for="message">Message*</label>
-                </div>
-                <input type="submit" value="Submit" class="btn blue">
-            </div>
-        </form>
-    </div>
-    </div>
-</section> -->
 
 <!-- Google Maps Location -->
 <section>
@@ -290,12 +261,8 @@
         // Init Scrollspy
         $('.scrollspy').scrollSpy();
 
-        h=$('#contact_us_card').outerHeight();
-        address_card
-        $('#address_card').height(
-            $('#contact_us_card').height()
-        );
-        console.log(h);
+        // Makes address card height the same as contact us card
+        $('#address_card').height($('#contact_us_card').height());
     });
 </script>
 <script>
