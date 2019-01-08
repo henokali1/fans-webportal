@@ -1,0 +1,68 @@
+{% extends 'fans-index-base.html' %}
+{% load static %}
+<title>{% block title %}Photo Gallery{% endblock title %}</title>
+
+{% block content %}
+
+<div class="container">
+    <!-- Section: Gallery -->
+    <section>
+        <!-- MOVES CONTENT UP -->
+        <div style="margin-top: 50px;"></div>
+        <style>
+            .carousel .carousel-item {
+                width: 600px !important;
+                height: 400px !important;
+            }
+        </style>
+        <h3 class="center">Training Center</h3>
+        <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="{% static "pages/img/img2.jpg" %}"></a>
+            <a class="carousel-item" href="#two!"><img src="{% static "pages/img/img3.jpg" %}"></a>
+            <a class="carousel-item" href="#three!"><img src="{% static "pages/img/img7.jpg" %}"></a>
+            <a class="carousel-item" href="#four!"><img src="{% static "pages/img/img8.jpg" %}"></a>
+            <a class="carousel-item" href="#five!"><img src="{% static "pages/img/img9.jpg" %}"></a>
+        </div>
+
+        <h5 class="center">Section 2</h5>
+        <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="{% static "pages/img/img9.jpg" %}"></a>
+            <a class="carousel-item" href="#two!"><img src="{% static "pages/img/img8.jpg" %}"></a>
+            <a class="carousel-item" href="#three!"><img src="{% static "pages/img/img7.jpg" %}"></a>
+            <a class="carousel-item" href="#four!"><img src="{% static "pages/img/img3.jpg" %}"></a>
+            <a class="carousel-item" href="#five!"><img src="{% static "pages/img/img2.jpg" %}"></a>
+        </div>
+
+        <h5 class="center">Section 3</h5>
+        <div class="carousel">
+            <a class="carousel-item" href="#one!"><img src="{% static "pages/img/img8.jpg" %}"></a>
+            <a class="carousel-item" href="#two!"><img src="{% static "pages/img/img7.jpg" %}"></a>
+            <a class="carousel-item" href="#three!"><img src="{% static "pages/img/img3.jpg" %}"></a>
+            <a class="carousel-item" href="#four!"><img src="{% static "pages/img/img2.jpg" %}"></a>
+            <a class="carousel-item" href="#five!"><img src="{% static "pages/img/img9.jpg" %}"></a>
+        </div>
+    </section>
+</div>
+<!-- MOVES CONTENT UP -->
+<div style="margin-top: 50px;"></div>
+{% endblock content %}
+
+
+{% block script_tag %}
+<script>
+    $(document).ready(function () {
+        // Dropdown
+        $('.dropdown-button').dropdown({
+            constrainWidth: false,
+            hover: true,
+            belowOrigin: true,
+            alignment: 'left'
+        });
+
+        // Carousel
+        $(document).ready(function () {
+            $('.carousel').carousel();
+        });
+    });
+</script>
+{% endblock script_tag %}
