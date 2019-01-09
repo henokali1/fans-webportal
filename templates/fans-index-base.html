@@ -23,16 +23,29 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<body>
+<body onresize="myFunction()">
+    <style>
+        @media only screen and (max-width: 1007px) {
+    #hide-on-small {
+        display: none;
+    }
+        }
+
+    @media only screen and (min-width: 1007px) {
+    #show-on-small {
+        display: none;
+    }
+}
+    </style>
     {% block head-content %}
     <a href="/">
-        <div class="row" style="margin-bottom: 0px;">
+        <div class="row" id="hide-on-small" style="margin-bottom: 0px;">
             <div class="col s5">
                 <div align="left" class="logo-header">
                     <div style="display: inline-block; padding-left: 10px;">
-                        <font size="6"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
+                        <font size="6" style="font-size:1.5vw;"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
                         <br>
-                        <font size="4"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
+                        <font size="4" style="font-size:1.5vw;"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
                     </div>
                 </div>
             </div>
@@ -45,11 +58,18 @@
             <div class="col s5">
                 <div align="right" class="logo-header">
                     <div style="display: inline-block; padding-right: 10px;">
-                        <font size="6"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
+                        <font size="6" style="font-size:1.5vw;"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
                         <br>
-                        <font size="4"><b>دائرة الطيران المدني</b></font>
+                        <font size="4" style="font-size:1.5vw;"><b>دائرة الطيران المدني</b></font>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="col s2 center" id="show-on-small">
+            <div style="display: inline-block">
+                <img class="responsive-img" alt="" src="{% static "pages/img/fans-logo-04_burned.png"%}" height="400"
+                    width="160">
             </div>
         </div>
     </a>
@@ -209,6 +229,13 @@
                 alignment: 'left'
             });
         });
+    </script>
+    <script>
+        function myFunction() {
+            var w = window.outerWidth;
+            var h = window.outerHeight;
+            console.log(w);
+        }
     </script>
     {% block script_tag %}
     {% endblock script_tag %}
