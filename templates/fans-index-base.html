@@ -26,16 +26,16 @@
 <body onresize="myFunction()">
     <style>
         @media only screen and (max-width: 1007px) {
-    #hide-on-small {
-        display: none;
-    }
+            #hide-on-small {
+                display: none;
+            }
         }
 
-    @media only screen and (min-width: 1007px) {
-    #show-on-small {
-        display: none;
-    }
-}
+        @media only screen and (min-width: 1007px) {
+            #show-on-small {
+                display: none;
+            }
+        }
     </style>
     {% block head-content %}
     <a href="/">
@@ -229,13 +229,6 @@
                 alignment: 'left'
             });
         });
-    </script>
-    <script>
-        function myFunction() {
-            var w = window.outerWidth;
-            var h = window.outerHeight;
-            console.log(w);
-        }
     </script>
     {% block script_tag %}
     {% endblock script_tag %}
