@@ -25,17 +25,35 @@
 
 <body>
     {% block head-content %}
-    <div align="left" class="logo-header">
-        <div style="display: inline-block">
-            <img class="responsive-img" alt="" src="{% static "pages/img/fans-logo-04_burned.png"%}" height="400"
-                width="160">
+    <a href="/">
+        <div class="row" style="margin-bottom: 0px;">
+            <div class="col s5">
+                <div align="left" class="logo-header">
+                    <div style="display: inline-block; padding-left: 10px;">
+                        <font size="6"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
+                        <br>
+                        <font size="4"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
+                    </div>
+                </div>
+            </div>
+            <div class="col s2 center">
+                <div style="display: inline-block">
+                    <img class="responsive-img" alt="" src="{% static "pages/img/fans-logo-04_burned.png"%}" height="400"
+                        width="160">
+                </div>
+            </div>
+            <div class="col s5">
+                <div align="right" class="logo-header">
+                    <div style="display: inline-block; padding-right: 10px;">
+                        <font size="6"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
+                        <br>
+                        <font size="4"><b>دائرة الطيران المدني</b></font>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="display: inline-block; padding-left: 10px;">
-            <font size="6"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
-            <br>
-            <font size="4"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
-        </div>
-    </div>
+    </a>
+
     {% endblock head-content %}
     <div class="navbar">
         <nav class="blue lighten-2">
