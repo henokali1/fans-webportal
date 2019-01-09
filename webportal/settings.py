@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'mso',
     'logbook',
+    'cns_monthly_check',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'

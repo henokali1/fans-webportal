@@ -1,0 +1,84 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All MSO's {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+{% block content %}
+<div class="container">
+    <!-- Section: Search -->
+    <br>
+    <section id="search" class="section section-search blue-text center">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                <h3 class="black-text">CNS Monthly Check Forms</h3>
+                <div class="input-field">
+                    <input class="white blue-text autocomplete" placeholder="Seach Monthly Check Form Here" type="text" id="autocomplete-input">
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- List of Monthly Check Forms -->
+    <div class="collection">
+        <a href="#!" class="collection-item blue-text">AFTN & CADAS</a>
+        <a href="#!" class="collection-item blue-text">ATIS</a>
+        <a href="#!" class="collection-item blue-text">ATS/RADAR DISPLAY SYSTEM</a>
+        <a href="#!" class="collection-item blue-text">AWS RWY 11/29/ CEILOMETER 29</a>
+        <a href="#!" class="collection-item blue-text">DGVOX RECORDING SYSTEM</a>
+        <a href="#!" class="collection-item blue-text">DVOR</a>
+        <a href="#!" class="collection-item blue-text">EQUIPMENT ROOM SERVERS PM</a>
+        <a href="#!" class="collection-item blue-text">GLIDEPATH</a>
+        <a href="#!" class="collection-item blue-text">HP DME</a>
+        <a href="#!" class="collection-item blue-text">JOTRON TX/RX VHF</a>
+        <a href="#!" class="collection-item blue-text">LOCALIZER</a>
+        <a href="#!" class="collection-item blue-text">LP DME</a>
+        <a href="#!" class="collection-item blue-text">RDD</a>
+        <a href="#!" class="collection-item blue-text">REMOTE MONITORS (WORKSHOP)</a>
+        <a href="#!" class="collection-item blue-text">SCHMID REPORT</a>
+        <a href="#!" class="collection-item blue-text">UHF BASE RADIO / VHF (QUARTERLY)</a>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- JS -->
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
+{% endif %}
+<script>
+    $(document).ready(function () {
+        // Autocomplete
+        $('.autocomplete').autocomplete({
+            data: {
+                "AFTN & CADAS": null,
+                "ATIS": null,
+                "ATS/ RADAR DISPLAY SYSTEM": null,
+                "AWS RWY 11/29/ CEILOMETER 29": null,
+                "DGVOX RECORDING SYSTEM": null,
+                "DVOR": null,
+                "EQUIPMENT ROOM SERVERS PM (SEMIANNUAL)": null,
+                "GLIDEPATH": null,
+                "HP DME": null,
+                "JOTRON TX/RX VHF": null,
+                "LOCALIZER": null,
+                "LP DME": null,
+                "RDD": null,
+                "REMOTE MONITORS (WORKSHOP)": null,
+                "SCHMID REPORT": null,
+                "UHF BASE RADIO / VHF (QUARTERLY)": null,
+            }
+          });
+        });
+
+        
+    </script>
+
+    
+{% endblock script_tag %}
