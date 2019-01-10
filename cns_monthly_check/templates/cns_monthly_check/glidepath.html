@@ -1,2 +1,12 @@
-<h1>glidepath.html
-    </h1>
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} GLIDEPATH {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+{% block content %}
+<div class="container">
+    <h1>GLIDEPATH</h1>
+</div>
+{% endblock content %}
