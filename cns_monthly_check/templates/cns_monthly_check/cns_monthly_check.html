@@ -13,10 +13,11 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                <h3 class="black-text">CNS Monthly Check Forms</h3>
-                <div class="input-field">
-                    <input class="white blue-text autocomplete" placeholder="Seach Monthly Check Form Here" type="text" id="autocomplete-input">
-                </div>
+                    <h3 class="black-text">CNS Monthly Check Forms</h3>
+                    <div class="input-field">
+                        <input class="white blue-text autocomplete" placeholder="Seach Monthly Check Form Here" type="text"
+                            id="autocomplete-input">
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,15 +44,18 @@
         <a href="vhf_ground_to_air_radios/" class="collection-item blue-text">VHF GROUND TO AIR RADIOS</a>
     </div>
 </div>
+<br>
+<br>
+<br>
 {% endblock content %}
 
 <!-- JS -->
 {% block script_tag %}
 <script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
 {% if msg %}
-    <script>
-        Materialize.toast('{{ msg }}', 8000, 'rounded');
-    </script>
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
 {% endif %}
 <script>
     $(document).ready(function () {
@@ -74,12 +78,14 @@
                 "REMOTE MONITORS (WORKSHOP)": null,
                 "SCHMID REPORT": null,
                 "UHF BASE RADIO / VHF (QUARTERLY)": null,
+            },
+            onAutocomplete: function (val) {
+                url = $('a:contains(' + val + ')')[0].href;
+                window.open(url, "_self");
             }
-          });
         });
+    });
+</script>
 
-        
-    </script>
 
-    
 {% endblock script_tag %}
