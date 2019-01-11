@@ -9,7 +9,7 @@
     <ul class="slides">
         <li>
             <a href="#">
-                <img class="responsive-img" src="{% static "pages/img/fans-logo-02.jpg" %}">
+                <img class="responsive-img" src="{% static "pages/img/fans-logo-03.jpg" %}">
             </a>
         </li>
         <li>
@@ -71,72 +71,72 @@
 <div class="row">
     <div class="col s12 m4">
         <!-- CARD REVEAL -->
-        <div class="card">
+        <div class="card blue lighten-2">
             <div class="card-image waves-effect waves-light waves-block">
                 <img class="activator" src="{% static "pages/img/img1.jpg" %}">
             </div>
             <div class="card-content">
-                <span class="card-title activator">Service 1
+                <span class="card-title activator"><strong>Service 1</strong>
                     <i class="material-icons">more_vert</i>
                 </span>
             </div>
             <!-- inside of reveal -->
-            <div class="card-reveal">
-                <span class="card-title">Service 1 Title
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Service 1 Title</strong>
                     <i class="material-icons">close</i>
                 </span>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
                     iusto dolor
                     in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
-                <p><a class="activator" href="/training_center">Read More</a></p>
+                <p><a class="activator white-text" href="/training_center">Read More</a></p>
             </div>
         </div>
     </div>
 
     <div class="col s12 m4">
         <!-- CARD REVEAL -->
-        <div class="card">
+        <div class="card blue lighten-2">
             <div class="card-image waves-effect waves-light waves-block">
                 <img class="activator" src="{% static "pages/img/img8.jpg" %}">
             </div>
             <div class="card-content">
-                <span class="card-title activator">Service 2
+                <span class="card-title activator"><strong>Service 2</strong>
                     <i class="material-icons">more_vert</i>
                 </span>
             </div>
             <!-- inside of reveal -->
-            <div class="card-reveal">
-                <span class="card-title">Service 2 Title
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Service 2 Title</strong>
                     <i class="material-icons">close</i>
                 </span>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
                     iusto dolor
                     in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
-                <p><a href="/services_ats" class="activator">Read More</a></p>
+                <p><a href="/services_ats" class="activator white-text">Read More</a></p>
             </div>
         </div>
     </div>
 
     <div class="col s12 m4">
         <!-- CARD REVEAL -->
-        <div class="card">
+        <div class="card blue lighten-2">
             <div class="card-image waves-effect waves-light waves-block">
                 <img class="activator" src="{% static "pages/img/img9.jpg" %}">
             </div>
             <div class="card-content">
-                <span class="card-title activator">Service 3
+                <span class="card-title activator"><strong>Service 3</strong>
                     <i class="material-icons">more_vert</i>
                 </span>
             </div>
             <!-- inside of reveal -->
-            <div class="card-reveal">
-                <span class="card-title">Service 3 Title
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Service 3 Title</strong>
                     <i class="material-icons">close</i>
                 </span>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ad repudiandae sequi at quis assumenda
                     iusto dolor
                     in, maxime earum debitis ea vero aspernatur ipsum, totam iste molestias natus! Ullam?</p>
-                <p><a href="/services_engineering" class="activator">Read More</a></p>
+                <p><a href="/services_engineering" class="activator white-text">Read More</a></p>
             </div>
         </div>
     </div>
@@ -169,7 +169,7 @@
 <!-- Section: Contact 2 -->
 <section id="contact" class="section-contact scrollspy">
     <div class="row">
-        <div class="col s12 m4">
+        <div class="col m12 l4">
             <div class="card-panel grey lighten-3" id="address_card">
                 <h5 class="section-title center">Contact Information</h5>
                 <p></p><strong><a class="black-text" href="tel:+97192055795"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;"
@@ -209,7 +209,7 @@
         </div>
 
         <!-- Contact us form -->
-        <div class="col s12 m8" class="card-panel grey lighten-3">
+        <div class="col s12 m12 l8" class="card-panel grey lighten-3">
             <!--The div element for the map -->
             <div id="map"></div>
         </div>
@@ -241,14 +241,14 @@
 </script>
 <script>
     function initMap() {
-        // The location of Uluru
-        var uluru = { lat: 25.111784, lng: 56.334965 };
-        // The map, centered at Uluru
+        // The location of fans
+        var fans = { lat: 25.111784, lng: 56.334965 };
+        // The map, centered at FANS
         var map = new google.maps.Map(
-            document.getElementById('map'), { zoom: 14, center: uluru }
+            document.getElementById('map'), { zoom: 14, center: fans }
         );
-        // The marker, positioned at Uluru
-        var marker = new google.maps.Marker({ position: uluru, map: map });
+        // The marker, positioned at FANS
+        var marker = new google.maps.Marker({ position: fans, map: map });
     }
 </script>
 {% endblock script_tag %}
