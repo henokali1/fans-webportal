@@ -9,4 +9,5 @@ urlpatterns = [
     path('mso/', include('mso.urls')),
     path('logbook/', include('logbook.urls')),
     path('cns_monthly_check/', include('cns_monthly_check.urls')),
+    path('training_center/', include('training_center.urls')),
 ]

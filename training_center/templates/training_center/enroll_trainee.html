@@ -1,0 +1,73 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Enroll New Trainee {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <div class="card-panel grey lighten-3 grey-text text-darken-4 z-depth-0">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col s12 m6">
+                    <!-- Course Details -->
+                    <div class="input-field">
+                        <i class="material-icons prefix">assignment</i>
+                        <input id="course_details" type="text" name="course_details" required>
+                        <label for="course_details">Course Details</label>
+                    </div>
+                </div>
+                <div class="col m6 s12">
+                        <!-- Course Date -->
+                        <div class="input-field">
+                            <i class="material-icons prefix">date_range</i>
+                            <input type="text" class="datepicker" id="course_date" name="course_date">
+                            <label for="course_date">Course Date</label>
+                        </div>
+                    </div>
+            </div>
+            
+
+            <div class="row">
+                <!-- First Name -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_box</i>
+                        <input id="first_name" type="text" name="first_name" required>
+                        <label for="first_name">First Name</label>
+                    </div>
+                </div>
+                <!-- Last Name -->
+                <div class="col s12 m6"></div>
+            </div>
+
+
+            <div class="row">
+                <div class="col s12">
+                    <div>
+                        <input type="submit" value="Submit" class="btn left blue">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+<script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker();
+    });
+</script>
+{% endblock script_tag %}

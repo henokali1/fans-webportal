@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'mso',
     'logbook',
     'cns_monthly_check',
+    'training_center',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'

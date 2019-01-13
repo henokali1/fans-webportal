@@ -1,0 +1,23 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Training Center {% endblock title %} 
+
+{% block linktag %} <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<h1>Training Center</h1>
+{% endblock content %}
+
+{% block script_tag %}
+<script>
+    $(document).ready(function(){
+        $('.datepicker').datepicker();
+    });
+</script>
+{% if msg %}
+    <script>
+        Materialize.toast('{{ msg }}', 8000, 'rounded');
+    </script>
+{% endif %}
+{% endblock script_tag %}

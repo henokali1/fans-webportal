@@ -20,8 +20,13 @@ def get_department(email):
 def get_redirect_url(email):
     job_title = get_job_title(email)
     department = get_department(email)
+    print(department, 'department')
+    print(job_title,'job_title')
     if (job_title or department) == (-1):
         return '/user/setup-account/'
+    elif (department == 'Admin'):
+        print('Admin user')
+        return('/training_center/admin')
     elif department == 'CNS':
         if job_title in ['CNS Manager', 'CNS Chief Engineer', 'CNS Supervisor']:
             return '/mso/approve/'
@@ -35,4 +40,5 @@ class AccountAdapter(DefaultAccountAdapter):
         #url = super(AccountAdapter, self).get_login_redirect_url(request)
         user = request.user
         url = get_redirect_url(user)
+        print(url, 'redirect url')
         return url
