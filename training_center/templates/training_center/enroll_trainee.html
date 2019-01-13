@@ -22,15 +22,15 @@
                     </div>
                 </div>
                 <div class="col m6 s12">
-                        <!-- Course Date -->
-                        <div class="input-field">
-                            <i class="material-icons prefix">date_range</i>
-                            <input type="text" class="datepicker" id="course_date" name="course_date">
-                            <label for="course_date">Course Date</label>
-                        </div>
+                    <!-- Course Date -->
+                    <div class="input-field">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="text" class="datepicker" id="course_date" name="course_date">
+                        <label for="course_date">Course Date</label>
                     </div>
+                </div>
             </div>
-            
+
 
             <div class="row">
                 <!-- First Name -->
@@ -42,9 +42,149 @@
                     </div>
                 </div>
                 <!-- Last Name -->
-                <div class="col s12 m6"></div>
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">account_box</i>
+                        <input id="last_name" type="text" name="last_name" required>
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
             </div>
 
+            <div class="row">
+                <!-- ADDRESS(PRIVATE) -->
+                <div class="col l12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">home</i>
+                        <input id="private_address" type="text" name="private_address" required>
+                        <label for="private_address">Address (Private)</label>
+                    </div>
+                </div>
+
+                <!-- ADDRESS(OFFICE) -->
+                <div class="col l12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">work</i>
+                        <input id="office_address" type="text" name="office_address" required>
+                        <label for="first_name">Address (Office)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Date of Birth -->
+                <div class="col m6 s12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="text" class="datepicker" id="date_of_birth" name="date_of_birth">
+                        <label for="date_of_birth">Date of Birth</label>
+                    </div>
+                </div>
+
+                <!-- Gender -->
+                <div class="col m6 s12">
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <select name="gender">
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        </select>
+                        <label>Gender</label>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                    <!-- Mobile Number -->
+                    <div class="col s12 m6">
+                        <div class="input-field">
+                            <i class="material-icons prefix">phone_iphone</i>
+                            <input id="mobile_number" type="number" name="mobile_number" required>
+                            <label for="mobile_number">Mob. Number</label>
+                        </div>
+                    </div>
+                    <!-- Telephone Number -->
+                    <div class="col s12 m6">
+                        <div class="input-field">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="telephone_number" type="number" name="telephone_number" required>
+                            <label for="telephone_number">Tel. Number</label>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="row">
+                <!-- Email Address -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" name="email" required>
+                        <label for="email">Email Address</label>
+                    </div>
+                </div>
+
+                <!-- EMPLOYER -->
+                <div class="col s12 m6">
+                        <div class="input-field">
+                            <i class="material-icons prefix">blur_on</i>
+                            <input id="employer" type="text" name="employer">
+                            <label for="employer">Employer (IF EMPLOYED)</label>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="row">
+                <!-- JOB TITLE (IF EMPLOYED) -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">blur_on</i>
+                        <input id="job_title" type="text" name="job_title">
+                        <label for="job_title">Job Title (IF EMPLOYED)</label>
+                    </div>
+                </div>
+                <!-- LENGTH OF EMPLOYMENT -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">blur_on</i>
+                        <input id="length_of_employment" type="number" name="length_of_employment">
+                        <label for="length_of_employment">Length of Employment(Years)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- NAME AND ADDRESS OF NEXT OF KIN -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">looks</i>
+                        <input id="name_and_address_kin" type="text" name="name_and_address_kin">
+                        <label for="name_and_address_kin">Name and Address of Next Kin</label>
+                    </div>
+                </div>
+
+                <!-- RELATIONSHIP -->
+                <div class="col s12 m6">
+                    <div class="input-field">
+                        <i class="material-icons prefix">looks</i>
+                        <input id="relationship" type="text" name="relationship">
+                        <label for="relationship">Relationship</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- CONTACT No -->
+                <div class="col s12 m6">
+                        <div class="input-field">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="contact_num" type="text" name="contact_num">
+                            <label for="contact_num">Contact No.</label>
+                        </div>
+                    </div>
+            </div>
 
             <div class="row">
                 <div class="col s12">
@@ -66,7 +206,7 @@
 </script>
 {% endif %}
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.datepicker').datepicker();
     });
 </script>

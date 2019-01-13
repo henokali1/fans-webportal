@@ -36,7 +36,7 @@ $(document).ready(function() {
   // INIT DATEPICKER
   $('.datepicker').pickadate({
     selectMonths: true,
-    selectYears: 40,
+    selectYears: 440,
     closeOnSelect: true
   });
 
