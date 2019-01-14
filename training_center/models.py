@@ -31,4 +31,4 @@ class EnrollTrainee(models.Model):
     enrolled_by = models.EmailField(max_length=254, default='')
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()
