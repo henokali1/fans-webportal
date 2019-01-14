@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from mso import helper
 from .models import EnrollTrainee
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import time
 
 
 # Training Center
@@ -23,7 +26,7 @@ def enroll_trainee(request):
         'department': str(department),
         'job_title': str(job_title),
     } 
-    
+
     if request.method == 'POST':
         new_trainee = EnrollTrainee()
 
@@ -52,6 +55,12 @@ def enroll_trainee(request):
         new_trainee.professional_qualification_insitute = request.POST['professional_qualification_insitute']
         new_trainee.professional_qualification_year = request.POST['professional_qualification_year']
         new_trainee.enrolled_by = request.user
+
+        myfile = request.FILES['visa_copy']
+        fs = FileSystemStorage()
+        filename = fs.save(str(int(time.time()))+myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        print(filename, 'filename')
 
         # Commit to DB
         new_trainee.save()

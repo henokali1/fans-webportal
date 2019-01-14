@@ -9,7 +9,7 @@
 {% block content %}
 <div class="container">
     <div class="card-panel grey lighten-3 grey-text text-darken-4 z-depth-0">
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="row">
@@ -452,7 +452,7 @@
                     <div class="file-field input-field">
                         <div class="btn blue">
                             <span>Upload Visa Copy</span>
-                            <input type="file" accept="image/*">
+                            <input type="file" accept="image/*"  name="visa_copy">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">

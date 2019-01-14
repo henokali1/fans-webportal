@@ -157,11 +157,14 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
-LOGIN_REDIRECT_URL = '/mso/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/mso/'
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 ACCOUNT_FORMS = {
     'signup': 'users.forms.CustomSignupForm',
 }
 
 ACCOUNT_ADAPTER = 'users.adapter.AccountAdapter'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
