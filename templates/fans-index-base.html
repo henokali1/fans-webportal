@@ -233,6 +233,14 @@
             });
         });
     </script>
+    <script>
+        // Employee Login Shortcut
+        document.onkeyup = function(e) {
+            if (e.ctrlKey && e.altKey && e.shiftKey && e.which == 69) {
+                window.open("/accounts/login/","_self")
+            }
+        };
+    </script>
     {% block script_tag %}
     {% endblock script_tag %}
 </body>
