@@ -56,11 +56,23 @@ def enroll_trainee(request):
         new_trainee.professional_qualification_year = request.POST['professional_qualification_year']
         new_trainee.enrolled_by = request.user
 
-        myfile = request.FILES['visa_copy']
+
+        first_name = request.POST['first_name'].replace(' ', '_')
+        last_name = request.POST['last_name'].replace(' ', '_')
+
+        # Get photos
+        visa_copy = request.FILES['visa_copy']
+        passport_copy = request.FILES['passport_copy']
+        passport_size_photo = request.FILES['passport_size_photo']
+
         fs = FileSystemStorage()
-        filename = fs.save(str(int(time.time()))+myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        print(filename, 'filename')
+        visa_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_visa_copy' + visa_copy.name[-4:], visa_copy)
+        passport_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_copy' + passport_copy.name[-4:], passport_copy)
+        passport_size_photo_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_size_photo' + passport_size_photo.name[-4:], passport_size_photo)
+        
+        new_trainee.visa_copy = visa_file_name
+        new_trainee.passport_copy = passport_file_name
+        new_trainee.passport_size_photo = passport_size_photo_file_name
 
         # Commit to DB
         new_trainee.save()
@@ -73,3 +85,12 @@ def enroll_trainee(request):
 @login_required
 def admin(request):
     return render(request, 'training_center/admin.html', {})
+
+# All Trainees
+def all_trainees(request):
+    return render(request, 'training_center/all_trainees.html', {})
+
+# trainee_detail
+def trainee_detail(request, pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=pk)
+    return render(request, 'training_center/trainee_detail.html', {'trainee':trainee[0]})

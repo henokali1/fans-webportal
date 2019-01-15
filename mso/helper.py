@@ -1,4 +1,5 @@
 from users.models import CustomUser, SetupUserAccount
+import time
 import pytz
 
 
@@ -30,3 +31,7 @@ def parse_date(timestamp):
     d = ts[0].split('-')
     date = d[2] + '-' + d[1] + '-' + d[0]
     return date
+
+# Generates a file name with current timestamp
+def get_timestamp():
+    return str(int(time.time()))

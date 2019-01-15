@@ -29,6 +29,9 @@ class EnrollTrainee(models.Model):
     professional_qualification_year = models.CharField(max_length=10, default='')
     enrolled_on = models.DateTimeField(auto_now=True)
     enrolled_by = models.EmailField(max_length=254, default='')
+    visa_copy = models.CharField(max_length=250, default='')
+    passport_copy = models.CharField(max_length=250, default='')
+    passport_size_photo = models.CharField(max_length=250, default='')
 
     def __str__(self):
         return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()
