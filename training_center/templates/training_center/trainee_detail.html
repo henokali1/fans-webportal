@@ -11,6 +11,8 @@
     <p>{{trainee.pk}}</p>
     <p>{{trainee.last_name}}</p>
     <p>{{trainee}}</p>
-    <img src="{{trainee.visa_copy.url}}" alt="" width="100">
+    <p>visa:<img src="{{trainee.visa_copy.url}}" alt="" width="100"></p>
+    <p>passport:<img src="{{trainee.passport_copy.url}}" alt="" width="100"></p>
+    <p>photo:<img src="{{trainee.passport_size_photo.url}}" alt="" width="100"></p>
 </div>
 {% endblock content %}

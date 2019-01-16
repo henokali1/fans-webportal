@@ -74,6 +74,9 @@ def enroll_trainee(request):
         new_trainee.passport_copy = passport_file_name
         new_trainee.passport_size_photo = passport_size_photo_file_name
 
+        print('prof_qualifications', request.POST['prof_qualifications'])
+        print('acc_qualifications', request.POST['acc_qualifications'])
+
         # Commit to DB
         new_trainee.save()
 
