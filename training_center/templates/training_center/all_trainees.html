@@ -15,19 +15,72 @@
             <tr>
                 <th>SN. - Full Name</th>
                 <th>Email</th>
-                <th>Course Detail</th>
+                <th>Course</th>
             </tr>
         </thead>
         <tbody>
             {% for trainee in trainees %}
-                <tr>
-                    <th><a href="{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}</a></th>
-                    <th><a href="{{ trainee.id }}">{{ trainee.email }}</a></th>
-                    <th><a href="{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
-                    <th><a href="{{ trainee.id }}/edit" class="green-text"><i class="material-icons left">edit</i></a>  <a href="" class="red-text"><i class="material-icons right">delete</i></a></th>
-                </tr>
+            <tr>
+                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }}
+                    {{ trainee.last_name|title }}</a></th>
+                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
+                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
+                <th><a href="/training_center/trainee/{{ trainee.id }}/edit" class="green-text tooltipped"
+                        data-position="center" data-tooltip="Update {{ trainee.first_name|title }}'s Details"><i class="material-icons center">edit</i></a>
+                    <a href="#" class="red-text tooltipped" data-position="right" data-tooltip="Delete {{ trainee.first_name|title }}'s Details"><i
+                            class="material-icons right">delete</i></a></th>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+    <br>
+    <br>
+    <div class="pagination">
+        <span class="step-links">
+            {% if trainees.has_previous %}
+            <li class="waves-effect material-icons large">
+                <a href="?page={{ trainees.previous_page_number }}">
+                    <i class="material-icons large">chevron_left</i>
+                </a>
+            </li>
+            {% endif %}
+
+            <span class="current">
+                Page {{ trainees.number }} of {{ trainees.paginator.num_pages }}.
+            </span>
+
+            {% if trainees.has_next %}
+
+            <!-- <a href="?page={{ trainees.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a> -->
+            <li class="waves-effect">
+                <a href="?page={{ trainees.next_page_number }}">
+                    <i class="material-icons large">chevron_right</i>
+                </a>
+            </li>
+            {% endif %}
+        </span>
+    </div>
+    <br>
+    <br>
 </div>
 {% endblock content %}
+
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+<script>
+    $(document).ready(function () {
+        $('.modal').modal({
+            dismissible: true,
+            inDuration: 300,
+            outDuration: 200
+        });
+        $('.tooltipped').tooltip();
+    });
+</script>
+{% endblock script_tag %}

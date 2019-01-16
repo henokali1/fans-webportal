@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Enroll New Trainee {% endblock title %}
+{% block title %} {{ trainee.first_name|title }} {{ trainee.last_name|title }}{% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from mso import helper
+from django.core.paginator import Paginator
 from .models import EnrollTrainee
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
@@ -95,10 +96,21 @@ def admin(request):
 
 # All Trainees
 @login_required
-def all_trainees(request):
-    trainees = EnrollTrainee.objects.all().order_by('-pk')
+def all_trainees(request, msg=''):
+    all_trainees = EnrollTrainee.objects.all().order_by('-pk')
+
+    # Pagination
+    paginator = Paginator(all_trainees, 10)
+
+    page = request.GET.get('page')
+    trainees = paginator.get_page(page)
+
+    if msg == "":
+        msg = "Trainee Added Successfully!"
+
     args = {
         'trainees': trainees,
+        'msg': msg,
     }
     return render(request, 'training_center/all_trainees.html', args)
 
@@ -111,8 +123,40 @@ def trainee_detail(request, pk):
 # Edit Tranee Details
 @login_required
 def edit_trainee(request, pk):
-    trainee = EnrollTrainee.objects.all().filter(pk=pk)
-    args = {
-        'trainee': trainee[0],
-    }
-    return render(request, 'training_center/edit_trainee.html', args)
+    if request.method == 'POST':
+        trainee = EnrollTrainee.objects.filter(pk=pk).update(
+            course_details = request.POST['course_details'],
+            course_date = request.POST['course_date'],
+            first_name = request.POST['first_name'],
+            last_name = request.POST['last_name'],
+            private_address = request.POST['private_address'],
+            office_address = request.POST['office_address'],
+            date_of_birth = request.POST['date_of_birth'],
+            gender = request.POST['gender'],
+            mobile_number = request.POST['mobile_number'],
+            telephone_number = request.POST['telephone_number'],
+            email = request.POST['email'],
+            employer = request.POST['employer'],
+            job_title = request.POST['job_title'],
+            length_of_employment = request.POST['length_of_employment'],
+            name_and_address_kin = request.POST['name_and_address_kin'],
+            relationship = request.POST['relationship'],
+            contact_num = request.POST['contact_num'],
+            academic_qualifications = request.POST['acc_qual_1'],
+            academic_qualification_insitute = request.POST['acc_qual_inst_1'],
+            academic_qualification_year = request.POST['acc_qual_year_1'],
+            professional_qualifications = request.POST['prof_qual_1'],
+            professional_qualification_insitute = request.POST['prof_qual_inst_1'],
+            professional_qualification_year = request.POST['prof_qual_year_1'],
+        )
+
+        return all_trainees(
+            request,
+            msg='Trainee-' + str(pk) + ' Updated Successfully!',
+        )
+    else:
+        trainee = EnrollTrainee.objects.all().filter(pk=pk)
+        args = {
+            'trainee': trainee[0],
+        }
+        return render(request, 'training_center/edit_trainee.html', args)
