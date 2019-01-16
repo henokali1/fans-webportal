@@ -94,10 +94,16 @@ def admin(request):
     return render(request, 'training_center/admin.html', {})
 
 # All Trainees
+@login_required
 def all_trainees(request):
-    return render(request, 'training_center/all_trainees.html', {})
+    trainees = EnrollTrainee.objects.all().order_by('-pk')
+    args = {
+        'trainees': trainees,
+    }
+    return render(request, 'training_center/all_trainees.html', args)
 
 # trainee_detail
+@login_required
 def trainee_detail(request, pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)
     return render(request, 'training_center/trainee_detail.html', {'trainee':trainee[0]})

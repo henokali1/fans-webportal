@@ -1,1 +1,32 @@
-<h1>all</h1>
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All Trainees {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <table class="bordered highlight responsive-table">
+        <thead>
+            <tr>
+                <th>SN. - Full Name</th>
+                <th>Email</th>
+                <th>Course Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trainee in trainees %}
+                <tr>
+                    <th><a href="{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}</a></th>
+                    <th><a href="{{ trainee.id }}">{{ trainee.email }}</a></th>
+                    <th><a href="{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
