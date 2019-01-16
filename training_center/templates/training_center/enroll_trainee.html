@@ -493,7 +493,7 @@
                 <div class="col s12 m5">
                     <div class="input-field">
                         <i class="material-icons prefix">school</i>
-                        <input id="qualifications" type="text" name="academic_qualifications">
+                        <input id="qualifications" type="text" name="acc_qual_1">
                         <label for="qualifications">Qualifications</label>
                     </div>
                 </div>
@@ -501,7 +501,7 @@
                 <div class="col s12 m5">
                     <div class="input-field">
                         <i class="material-icons prefix">location_city</i>
-                        <input id="insitute" type="text" name="academic_qualification_insitute">
+                        <input id="insitute" type="text" name="acc_qual_inst_1">
                         <label for="insitute">Insitute</label>
                     </div>
                 </div>
@@ -509,7 +509,7 @@
                 <div class="col s12 m2">
                     <div class="input-field">
                         <i class="material-icons prefix">date_range</i>
-                        <input id="year" type="number" name="academic_qualification_year">
+                        <input id="year" type="number" name="acc_qual_year_1">
                         <label for="year">Year</label>
                     </div>
                 </div>
@@ -519,7 +519,7 @@
                     <div class="file-field input-field">
                         <div class="btn blue">
                             <span>Upload Academic Certificate</span>
-                            <input type="file" accept="image/*">
+                            <input type="file" accept="image/*" name="acc_qual_cert_1">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -539,7 +539,7 @@
                 <div class="col s12 m5">
                     <div class="input-field">
                         <i class="material-icons prefix">school</i>
-                        <input id="qualifications" type="text" name="professional_qualifications">
+                        <input id="qualifications" type="text" name="prof_qual_1">
                         <label for="qualifications">Qualifications</label>
                     </div>
                 </div>
@@ -547,7 +547,7 @@
                 <div class="col s12 m5">
                     <div class="input-field">
                         <i class="material-icons prefix">location_city</i>
-                        <input id="insitute" type="text" name="professional_qualification_insitute">
+                        <input id="insitute" type="text" name="prof_qual_inst_1">
                         <label for="insitute">Insitute</label>
                     </div>
                 </div>
@@ -555,7 +555,7 @@
                 <div class="col s12 m2">
                     <div class="input-field">
                         <i class="material-icons prefix">date_range</i>
-                        <input id="year" type="number" name="professional_qualification_year">
+                        <input id="year" type="number" name="prof_qual_year_1">
                         <label for="year">Year</label>
                     </div>
                 </div>
@@ -565,7 +565,7 @@
                     <div class="file-field input-field">
                         <div class="btn blue">
                             <span>Upload Professional Certificate</span>
-                            <input type="file" accept="image/*">
+                            <input type="file" accept="image/*" name="prof_qual_cert_1">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -578,9 +578,6 @@
                 <a id="addProfessionalQualifications" class="right btn-floating btn-large waves-effect waves-light blue"><i
                         class="material-icons">add</i></a>
             </div>
-            <input type="hidden" id="acc_qualifications" name="acc_qualifications" value="1">
-            <input type="hidden" id="prof_qualifications" name="prof_qualifications" value="1">
-
             <div class="row">
                 <br>
                 <div class="col s12">
@@ -631,25 +628,16 @@
 {% endif %}
 <script>
     $(document).ready(function () {
-        var num_acc_qual = 1;
-        var num_prof_qual = 1;
-
         // ADD ACADEMIC QUALIFICATIONS
         $('#addAcadaminQualifications').click(function () {
-            var acadamicQualifications = '<!-- QUALIFICATION -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">school</i>                        <input id="acc_qualifications_' + num_acc_qual + '" type="text" name="qualifications">                        <label for="qualifications">Qualifications</label>                    </div>                </div>                <!-- ACADEMIC QUALIFICATION INSITUTE -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">location_city</i>                        <input id="insitute" type="text" name="acc_qual_insitute_' + num_acc_qual + '">                        <label for="insitute">Insitute</label>                    </div>                </div>                <!-- ACADEMIC QUALIFICATION YEAR -->                <div class="col s12 m2">                    <div class="input-field">                        <i class="material-icons prefix">date_range</i>                        <input id="year" type="number" name="acc_qual_year_' + num_acc_qual + '">                        <label for="year">Year</label>                    </div>                </div>                <!-- ACADEMIC CERTIFICATE -->                <div class="col l12">                    <div class="file-field input-field">                        <div class="btn blue">                            <span>Upload Academic Certificate</span>                            <input type="file" accept="image/*" name="acc_qual_certificate__' + num_acc_qual + '">                        </div>                        <div class="file-path-wrapper">                            <input class="file-path validate" type="text">                        </div>                    </div>                </div>';
+            var acadamicQualifications = '<!-- QUALIFICATION -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">school</i>                        <input id="qualifications" type="text" name="qualifications">                        <label for="qualifications">Qualifications</label>                    </div>                </div>                <!-- ACADEMIC QUALIFICATION INSITUTE -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">location_city</i>                        <input id="insitute" type="text" name="insitute">                        <label for="insitute">Insitute</label>                    </div>                </div>                <!-- ACADEMIC QUALIFICATION YEAR -->                <div class="col s12 m2">                    <div class="input-field">                        <i class="material-icons prefix">date_range</i>                        <input id="year" type="number" name="year">                        <label for="year">Year</label>                    </div>                </div>                <!-- ACADEMIC CERTIFICATE -->                <div class="col l12">                    <div class="file-field input-field">                        <div class="btn blue">                            <span>Upload Academic Certificate</span>                            <input type="file" accept="image/*">                        </div>                        <div class="file-path-wrapper">                            <input class="file-path validate" type="text">                        </div>                    </div>                </div>';
             $('#appendAcademicQualifications').append(acadamicQualifications);
-            num_acc_qual += 1;
-            $('#acc_qualifications').val(num_acc_qual);
-            console.log(num_acc_qual);
         });
 
         // ADD PROFESSIONAL QUALIFICATIONS
         $('#addProfessionalQualifications').click(function () {
-            var professionalQualifications = '<!-- PROFESSIONAL QUALIFICATION -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">school</i>                        <input id="qualifications" type="text" name="prof_qualification_' + num_prof_qual + '">                        <label for="qualifications">Qualifications</label>                    </div>                </div>                <!-- PROFESSIONAL QUALIFICATION INSITUTE -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">location_city</i>                        <input id="insitute" type="text" name="prof_qual_insitute_' + num_prof_qual + '">                        <label for="insitute">Insitute</label>                    </div>                </div>                <!-- PROFESSIONAL QUALIFICATION YEAR -->                <div class="col s12 m2">                    <div class="input-field">                        <i class="material-icons prefix">date_range</i>                        <input id="year" type="number" name="prof_qual_year_' + num_prof_qual + '">                        <label for="year">Year</label>                    </div>                </div>                <!-- PROFESSIONAL CERTIFICATE -->                <div class="col l12">                    <div class="file-field input-field">                        <div class="btn blue">                            <span>Upload Professional Certificate</span>                            <input type="file" accept="image/*" name="prof_qual_certificate__' + num_prof_qual + '">                        </div>                        <div class="file-path-wrapper">                            <input class="file-path validate" type="text">                        </div>                    </div>                </div>';
+            var professionalQualifications = '<!-- PROFESSIONAL QUALIFICATION -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">school</i>                        <input id="qualifications" type="text" name="qualifications">                        <label for="qualifications">Qualifications</label>                    </div>                </div>                <!-- PROFESSIONAL QUALIFICATION INSITUTE -->                <div class="col s12 m5">                    <div class="input-field">                        <i class="material-icons prefix">location_city</i>                        <input id="insitute" type="text" name="insitute">                        <label for="insitute">Insitute</label>                    </div>                </div>                <!-- PROFESSIONAL QUALIFICATION YEAR -->                <div class="col s12 m2">                    <div class="input-field">                        <i class="material-icons prefix">date_range</i>                        <input id="year" type="number" name="year">                        <label for="year">Year</label>                    </div>                </div>                <!-- PROFESSIONAL CERTIFICATE -->                <div class="col l12">                    <div class="file-field input-field">                        <div class="btn blue">                            <span>Upload Professional Certificate</span>                            <input type="file" accept="image/*">                        </div>                        <div class="file-path-wrapper">                            <input class="file-path validate" type="text">                        </div>                    </div>                </div>';
             $('#appendProfessionalQualifications').append(professionalQualifications);
-            num_prof_qual += 1;
-            $('#prof_qualifications').val(num_prof_qual);
-            console.log(num_prof_qual);
         });
 
         // T&C MODAL TRIGGER

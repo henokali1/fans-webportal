@@ -48,12 +48,12 @@ def enroll_trainee(request):
         new_trainee.relationship = request.POST['relationship']
         new_trainee.contact_num = request.POST['contact_num']
         new_trainee.country = request.POST['country']
-        new_trainee.academic_qualifications = request.POST['academic_qualifications']
-        new_trainee.academic_qualification_insitute = request.POST['academic_qualification_insitute']
-        new_trainee.academic_qualification_year = request.POST['academic_qualification_year']
-        new_trainee.professional_qualifications = request.POST['professional_qualifications']
-        new_trainee.professional_qualification_insitute = request.POST['professional_qualification_insitute']
-        new_trainee.professional_qualification_year = request.POST['professional_qualification_year']
+        new_trainee.academic_qualifications = request.POST['acc_qual_1']
+        new_trainee.academic_qualification_insitute = request.POST['acc_qual_inst_1']
+        new_trainee.academic_qualification_year = request.POST['acc_qual_year_1']
+        new_trainee.professional_qualifications = request.POST['prof_qual_1']
+        new_trainee.professional_qualification_insitute = request.POST['prof_qual_inst_1']
+        new_trainee.professional_qualification_year = request.POST['prof_qual_year_1']
         new_trainee.enrolled_by = request.user
 
 
@@ -65,18 +65,22 @@ def enroll_trainee(request):
         passport_copy = request.FILES['passport_copy']
         passport_size_photo = request.FILES['passport_size_photo']
 
+        acc_qual_cert_1 = request.FILES['acc_qual_cert_1']
+        prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
+
         fs = FileSystemStorage()
         visa_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_visa_copy' + visa_copy.name[-4:], visa_copy)
         passport_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_copy' + passport_copy.name[-4:], passport_copy)
         passport_size_photo_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_size_photo' + passport_size_photo.name[-4:], passport_size_photo)
-        
+        acc_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_1_' + passport_size_photo.name[-4:], acc_qual_cert_1)
+        prof_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_1_' + passport_size_photo.name[-4:], prof_qual_cert_1)
+
         new_trainee.visa_copy = visa_file_name
         new_trainee.passport_copy = passport_file_name
         new_trainee.passport_size_photo = passport_size_photo_file_name
-
-        print('prof_qualifications', request.POST['prof_qualifications'])
-        print('acc_qualifications', request.POST['acc_qualifications'])
-
+        new_trainee.academic_qualification_certificate = acc_qual_cert_1_file_name
+        new_trainee.professional_qualification_certificate = prof_qual_cert_1_file_name
+        
         # Commit to DB
         new_trainee.save()
 

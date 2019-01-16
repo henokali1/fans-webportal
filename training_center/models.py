@@ -33,5 +33,8 @@ class EnrollTrainee(models.Model):
     passport_copy = models.ImageField(upload_to = 'media/')
     passport_size_photo = models.ImageField(upload_to = 'media/')
 
+    academic_qualification_certificate = models.FileField(upload_to = 'media/')
+    professional_qualification_certificate = models.FileField(upload_to = 'media/')
+
     def __str__(self):
         return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()
