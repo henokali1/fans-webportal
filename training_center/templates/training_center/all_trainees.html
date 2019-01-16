@@ -24,6 +24,7 @@
                     <th><a href="{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}</a></th>
                     <th><a href="{{ trainee.id }}">{{ trainee.email }}</a></th>
                     <th><a href="{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
+                    <th><a href="{{ trainee.id }}/edit" class="green-text"><i class="material-icons left">edit</i></a>  <a href="" class="red-text"><i class="material-icons right">delete</i></a></th>
                 </tr>
             {% endfor %}
         </tbody>

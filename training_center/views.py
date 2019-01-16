@@ -113,6 +113,6 @@ def trainee_detail(request, pk):
 def edit_trainee(request, pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)
     args = {
-        'trainee': trainee,
+        'trainee': trainee[0],
     }
     return render(request, 'training_center/edit_trainee.html', args)
