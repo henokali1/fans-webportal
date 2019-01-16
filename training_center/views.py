@@ -102,8 +102,17 @@ def all_trainees(request):
     }
     return render(request, 'training_center/all_trainees.html', args)
 
-# trainee_detail
+# Trainee Detail
 @login_required
 def trainee_detail(request, pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)
     return render(request, 'training_center/trainee_detail.html', {'trainee':trainee[0]})
+
+# Edit Tranee Details
+@login_required
+def edit_trainee(request, pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=pk)
+    args = {
+        'trainee': trainee,
+    }
+    return render(request, 'training_center/edit_trainee.html', args)
