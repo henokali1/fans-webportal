@@ -68,7 +68,7 @@
 
 {% block script_tag %}
 <script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
-{% if msg %}
+{% if msg != '' %}
 <script>
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>

@@ -106,19 +106,16 @@ def all_trainees(request, msg=''):
     trainees = paginator.get_page(page)
 
     if msg == "":
-        msg = "Trainee Added Successfully!"
-
-    args = {
-        'trainees': trainees,
-        'msg': msg,
-    }
+        args = {'trainees': trainees}
+    else:
+        args = {'trainees': trainees, 'msg': msg}
     return render(request, 'training_center/all_trainees.html', args)
 
 # Trainee Detail
 @login_required
 def trainee_detail(request, pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)
-    return render(request, 'training_center/trainee_detail.html', {'trainee':trainee[0]})
+    return render(request, 'training_center/course_enrolment_form_pdf.html', {'trainee':trainee[0]})
 
 # Edit Tranee Details
 @login_required

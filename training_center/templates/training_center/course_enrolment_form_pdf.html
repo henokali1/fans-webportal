@@ -1,0 +1,347 @@
+{% load static %}
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	<link rel="shortcut icon" href="{% static "pages/img/fans-logo.png" %}" />
+	<title>Trainee-{{trainee.pk}}</title>
+	<script src="{% static "pages/js/jspdf.min.js" %}" type="text/javascript"></script>
+	<script type="text/javascript">
+		window.onload = function () {
+			var doc = new jsPDF();
+			//var doc = new jsPDF('landscape');//Horizontal
+
+			doc.setProperties({//Set the document properties
+				title: 'Trainee-{{trainee.pk}}',
+				subject: 'This is the subject',
+				author: 'Dragon',
+				keywords: 'javascript, web 2.0, ajax',
+				creator: 'MEEE'
+			});
+
+
+			var fans_logo = document.getElementById('Img1');
+
+			doc.addImage(fans_logo, 'PNG', 9, 21, 0, 0);
+
+			doc.setLineWidth(0.7)
+			doc.setDrawColor(103, 177, 226)
+			doc.rect(8.5, 20, 194, 22)
+			
+			doc.setTextColor(103, 177, 226)
+			doc.setFontSize(18)
+			doc.setFontType('bold')
+			doc.text(52, 33, 'COURSE ENROLMENT FORM')
+
+			doc.line(45, 20, 45, 42)
+
+			doc.line(150, 20, 150, 42)
+			
+			doc.setFontSize(14)
+			doc.text(154, 28, 'TRAINING CENTER')
+
+			doc.text(153, 38, 'FANSTC - FRM - 201')
+			doc.line(150, 31, 202.5, 31)
+
+			doc.setDrawColor(0, 0, 0)
+
+			doc.setLineWidth(0.3)
+			doc.rect(8.5, 55, 194, 222)
+
+			doc.setFillColor(222,235,244);
+			doc.rect(8.7, 55.2, 48, 174, 'F'); // hor 1
+
+			doc.setFillColor(169,204,226);
+			doc.rect(8.7, 55.2, 48, 8, 'F');
+
+			doc.setTextColor(0, 0, 0)
+			doc.text(11, 61, 'COURSE DETAILS')
+			doc.text(61, 61, '{{ trainee.course_details|upper }}')
+			doc.line(8.5, 63, 202.5, 63)
+
+			doc.setFillColor(169,204,226);
+			doc.rect(126, 55.2, 48, 7.5, 'F');
+			doc.line(126, 55.2, 126, 63)
+			doc.text(131, 61, 'APPLICATION ID')
+			doc.text(176, 61, '{{ trainee.pk }}')
+			doc.line(174, 55.2, 174, 63)
+			
+			doc.setFontType('normal')
+			doc.text(11, 69, 'COURSE NAME')
+			doc.line(8.5, 71, 202.5, 71)
+
+			doc.text(11, 77, 'COURSE DATE')
+			doc.line(8.5, 79, 202.5, 79)
+
+			doc.line(57, 55, 57, 230) // hor 2
+
+			doc.setFillColor(169,204,226);
+			doc.rect(8.8, 79.3, 193.5, 7.5, 'F');
+			doc.setFontType('bold')
+			doc.text(11, 85, 'PERSONEL DETAILS')
+			doc.line(8.5, 87, 202.5, 87)
+
+			doc.setFontType('normal')
+			doc.text(11, 93, 'FIRST NAME')
+			doc.text(61, 93, '{{ trainee.first_name|title }}')
+			doc.line(8.5, 95, 202.5, 95)
+
+			doc.text(11, 101, 'LAST NAME')
+			doc.text(61, 101, '{{ trainee.last_name|title }}')
+			doc.line(8.5, 103, 202.5, 103)
+
+			doc.text(11, 112, 'ADDRESS')
+			doc.text(11, 117, '(PRIVATE)')
+			// max length = 84
+            var split_private_address = doc.splitTextToSize('{{ trainee.private_address|title }}', 92);
+            doc.text(61, 109, split_private_address);
+			doc.line(8.5, 121, 202.5, 121)
+
+			doc.text(11, 130, 'ADDRESS')
+			doc.text(11, 135, '(OFFICE)')
+			// max length = 84
+            var split_office_address = doc.splitTextToSize('{{ trainee.office_address|title }}', 92);
+			doc.text(61, 127, split_office_address)
+			doc.line(8.5, 144.1, 202.5, 144.1)
+
+			var psp = document.getElementById('psp');
+			doc.addImage(psp, 'PNG', 157, 87, 0, 0);
+
+			doc.setFillColor(222,235,244);
+			doc.rect(157, 144.5, 23, 7.5, 'F');
+			
+			doc.text(158, 150, 'GENDER')
+			doc.text(183, 150, '{{ trainee.gender|title }}');
+			
+			doc.line(180, 144, 180, 152)
+			
+			doc.setFillColor(222,235,244);
+			doc.rect(114, 152, 42.8, 7.8, 'F');
+
+			doc.line(157, 144, 157, 160) //hor 3
+			doc.line(114, 152, 114, 160) //hor 4
+			doc.text(115, 158, 'TEL. No (OFFICE)')
+			doc.text(158, 158, '{{ trainee.telephone_number }}')
+
+			doc.text(11, 150, 'DATE OF BIRTH')
+			doc.text(61, 150, '{{ trainee.date_of_birth }}');
+			doc.line(8.5, 152, 202.5, 152)
+
+			doc.text(11, 158, 'TEL. No (RESI)')
+			doc.text(61, 158, '{{ trainee.mobile_number }}')
+			doc.line(8.5, 160, 202.5, 160)
+
+			doc.text(11, 166, 'EMAIL ADDRESS')
+			doc.text(61, 166, '{{ trainee.email }}')
+			doc.line(8.5, 168, 202.5, 168)
+
+			doc.text(11, 176, 'JOB TITLE (IF')
+			doc.text(11, 182, 'EMPLOYED)')
+			// max length = 45
+            var split_job_title = doc.splitTextToSize('{{ trainee.employer|title }}', 50);
+			doc.text(61, 173, split_job_title)
+			doc.line(8.5, 186, 202.5, 186)
+
+			doc.line(157, 167.9, 157, 186) //hor 5
+			doc.line(114, 168, 114, 186) //hor 6
+			
+			doc.setFillColor(222,235,244);
+			doc.rect(114.2, 168.2, 42.6, 17.6, 'F');
+
+			doc.text(115, 175, 'LENGTH OF')
+			doc.text(115, 183, 'EMPLOYMENT')
+			doc.text(161, 178, '{{ trainee.length_of_employment }}' + ' Years')
+
+			doc.text(11, 191.5, 'EMPLOYER')
+			// max length = 42
+			doc.text(61, 191.5, '{{ trainee.job_title|title }}')
+			doc.line(8.5, 194, 202.5, 194)
+
+			doc.text(11, 199, 'NAME AND')
+			doc.text(11, 205, 'ADDRESS OF')
+			doc.text(11, 211, 'NEXT OF KIN')
+			// max length = 126
+            var split_name_and_address_kin = doc.splitTextToSize('{{ trainee.name_and_address_kin }}', 140);
+			doc.text(61, 199, split_name_and_address_kin)
+			doc.line(8.5, 213, 202.5, 213)
+
+			doc.text(11, 219, 'RELATIONSHIP')
+			// max length = 15
+			doc.text(61, 219, '{{ trainee.relationship|title }}')
+			doc.line(8.5, 221, 202.5, 221)
+
+			doc.line(114, 221, 114, 213) //hor 7
+			doc.line(157, 221, 157, 213) //hor 8
+
+			doc.setFillColor(222,235,244);
+			doc.rect(114.2, 213.3, 42.6, 7.5, 'F');
+			doc.text(115, 219, 'CONTACT No')
+			doc.text(161, 219, '{{ trainee.contact_num }}')
+			
+			doc.text(11, 227, 'NATIONALITY')
+			doc.text(61, 227, '{{ trainee.country }}')
+			doc.line(8.5, 229, 202.5, 229)
+
+			doc.setFillColor(169,204,226);
+			doc.rect(8.8, 229.2, 193.5, 7.5, 'F');
+			doc.setFontType('bold')
+			doc.text(11, 235, 'ACADEMIC QUALIFICATIONS')
+			doc.line(8.5, 236.6, 202.5, 236.6)
+
+			doc.setFillColor(222,235,244);
+			doc.rect(8.8, 237, 193.5, 7, 'F');
+
+			doc.text(20, 242, 'QUALIFICATION')
+			doc.line(8.5, 243.7, 202.5, 243.7)
+
+			doc.text(93.1, 242, 'INSITUTE')
+			doc.line(73.1, 243.8, 73.1, 277)
+
+			doc.text(161.8, 242, 'YEAR')
+			doc.line(137.8, 243.8, 137.8, 277)
+
+			doc.line(8.5, 250.37, 202.5, 250.37)
+			doc.line(8.5, 257, 202.5, 257)
+			doc.line(8.5, 263.6, 202.5, 263.6)
+			doc.line(8.5, 270.2, 202.5, 270.2)
+
+			doc.addPage();
+
+			doc.addImage(fans_logo, 'PNG', 9, 21, 0, 0);
+
+			doc.setLineWidth(0.7)
+			doc.setDrawColor(103, 177, 226)
+			doc.rect(8.5, 20, 194, 22)
+			
+			doc.setTextColor(103, 177, 226)
+			doc.setFontSize(18)
+			doc.setFontType('bold')
+			doc.text(52, 33, 'COURSE ENROLMENT FORM')
+
+			doc.line(45, 20, 45, 42)
+
+			doc.line(150, 20, 150, 42)
+			
+			doc.setFontSize(14)
+			doc.text(154, 28, 'TRAINING CENTER')
+
+			doc.text(153, 38, 'FANSTC - FRM - 201')
+			doc.line(150, 31, 202.5, 31)
+
+			doc.setDrawColor(0, 0, 0)
+
+			doc.setLineWidth(0.3)
+			doc.rect(8.5, 55, 194, 85)
+			
+			doc.setTextColor(0, 0, 0)
+			
+			doc.setFillColor(169,204,226);
+			doc.rect(8.85, 55.2, 193.3, 7.5, 'F');
+			doc.setFontType('bold')
+			doc.text(11, 61, 'PROFESSIONAL QUALIFICATIONS')
+			doc.line(8.5, 62.6, 202.5, 62.6)
+
+			doc.setFillColor(222,235,244);
+			doc.rect(8.8, 62.8, 193.2, 7, 'F');
+
+			doc.text(20, 68, 'QUALIFICATION')
+			doc.line(8.5, 69.7, 202.5, 69.7)
+
+			doc.text(93.1, 68, 'INSITUTE')
+			doc.line(73.1, 69.8, 73.1, 103)
+
+			doc.text(161.8, 68, 'YEAR')
+			doc.line(137.8, 69.8, 137.8, 103)
+
+			doc.line(8.5, 76.37, 202.5, 76.37)
+			doc.line(8.5, 83, 202.5, 83)
+			doc.line(8.5, 89.6, 202.5, 89.6)
+			doc.line(8.5, 96.2, 202.5, 96.2)
+			doc.line(8.5, 103, 202.5, 103)
+
+			doc.setFillColor(169,204,226);
+			doc.rect(8.6, 103.2, 193.8, 17, 'F');
+
+			doc.setFontType('bold')
+			doc.text(11, 110, 'DECLARATION')
+			doc.setFontType('italic')
+			doc.text(11, 116, 'The following are submitted with this application. Please tick Item ')
+			doc.line(8.5, 120, 202.5, 120)
+
+			doc.setFontType('normal')
+			doc.text(11, 125, 'Copy of the UID / Passport with visa copy for international registration')
+			doc.line(8.5, 126.64, 202.5, 126.64)
+
+			doc.text(11, 131.64, 'Copy of the educational/professional certificates')
+			doc.line(8.5, 133.28, 202.5, 133.28)
+
+			doc.text(11, 138.28, 'Two passport size photographs')
+
+			doc.line(170, 120, 170, 139.92)
+
+			doc.setFontType('italic')
+			doc.setFontSize(13.6)
+			doc.text(8.5, 148.28, 'I hereby certify that the particulars furnished by me in this application are true and correct.')
+			doc.text(8.5, 154.92, 'In the event of my application being accepted, I shall abide by all the regulations applicable')
+			doc.text(8.5, 161.56, 'to the students of Fujairah Air Navigation Services Training Center.')
+
+			doc.text(8.5, 171.56, 'I understand that I may be dismissed from the course for not paying the course fee as')
+			doc.text(8.5, 178.2, 'stated in the fee schedule. I agree and accept that if any of the information given by me')
+			doc.text(8.5, 184.84, 'in this registration form is in any way false or incorrect, the Training Center shall have the')
+			doc.text(8.5, 191.48, 'right to cancel my application form or registration, without notice to me, and the Training')
+			doc.text(8.5, 198.12, 'Center will be fully indemnified from any loss or damage arising from such cancellation.')
+
+			doc.text(8.5, 215, 'Date :')
+			doc.text(25, 215, '9 January, 2019')
+
+			doc.text(97, 215, 'Signature :')
+			var trainee_sig = document.getElementById('trainee_sig');
+			doc.addImage(trainee_sig, 'PNG', 120, 200, 0, 0);
+
+			doc.rect(8.5, 225, 193.3, 52);
+
+			doc.setFillColor(222,235,244);
+			doc.rect(8.8, 225.2, 192.5, 51.5, 'F');
+
+			doc.setTextColor(80, 129, 188)
+			doc.setFontType('normal')
+			doc.text(11, 235, 'For Office Use')
+			doc.setDrawColor(80, 129, 188)
+			doc.line(11, 236, 41.5, 236)
+
+			doc.setFontType('bold')
+			doc.setTextColor(0, 0, 0)
+
+
+			doc.setFontSize(12.5)
+			doc.setFontType('italic')
+			doc.text(11, 245, 'Fujairah Air Navigation Services Training Centre hereby accepts the application for enrolment of')
+
+			doc.setTextColor(0, 0, 0)
+			doc.text(11, 252, 'Mr. /Ms.:')
+			doc.setDrawColor(0, 0, 0)
+			doc.line(30, 252.8, 120, 252.8)
+
+			doc.text(11, 258, 'For Course:')
+			doc.line(35, 258.8, 120, 258.8)
+
+			doc.text(11, 264, 'Date of enrolment :')
+			doc.line(49, 264.8, 120, 264.8)
+
+			doc.text(11, 270, 'Signature :')
+			doc.line(35, 270.8, 120, 270.8)
+
+			
+			document.getElementById("iframe123").src = doc.output('datauristring');//Display in iframe
+		}
+	</script>
+</head>
+
+<body>
+	<img style="display: none;" id="Img1" src="{% static "pages/img/fans_logo_enrolment_form.png" %}" alt="">
+	<img style="display: none;" id="psp" src="{% static "pages/img/psp_template.PNG" %}" alt="">
+	<img style="display: none;" id="trainee_sig" src="{% static "pages/img/sample_sig.PNG" %}" alt="">
+	<iframe id="iframe123" frameborder="0" width="100%" height="100%"></iframe>
+</body>
+
+</html>
