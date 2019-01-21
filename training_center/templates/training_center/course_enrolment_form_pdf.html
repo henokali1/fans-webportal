@@ -161,7 +161,7 @@
 			doc.text(11, 205, 'ADDRESS OF')
 			doc.text(11, 211, 'NEXT OF KIN')
 			// max length = 126
-            var split_name_and_address_kin = doc.splitTextToSize('{{ trainee.name_and_address_kin }}', 140);
+            var split_name_and_address_kin = doc.splitTextToSize('{{ trainee.name_and_address_kin|title }}', 140);
 			doc.text(61, 199, split_name_and_address_kin)
 			doc.line(8.5, 213, 202.5, 213)
 
@@ -179,7 +179,7 @@
 			doc.text(161, 219, '{{ trainee.contact_num }}')
 			
 			doc.text(11, 227, 'NATIONALITY')
-			doc.text(61, 227, '{{ trainee.country }}')
+			doc.text(61, 227, '{{ trainee.country|title }}')
 			doc.line(8.5, 229, 202.5, 229)
 
 			doc.setFillColor(169,204,226);
@@ -191,14 +191,54 @@
 			doc.setFillColor(222,235,244);
 			doc.rect(8.8, 237, 193.5, 7, 'F');
 
-			doc.text(20, 242, 'QUALIFICATION')
+			doc.text(30, 242, 'QUALIFICATION')
 			doc.line(8.5, 243.7, 202.5, 243.7)
 
-			doc.text(93.1, 242, 'INSITUTE')
-			doc.line(73.1, 243.8, 73.1, 277)
+			doc.text(123.1, 242, 'INSITUTE')
+			doc.line(93.1, 243.8, 93.1, 277)
 
-			doc.text(161.8, 242, 'YEAR')
-			doc.line(137.8, 243.8, 137.8, 277)
+			doc.text(181.8, 242, 'YEAR')
+			doc.line(177.8, 243.8, 177.8, 277)
+
+			doc.setFontType('normal')
+			doc.text(184, 249, '{{ trainee.academic_qualification_year }}')
+			doc.text(184, 255.5, '{{ trainee.academic_qualification_year_two }}')
+			doc.text(184, 262, '{{ trainee.academic_qualification_year_three }}')
+			doc.text(184, 268.5, '{{ trainee.academic_qualification_year_four }}')
+			doc.text(184, 275, '{{ trainee.academic_qualification_year_five }}')
+
+			doc.setFontSize(7)
+			// max length = 98
+            var split_acc_qual_1 = doc.splitTextToSize('{{ trainee.academic_qualifications }}', 80);
+			doc.text(11, 247, split_acc_qual_1)
+
+			var split_acc_ins_1 = doc.splitTextToSize('{{ trainee.academic_qualification_insitute }}', 80);
+			doc.text(95, 247, split_acc_ins_1)
+
+			var split_acc_qual_2 = doc.splitTextToSize('{{ trainee.academic_qualifications_two }}', 80);
+			doc.text(11, 253.5, split_acc_qual_2)
+
+			var split_ins_qual_2 = doc.splitTextToSize('{{ trainee.academic_qualification_insitute_two }}', 80);
+			doc.text(95, 253.5, split_ins_qual_2)
+
+			var split_acc_qual_3 = doc.splitTextToSize('{{ trainee.academic_qualifications_three }}', 80);
+			doc.text(11, 260, split_acc_qual_3)
+
+			var split_ins_qual_3 = doc.splitTextToSize('{{ trainee.academic_qualification_insitute_three }}', 80);
+			doc.text(95, 260, split_ins_qual_3)
+
+			var split_acc_qual_4 = doc.splitTextToSize('{{ trainee.academic_qualifications_four }}', 80);
+			doc.text(11, 267, split_acc_qual_4)
+
+			var split_ins_qual_4 = doc.splitTextToSize('{{ trainee.academic_qualification_insitute_four }}', 80);
+			doc.text(95, 267, split_ins_qual_4)
+
+			var split_acc_qual_5 = doc.splitTextToSize('{{ trainee.academic_qualifications_five }}', 80);
+			doc.text(11, 273, split_acc_qual_5)
+
+			var split_ins_qual_5 = doc.splitTextToSize('{{ trainee.academic_qualification_insitute_five }}', 80);
+			doc.text(95, 273, split_ins_qual_5)
+			
 
 			doc.line(8.5, 250.37, 202.5, 250.37)
 			doc.line(8.5, 257, 202.5, 257)
@@ -244,14 +284,55 @@
 			doc.setFillColor(222,235,244);
 			doc.rect(8.8, 62.8, 193.2, 7, 'F');
 
-			doc.text(20, 68, 'QUALIFICATION')
+			doc.text(30, 68, 'QUALIFICATION')
 			doc.line(8.5, 69.7, 202.5, 69.7)
 
-			doc.text(93.1, 68, 'INSITUTE')
-			doc.line(73.1, 69.8, 73.1, 103)
+			doc.text(123.1, 68, 'INSITUTE')
+			doc.line(93.1, 69.8, 93.1, 103)
 
-			doc.text(161.8, 68, 'YEAR')
-			doc.line(137.8, 69.8, 137.8, 103)
+			doc.text(181.8, 68, 'YEAR')
+			doc.line(177.8, 69.8, 177.8, 103)
+
+			doc.setFontType('normal')
+			doc.text(184, 75, '{{ trainee.professional_qualification_year }}')
+			doc.text(184, 81.5, '{{ trainee.professional_qualification_year_two }}')
+			doc.text(184, 88, '{{ trainee.professional_qualification_year_three }}')
+			doc.text(184, 94.5, '{{ trainee.professional_qualification_year_four }}')
+			doc.text(184, 101, '{{ trainee.professional_qualification_year_five }}')
+
+			doc.setFontSize(7)
+			// max length = 98
+            var split_prof_qual_1 = doc.splitTextToSize('{{ trainee.professional_qualifications }}', 80);
+			doc.text(11, 73, split_prof_qual_1)
+
+			var split_acc_prof_1 = doc.splitTextToSize('{{ trainee.professional_qualification_insitute }}', 80);
+			doc.text(95, 73, split_acc_prof_1)
+
+			var split_prof_qual_2 = doc.splitTextToSize('{{ trainee.professional_qualifications_two }}', 80);
+			doc.text(11, 79.5, split_prof_qual_2)
+
+			var split_ins_prof_qual_2 = doc.splitTextToSize('{{ trainee.professional_qualification_insitute_two }}', 80);
+			doc.text(95, 79.5, split_ins_prof_qual_2)
+
+			var split_prof_qual_3 = doc.splitTextToSize('{{ trainee.professional_qualifications_three }}', 80);
+			doc.text(11, 86, split_prof_qual_3)
+
+			var split_prof_ins_qual_3 = doc.splitTextToSize('{{ trainee.professional_qualification_insitute_three }}', 80);
+			doc.text(95, 86, split_prof_ins_qual_3)
+
+			var split_prof_qual_4 = doc.splitTextToSize('{{ trainee.professional_qualifications_four }}', 80);
+			doc.text(11, 92.5, split_prof_qual_4)
+
+			var split_prof_ins_qual_4 = doc.splitTextToSize('{{ trainee.professional_qualification_insitute_four }}', 80);
+			doc.text(95, 92.5, split_prof_ins_qual_4)
+
+			var split_prof_qual_5 = doc.splitTextToSize('{{ trainee.professional_qualifications_five }}', 80);
+			doc.text(11, 99, split_prof_qual_5)
+
+			var split_prof_ins_qual_5 = doc.splitTextToSize('{{ trainee.professional_qualification_insitute_five }}', 80);
+			doc.text(95, 99, split_prof_ins_qual_5)
+
+			doc.setFontSize(14)
 
 			doc.line(8.5, 76.37, 202.5, 76.37)
 			doc.line(8.5, 83, 202.5, 83)
@@ -341,6 +422,7 @@
 	<img style="display: none;" id="Img1" src="{% static "pages/img/fans_logo_enrolment_form.png" %}" alt="">
 	<img style="display: none;" id="psp" src="{% static "pages/img/psp_template.PNG" %}" alt="">
 	<img style="display: none;" id="trainee_sig" src="{% static "pages/img/sample_sig.PNG" %}" alt="">
+	<img style="display: none;" id="checkmark" src="{% static "pages/img/checkmark.PNG" %}" alt="">
 	<iframe id="iframe123" frameborder="0" width="100%" height="100%"></iframe>
 </body>
 

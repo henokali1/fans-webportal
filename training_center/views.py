@@ -49,12 +49,40 @@ def enroll_trainee(request):
         new_trainee.relationship = request.POST['relationship']
         new_trainee.contact_num = request.POST['contact_num']
         new_trainee.country = request.POST['country']
+
         new_trainee.academic_qualifications = request.POST['acc_qual_1']
+        new_trainee.academic_qualifications_two = request.POST['acc_qual_2']
+        new_trainee.academic_qualifications_three = request.POST['acc_qual_3']
+        new_trainee.academic_qualifications_four = request.POST['acc_qual_4']
+        new_trainee.academic_qualifications_five = request.POST['acc_qual_5']
         new_trainee.academic_qualification_insitute = request.POST['acc_qual_inst_1']
+        new_trainee.academic_qualification_insitute_two = request.POST['acc_qual_inst_2']
+        new_trainee.academic_qualification_insitute_three = request.POST['acc_qual_inst_3']
+        new_trainee.academic_qualification_insitute_four = request.POST['acc_qual_inst_4']
+        new_trainee.academic_qualification_insitute_five = request.POST['acc_qual_inst_5']
         new_trainee.academic_qualification_year = request.POST['acc_qual_year_1']
+        new_trainee.academic_qualification_year_two = request.POST['acc_qual_year_2']
+        new_trainee.academic_qualification_year_three = request.POST['acc_qual_year_3']
+        new_trainee.academic_qualification_year_four = request.POST['acc_qual_year_4']
+        new_trainee.academic_qualification_year_five = request.POST['acc_qual_year_5']
+
+
         new_trainee.professional_qualifications = request.POST['prof_qual_1']
+        new_trainee.professional_qualifications_two = request.POST['prof_qual_2']
+        new_trainee.professional_qualifications_three = request.POST['prof_qual_3']
+        new_trainee.professional_qualifications_four = request.POST['prof_qual_4']
+        new_trainee.professional_qualifications_five = request.POST['prof_qual_5']
         new_trainee.professional_qualification_insitute = request.POST['prof_qual_inst_1']
+        new_trainee.professional_qualification_insitute_two = request.POST['prof_qual_inst_2']
+        new_trainee.professional_qualification_insitute_three = request.POST['prof_qual_inst_3']
+        new_trainee.professional_qualification_insitute_four = request.POST['prof_qual_inst_4']
+        new_trainee.professional_qualification_insitute_five = request.POST['prof_qual_inst_5']
         new_trainee.professional_qualification_year = request.POST['prof_qual_year_1']
+        new_trainee.professional_qualification_year_two = request.POST['prof_qual_year_2']
+        new_trainee.professional_qualification_year_three = request.POST['prof_qual_year_3']
+        new_trainee.professional_qualification_year_four = request.POST['prof_qual_year_4']
+        new_trainee.professional_qualification_year_five = request.POST['prof_qual_year_5']
+
         new_trainee.enrolled_by = request.user
 
 
@@ -67,20 +95,47 @@ def enroll_trainee(request):
         passport_size_photo = request.FILES['passport_size_photo']
 
         acc_qual_cert_1 = request.FILES['acc_qual_cert_1']
+        acc_qual_cert_2 = request.FILES['acc_qual_cert_2']
+        acc_qual_cert_3 = request.FILES['acc_qual_cert_3']
+        acc_qual_cert_4 = request.FILES['acc_qual_cert_4']
+        acc_qual_cert_5 = request.FILES['acc_qual_cert_5']
+
         prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
+        prof_qual_cert_2 = request.FILES['prof_qual_cert_2']
+        prof_qual_cert_3 = request.FILES['prof_qual_cert_3']
+        prof_qual_cert_4 = request.FILES['prof_qual_cert_4']
+        prof_qual_cert_5 = request.FILES['prof_qual_cert_5']
 
         fs = FileSystemStorage()
         visa_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_visa_copy' + visa_copy.name[-4:], visa_copy)
         passport_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_copy' + passport_copy.name[-4:], passport_copy)
         passport_size_photo_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_size_photo' + passport_size_photo.name[-4:], passport_size_photo)
         acc_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_1_' + passport_size_photo.name[-4:], acc_qual_cert_1)
+        acc_qual_cert_2_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_2_' + passport_size_photo.name[-4:], acc_qual_cert_2)
+        acc_qual_cert_3_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_3_' + passport_size_photo.name[-4:], acc_qual_cert_3)
+        acc_qual_cert_4_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_4_' + passport_size_photo.name[-4:], acc_qual_cert_4)
+        acc_qual_cert_5_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_5_' + passport_size_photo.name[-4:], acc_qual_cert_5)
+
         prof_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_1_' + passport_size_photo.name[-4:], prof_qual_cert_1)
+        prof_qual_cert_2_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_2_' + passport_size_photo.name[-4:], prof_qual_cert_2)
+        prof_qual_cert_3_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_3_' + passport_size_photo.name[-4:], prof_qual_cert_3)
+        prof_qual_cert_4_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_4_' + passport_size_photo.name[-4:], prof_qual_cert_4)
+        prof_qual_cert_5_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_5_' + passport_size_photo.name[-4:], prof_qual_cert_5)
 
         new_trainee.visa_copy = visa_file_name
         new_trainee.passport_copy = passport_file_name
         new_trainee.passport_size_photo = passport_size_photo_file_name
         new_trainee.academic_qualification_certificate = acc_qual_cert_1_file_name
+        new_trainee.academic_qualification_certificate_two = acc_qual_cert_2_file_name
+        new_trainee.academic_qualification_certificate_three = acc_qual_cert_3_file_name
+        new_trainee.academic_qualification_certificate_four = acc_qual_cert_4_file_name
+        new_trainee.academic_qualification_certificate_five = acc_qual_cert_5_file_name
+
         new_trainee.professional_qualification_certificate = prof_qual_cert_1_file_name
+        new_trainee.professional_qualification_certificate_two = prof_qual_cert_2_file_name
+        new_trainee.professional_qualification_certificate_three = prof_qual_cert_3_file_name
+        new_trainee.professional_qualification_certificate_four = prof_qual_cert_4_file_name
+        new_trainee.professional_qualification_certificate_five = prof_qual_cert_5_file_name
         
         # Commit to DB
         new_trainee.save()
