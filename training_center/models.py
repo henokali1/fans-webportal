@@ -4,6 +4,7 @@ from django.db import models
 # Enroll New Trainee
 class EnrollTrainee(models.Model):
     course_details = models.CharField(max_length=250, default='')
+    course_name = models.CharField(max_length=250, default='')
     course_date = models.CharField(max_length=50, default='')
     first_name = models.CharField(max_length=250, default='')
     last_name = models.CharField(max_length=250, default='')

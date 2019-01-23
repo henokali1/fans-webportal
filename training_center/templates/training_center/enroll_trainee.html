@@ -9,11 +9,21 @@
 {% block content %}
 <div class="container">
     <div class="card-panel grey lighten-3 grey-text text-darken-4 z-depth-0">
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form name="new_trainee_form" method="POST" action="" onsubmit="return validateForm()" enctype="multipart/form-data">
             {% csrf_token %}
-
-            <div class="row">
-                <h5 class="center">COURSE DETAILS</h5>
+                <div class="row">
+                    <h5 class="center">COURSE DETAILS</h5>
+                    <div class="col l12 m6">
+                        <!-- Course Name -->
+                        <div class="input-field">
+                            <i class="material-icons prefix">assignment</i>
+                            <input id="course_name" type="text" name="course_name" required>
+                            <label for="course_name">Course Name</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
                 <div class="col s12 m6">
                     <!-- Course Details -->
                     <div class="input-field">
@@ -110,7 +120,7 @@
                 <div class="col s12 m6">
                     <div class="input-field">
                         <i class="material-icons prefix">phone</i>
-                        <input id="telephone_number" type="number" name="telephone_number" required>
+                        <input id="telephone_number" type="number" name="telephone_number">
                         <label for="telephone_number">Tel. Number</label>
                     </div>
                 </div>
@@ -411,7 +421,7 @@
                             <input type="file" accept="image/png, image/jpeg" name='passport_copy'>
                         </div>
                         <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" id="passport_copy">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </div>
@@ -462,7 +472,7 @@
                     <div class="file-field input-field">
                         <div class="btn blue">
                             <span>Upload Academic Certificate</span>
-                            <input type="file" accept="image/*" name="acc_qual_cert_1">
+                            <input type="file" accept="image/*" name="acc_qual_cert_1" >
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -502,7 +512,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Academic Certificate</span>
-                                <input type="file" accept="image/*" name="acc_qual_cert_2">
+                                <input type="file" accept="image/*" name="acc_qual_cert_2" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -543,7 +553,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Academic Certificate</span>
-                                <input type="file" accept="image/*" name="acc_qual_cert_3">
+                                <input type="file" accept="image/*" name="acc_qual_cert_3" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -584,7 +594,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Academic Certificate</span>
-                                <input type="file" accept="image/*" name="acc_qual_cert_4">
+                                <input type="file" accept="image/*" name="acc_qual_cert_4" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -625,7 +635,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Academic Certificate</span>
-                                <input type="file" accept="image/*" name="acc_qual_cert_5">
+                                <input type="file" accept="image/*" name="acc_qual_cert_5" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -672,7 +682,7 @@
                     <div class="file-field input-field">
                         <div class="btn blue">
                             <span>Upload Professional Certificate</span>
-                            <input type="file" accept="image/*" name="prof_qual_cert_1">
+                            <input type="file" accept="image/*" name="prof_qual_cert_1" >
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
@@ -711,7 +721,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Professional Certificate</span>
-                                <input type="file" accept="image/*" name="prof_qual_cert_2">
+                                <input type="file" accept="image/*" name="prof_qual_cert_2" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -751,7 +761,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Professional Certificate</span>
-                                <input type="file" accept="image/*" name="prof_qual_cert_3">
+                                <input type="file" accept="image/*" name="prof_qual_cert_3" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -791,7 +801,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Professional Certificate</span>
-                                <input type="file" accept="image/*" name="prof_qual_cert_4">
+                                <input type="file" accept="image/*" name="prof_qual_cert_4" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -831,7 +841,7 @@
                         <div class="file-field input-field">
                             <div class="btn blue">
                                 <span>Upload Professional Certificate</span>
-                                <input type="file" accept="image/*" name="prof_qual_cert_5">
+                                <input type="file" accept="image/*" name="prof_qual_cert_5" >
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -921,5 +931,44 @@
         outDuration: 200
       });
     });
+</script>
+
+<script>
+    function validateForm() {
+        var course_date = document.forms["new_trainee_form"]["course_date"].value;
+        var date_of_birth = document.forms["new_trainee_form"]["date_of_birth"].value;
+        var gender = document.forms["new_trainee_form"]["gender"].value;
+        var mobile_number = document.forms["new_trainee_form"]["mobile_number"].value;
+        var country = document.forms["new_trainee_form"]["country"].value;
+        var visa_copy = document.forms["new_trainee_form"]["visa_copy"].value;
+        var passport_copy = document.forms["new_trainee_form"]["passport_copy"].value;
+        var passport_size_photo = document.forms["new_trainee_form"]["passport_size_photo"].value;
+        
+        if (course_date == "") {
+            Materialize.toast('Course date must be filled out', 5000, 'rounded');
+            return false;
+        } else if (date_of_birth == '') {
+            Materialize.toast('Date of birth must be filled out', 5000, 'rounded');
+            return false;
+        } else if (gender == '') {
+            Materialize.toast('Gender must be filled out', 5000, 'rounded');
+            return false;
+        } else if (mobile_number == '') {
+            Materialize.toast('Mobile number must be filled out', 5000, 'rounded');
+            return false;
+        } else if (country == '') {
+            Materialize.toast('Nationality must be filled out', 5000, 'rounded');
+            return false;
+        } else if (visa_copy == '') {
+            Materialize.toast('Visa copy must be uploaded', 5000, 'rounded');
+            return false;
+        } else if (passport_copy == '') {
+            Materialize.toast('Passport copy must be uploaded', 5000, 'rounded');
+            return false;
+        } else if (passport_size_photo == '') {
+            Materialize.toast('Passport size photo must be uploaded', 5000, 'rounded');
+            return false;
+        }
+    }
 </script>
 {% endblock script_tag %}

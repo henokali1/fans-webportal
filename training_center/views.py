@@ -30,7 +30,7 @@ def enroll_trainee(request):
 
     if request.method == 'POST':
         new_trainee = EnrollTrainee()
-
+        new_trainee.course_name = request.POST['course_name']
         new_trainee.course_details = request.POST['course_details']
         new_trainee.course_date = request.POST['course_date']
         new_trainee.first_name = request.POST['first_name']
@@ -85,57 +85,99 @@ def enroll_trainee(request):
 
         new_trainee.enrolled_by = request.user
 
-
-        first_name = request.POST['first_name'].replace(' ', '_')
-        last_name = request.POST['last_name'].replace(' ', '_')
+        fs = FileSystemStorage()
 
         # Get photos
-        visa_copy = request.FILES['visa_copy']
-        passport_copy = request.FILES['passport_copy']
-        passport_size_photo = request.FILES['passport_size_photo']
+        try:
+            visa_copy = request.FILES['visa_copy']
+            visa_file_name = fs.save(visa_copy.name, visa_copy)
+            new_trainee.visa_copy = visa_file_name
+        except:
+            print('Couldn\'t find visa_copy' )
 
-        acc_qual_cert_1 = request.FILES['acc_qual_cert_1']
-        acc_qual_cert_2 = request.FILES['acc_qual_cert_2']
-        acc_qual_cert_3 = request.FILES['acc_qual_cert_3']
-        acc_qual_cert_4 = request.FILES['acc_qual_cert_4']
-        acc_qual_cert_5 = request.FILES['acc_qual_cert_5']
+        try:
+            passport_copy = request.FILES['passport_copy']
+            passport_file_name = fs.save(passport_copy.name, passport_copy)
+            new_trainee.passport_copy = passport_file_name
+        except:
+            print('Couldn\'t find passport_copy' )
 
-        prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
-        prof_qual_cert_2 = request.FILES['prof_qual_cert_2']
-        prof_qual_cert_3 = request.FILES['prof_qual_cert_3']
-        prof_qual_cert_4 = request.FILES['prof_qual_cert_4']
-        prof_qual_cert_5 = request.FILES['prof_qual_cert_5']
+        try:
+            passport_size_photo = request.FILES['passport_size_photo']
+            passport_size_photo_file_name = fs.save(passport_size_photo.name , passport_size_photo)
+            new_trainee.passport_size_photo = passport_size_photo_file_name
+        except:
+            print('Couldn\'t find passport_size_photo' )
+        
+        try:
+            acc_qual_cert_1 = request.FILES['acc_qual_cert_1']
+            acc_qual_cert_1_file_name = fs.save(acc_qual_cert_1.name, acc_qual_cert_1)
+            new_trainee.academic_qualification_certificate = acc_qual_cert_1_file_name
+        except:
+            print('Couldn\'t find acc_qual_cert_1' )
 
-        fs = FileSystemStorage()
-        visa_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_visa_copy' + visa_copy.name[-4:], visa_copy)
-        passport_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_copy' + passport_copy.name[-4:], passport_copy)
-        passport_size_photo_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_passport_size_photo' + passport_size_photo.name[-4:], passport_size_photo)
-        acc_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_1_' + passport_size_photo.name[-4:], acc_qual_cert_1)
-        acc_qual_cert_2_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_2_' + passport_size_photo.name[-4:], acc_qual_cert_2)
-        acc_qual_cert_3_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_3_' + passport_size_photo.name[-4:], acc_qual_cert_3)
-        acc_qual_cert_4_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_4_' + passport_size_photo.name[-4:], acc_qual_cert_4)
-        acc_qual_cert_5_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_acc_qual_cert_5_' + passport_size_photo.name[-4:], acc_qual_cert_5)
+        try:
+            acc_qual_cert_2 = request.FILES['acc_qual_cert_2']
+            acc_qual_cert_2_file_name = fs.save(acc_qual_cert_2.name, acc_qual_cert_2)
+            new_trainee.academic_qualification_certificate_two = acc_qual_cert_2_file_name
+        except:
+            print('Couldn\'t find acc_qual_cert_2' )
 
-        prof_qual_cert_1_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_1_' + passport_size_photo.name[-4:], prof_qual_cert_1)
-        prof_qual_cert_2_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_2_' + passport_size_photo.name[-4:], prof_qual_cert_2)
-        prof_qual_cert_3_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_3_' + passport_size_photo.name[-4:], prof_qual_cert_3)
-        prof_qual_cert_4_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_4_' + passport_size_photo.name[-4:], prof_qual_cert_4)
-        prof_qual_cert_5_file_name = fs.save(helper.get_timestamp() + '_' + first_name + '_' + last_name + '_prof_qual_cert_5_' + passport_size_photo.name[-4:], prof_qual_cert_5)
+        try:
+            acc_qual_cert_3 = request.FILES['acc_qual_cert_3']
+            acc_qual_cert_3_file_name = fs.save(acc_qual_cert_3.name, acc_qual_cert_3)
+            new_trainee.academic_qualification_certificate_three = acc_qual_cert_3_file_name
+        except:
+            print('Couldn\'t find acc_qual_cert_3' )
+        
+        try:
+            acc_qual_cert_4 = request.FILES['acc_qual_cert_4']
+            acc_qual_cert_4_file_name = fs.save(acc_qual_cert_4.name, acc_qual_cert_4)
+            new_trainee.academic_qualification_certificate_four = acc_qual_cert_4_file_name
+        except:
+            print('Couldn\'t find acc_qual_cert_4' )
+        
+        try:
+            acc_qual_cert_5 = request.FILES['acc_qual_cert_5']
+            acc_qual_cert_5_file_name = fs.save(acc_qual_cert_5.name, acc_qual_cert_5)
+            new_trainee.academic_qualification_certificate_five = acc_qual_cert_5_file_name
+        except:
+            print('Couldn\'t find acc_qual_cert_5' )
 
-        new_trainee.visa_copy = visa_file_name
-        new_trainee.passport_copy = passport_file_name
-        new_trainee.passport_size_photo = passport_size_photo_file_name
-        new_trainee.academic_qualification_certificate = acc_qual_cert_1_file_name
-        new_trainee.academic_qualification_certificate_two = acc_qual_cert_2_file_name
-        new_trainee.academic_qualification_certificate_three = acc_qual_cert_3_file_name
-        new_trainee.academic_qualification_certificate_four = acc_qual_cert_4_file_name
-        new_trainee.academic_qualification_certificate_five = acc_qual_cert_5_file_name
+        try:
+            prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
+            prof_qual_cert_1_file_name = fs.save(prof_qual_cert_1.name, prof_qual_cert_1)
+            new_trainee.professional_qualification_certificate = prof_qual_cert_1_file_name
+        except:
+            print('Couldn\'t find prof_qual_cert_1' )
 
-        new_trainee.professional_qualification_certificate = prof_qual_cert_1_file_name
-        new_trainee.professional_qualification_certificate_two = prof_qual_cert_2_file_name
-        new_trainee.professional_qualification_certificate_three = prof_qual_cert_3_file_name
-        new_trainee.professional_qualification_certificate_four = prof_qual_cert_4_file_name
-        new_trainee.professional_qualification_certificate_five = prof_qual_cert_5_file_name
+        try:
+            prof_qual_cert_2 = request.FILES['prof_qual_cert_2'] 
+            prof_qual_cert_2_file_name = fs.save(prof_qual_cert_2.name, prof_qual_cert_2)   
+            new_trainee.professional_qualification_certificate_two = prof_qual_cert_2_file_name  
+        except:
+            print('Couldn\'t find prof_qual_cert_2' )
+
+        try:
+            prof_qual_cert_3 = request.FILES['prof_qual_cert_3']
+            prof_qual_cert_3_file_name = fs.save(prof_qual_cert_3.name, prof_qual_cert_3)
+            new_trainee.professional_qualification_certificate_three = prof_qual_cert_3_file_name 
+        except:
+            print('Couldn\'t find prof_qual_cert_3' )
+
+        try:
+            prof_qual_cert_4 = request.FILES['prof_qual_cert_4']
+            prof_qual_cert_4_file_name = fs.save(prof_qual_cert_4.name, prof_qual_cert_4)
+            new_trainee.professional_qualification_certificate_four = prof_qual_cert_4_file_name
+        except:
+            print('Couldn\'t find prof_qual_cert_4' )
+
+        try:
+            prof_qual_cert_5 = request.FILES['prof_qual_cert_5']
+            prof_qual_cert_5_file_name = fs.save(prof_qual_cert_5.name, prof_qual_cert_5)
+            new_trainee.professional_qualification_certificate_five = prof_qual_cert_5_file_name
+        except:
+            print('Couldn\'t find prof_qual_cert_5' )
         
         # Commit to DB
         new_trainee.save()
@@ -176,7 +218,8 @@ def trainee_detail(request, pk):
 @login_required
 def edit_trainee(request, pk):
     if request.method == 'POST':
-        trainee = EnrollTrainee.objects.filter(pk=pk).update(
+        EnrollTrainee.objects.filter(pk=pk).update(
+            course_name = request.POST['course_name'],
             course_details = request.POST['course_details'],
             course_date = request.POST['course_date'],
             first_name = request.POST['first_name'],
@@ -201,6 +244,101 @@ def edit_trainee(request, pk):
             professional_qualification_insitute = request.POST['prof_qual_inst_1'],
             professional_qualification_year = request.POST['prof_qual_year_1'],
         )
+
+        fs = FileSystemStorage()
+
+        try:
+            visa_copy = request.FILES['visa_copy']
+            visa_file_name = fs.save(visa_copy.name, visa_copy)
+            EnrollTrainee.objects.filter(pk=pk).update(visa_copy = visa_file_name)  
+        except:
+            print('Couldn\'t find visa_copy' )
+
+        try:
+            passport_copy = request.FILES['passport_copy']
+            passport_file_name = fs.save(passport_copy.name, passport_copy)
+            EnrollTrainee.objects.filter(pk=pk).update(passport_copy = passport_file_name)  
+        except:
+            print('Couldn\'t find passport_copy' )
+
+        try:
+            passport_size_photo = request.FILES['passport_size_photo']
+            passport_size_photo_file_name = fs.save(passport_size_photo.name , passport_size_photo)
+            EnrollTrainee.objects.filter(pk=pk).update(passport_size_photo = passport_size_photo_file_name)  
+        except:
+            print('Couldn\'t find passport_size_photo_file_name' )
+
+
+        try:
+            acc_qual_cert_1 = request.FILES['acc_qual_cert_1']
+            acc_qual_cert_1_file_name = fs.save(acc_qual_cert_1.name, acc_qual_cert_1)
+            EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate = acc_qual_cert_1_file_name)  
+        except:
+            print('Couldn\'t find acc_qual_cert_1' )
+
+        try:
+            acc_qual_cert_2 = request.FILES['acc_qual_cert_2']
+            acc_qual_cert_2_file_name = fs.save(acc_qual_cert_2.name, acc_qual_cert_2)
+            EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_two = acc_qual_cert_2_file_name)  
+        except:
+            print('Couldn\'t find acc_qual_cert_2' )
+
+        try:
+            acc_qual_cert_3 = request.FILES['acc_qual_cert_3']
+            acc_qual_cert_3_file_name = fs.save(acc_qual_cert_3.name, acc_qual_cert_3)
+            EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_three = acc_qual_cert_3_file_name)  
+        except:
+            print('Couldn\'t find acc_qual_cert_3' )
+
+        try:
+            acc_qual_cert_4 = request.FILES['acc_qual_cert_4']
+            acc_qual_cert_4_file_name = fs.save(acc_qual_cert_4.name, acc_qual_cert_4)
+            EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_four = acc_qual_cert_4_file_name)  
+        except:
+            print('Couldn\'t find acc_qual_cert_4' )
+
+        try:
+            acc_qual_cert_5 = request.FILES['acc_qual_cert_5']
+            acc_qual_cert_5_file_name = fs.save(acc_qual_cert_5.name, acc_qual_cert_5)
+            EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_five = acc_qual_cert_5_file_name)  
+        except:
+            print('Couldn\'t find acc_qual_cert_5' )
+
+        try:
+            prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
+            prof_qual_cert_1_file_name = fs.save(prof_qual_cert_1.name, prof_qual_cert_1)
+            EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate = prof_qual_cert_1_file_name)  
+        except:
+            print('Couldn\'t find prof_qual_cert_1' )
+
+        try:
+            prof_qual_cert_2 = request.FILES['prof_qual_cert_2'] 
+            prof_qual_cert_2_file_name = fs.save(prof_qual_cert_2.name, prof_qual_cert_2)   
+            EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_two = prof_qual_cert_2_file_name)  
+        except:
+            print('Couldn\'t find prof_qual_cert_2' )
+
+        try:
+            prof_qual_cert_3 = request.FILES['prof_qual_cert_3']
+            prof_qual_cert_3_file_name = fs.save(prof_qual_cert_3.name, prof_qual_cert_3)
+            EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_three = prof_qual_cert_3_file_name)  
+        except:
+            print('Couldn\'t find prof_qual_cert_3' )
+        
+        try:
+            prof_qual_cert_4 = request.FILES['prof_qual_cert_4']
+            prof_qual_cert_4_file_name = fs.save(prof_qual_cert_4.name, prof_qual_cert_4)
+            EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_four = prof_qual_cert_4_file_name)  
+        except:
+            print('Couldn\'t find prof_qual_cert_4' )
+
+        try:
+            prof_qual_cert_5 = request.FILES['prof_qual_cert_5']
+            prof_qual_cert_5_file_name = fs.save(prof_qual_cert_5.name, prof_qual_cert_5)
+            EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_five = prof_qual_cert_5_file_name)  
+        except:
+            print('Couldn\'t find prof_qual_cert_5' )
+
 
         return all_trainees(
             request,
