@@ -212,7 +212,41 @@ def all_trainees(request, msg=''):
 @login_required
 def trainee_detail(request, pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)
-    return render(request, 'training_center/course_enrolment_form_pdf.html', {'trainee':trainee[0]})
+    imgs = []
+    if(trainee[0].visa_copy != ''):
+        imgs.append('<img style="display: none;" id="visa_copy" src="' + trainee[0].visa_copy.url + '" alt="">')
+    if(trainee[0].passport_copy != ''):
+        imgs.append('<img style="display: none;" id="passport_copy" src="' + trainee[0].passport_copy.url + '" alt="">')
+    if(trainee[0].passport_size_photo != ''):
+        imgs.append('<img style="display: none;" id="passport_size_photo" src="' + trainee[0].passport_size_photo.url + '" alt="">')
+    if(trainee[0].academic_qualification_certificate != ''):
+        imgs.append('<img style="display: none;" id="academic_qualification_certificate" src="' + trainee[0].academic_qualification_certificate.url + '" alt="">')
+    if(trainee[0].academic_qualification_certificate_two != ''):
+        imgs.append('<img style="display: none;" id="academic_qualification_certificate_two" src="' + trainee[0].academic_qualification_certificate_two.url + '" alt="">')
+    if(trainee[0].academic_qualification_certificate_three != ''):
+        imgs.append('<img style="display: none;" id="academic_qualification_certificate_three" src="' + trainee[0].academic_qualification_certificate_three.url + '" alt="">')
+    if(trainee[0].academic_qualification_certificate_four != ''):
+        imgs.append('<img style="display: none;" id="academic_qualification_certificate_four" src="' + trainee[0].academic_qualification_certificate_four.url + '" alt="">')
+    if(trainee[0].academic_qualification_certificate_five != ''):
+        imgs.append('<img style="display: none;" id="academic_qualification_certificate_five" src="' + trainee[0].academic_qualification_certificate_five.url + '" alt="">')
+    if(trainee[0].professional_qualification_certificate != ''):
+        imgs.append('<img style="display: none;" id="professional_qualification_certificate" src="' + trainee[0].professional_qualification_certificate.url + '" alt="">')
+    if(trainee[0].professional_qualification_certificate_two != ''):
+        imgs.append('<img style="display: none;" id="professional_qualification_certificate_two" src="' + trainee[0].professional_qualification_certificate_two.url + '" alt="">')
+    if(trainee[0].professional_qualification_certificate_three != ''):
+        imgs.append('<img style="display: none;" id="professional_qualification_certificate_three" src="' + trainee[0].professional_qualification_certificate_three.url + '" alt="">')
+    if(trainee[0].professional_qualification_certificate_four != ''):
+        imgs.append('<img style="display: none;" id="professional_qualification_certificate_four" src="' + trainee[0].professional_qualification_certificate_four.url + '" alt="">')
+    if(trainee[0].professional_qualification_certificate_five != ''):
+        imgs.append('<img style="display: none;" id="professional_qualification_certificate_five" src="' + trainee[0].professional_qualification_certificate_five.url + '" alt="">')
+    
+    
+    args = {
+        'trainee': trainee[0],
+        'imgs': imgs,
+        'len':len(imgs),
+    }
+    return render(request, 'training_center/course_enrolment_form_pdf.html', args)
 
 # Edit Tranee Details
 @login_required

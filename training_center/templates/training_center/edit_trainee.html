@@ -12,9 +12,19 @@
     <div class="card-panel grey lighten-3 grey-text text-darken-4 z-depth-0">
         <form method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
+            <div class="row">
+                    <h5 class="center">COURSE DETAILS</h5>
+                    <div class="col l12 m6">
+                        <!-- Course Name -->
+                        <div class="input-field">
+                            <i class="material-icons prefix">assignment</i>
+                            <input id="course_name" type="text" name="course_name" value="{{ trainee.course_name }}" required>
+                            <label for="course_name">Course Name</label>
+                        </div>
+                    </div>
+                </div>
 
             <div class="row">
-                <h5 class="center">COURSE DETAILS</h5>
                 <div class="col s12 m6">
                     <!-- Course Details -->
                     <div class="input-field">
@@ -116,7 +126,7 @@
                 <div class="col s12 m6">
                     <div class="input-field">
                         <i class="material-icons prefix">phone</i>
-                        <input id="telephone_number" type="number" name="telephone_number" value="{{ trainee.telephone_number }}"  required>
+                        <input id="telephone_number" type="number" name="telephone_number" value="{{ trainee.telephone_number }}">
                         <label for="telephone_number">Tel. Number</label>
                     </div>
                 </div>
