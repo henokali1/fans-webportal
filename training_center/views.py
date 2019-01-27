@@ -8,6 +8,8 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import time
 import json
+from django.utils import timezone
+import datetime
 
 
 
@@ -231,9 +233,10 @@ def approve(request, msg=''):
 # Approve applications by PK
 @login_required
 def approve_application(request, pk):
-    replay = 'Application ' + str(pk) + ' - Approved'
+    replay = 'Application ' + str(pk) + ' - Accepted'
     EnrollTrainee.objects.filter(pk=pk).update(
-        approval = 'Approved',
+        approval = 'Accepted',
+        approval_date = datetime.datetime.now(tz=timezone.utc),
         approved_by = str(request.user),
     )
     return HttpResponse(replay)

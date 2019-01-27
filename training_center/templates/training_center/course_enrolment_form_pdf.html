@@ -35,6 +35,12 @@
 				creator: 'MEEE'
 			});
 
+			function dateParser(date){
+				dt = date.split(',')
+				md = dt[0].split(' ')
+				return (md[1] + ' ' + md[0].replace('.',',') + dt[1])
+			}
+
 
 			var fans_logo = document.getElementById('Img1');
 
@@ -400,6 +406,7 @@
 			doc.text(97, 215, 'Signature :')
 			var trainee_sig = document.getElementById('trainee_sig');
 			doc.addImage(trainee_sig, 'PNG', 120, 200, 0, 0);
+			
 
 			doc.rect(8.5, 225, 193.3, 52);
 
@@ -430,10 +437,23 @@
 
 			doc.text(11, 264, 'Date of enrolment :')
 			doc.line(49, 264.8, 120, 264.8)
-
+			
 			doc.text(11, 270, 'Signature :')
 			doc.line(35, 270.8, 120, 270.8)
-			doc.addImage(trainee_sig, 'PNG', 35, 265, 40, 10);
+			if('{{ trainee.approval }}' == 'Accepted'){
+				var full_name = '{{ trainee.first_name|title }}' + ' ' + '{{ trainee.last_name|title }}'
+				doc.text(30, 252, full_name)
+				doc.text(36, 258, '{{ trainee.course_name|title }}')
+
+				var approval_date = '{{ trainee.approval_date }}'
+				if(approval_date != 'None'){
+					doc.text(51, 264, dateParser(approval_date))
+				}
+
+				var trainee_sig = document.getElementById('trainee_sig');
+				doc.addImage(trainee_sig, 'PNG', 35, 265, 40, 10);
+			}
+			
 
 			var visa_copy = document.getElementById("visa_copy");
 			var passport_copy = document.getElementById("passport_copy");

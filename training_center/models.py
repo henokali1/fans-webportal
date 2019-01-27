@@ -74,6 +74,7 @@ class EnrollTrainee(models.Model):
     professional_qualification_certificate_five = models.FileField(upload_to = 'media/')
 
     approval = models.CharField(max_length=50, default='Approval Pending')
+    approval_date = models.DateTimeField(auto_now=False, null=True)
     approved_by = models.EmailField(max_length=254, default='')
 
     def __str__(self):
