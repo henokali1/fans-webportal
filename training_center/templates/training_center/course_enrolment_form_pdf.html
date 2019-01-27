@@ -14,7 +14,7 @@
 	<img style="display: none;" id="Img1" src="{% static "pages/img/fans_logo_enrolment_form.png" %}" alt="">
 	<img style="display: none;" id="psp" src="{% static "pages/img/psp_template.PNG" %}" alt="">
 	<img style="display: none;" id="trainee_sig" src="{% static "pages/img/sample_sig.PNG" %}" alt="">
-	<img style="display: none;" id="checkmark" src="{% static "pages/img/checkmark.PNG" %}" alt="">
+	<img style="display: none;" id="checkmark" src="{% static "pages/img/checkmark1.PNG" %}" alt="">
 	<img style="display: none;" id="psp_male" src="{{trainee.passport_size_photo.url}}" alt="" width="169" height="213">
 	{% for i in imgs %}
 	{{ i|safe }}
@@ -377,14 +377,45 @@
 			doc.text(11, 116, 'The following are submitted with this application. Please tick Item ')
 			doc.line(8.5, 120, 202.5, 120)
 
+			
+
+			var visa_copy = document.getElementById("visa_copy");
+			var passport_copy = document.getElementById("passport_copy");
+			var passport_size_photo = document.getElementById("passport_size_photo");
+			var academic_qualification_certificate = document.getElementById("academic_qualification_certificate");
+			var academic_qualification_certificate_two = document.getElementById("academic_qualification_certificate_two");
+			var academic_qualification_certificate_three = document.getElementById("academic_qualification_certificate_three");
+			var academic_qualification_certificate_four = document.getElementById("academic_qualification_certificate_four");
+			var academic_qualification_certificate_five = document.getElementById("academic_qualification_certificate_five");
+			var professional_qualification_certificate = document.getElementById("professional_qualification_certificate");
+			var professional_qualification_certificate_two = document.getElementById("professional_qualification_certificate_two");
+			var professional_qualification_certificate_three = document.getElementById("professional_qualification_certificate_three");
+			var professional_qualification_certificate_four = document.getElementById("professional_qualification_certificate_four");
+			var professional_qualification_certificate_five = document.getElementById("professional_qualification_certificate_five");
+
+			
+
 			doc.setFontType('normal')
 			doc.text(11, 125, 'Copy of the UID / Passport with visa copy for international registration')
 			doc.line(8.5, 126.64, 202.5, 126.64)
 
+			var checkmark = document.getElementById('checkmark');
+			if(visa_copy){
+				doc.addImage(checkmark, 'PNG', 180, 121, 10, 5);
+			}
+
 			doc.text(11, 131.64, 'Copy of the educational/professional certificates')
 			doc.line(8.5, 133.28, 202.5, 133.28)
 
+			if(passport_copy){
+				doc.addImage(checkmark, 'PNG', 180, 128, 10, 5);
+			}
+
 			doc.text(11, 138.28, 'Two passport size photographs')
+
+			if(passport_size_photo){
+				doc.addImage(checkmark, 'PNG', 180, 134.5, 10, 5);
+			}
 
 			doc.line(170, 120, 170, 139.92)
 
@@ -408,10 +439,10 @@
 			doc.addImage(trainee_sig, 'PNG', 120, 200, 0, 0);
 			
 
-			doc.rect(8.5, 225, 193.3, 52);
+			doc.rect(8.5, 225, 193.3, 58);
 
 			doc.setFillColor(222,235,244);
-			doc.rect(8.8, 225.2, 192.5, 51.5, 'F');
+			doc.rect(8.8, 225.2, 192.5, 57.5, 'F');
 
 			doc.setTextColor(80, 129, 188)
 			doc.setFontType('normal')
@@ -440,6 +471,10 @@
 			
 			doc.text(11, 270, 'Signature :')
 			doc.line(35, 270.8, 120, 270.8)
+
+			doc.text(11, 276, 'Head of Training:')
+			doc.line(45, 276.8, 120, 276.8)
+
 			if('{{ trainee.approval }}' == 'Accepted'){
 				var full_name = '{{ trainee.first_name|title }}' + ' ' + '{{ trainee.last_name|title }}'
 				doc.text(30, 252, full_name)
@@ -452,22 +487,10 @@
 
 				var trainee_sig = document.getElementById('trainee_sig');
 				doc.addImage(trainee_sig, 'PNG', 35, 265, 40, 10);
+				
+				doc.text(46, 276, '{{ trainee.approved_by }}')
 			}
 			
-
-			var visa_copy = document.getElementById("visa_copy");
-			var passport_copy = document.getElementById("passport_copy");
-			var passport_size_photo = document.getElementById("passport_size_photo");
-			var academic_qualification_certificate = document.getElementById("academic_qualification_certificate");
-			var academic_qualification_certificate_two = document.getElementById("academic_qualification_certificate_two");
-			var academic_qualification_certificate_three = document.getElementById("academic_qualification_certificate_three");
-			var academic_qualification_certificate_four = document.getElementById("academic_qualification_certificate_four");
-			var academic_qualification_certificate_five = document.getElementById("academic_qualification_certificate_five");
-			var professional_qualification_certificate = document.getElementById("professional_qualification_certificate");
-			var professional_qualification_certificate_two = document.getElementById("professional_qualification_certificate_two");
-			var professional_qualification_certificate_three = document.getElementById("professional_qualification_certificate_three");
-			var professional_qualification_certificate_four = document.getElementById("professional_qualification_certificate_four");
-			var professional_qualification_certificate_five = document.getElementById("professional_qualification_certificate_five");
 
 			if(visa_copy){
 				format = String(visa_copy.src).slice(-3).toUpperCase()

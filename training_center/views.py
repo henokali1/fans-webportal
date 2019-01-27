@@ -237,7 +237,7 @@ def approve_application(request, pk):
     EnrollTrainee.objects.filter(pk=pk).update(
         approval = 'Accepted',
         approval_date = datetime.datetime.now(tz=timezone.utc),
-        approved_by = str(request.user),
+        approved_by = helper.get_full_name(request.user),
     )
     return HttpResponse(replay)
 
@@ -290,6 +290,7 @@ def trainee_detail(request, pk):
         'trainee': trainee[0],
         'imgs': imgs,
         'len':len(imgs),
+        'checkmark':"<p>sdfg</p>",
     }
     return render(request, 'training_center/course_enrolment_form_pdf.html', args)
 
