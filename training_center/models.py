@@ -73,5 +73,7 @@ class EnrollTrainee(models.Model):
     professional_qualification_certificate_four = models.FileField(upload_to = 'media/')
     professional_qualification_certificate_five = models.FileField(upload_to = 'media/')
 
+    approval = models.CharField(max_length=50, default='Approval Pending')
+
     def __str__(self):
         return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()

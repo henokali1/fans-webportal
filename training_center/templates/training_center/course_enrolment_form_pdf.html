@@ -20,7 +20,6 @@
 	{{ i|safe }}
 	{% endfor %}
 	
-	{{ trainee.course_name|safe }}
 	<iframe id="iframe123" frameborder="0" width="100%" height="100%"></iframe>
 	
 	<script type="text/javascript">
@@ -521,7 +520,7 @@
 				doc.addPage();
 				doc.addImage(professional_qualification_certificate_four, format, 9, 21, 0, 0);
 			}
-			
+
 			if(professional_qualification_certificate_five){
 				format = String(professional_qualification_certificate_five.src).slice(-3).toUpperCase()
 				doc.addPage();

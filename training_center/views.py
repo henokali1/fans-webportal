@@ -208,6 +208,23 @@ def all_trainees(request, msg=''):
         args = {'trainees': trainees, 'msg': msg}
     return render(request, 'training_center/all_trainees.html', args)
 
+# Approve application
+@login_required
+def approve(request, msg=''):
+    all_trainees = EnrollTrainee.objects.all().order_by('-pk')
+
+    # Pagination
+    paginator = Paginator(all_trainees, 10)
+
+    page = request.GET.get('page')
+    trainees = paginator.get_page(page)
+
+    if msg == "":
+        args = {'trainees': trainees}
+    else:
+        args = {'trainees': trainees, 'msg': msg}
+    return render(request, 'training_center/approve.html', args)
+
 # Trainee Detail
 @login_required
 def trainee_detail(request, pk):
