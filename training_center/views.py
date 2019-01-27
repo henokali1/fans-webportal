@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from mso import helper
 from django.core.paginator import Paginator
 from .models import EnrollTrainee
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import time
+import json
+
 
 
 # Training Center
@@ -224,6 +227,28 @@ def approve(request, msg=''):
     else:
         args = {'trainees': trainees, 'msg': msg}
     return render(request, 'training_center/approve.html', args)
+
+# Approve applications by PK
+@login_required
+def approve_application(request, pk):
+    replay = 'Application ' + str(pk) + ' - Approved'
+    EnrollTrainee.objects.filter(pk=pk).update(
+        approval = 'Approved',
+        approved_by = str(request.user),
+    )
+    return HttpResponse(replay)
+
+# Reject applications by PK
+@login_required
+def reject_application(request, pk):
+    replay = 'Application ' + str(pk) + ' - Rejected'
+    EnrollTrainee.objects.filter(pk=pk).update(
+        approval = 'Rejected',
+        approved_by = str(request.user),
+    )  
+    return HttpResponse(replay)
+    
+
 
 # Trainee Detail
 @login_required

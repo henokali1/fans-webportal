@@ -113,15 +113,15 @@ $('.delete').click(function(e) {
    return false;
 });
 
-$.ajax({
-  url: '/mso/delete/44/',
-  datatype: 'json',
-  type: 'GET',
-  success: function(data) {
-      $.each(data.events, function(index, element) {
-          $('body').append($('<div>', {
-              text: element.name
-          }));
-      });
-  }
-});
+// $.ajax({
+//   url: '/mso/delete/44/',
+//   datatype: 'json',
+//   type: 'GET',
+//   success: function(data) {
+//       $.each(data.events, function(index, element) {
+//           $('body').append($('<div>', {
+//               text: element.name
+//           }));
+//       });
+//   }
+// });

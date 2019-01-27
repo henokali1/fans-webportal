@@ -16,6 +16,7 @@
                 <th>SN. - Full Name</th>
                 <th>Email</th>
                 <th>Course</th>
+                <th class="left">Approval Status</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +25,14 @@
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
-                <th><div class="chip green"><span id="{{ trainee.id }}_chip">Approval Pending</span></div></th>
+                {% if trainee.approval == 'Approved'  %}
+                <th class="left"><div class="chip green"><span id="{{ trainee.id }}_chip">Approved</span></div></th>
+                {% elif trainee.approval == 'Rejected' %}
+                <th class="left"><div class="chip red"><span id="{{ trainee.id }}_chip">Rejected</span></div></th>
+                {% else %}
+                <th class="left"><div class="chip"><span id="{{ trainee.id }}_chip">Approval Pending</span></div></th>
+                {% endif %}
+                
                 <th><a onclick="approve('{{ trainee.id }}')" id="approve" class="green-text tooltipped" data-position="right" data-tooltip="Accept {{ trainee.first_name|title }}'s Application"><i class="material-icons right">check</i></a></th>
                 <th><a onclick="reject('{{ trainee.id }}')" id="reject" class="red-text tooltipped" data-position="right" data-tooltip="Reject {{ trainee.first_name|title }}'s Application"><i class="material-icons right">close</i></a></th>
             </tr>
@@ -85,12 +93,20 @@
 <script>
     function approve(pk) {
         $('#' + pk +'_chip').text('Approved')
-        Materialize.toast('Application - ' + pk + ' approved', 8000, 'rounded');
+        $('#' + pk +'_chip').parent( ".chip" ).addClass('green').removeClass('red')
+        var url = 'http://127.0.0.1:8000/training_center/trainee/approve_application/' + pk + '/'
+        $.get(url, function(data, status){
+            Materialize.toast(data, 8000, 'rounded');
+        });
     }
 
     function reject(pk) {
         $('#' + pk +'_chip').text('Rejected')
-        Materialize.toast('Application - ' + pk + ' rejected', 8000, 'rounded');
+        $('#' + pk +'_chip').parent( ".chip" ).addClass('red').removeClass('green')
+        var url = 'http://127.0.0.1:8000/training_center/trainee/reject_application/' + pk + '/'
+        $.get(url, function(data, status){
+            Materialize.toast(data, 8000, 'rounded');
+        });
     }
 
 </script>
