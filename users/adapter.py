@@ -43,5 +43,5 @@ class AccountAdapter(DefaultAccountAdapter):
         #url = super(AccountAdapter, self).get_login_redirect_url(request)
         user = request.user
         url = get_redirect_url(user)
-        print(url, 'redirect url')
+        print('redirect url', url)
         return url
