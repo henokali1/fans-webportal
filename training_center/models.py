@@ -1,6 +1,11 @@
 from django.db import models
 
 
+# Course
+class Course(models.Model):
+    course_details = models.CharField(max_length=250, default='')
+    course_name = models.CharField(max_length=250, default='')
+
 # Enroll New Trainee
 class EnrollTrainee(models.Model):
     course_details = models.CharField(max_length=250, default='')
