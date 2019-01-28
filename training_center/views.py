@@ -232,6 +232,8 @@ def approve(request, msg=''):
         args = {'trainees': trainees}
     else:
         args = {'trainees': trainees, 'msg': msg}
+    
+    print(EnrollTrainee.objects.filter(course_name='052'))
     return render(request, 'training_center/approve.html', args)
 
 # Approve applications by PK
@@ -458,3 +460,8 @@ def take_attendance(request):
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
     }
     return render(request, 'training_center/take_attendance.html', args) 
+
+# Trainer View
+def trainer(request):
+    args = {}
+    return render(request, 'training_center/trainer.html', args) 

@@ -26,6 +26,8 @@ def get_redirect_url(email):
         return('/training_center/trainee/all/')
     elif (job_title == 'Head of Training'):
         return('/training_center/trainee/approve/')
+    elif (job_title == 'Trainer'):
+        return('/training_center/trainer/')
     elif department == 'CNS':
         if job_title in ['CNS Manager', 'CNS Chief Engineer', 'CNS Supervisor']:
             return '/mso/approve/'
