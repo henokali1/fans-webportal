@@ -6,7 +6,6 @@
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
 
 
-
 {% block content %}
 <div class="container">
     <div class="card-panel grey lighten-3 grey-text text-darken-4 z-depth-0">
@@ -14,25 +13,47 @@
             {% csrf_token %}
             <div class="row">
                     <h5 class="center">COURSE DETAILS</h5>
-                    <div class="col l12 m6">
-                        <!-- Course Name -->
-                        <div class="input-field">
-                            <i class="material-icons prefix">assignment</i>
-                            <input id="course_name" type="text" name="course_name" value="{{ trainee.course_name }}" required>
-                            <label for="course_name">Course Name</label>
+                    <div class="col m6 s12">
+                            <div class="input-field">
+                                <i class="material-icons prefix">person</i>
+                                <select name="course_details">
+                                    {% if trainee.course_name == '051' %}
+                                    <option value="051" selected>051 - Basic</option>
+                                    <option value="052">052 - Aerodromes</option>
+                                    <option value="053">053 - Approach Procedure</option>
+                                    <option value="054">054 - Approach Radar</option>
+                                    <option value="055">055 - Area</option>
+                                    {% elif trainee.course_name == '052' %}
+                                    <option value="051">051 - Basic</option>
+                                    <option value="052" selected>052 - Aerodromes</option>
+                                    <option value="053">053 - Approach Procedure</option>
+                                    <option value="054">054 - Approach Radar</option>
+                                    <option value="055">055 - Area</option>
+                                    {% elif trainee.course_name == '053' %}
+                                    <option value="051">051 - Basic</option>
+                                    <option value="052">052 - Aerodromes</option>
+                                    <option value="053" selected>053 - Approach Procedure</option>
+                                    <option value="054">054 - Approach Radar</option>
+                                    <option value="055">055 - Area</option>
+                                    {% elif trainee.course_name == '054' %}
+                                    <option value="051">051 - Basic</option>
+                                    <option value="052">052 - Aerodromes</option>
+                                    <option value="053">053 - Approach Procedure</option>
+                                    <option value="054" selected>054 - Approach Radar</option>
+                                    <option value="055">055 - Area</option>
+                                    {% elif trainee.course_name == '055' %}
+                                    <option value="051">051 - Basic</option>
+                                    <option value="052">052 - Aerodromes</option>
+                                    <option value="053">053 - Approach Procedure</option>
+                                    <option value="054">054 - Approach Radar</option>
+                                    <option value="055" selected>055 - Area</option>
+                                    {% endif %}
+                                </select>
+                                <label>Course</label>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-            <div class="row">
-                <div class="col s12 m6">
-                    <!-- Course Details -->
-                    <div class="input-field">
-                        <i class="material-icons prefix">assignment</i>
-                        <input id="course_details" type="text" name="course_details" value="{{ trainee.course_details }}" required>
-                        <label for="course_details">Course Details</label>
-                    </div>
-                </div>
+
                 <div class="col m6 s12">
                     <!-- Course Date -->
                     <div class="input-field">

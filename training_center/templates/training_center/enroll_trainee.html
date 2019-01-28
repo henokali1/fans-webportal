@@ -13,35 +13,30 @@
             {% csrf_token %}
                 <div class="row">
                     <h5 class="center">COURSE DETAILS</h5>
-                    <div class="col l12 m6">
-                        <!-- Course Name -->
-                        <div class="input-field">
-                            <i class="material-icons prefix">assignment</i>
-                            <input id="course_name" type="text" name="course_name" required>
-                            <label for="course_name">Course Name</label>
+                    <div class="col m6 s12">
+                            <div class="input-field">
+                                <i class="material-icons prefix">person</i>
+                                <select name="course_details">
+                                    <option value="" disabled selected>Select Course</option>
+                                    <option value="051">051 - Basic</option>
+                                    <option value="052">052 - Aerodromes</option>
+                                    <option value="053">053 - Approach Procedure</option>
+                                    <option value="054">054 - Approach Radar</option>
+                                    <option value="055">055 - Area</option>
+                                </select>
+                                <label>Course</label>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                <div class="col s12 m6">
-                    <!-- Course Details -->
-                    <div class="input-field">
-                        <i class="material-icons prefix">assignment</i>
-                        <input id="course_details" type="text" name="course_details" required>
-                        <label for="course_details">Course Details</label>
-                    </div>
-                </div>
-                <div class="col m6 s12">
-                    <!-- Course Date -->
-                    <div class="input-field">
-                        <i class="material-icons prefix">date_range</i>
-                        <input type="text" class="datepicker" id="course_date" name="course_date">
-                        <label for="course_date">Course Date</label>
-                    </div>
-                </div>
-            </div>
 
+                        <div class="col m6 s12">
+                                <!-- Course Date -->
+                                <div class="input-field">
+                                    <i class="material-icons prefix">date_range</i>
+                                    <input type="text" class="datepicker" id="course_date" name="course_date">
+                                    <label for="course_date">Course Date</label>
+                                </div>
+                            </div>
+                </div>
 
             <div class="row">
                 <h5 class="center">PERSONEL DETAILS</h5>

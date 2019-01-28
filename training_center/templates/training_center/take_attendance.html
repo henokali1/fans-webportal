@@ -1,0 +1,53 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Attendance {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h3 class="center">DAILY ATTENDANCE</h3>
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+<table class="bordered highlight responsive-table">
+    <thead>
+        <tr>
+            <th>SN. - Full Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trainee in trainees %}
+        <tr>
+            <th>{{ trainee.id }} - {{ trainee.first_name|title }}
+                {{ trainee.last_name|title }}</th>
+            <th>{{ trainee.email }}</th>
+            <th>
+            <form method="POST">
+                <!-- RADIO BUTTONS -->
+                <input type="radio" name="attendance_{{trainee.pk}}" id="absent">
+                <label for="absent">Absent</label>
+                <input class="with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present">
+                <label for="present">Present </label>
+            </form>
+            </th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+<br>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+{% endblock script_tag %}

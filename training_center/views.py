@@ -12,6 +12,13 @@ from django.utils import timezone
 import datetime
 
 
+courses = {
+    '051': 'Basic',
+    '052': 'Aerodromes',
+    '053': 'Approach Procedure',
+    '054': 'Approach Radar',
+    '055': 'Area',
+}
 
 # Training Center
 @login_required
@@ -35,8 +42,9 @@ def enroll_trainee(request):
 
     if request.method == 'POST':
         new_trainee = EnrollTrainee()
-        new_trainee.course_name = request.POST['course_name']
-        new_trainee.course_details = request.POST['course_details']
+        course = request.POST['course_details']
+        new_trainee.course_name = course
+        new_trainee.course_details = courses[course]
         new_trainee.course_date = request.POST['course_date']
         new_trainee.first_name = request.POST['first_name']
         new_trainee.last_name = request.POST['last_name']
@@ -250,8 +258,6 @@ def reject_application(request, pk):
         approved_by = str(request.user),
     )  
     return HttpResponse(replay)
-    
-
 
 # Trainee Detail
 @login_required
@@ -298,9 +304,10 @@ def trainee_detail(request, pk):
 @login_required
 def edit_trainee(request, pk):
     if request.method == 'POST':
+        course = request.POST['course_details']
         EnrollTrainee.objects.filter(pk=pk).update(
-            course_name = request.POST['course_name'],
-            course_details = request.POST['course_details'],
+            course_details = courses[course],
+            course_name = course,
             course_date = request.POST['course_date'],
             first_name = request.POST['first_name'],
             last_name = request.POST['last_name'],
@@ -333,6 +340,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(visa_copy = visa_file_name)  
         except:
             print('Couldn\'t find visa_copy' )
+            pass
 
         try:
             passport_copy = request.FILES['passport_copy']
@@ -340,6 +348,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(passport_copy = passport_file_name)  
         except:
             print('Couldn\'t find passport_copy' )
+            pass
 
         try:
             passport_size_photo = request.FILES['passport_size_photo']
@@ -347,6 +356,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(passport_size_photo = passport_size_photo_file_name)  
         except:
             print('Couldn\'t find passport_size_photo_file_name' )
+            pass
 
 
         try:
@@ -355,6 +365,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate = acc_qual_cert_1_file_name)  
         except:
             print('Couldn\'t find acc_qual_cert_1' )
+            pass
 
         try:
             acc_qual_cert_2 = request.FILES['acc_qual_cert_2']
@@ -362,6 +373,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_two = acc_qual_cert_2_file_name)  
         except:
             print('Couldn\'t find acc_qual_cert_2' )
+            pass
 
         try:
             acc_qual_cert_3 = request.FILES['acc_qual_cert_3']
@@ -369,6 +381,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_three = acc_qual_cert_3_file_name)  
         except:
             print('Couldn\'t find acc_qual_cert_3' )
+            pass
 
         try:
             acc_qual_cert_4 = request.FILES['acc_qual_cert_4']
@@ -376,6 +389,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_four = acc_qual_cert_4_file_name)  
         except:
             print('Couldn\'t find acc_qual_cert_4' )
+            pass
 
         try:
             acc_qual_cert_5 = request.FILES['acc_qual_cert_5']
@@ -383,6 +397,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(academic_qualification_certificate_five = acc_qual_cert_5_file_name)  
         except:
             print('Couldn\'t find acc_qual_cert_5' )
+            pass
 
         try:
             prof_qual_cert_1 = request.FILES['prof_qual_cert_1']
@@ -390,6 +405,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate = prof_qual_cert_1_file_name)  
         except:
             print('Couldn\'t find prof_qual_cert_1' )
+            pass
 
         try:
             prof_qual_cert_2 = request.FILES['prof_qual_cert_2'] 
@@ -397,6 +413,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_two = prof_qual_cert_2_file_name)  
         except:
             print('Couldn\'t find prof_qual_cert_2' )
+            pass
 
         try:
             prof_qual_cert_3 = request.FILES['prof_qual_cert_3']
@@ -404,6 +421,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_three = prof_qual_cert_3_file_name)  
         except:
             print('Couldn\'t find prof_qual_cert_3' )
+            pass
         
         try:
             prof_qual_cert_4 = request.FILES['prof_qual_cert_4']
@@ -411,6 +429,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_four = prof_qual_cert_4_file_name)  
         except:
             print('Couldn\'t find prof_qual_cert_4' )
+            pass
 
         try:
             prof_qual_cert_5 = request.FILES['prof_qual_cert_5']
@@ -418,6 +437,7 @@ def edit_trainee(request, pk):
             EnrollTrainee.objects.filter(pk=pk).update(professional_qualification_certificate_five = prof_qual_cert_5_file_name)  
         except:
             print('Couldn\'t find prof_qual_cert_5' )
+            pass
 
 
         return all_trainees(
@@ -430,3 +450,12 @@ def edit_trainee(request, pk):
             'trainee': trainee[0],
         }
         return render(request, 'training_center/edit_trainee.html', args)
+
+# Take Attendance
+@login_required
+def take_attendance(request):
+    args={
+        'msg': '',
+        'trainees': EnrollTrainee.objects.all().order_by('-pk'),
+    }
+    return render(request, 'training_center/take_attendance.html', args) 
