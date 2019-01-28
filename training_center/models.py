@@ -6,6 +6,9 @@ class Course(models.Model):
     course_details = models.CharField(max_length=250, default='')
     course_name = models.CharField(max_length=250, default='')
 
+    def __str__(self):
+        return self.course_name + ' - ' + self.course_details
+
 # Enroll New Trainee
 class EnrollTrainee(models.Model):
     course_details = models.CharField(max_length=250, default='')

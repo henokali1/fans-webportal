@@ -17,37 +17,11 @@
                             <div class="input-field">
                                 <i class="material-icons prefix">person</i>
                                 <select name="course_details">
-                                    {% if trainee.course_name == '051' %}
-                                    <option value="051" selected>051 - Basic</option>
-                                    <option value="052">052 - Aerodromes</option>
-                                    <option value="053">053 - Approach Procedure</option>
-                                    <option value="054">054 - Approach Radar</option>
-                                    <option value="055">055 - Area</option>
-                                    {% elif trainee.course_name == '052' %}
-                                    <option value="051">051 - Basic</option>
-                                    <option value="052" selected>052 - Aerodromes</option>
-                                    <option value="053">053 - Approach Procedure</option>
-                                    <option value="054">054 - Approach Radar</option>
-                                    <option value="055">055 - Area</option>
-                                    {% elif trainee.course_name == '053' %}
-                                    <option value="051">051 - Basic</option>
-                                    <option value="052">052 - Aerodromes</option>
-                                    <option value="053" selected>053 - Approach Procedure</option>
-                                    <option value="054">054 - Approach Radar</option>
-                                    <option value="055">055 - Area</option>
-                                    {% elif trainee.course_name == '054' %}
-                                    <option value="051">051 - Basic</option>
-                                    <option value="052">052 - Aerodromes</option>
-                                    <option value="053">053 - Approach Procedure</option>
-                                    <option value="054" selected>054 - Approach Radar</option>
-                                    <option value="055">055 - Area</option>
-                                    {% elif trainee.course_name == '055' %}
-                                    <option value="051">051 - Basic</option>
-                                    <option value="052">052 - Aerodromes</option>
-                                    <option value="053">053 - Approach Procedure</option>
-                                    <option value="054">054 - Approach Radar</option>
-                                    <option value="055" selected>055 - Area</option>
-                                    {% endif %}
+                                        <option value="{{ trainee.course_name }}" selected>{{ trainee.course_name }} - {{ trainee.course_details }}</option>
+                                        {% for key, value in courses.items %}
+                                        <option value="{{key}}">{{key}} - {{value}}</option>
+                                        {% endfor %}
+                                        
                                 </select>
                                 <label>Course</label>
                             </div>

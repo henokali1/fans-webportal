@@ -35,3 +35,11 @@ def parse_date(timestamp):
 # Generates a file name with current timestamp
 def get_timestamp():
     return str(int(time.time()))
+
+# Returns a dict of all courses with course name as a key and course detail as a value
+def get_all_courses(course_object):
+    ret = {}
+    for i in course_object:
+        ret[i.course_name]=i.course_details
+    return ret
+    

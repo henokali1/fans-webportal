@@ -18,11 +18,9 @@
                                 <i class="material-icons prefix">person</i>
                                 <select name="course_details">
                                     <option value="" disabled selected>Select Course</option>
-                                    <option value="051">051 - Basic</option>
-                                    <option value="052">052 - Aerodromes</option>
-                                    <option value="053">053 - Approach Procedure</option>
-                                    <option value="054">054 - Approach Radar</option>
-                                    <option value="055">055 - Area</option>
+                                    {% for key, value in courses.items %}
+                                    <option value="{{key}}">{{key}} - {{value}}</option>
+                                    {% endfor %}
                                 </select>
                                 <label>Course</label>
                             </div>

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from mso import helper
 from django.core.paginator import Paginator
-from .models import EnrollTrainee
+from .models import *
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import time
@@ -12,13 +12,6 @@ from django.utils import timezone
 import datetime
 
 
-courses = {
-    '051': 'Basic',
-    '052': 'Aerodromes',
-    '053': 'Approach Procedure',
-    '054': 'Approach Radar',
-    '055': 'Area',
-}
 
 # Training Center
 @login_required
@@ -28,6 +21,8 @@ def training_center(request):
 # Enroll New Trainee
 @login_required
 def enroll_trainee(request):
+    # Get courses dict
+    courses = helper.get_all_courses(Course.objects.all()) 
     gender = helper.get_gender(request.user)
     department = helper.get_department(request.user)
     current_user_name = helper.get_full_name(request.user)
@@ -38,6 +33,7 @@ def enroll_trainee(request):
         'current_user_gender': str(gender),
         'department': str(department),
         'job_title': str(job_title),
+        'courses': courses,
     } 
 
     if request.method == 'POST':
@@ -303,6 +299,8 @@ def trainee_detail(request, pk):
 # Edit Tranee Details
 @login_required
 def edit_trainee(request, pk):
+    # Get courses dict
+    courses = helper.get_all_courses(Course.objects.all()) 
     if request.method == 'POST':
         course = request.POST['course_details']
         EnrollTrainee.objects.filter(pk=pk).update(
@@ -448,6 +446,7 @@ def edit_trainee(request, pk):
         trainee = EnrollTrainee.objects.all().filter(pk=pk)
         args = {
             'trainee': trainee[0],
+            'courses': courses,
         }
         return render(request, 'training_center/edit_trainee.html', args)
 
