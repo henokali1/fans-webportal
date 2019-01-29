@@ -15,4 +15,6 @@ urlpatterns = [
     path('trainee/<int:pk>/', views.trainee_detail, name='course_enrolment_form_pdf.html'),
     path('trainee/<int:pk>/edit', views.edit_trainee, name='edit_trainee.html'),
     path('head_of_training/', views.head_of_training, name='head_of_training.html'),
+    path('create_class/', views.create_class, name='create_class.html'),
+    path('all_classes/', views.all_classes, name='classes.html'),
 ]

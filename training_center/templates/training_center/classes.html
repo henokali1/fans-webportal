@@ -1,0 +1,61 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All Classes {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h4 class="center">All Classes</h4>
+    
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <table class="bordered highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>SN. - Class Name</th>
+                    <th>Courses</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class in classes %}
+                <tr>
+                    <th>{{ class.pk }} - {{ class.class_name|title }}</th>
+                    <th>
+                        {{ class.courses }}
+                    </th>
+                    <th>
+                        <a href="/training_center/trainee/{{ trainee.id }}/edit" class="green-text">
+                            <i class="material-icons right">edit</i>
+                        </a>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+</div>
+{% endblock content %}
+
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg != '' %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+<script>
+    $(document).ready(function () {
+        $('.modal').modal({
+            dismissible: true,
+            inDuration: 300,
+            outDuration: 200
+        });
+        $('.tooltipped').tooltip();
+    });
+</script>
+
+{% endblock script_tag %}

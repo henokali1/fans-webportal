@@ -473,3 +473,33 @@ def trainer(request):
 def head_of_training(request):
     args = {}
     return render(request, 'training_center/head_of_training.html', args)
+
+# Create new class (by head of training)
+def create_class(request):
+    if request.method == 'POST':
+        new_class = ClassName()
+        # Get New Class Data
+        new_class.class_name = request.POST['class_name']
+        new_class.courses = ', '.join(request.POST.getlist('courses'))
+        # Commit to DB
+        new_class.save()
+
+        args = {
+            'courses': helper.get_all_courses(Course.objects.all()),
+            'msg': request.POST['class_name'] + ' Added Successfully'
+        }
+        return render(request, 'training_center/create_class.html', args)
+    else:
+        args = {
+            'courses': helper.get_all_courses(Course.objects.all()),
+        }
+        return render(request, 'training_center/create_class.html', args)
+
+# All Classes
+def all_classes(request):
+    classes = ClassName.objects.all()
+    #.strip('][').split(',')
+    args = {
+        'classes': classes
+    }
+    return render(request, 'training_center/classes.html', args)
