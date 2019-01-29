@@ -465,8 +465,9 @@ def take_attendance(request, course):
 # Trainer View
 def trainer(request):
     args = {
-        'courses': helper.get_all_courses(Course.objects.all()),
+        'clases': ClassName.objects.all(),
     }
+    
     return render(request, 'training_center/trainer.html', args) 
 
 # Head of training base view
@@ -485,9 +486,7 @@ def create_class(request):
         new_class.class_name = request.POST['class_name']
         new_class.courses = request.POST['course_name']
         # Commit to DB
-        new_class.save(request.POST['class_name'], )
-
-        print(request.POST['class_name'], request.POST['course_name'])
+        new_class.save()
 
         args['msg'] = request.POST['class_name'] + ' Added Successfully'
         return render(request, 'training_center/create_class.html', args)
@@ -510,12 +509,16 @@ def edit_class(request, pk):
             courses = ', '.join(request.POST.getlist('courses'))
         )
     else:
-        args = {
-            'classe': ClassName.objects.all().filter(pk=pk)[0]
-        }
+        args = {'classe': ClassName.objects.all().filter(pk=pk)[0]}
         classe = args['classe']
-        
-        
-        print(classe)
         return render(request, 'training_center/edit_class.html', args)
 
+# Create New Subject
+def create_subject(request):
+    if request.method == 'POST':
+        print(request.POST['subject_name'], request.POST['subject_type'], request.POST['subject_discription'])
+        args = {}
+        return render(request, 'training_center/create_subject.html', args)
+    else:
+        args = {}
+        return render(request, 'training_center/create_subject.html', args)

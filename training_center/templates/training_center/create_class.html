@@ -59,7 +59,6 @@
     function checkSelect(){
         course_name_val = $('#course_name option:selected').text()
         class_name_val = $('#class_name').val()
-        //alert(class_name_val)
         if (class_name_val == ''){
             Materialize.toast('Please Fill Course Name', 8000, 'rounded');
             return false

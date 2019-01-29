@@ -18,4 +18,5 @@ urlpatterns = [
     path('create_class/', views.create_class, name='create_class.html'),
     path('all_classes/', views.all_classes, name='classes.html'),
     path('class/<int:pk>/edit', views.edit_class, name='edit_class.html'),
+    path('subjects/new', views.create_subject, name='create_subject.html'),
 ]

@@ -5,6 +5,7 @@ from django.db import models
 class Course(models.Model):
     course_details = models.CharField(max_length=250, default='')
     course_name = models.CharField(max_length=250, default='')
+    course_subjects = models.TextField()
 
     def __str__(self):
         return self.course_name + ' - ' + self.course_details
@@ -22,8 +23,10 @@ class ClassName(models.Model):
 
 
 # Subjects
-class SubjectName(models.Model):
+class Subject(models.Model):
     subject_name = models.CharField(max_length=250, default='')
+    subject_type = models.CharField(max_length=20, default='')
+    subject_discription = models.TextField()
 
 
 # Enroll New Trainee
