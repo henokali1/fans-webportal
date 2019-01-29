@@ -476,23 +476,22 @@ def head_of_training(request):
 
 # Create new class (by head of training)
 def create_class(request):
+    args = {
+        'courses': helper.get_all_courses(Course.objects.all()),
+    }
     if request.method == 'POST':
         new_class = ClassName()
         # Get New Class Data
         new_class.class_name = request.POST['class_name']
-        new_class.courses = ', '.join(request.POST.getlist('courses'))
+        new_class.courses = request.POST['course_name']
         # Commit to DB
-        new_class.save()
+        new_class.save(request.POST['class_name'], )
 
-        args = {
-            'courses': helper.get_all_courses(Course.objects.all()),
-            'msg': request.POST['class_name'] + ' Added Successfully'
-        }
+        print(request.POST['class_name'], request.POST['course_name'])
+
+        args['msg'] = request.POST['class_name'] + ' Added Successfully'
         return render(request, 'training_center/create_class.html', args)
     else:
-        args = {
-            'courses': helper.get_all_courses(Course.objects.all()),
-        }
         return render(request, 'training_center/create_class.html', args)
 
 # All Classes
@@ -514,5 +513,9 @@ def edit_class(request, pk):
         args = {
             'classe': ClassName.objects.all().filter(pk=pk)[0]
         }
+        classe = args['classe']
+        
+        
+        print(classe)
         return render(request, 'training_center/edit_class.html', args)
 
