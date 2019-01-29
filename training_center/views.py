@@ -497,9 +497,22 @@ def create_class(request):
 
 # All Classes
 def all_classes(request):
-    classes = ClassName.objects.all()
-    #.strip('][').split(',')
+    classes = ClassName.objects.all().order_by('-pk')
     args = {
         'classes': classes
     }
     return render(request, 'training_center/classes.html', args)
+
+# Edit Classes
+def edit_class(request, pk):
+    if request.method == 'POST':
+        ClassName.objects.filter(pk=pk).update(
+            class_name = request.POST['class_name'],
+            courses = ', '.join(request.POST.getlist('courses'))
+        )
+    else:
+        args = {
+            'classe': ClassName.objects.all().filter(pk=pk)[0]
+        }
+        return render(request, 'training_center/edit_class.html', args)
+

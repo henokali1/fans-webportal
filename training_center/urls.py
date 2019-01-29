@@ -17,4 +17,5 @@ urlpatterns = [
     path('head_of_training/', views.head_of_training, name='head_of_training.html'),
     path('create_class/', views.create_class, name='create_class.html'),
     path('all_classes/', views.all_classes, name='classes.html'),
+    path('class/<int:pk>/edit', views.edit_class, name='edit_class.html'),
 ]

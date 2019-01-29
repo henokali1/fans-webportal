@@ -20,6 +20,11 @@ class ClassName(models.Model):
         return self.class_name
 
 
+# Subjects
+class SubjectName(models.Model):
+    subject_name = models.CharField(max_length=250, default='')
+
+
 # Enroll New Trainee
 class EnrollTrainee(models.Model):
     course_details = models.CharField(max_length=250, default='')
