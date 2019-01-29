@@ -9,6 +9,17 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name + ' - ' + self.course_details
 
+
+
+# Class
+class ClassName(models.Model):
+    class_name = models.CharField(max_length=250, default='')
+    courses = models.CharField(max_length=250, default='')
+
+    def __str__(self):
+        return self.class_name
+
+
 # Enroll New Trainee
 class EnrollTrainee(models.Model):
     course_details = models.CharField(max_length=250, default='')

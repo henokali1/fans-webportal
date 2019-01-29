@@ -9,8 +9,27 @@
 {% block content %}
 <div class="container">
     <br>
-    <a href="/training_center/take_attendance" class="waves-effect waves-light btn-large blue"><i class="material-icons right">add</i>Take Attendance</a>
-    <hr>
+    <div class="row">
+        <div class="col s12 m6">
+                <div class="input-field">
+                        <i class="material-icons prefix">library_books</i>
+                        <select name="course_details" id="course_name">
+                            <option value="" disabled selected>Select Course</option>
+                            {% for key, value in courses.items %}
+                            <option value="{{key}}">{{key}} - {{value}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Course</label>
+                    </div>
+        </div>
+
+        <div class="col s12 m6">
+            <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
+                <i class="material-icons right">add</i>
+                Take Attendance
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock content %}
 
@@ -21,4 +40,17 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
+
+<script>
+    function takeAttendance() {
+        var url = "/training_center/take_attendance/"
+        course = $('#course_name option:selected').text()
+        if(course == 'Select Course'){
+            Materialize.toast('Select Course', 5000, 'rounded')
+        }
+        else{
+            window.open(url+course, "_self")
+        }
+    }
+</script>
 {% endblock script_tag %}

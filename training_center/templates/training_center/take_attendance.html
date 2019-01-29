@@ -9,6 +9,7 @@
 {% block content %}
 <div class="container">
     <h3 class="center">DAILY ATTENDANCE</h3>
+    <form method="POST">
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
 <table class="bordered highlight responsive-table">
     <thead>
@@ -24,18 +25,19 @@
                 {{ trainee.last_name|title }}</th>
             <th>{{ trainee.email }}</th>
             <th>
-            <form method="POST">
+            
                 <!-- RADIO BUTTONS -->
                 <input type="radio" name="attendance_{{trainee.pk}}" id="absent">
                 <label for="absent">Absent</label>
                 <input class="with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present">
                 <label for="present">Present </label>
-            </form>
+            
             </th>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+</form>
 <br>
 <br>
 <br>

@@ -454,7 +454,8 @@ def edit_trainee(request, pk):
 
 # Take Attendance
 @login_required
-def take_attendance(request):
+def take_attendance(request, course):
+    print(course)
     args={
         'msg': '',
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
@@ -463,5 +464,12 @@ def take_attendance(request):
 
 # Trainer View
 def trainer(request):
-    args = {}
+    args = {
+        'courses': helper.get_all_courses(Course.objects.all()),
+    }
     return render(request, 'training_center/trainer.html', args) 
+
+# Head of training base view
+def head_of_training(request):
+    args = {}
+    return render(request, 'training_center/head_of_training.html', args)
