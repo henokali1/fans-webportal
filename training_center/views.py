@@ -531,3 +531,10 @@ def create_subject(request):
     else:
         args = {}
         return render(request, 'training_center/create_subject.html', args)
+
+# All Subjects
+def all_subjects(request):
+    args = {
+        'subjects': Subject.objects.all().order_by('-pk')
+    }
+    return render(request, 'training_center/all_subjects.html', args)
