@@ -28,6 +28,9 @@ class Subject(models.Model):
     subject_type = models.CharField(max_length=20, default='')
     subject_discription = models.TextField()
 
+    def __str__(self):
+        return self.subject_name
+
 
 # Enroll New Trainee
 class EnrollTrainee(models.Model):

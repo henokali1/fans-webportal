@@ -16,7 +16,7 @@
                 <div class="col s12 m6">
                     <div class="input-field">
                         <i class="material-icons prefix">account_box</i>
-                        <input id="subject_name" type="text" name="subject_name" required>
+                        <input id="subject_name" type="text" name="subject_name">
                         <label for="subject_name">Subject Name</label>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
             <div class="col m6 s12">
                     <div class="input-field">
                         <i class="material-icons prefix">person</i>
-                        <select name="subject_type">
+                        <select name="subject_type" id="subject_type">
                             <option value="" disabled selected>Select Subject Type</option>
                             <option value="theoretical">Theoretical</option>
                             <option value="practical">practical</option>
@@ -66,14 +66,14 @@
 
 <script>
     function checkSelect(){
-        course_name_val = $('#course_name option:selected').text()
-        class_name_val = $('#class_name').val()
-        if (class_name_val == ''){
-            Materialize.toast('Please Fill Course Name', 8000, 'rounded');
+        subject_type_val = $('#subject_type option:selected').text()
+        subject_name_val = $('#subject_name').val()
+        if (subject_name_val == ''){
+            Materialize.toast('Please Fill Subject Name', 8000, 'rounded');
             return false
         }
-        if (course_name_val == 'Select Course'){
-            Materialize.toast('Please Select Course', 8000, 'rounded');
+        if (subject_type_val == 'Select Subject Type'){
+            Materialize.toast('Please Select Subject Type', 8000, 'rounded');
             return false
         }
     }

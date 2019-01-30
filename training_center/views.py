@@ -516,8 +516,17 @@ def edit_class(request, pk):
 # Create New Subject
 def create_subject(request):
     if request.method == 'POST':
-        print(request.POST['subject_name'], request.POST['subject_type'], request.POST['subject_discription'])
-        args = {}
+        new_subject = Subject()
+        # Get subject data
+        new_subject.subject_name = request.POST['subject_name']
+        new_subject.subject_type = request.POST['subject_type']
+        new_subject.subject_discription = request.POST['subject_discription']
+        # Commit to DB
+        new_subject.save()
+
+        args = {
+            'msg': request.POST['subject_name'] + ' Added Successfully'
+        }
         return render(request, 'training_center/create_subject.html', args)
     else:
         args = {}
