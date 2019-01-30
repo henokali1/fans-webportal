@@ -455,7 +455,6 @@ def edit_trainee(request, pk):
 # Take Attendance
 @login_required
 def take_attendance(request, course):
-    print(course)
     args={
         'msg': '',
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
@@ -475,6 +474,15 @@ def head_of_training(request):
     args = {}
     return render(request, 'training_center/head_of_training.html', args)
 
+# All Classes
+def all_classes(request, msg=''):
+    classes = ClassName.objects.all().order_by('-pk')
+    args = {
+        'classes': classes,
+        'msg': msg,
+    }
+    return render(request, 'training_center/classes.html', args)
+
 # Create new class (by head of training)
 def create_class(request):
     args = {
@@ -488,19 +496,10 @@ def create_class(request):
         # Commit to DB
         new_class.save()
 
-        args['msg'] = request.POST['class_name'] + ' Added Successfully'
-        return render(request, 'training_center/create_class.html', args)
+        return all_classes(request, msg=request.POST['class_name'] + ' Added Successfully')
     else:
         return render(request, 'training_center/create_class.html', args)
 
-# All Classes
-def all_classes(request, msg=''):
-    classes = ClassName.objects.all().order_by('-pk')
-    args = {
-        'classes': classes,
-        'msg': msg,
-    }
-    return render(request, 'training_center/classes.html', args)
 
 # Edit Classes
 def edit_class(request, pk):
