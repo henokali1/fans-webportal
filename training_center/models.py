@@ -116,8 +116,9 @@ class EnrollTrainee(models.Model):
 class TraineeAttendance(models.Model):
     student_id = models.ForeignKey(EnrollTrainee, on_delete=models.CASCADE)
     att_date = models.DateField(auto_now=True)
-    attended_class = models.CharField(max_length=250, default='')
+    attended_class = models.ForeignKey(ClassName, on_delete=models.CASCADE)
+    attended_subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class)
+        return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class) + ' - ' + str(self.attended_subject)
 

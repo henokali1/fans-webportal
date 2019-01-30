@@ -455,12 +455,13 @@ def edit_trainee(request, pk):
 # Take Attendance
 @login_required
 def take_attendance(request, class_name, subject_name):
-    print(class_name, subject_name)
     args={
-        'msg': 'class_name='+class_name+',subject_name'+subject_name,
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
     }
-    return render(request, 'training_center/take_attendance.html', args) 
+    if request.method == 'POST':
+        return render(request, 'training_center/take_attendance.html', args) 
+    else:
+        return render(request, 'training_center/take_attendance.html', args) 
 
 # Trainer View
 def trainer(request):
