@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Create New Subject {% endblock title %}
+{% block title %} Edit Subject ({{ subject.subject_name }}) {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="center">Add New Subject</h4>
+    <h4 class="center">Edit - {{ subject.subject_name }}</h4>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="row">
@@ -16,7 +16,7 @@
                 <div class="col s12 m6">
                     <div class="input-field">
                         <i class="material-icons prefix">assignment</i>
-                        <input id="subject_name" type="text" name="subject_name">
+                        <input id="subject_name" type="text" name="subject_name" value="{{ subject.subject_name }}">
                         <label for="subject_name">Subject Name</label>
                     </div>
                 </div>
@@ -26,9 +26,13 @@
                     <div class="input-field">
                         <i class="material-icons prefix">assignment</i>
                         <select name="subject_type" id="subject_type">
-                            <option value="" disabled selected>Select Subject Type</option>
-                            <option value="theoretical">Theoretical</option>
+                            {% if subject.subject_type == 'theoretical' %}
+                            <option value="theoretical" selected>Theoretical</option>
                             <option value="practical">Practical</option>
+                            {% else %}
+                            <option value="theoretical">Theoretical</option>
+                            <option value="practical" selected>Practical</option>
+                            {% endif %}
                         </select>
                         <label>Subject Type</label>
                     </div>
@@ -39,7 +43,7 @@
                 <!-- SUBJECT DESCRIPTION  -->
                 <div class="input-field">
                         <i class="material-icons prefix">assignment</i>
-                        <textarea id="subject_discription" class="materialize-textarea" name="subject_discription" ></textarea>
+                        <textarea id="subject_discription" class="materialize-textarea" name="subject_discription" value="{{ subject.subject_discription }}"></textarea>
                         <label for="subject_discription">Subject Description</label>
                     </div>
             </div>
@@ -47,7 +51,7 @@
         <div class="row">
                 <div class="col s12">
                     <div>
-                        <input type="submit" value="Submit" class="btn right blue"  onclick="return checkSelect()">
+                        <input type="submit" value="Update" class="btn right blue"  onclick="return checkSelect()">
                     </div>
                 </div>
             </div>
@@ -63,20 +67,15 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
-
 <script>
-    function checkSelect(){
-        subject_type_val = $('#subject_type option:selected').text()
-        subject_name_val = $('#subject_name').val()
-        if (subject_name_val == ''){
-            Materialize.toast('Please Fill Subject Name', 8000, 'rounded');
-            return false
-        }
-        if (subject_type_val == 'Select Subject Type'){
-            Materialize.toast('Please Select Subject Type', 8000, 'rounded');
-            return false
-        }
-    }
+    $(document).ready(function () {
+        $('.modal').modal({
+            dismissible: true,
+            inDuration: 300,
+            outDuration: 200
+        });
+        $('.tooltipped').tooltip();
+    });
 </script>
 
 {% endblock script_tag %}

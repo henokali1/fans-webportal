@@ -533,8 +533,23 @@ def create_subject(request):
         return render(request, 'training_center/create_subject.html', args)
 
 # All Subjects
-def all_subjects(request):
+def all_subjects(request, msg=''):
     args = {
-        'subjects': Subject.objects.all().order_by('-pk')
+        'subjects': Subject.objects.all().order_by('-pk'),
+        'msg': msg,
     }
     return render(request, 'training_center/all_subjects.html', args)
+
+# Edit Subject
+def edit_subject(request, pk):
+    if request.method == 'POST':
+        Subject.objects.filter(pk=pk).update(
+            subject_name = request.POST['subject_name'],
+            subject_type = request.POST['subject_type'],
+            subject_discription = request.POST['subject_discription'],
+        )
+
+        return(all_subjects(request, msg='Subject - ' + str(pk) + ' Updated Successfully.'))
+    else:
+        args = {'subject': Subject.objects.all().filter(pk=pk)[0]}
+        return render(request, 'training_center/edit_subject.html', args)
