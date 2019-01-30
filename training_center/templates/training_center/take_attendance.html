@@ -14,7 +14,7 @@
             <div class="row">
                     <div class="col s12">
                         <div>
-                            <input type="submit" value="Submit" class="btn right blue" onclick="return checkSelect()">
+                            <input type="submit" value="Submit" class="btn right blue">
                         </div>
                     </div>
                 </div>
@@ -34,13 +34,13 @@
             <th>{{ trainee.email }}</th>
             <th>
                 <!-- RADIO BUTTONS -->
-                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="absent_{{trainee.pk}}">
+                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="absent_{{trainee.pk}}" value="absent">
                 <label for="absent_{{trainee.pk}}">Absent</label>
-                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="present_{{trainee.pk}}">
+                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="present_{{trainee.pk}}" value="present">
                 <label for="present_{{trainee.pk}}">Present </label>
-                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="excused_{{trainee.pk}}">
+                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="excused_{{trainee.pk}}" value="excused">
                 <label for="excused_{{trainee.pk}}">Excused </label>
-                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="late_{{trainee.pk}}">
+                <input class="att_radio" type="radio" name="attendance_{{trainee.pk}}" id="late_{{trainee.pk}}" value="late">
                 <label for="late_{{trainee.pk}}">Late </label>
             </th>
         </tr>
@@ -62,12 +62,4 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
-
-<script>
-    function checkSelect(){
-        var aa = $('.att_radio')
-        alert(aa)
-        return false
-    }
-</script>
 {% endblock script_tag %}

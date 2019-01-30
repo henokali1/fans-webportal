@@ -458,7 +458,21 @@ def take_attendance(request, class_name, subject_name):
     args={
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
     }
+    
     if request.method == 'POST':
+        for key in request.POST:
+            if 'attendance' in key:
+                value = request.POST[key]
+                print('key:%s value:%s class:%s subject:%s' % (key, value, class_name, subject_name))
+                attendance = TraineeAttendance()
+                attendance.attendance_stat = value
+                attendance.student_id = key[key.find('_')+1:]
+                attendance.attended_class = class_name
+                attendance.attended_subject = subject_name
+
+                attendance.save()            
+
+
         return render(request, 'training_center/take_attendance.html', args) 
     else:
         return render(request, 'training_center/take_attendance.html', args) 
