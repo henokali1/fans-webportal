@@ -494,23 +494,33 @@ def create_class(request):
         return render(request, 'training_center/create_class.html', args)
 
 # All Classes
-def all_classes(request):
+def all_classes(request, msg=''):
     classes = ClassName.objects.all().order_by('-pk')
     args = {
-        'classes': classes
+        'classes': classes,
+        'msg': msg,
     }
     return render(request, 'training_center/classes.html', args)
 
 # Edit Classes
 def edit_class(request, pk):
-    if request.method == 'POST':
+    if request.method == 'POST':        
         ClassName.objects.filter(pk=pk).update(
             class_name = request.POST['class_name'],
-            courses = ', '.join(request.POST.getlist('courses'))
+            courses = request.POST['course_name']
         )
+
+        args = {
+            'courses': helper.get_all_courses(Course.objects.all()),
+        }
+        return (all_classes(request, msg=str(request.POST['class_name']) + ' Updated Successfully'))
+
     else:
-        args = {'classe': ClassName.objects.all().filter(pk=pk)[0]}
-        classe = args['classe']
+        course = ClassName.objects.all().filter(pk=pk)[0]
+        args = {
+            'class_name': course.class_name,
+            'courses': helper.get_all_courses(Course.objects.all()),
+        }
         return render(request, 'training_center/edit_class.html', args)
 
 # Create New Subject

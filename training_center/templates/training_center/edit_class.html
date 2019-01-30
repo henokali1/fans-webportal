@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="center">Edit - {{ classe.class_name }}</h4>
+    <h4 class="center">Edit - {{ class_name }}</h4>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="row">
@@ -16,25 +16,29 @@
                 <!-- Class Name -->
                 <div class="input-field">
                     <i class="material-icons prefix">library_books</i>
-                    <input id="class_name" type="text" name="class_name" value="{{ classe.class_name }}" required>
+                    <input id="class_name" type="text" name="class_name" value="{{ class_name }}" required>
                     <label for="class_name">Class Name</label>
                 </div>
             </div>
             
             
             <div class="input-field col s12 m6">
-                <select name="courses" multiple>
-                    <option value="" disabled selected>Select Class</option>
-                    {% for key, value in courses.items %}
+                <div class="input-field">
+                    <i class="material-icons prefix">library_books</i>
+                    <select name="course_name" id="course_name" value="courses.courses">
+                        <option value="" disabled selected>Select Course</option>
+                        {% for key, value in courses.items %}
                         <option value="{{key}}">{{key}} - {{value}}</option>
-                    {% endfor %}
-                </select>
+                        {% endfor %}
+                    </select>
+                    <label>Course</label>
+                </div>
             </div>
 
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <input type="submit" value="Submit" class="btn right blue">
+                        <input type="submit" value="Update" class="btn right blue"  onclick="return checkSelect()">
                     </div>
                 </div>
             </div>
@@ -60,6 +64,21 @@
         });
         $('.tooltipped').tooltip();
     });
+</script>
+
+<script>
+    function checkSelect(){
+        course_name_val = $('#course_name option:selected').text()
+        class_name_val = $('#class_name').val()
+        if (class_name_val == ''){
+            Materialize.toast('Please Fill Course Name', 8000, 'rounded');
+            return false
+        }
+        if (course_name_val == 'Select Course'){
+            Materialize.toast('Please Select Course', 8000, 'rounded');
+            return false
+        }
+    }
 </script>
 
 {% endblock script_tag %}
