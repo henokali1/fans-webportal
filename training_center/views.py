@@ -10,6 +10,7 @@ import time
 import json
 from django.utils import timezone
 import datetime
+from django.shortcuts import redirect
 
 
 
@@ -452,39 +453,36 @@ def edit_trainee(request, pk):
         }
         return render(request, 'training_center/edit_trainee.html', args)
 
+# Trainer View
+def trainer(request, msg=''):
+    args = {
+        'clases': ClassName.objects.all(),
+        'subjects': Subject.objects.all(),
+        'msg': msg,
+    }
+    
+    return render(request, 'training_center/trainer.html', args) 
+
 # Take Attendance
 @login_required
 def take_attendance(request, class_name, subject_name):
-    args={
-        'trainees': EnrollTrainee.objects.all().order_by('-pk'),
-    }
-    
     if request.method == 'POST':
         for key in request.POST:
             if 'attendance' in key:
+                # Attendance Status (Present, Absent, Excused, Late)
                 value = request.POST[key]
-                print('key:%s value:%s class:%s subject:%s' % (key, value, class_name, subject_name))
+
                 attendance = TraineeAttendance()
                 attendance.attendance_stat = value
                 attendance.student_id = key[key.find('_')+1:]
                 attendance.attended_class = class_name
                 attendance.attended_subject = subject_name
 
+                # Commit to DB
                 attendance.save()            
-
-
-        return render(request, 'training_center/take_attendance.html', args) 
+        return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
     else:
-        return render(request, 'training_center/take_attendance.html', args) 
-
-# Trainer View
-def trainer(request):
-    args = {
-        'clases': ClassName.objects.all(),
-        'subjects': Subject.objects.all(),
-    }
-    
-    return render(request, 'training_center/trainer.html', args) 
+        return render(request, 'training_center/take_attendance.html', {'trainees': EnrollTrainee.objects.all().order_by('-pk')}) 
 
 # Head of training base view
 def head_of_training(request):
@@ -529,7 +527,7 @@ def edit_class(request, pk):
         args = {
             'courses': helper.get_all_courses(Course.objects.all()),
         }
-        return (all_classes(request, msg=str(request.POST['class_name']) + ' Updated Successfully'))
+        return redirect('/training_center/all_classes/', msg=str(request.POST['class_name']) + ' Updated Successfully')
 
     else:
         course = ClassName.objects.all().filter(pk=pk)[0]
@@ -575,7 +573,7 @@ def edit_subject(request, pk):
             subject_discription = request.POST['subject_discription'],
         )
 
-        return(all_subjects(request, msg='Subject - ' + str(pk) + ' Updated Successfully.'))
+        return redirect('/training_center/subjects/all/', msg='Subject - ' + str(pk) + ' Updated Successfully.')
     else:
         args = {'subject': Subject.objects.all().filter(pk=pk)[0]}
         return render(request, 'training_center/edit_subject.html', args)
