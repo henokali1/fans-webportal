@@ -5,11 +5,11 @@ from django.db import models
 class Course(models.Model):
     course_details = models.CharField(max_length=250, default='')
     course_name = models.CharField(max_length=250, default='')
-    course_subjects = models.TextField()
+    course_description = models.TextField(default='')
+    course_subjects_pk = models.CharField(max_length=250, default='[]')
 
     def __str__(self):
         return self.course_name + ' - ' + self.course_details
-
 
 
 # Class

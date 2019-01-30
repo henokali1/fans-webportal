@@ -13,23 +13,37 @@
         <div class="col s12 m6">
             <div class="input-field">
                 <i class="material-icons prefix">library_books</i>
-                <select name="course_details" id="course_name">
-                    <option value="" disabled selected>Select Course</option>
+                <select name="class" id="class">
+                    <option value="" disabled selected>Select Class</option>
                     {% for i in clases %}
                     <option value="{{ i.class_name }}">{{ i.class_name }}</option>
                     {% endfor %}
                 </select>
-                <label>Course</label>
+                <label>Class</label>
             </div>
         </div>
-        
+
         <div class="col s12 m6">
+            <div class="input-field">
+                    <i class="material-icons prefix">library_books</i>
+                    <select name="subject" id="subject">
+                        <option value="" disabled selected>Select Subject</option>
+                        {% for i in subjects %}
+                        <option value="{{ i.pk }}">{{ i.subject_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Subject</label>
+                </div>
+        </div>
+        
+        
+    </div>
+    <div class="col s12 m6">
             <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
                 <i class="material-icons right">add</i>
                 Take Attendance
             </a>
         </div>
-    </div>
 </div>
 {% endblock content %}
 
@@ -44,12 +58,16 @@
 <script>
     function takeAttendance() {
         var url = "/training_center/take_attendance/"
-        course = $('#course_name option:selected').text()
-        if(course == 'Select Course'){
-            Materialize.toast('Select Course', 5000, 'rounded')
+        var class_val = $('#class option:selected').text()
+        var subject_val = $('#subject option:selected').text()
+        if(class_val == 'Select Class'){
+            Materialize.toast('Select Class', 5000, 'rounded')
+        }
+        else if(subject_val == 'Select Subject'){
+            Materialize.toast('Select Subject', 5000, 'rounded')
         }
         else{
-            window.open(url+course, "_self")
+            window.open(url + class_val + '/' + subject_val + '/', "_self")
         }
     }
 </script>

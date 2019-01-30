@@ -454,9 +454,10 @@ def edit_trainee(request, pk):
 
 # Take Attendance
 @login_required
-def take_attendance(request, course):
+def take_attendance(request, class_name, subject_name):
+    print(class_name, subject_name)
     args={
-        'msg': '',
+        'msg': 'class_name='+class_name+',subject_name'+subject_name,
         'trainees': EnrollTrainee.objects.all().order_by('-pk'),
     }
     return render(request, 'training_center/take_attendance.html', args) 
@@ -465,6 +466,7 @@ def take_attendance(request, course):
 def trainer(request):
     args = {
         'clases': ClassName.objects.all(),
+        'subjects': Subject.objects.all(),
     }
     
     return render(request, 'training_center/trainer.html', args) 
