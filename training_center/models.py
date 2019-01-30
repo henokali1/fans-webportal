@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# Course
+# Courses
 class Course(models.Model):
     course_details = models.CharField(max_length=250, default='')
     course_name = models.CharField(max_length=250, default='')
@@ -110,3 +110,14 @@ class EnrollTrainee(models.Model):
 
     def __str__(self):
         return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()
+
+
+# Trainee Attendance
+class TraineeAttendance(models.Model):
+    student_id = models.ForeignKey(EnrollTrainee, on_delete=models.CASCADE)
+    att_date = models.DateField(auto_now=True)
+    attended_class = models.CharField(max_length=250, default='')
+
+    def __str__(self):
+        return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class)
+

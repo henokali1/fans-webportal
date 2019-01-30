@@ -25,13 +25,11 @@
                 {{ trainee.last_name|title }}</th>
             <th>{{ trainee.email }}</th>
             <th>
-            
                 <!-- RADIO BUTTONS -->
                 <input type="radio" name="attendance_{{trainee.pk}}" id="absent">
                 <label for="absent">Absent</label>
                 <input class="with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present">
                 <label for="present">Present </label>
-            
             </th>
         </tr>
         {% endfor %}
