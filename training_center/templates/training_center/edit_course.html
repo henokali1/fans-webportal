@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Create New Course {% endblock title %}
+{% block title %} Edit Course ({{course.course_name}}) {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="center">Add New Course</h4>
+    <h4 class="center">Edit {{course.course_name}}</h4>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="row">
@@ -16,7 +16,7 @@
             <div class="col s12 m6">
                 <div class="input-field">
                     <i class="material-icons prefix">assignment</i>
-                    <input id="course_details" type="text" name="course_details">
+                    <input id="course_details" type="text" name="course_details" value="{{ course.course_details }}">
                     <label for="course_details">Course Details</label>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="col s12 m6">
                 <div class="input-field">
                     <i class="material-icons prefix">assignment</i>
-                    <input id="course_name" type="text" name="course_name">
+                    <input id="course_name" type="text" name="course_name" value="{{ course.course_name }}">
                     <label for="course_name">Course Name</label>
                 </div>
             </div>
@@ -33,13 +33,12 @@
         
         <div class="row">
             <div class="col s12 m6">
-                <!-- COURSE SUBJECTS -->
+                <!-- COURSE SUBJECTS subjects_pk_int -->
                 <div class="input-field">
                     <i class="material-icons prefix">assignment</i>
                     <select id="course_subjects" name="course_subjects" multiple>
-                        <option value="" disabled selected>Subjects</option>
                         {% for subject in subjects %}
-                        <option value="{{ subject.pk }}">{{ subject.subject_name|title }}</option>
+                        <option value="{{ subject.pk }}" {% if subject.pk in subjects_pk_int %} selected {% endif %}>{{ subject.subject_name|title }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -49,7 +48,7 @@
                 <!-- COURSE DESCRIPTION  -->
                 <div class="input-field">
                     <i class="material-icons prefix">assignment</i>
-                    <textarea id="course_description" class="materialize-textarea" name="course_description"></textarea>
+                    <textarea id="course_description" class="materialize-textarea" name="course_description" value="{{ course.course_description }}"></textarea>
                     <label for="course_description">Course Description</label>
                 </div>
             </div>

@@ -22,4 +22,6 @@ urlpatterns = [
     path('subjects/all/', views.all_subjects, name='all_subjects.html'),
     path('subjects/<int:pk>/edit/', views.edit_subject, name='edit_subject.html'),
     path('courses/new/', views.create_course, name='create_course.html'),
+    path('courses/all/', views.all_courses, name='all_courses.html'),
+    path('courses/<int:pk>/edit/', views.edit_course, name='edit_course.html'),
 ]

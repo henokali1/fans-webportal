@@ -581,14 +581,49 @@ def edit_subject(request, pk):
 
 # Create Course
 def create_course(request):
-    subjects = Subject.objects.all().order_by('-pk')
     args = {
-        'subjects': subjects,
+        'subjects': Subject.objects.all().order_by('-pk'),
     }
     if request.method == 'POST':
-        for key in request.POST:
-            print(key, request.POST[key])
+        new_course = Course()
+        # Get form data
+        new_course.course_details = request.POST['course_details']
+        new_course.course_name = request.POST['course_name']
+        new_course.course_description = request.POST['course_description']
+        new_course.course_subjects_pk = request.POST.getlist('course_subjects')
+        # Commit to DB
+        new_course.save()
         return render(request, 'training_center/create_course.html', args)
     else:
         return render(request, 'training_center/create_course.html', args)
 
+# All Courses
+def all_courses(request, msg=''):
+    args = {
+        'courses': Course.objects.all().order_by('-pk'),
+        'msg': msg,
+    }
+    return render(request, 'training_center/all_courses.html', args)
+
+# Edit Course
+def edit_course(request, pk):
+    if request.method == 'POST':
+        Course.objects.filter(pk=pk).update(
+            course_details = request.POST['course_details'],
+            course_name = request.POST['course_name'],
+            course_description = request.POST['course_description'],
+            course_subjects_pk = request.POST.getlist('course_subjects'),
+        ) 
+        return redirect('/training_center/courses/all/', msg='Course Updated Successfully')
+    else:
+        args = {
+            'course': Course.objects.all().filter(pk=pk)[0],
+            'subjects': Subject.objects.all().order_by('-pk'),
+        }
+        subjects = Subject.objects.all()
+        subjects_pk = eval(args['course'].course_subjects_pk)
+        subjects_pk_int = []
+        for i in subjects_pk:
+            subjects_pk_int.append(int(i))
+        args['subjects_pk_int'] = subjects_pk_int
+        return render(request, 'training_center/edit_course.html', args)

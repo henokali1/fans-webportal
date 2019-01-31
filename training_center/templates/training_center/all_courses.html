@@ -1,0 +1,50 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} All Courses {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h4 class="center">All Courses</h4>
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <table class="bordered highlight responsive-table">
+        <thead>
+            <tr>
+                <th>SN. - Course Details</th>
+                <th>Course Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <th>{{ course.pk }} - {{ course.course_details|title }}</th>
+                <th>
+                    {{ course.course_name|title }}
+                </th>
+                <th>
+                    <a href="/training_center/courses/{{ course.pk }}/edit" class="green-text">
+                        <i class="material-icons right">edit</i>
+                    </a>
+                </th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    
+</div>
+{% endblock content %}
+
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg != '' %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+{% endblock script_tag %}
