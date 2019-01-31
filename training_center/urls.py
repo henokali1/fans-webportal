@@ -21,4 +21,5 @@ urlpatterns = [
     path('subjects/new/', views.create_subject, name='create_subject.html'),
     path('subjects/all/', views.all_subjects, name='all_subjects.html'),
     path('subjects/<int:pk>/edit/', views.edit_subject, name='edit_subject.html'),
+    path('courses/new/', views.create_course, name='create_course.html'),
 ]

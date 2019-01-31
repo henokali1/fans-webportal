@@ -1,0 +1,94 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Create New Course {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h4 class="center">Add New Course</h4>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Course Details -->
+            <div class="col s12 m6">
+                <div class="input-field">
+                    <i class="material-icons prefix">assignment</i>
+                    <input id="course_details" type="text" name="course_details">
+                    <label for="course_details">Course Details</label>
+                </div>
+            </div>
+
+            <!-- Course Name -->
+            <div class="col s12 m6">
+                <div class="input-field">
+                    <i class="material-icons prefix">assignment</i>
+                    <input id="course_name" type="text" name="course_name">
+                    <label for="course_name">Course Name</label>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="row">
+            <div class="col s12 m6">
+                <!-- COURSE SUBJECTS -->
+                <div class="input-field">
+                    <select name="course_subjects" multiple>
+                        <option value="" disabled selected>Subjects</option>
+                        {% for subject in subjects %}
+                        <option value="{{ subject.pk }}">{{ subject.subject_name|title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="col s12 m6">
+                <!-- COURSE DESCRIPTION  -->
+                <div class="input-field">
+                    <i class="material-icons prefix">assignment</i>
+                    <textarea id="course_discription" class="materialize-textarea" name="course_discription" ></textarea>
+                    <label for="course_discription">Course Description</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <div>
+                    <input type="submit" value="Submit" class="btn right blue"  onclick="return checkSelect()">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg != '' %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+
+<script>
+    function checkSelect(){
+        subject_type_val = $('#subject_type option:selected').text()
+        subject_name_val = $('#subject_name').val()
+        if (subject_name_val == ''){
+            Materialize.toast('Please Fill Subject Name', 8000, 'rounded');
+            return false
+        }
+        if (subject_type_val == 'Select Subject Type'){
+            Materialize.toast('Please Select Subject Type', 8000, 'rounded');
+            return false
+        }
+    }
+</script>
+
+{% endblock script_tag %}
