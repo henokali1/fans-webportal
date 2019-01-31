@@ -17,6 +17,7 @@ class ClassName(models.Model):
     class_name = models.CharField(max_length=250, default='')
     courses = models.CharField(max_length=250, default='')
     courses_list = models.CharField(max_length=250, default='')
+    
 
     def __str__(self):
         return self.class_name
