@@ -582,12 +582,13 @@ def edit_subject(request, pk):
 # Create Course
 def create_course(request):
     subjects = Subject.objects.all().order_by('-pk')
-
+    args = {
+        'subjects': subjects,
+    }
     if request.method == 'POST':
-        pass
+        for key in request.POST:
+            print(key, request.POST[key])
+        return render(request, 'training_center/create_course.html', args)
     else:
-        args = {
-            'subjects': subjects,
-        }
         return render(request, 'training_center/create_course.html', args)
 
