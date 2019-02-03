@@ -533,6 +533,7 @@ def edit_class(request, pk):
         course = ClassName.objects.all().filter(pk=pk)[0]
         args = {
             'class_name': course.class_name,
+            'priv_course': course.courses,
             'courses': helper.get_all_courses(Course.objects.all()),
         }
         return render(request, 'training_center/edit_class.html', args)

@@ -28,7 +28,11 @@
                     <select name="course_name" id="course_name" value="courses.courses">
                         <option value="" disabled selected>Select Course</option>
                         {% for key, value in courses.items %}
+                        {% if key == priv_course %}
+                        <option value="{{key}}" selected>{{key}} - {{value}}</option>
+                        {% else %}
                         <option value="{{key}}">{{key}} - {{value}}</option>
+                        {% endif %}
                         {% endfor %}
                     </select>
                     <label>Course</label>

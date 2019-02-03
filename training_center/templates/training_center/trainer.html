@@ -25,15 +25,15 @@
 
         <div class="col s12 m6">
             <div class="input-field">
-                    <i class="material-icons prefix">library_books</i>
-                    <select name="subject" id="subject">
-                        <option value="" disabled selected>Select Subject</option>
-                        {% for i in subjects %}
-                        <option value="{{ i.pk }}">{{ i.subject_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <label>Subject</label>
-                </div>
+                <i class="material-icons prefix">library_books</i>
+                <select name="subject" id="subject">
+                    <option value="" disabled selected>Select Subject</option>
+                    {% for i in subjects %}
+                    <option value="{{ i.pk }}">{{ i.subject_name }}</option>
+                    {% endfor %}
+                </select>
+                <label>Subject</label>
+            </div>
         </div>
         
         

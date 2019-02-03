@@ -23,20 +23,20 @@
 
             <!-- Subject Type -->
             <div class="col m6 s12">
-                    <div class="input-field">
-                        <i class="material-icons prefix">assignment</i>
-                        <select name="subject_type" id="subject_type">
-                            {% if subject.subject_type == 'theoretical' %}
-                            <option value="theoretical" selected>Theoretical</option>
-                            <option value="practical">Practical</option>
-                            {% else %}
-                            <option value="theoretical">Theoretical</option>
-                            <option value="practical" selected>Practical</option>
-                            {% endif %}
-                        </select>
-                        <label>Subject Type</label>
-                    </div>
+                <div class="input-field">
+                    <i class="material-icons prefix">assignment</i>
+                    <select name="subject_type" id="subject_type">
+                        {% if subject.subject_type == 'theoretical' %}
+                        <option value="theoretical" selected>Theoretical</option>
+                        <option value="practical">Practical</option>
+                        {% else %}
+                        <option value="theoretical">Theoretical</option>
+                        <option value="practical" selected>Practical</option>
+                        {% endif %}
+                    </select>
+                    <label>Subject Type</label>
                 </div>
+            </div>
         </div>
         <div class="row">
             <div class="col s12">
