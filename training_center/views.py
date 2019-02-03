@@ -456,8 +456,8 @@ def edit_trainee(request, pk):
 # Trainer View
 def trainer(request, msg=''):
     args = {
-        'clases': ClassName.objects.all(),
-        'subjects': Subject.objects.all(),
+        'clases': ClassName.objects.all().order_by('-pk'),
+        'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
     }
     
@@ -482,7 +482,9 @@ def take_attendance(request, class_name, subject_name):
                 attendance.save()            
         return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
     else:
-        return render(request, 'training_center/take_attendance.html', {'trainees': EnrollTrainee.objects.all().order_by('-pk')}) 
+        class_name = ClassName.objects.filter(class_name=class_name)
+        students = EnrollTrainee.objects.filter(course_name=class_name[0].courses)
+        return render(request, 'training_center/take_attendance.html', {'trainees': students.order_by('-pk')}) 
 
 # Head of training base view
 def head_of_training(request):
