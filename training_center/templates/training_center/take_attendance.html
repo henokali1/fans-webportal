@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Attendance {% endblock title %}
+{% block title %} Daily Attendance {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -66,16 +66,11 @@
 <script>
     var all_ids = []
     var all_studs = {}
-    {% for trainee in trainees %}
-    all_studs[{{trainee.pk}}]= String.raw`Check {{ trainee.first_name|title }} {{ trainee.last_name|title }}'s Attendance`
-    {% endfor %}
-
-    
+        
     $( document ).ready(function() {
-        var all_trainees = $('.trainee')
-        for(var i = 0; i <= all_trainees.length-1; i++){
-            all_ids.push(parseInt(all_trainees[i].id))
-        }
+        {% for trainee in trainees %}
+        all_studs[{{trainee.pk}}]= String.raw`Check {{ trainee.first_name|title }} {{ trainee.last_name|title }}'s Attendance`
+        {% endfor %}
     });
 
     var checked_ids = [];
