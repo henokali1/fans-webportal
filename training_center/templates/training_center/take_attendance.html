@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col s12">
                     <div>
-                        <input type="submit" value="Submit" class="btn right blue">
+                        <input type="submit" value="Submit" class="btn right blue" onclick="return checkAttendance()">
                     </div>
                 </div>
             </div>
@@ -22,28 +22,29 @@
 <table class="bordered highlight responsive-table">
     <thead>
         <tr>
-            <th>SN. - Full Name</th>
-            <th>Email</th>
+            <th>ID Number</th>
+            <th>Full Name</th>
         </tr>
     </thead>
     <tbody>
         {% for trainee in trainees %}
-        <tr>
-            <th>{{ trainee.id }} - {{ trainee.first_name|title }}
-                {{ trainee.last_name|title }}</th>
-            <th>{{ trainee.email }}</th>
-            <th>
-                <!-- RADIO BUTTONS -->
-                <input class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="absent_{{trainee.pk}}" value="absent">
-                <label for="absent_{{trainee.pk}}">Absent</label>
-                <input class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present_{{trainee.pk}}" value="present">
-                <label for="present_{{trainee.pk}}">Present </label>
-                <input class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="excused_{{trainee.pk}}" value="excused">
-                <label for="excused_{{trainee.pk}}">Excused </label>
-                <input class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="late_{{trainee.pk}}" value="late">
-                <label for="late_{{trainee.pk}}">Late </label>
-            </th>
-        </tr>
+        <div id="{{trainee.pk}}" class="trainee">
+            <tr>
+                <th>00{{ trainee.id }}</th>
+                <th id="th_{{ trainee.id }}">{{ trainee.first_name|title }} {{ trainee.last_name|title }}</th>
+                <th class="right">
+                    <!-- RADIO BUTTONS -->
+                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="absent_{{trainee.pk}}" value="absent" onclick="att()">
+                    <label for="absent_{{trainee.pk}}">Absent</label>
+                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present_{{trainee.pk}}" value="present">
+                    <label for="present_{{trainee.pk}}">Present </label>
+                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="excused_{{trainee.pk}}" value="excused">
+                    <label for="excused_{{trainee.pk}}">Excused </label>
+                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="late_{{trainee.pk}}" value="late">
+                    <label for="late_{{trainee.pk}}">Late </label>
+                </th>
+            </tr>
+        </div>
         {% endfor %}
     </tbody>
 </table>
@@ -62,4 +63,37 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
+<script>
+    var all_ids = []
+    var all_studs = {}
+    {% for trainee in trainees %}
+    all_studs[{{trainee.pk}}]= String.raw`Check {{ trainee.first_name|title }} {{ trainee.last_name|title }}'s Attendance`
+    {% endfor %}
+
+    
+    $( document ).ready(function() {
+        var all_trainees = $('.trainee')
+        for(var i = 0; i <= all_trainees.length-1; i++){
+            all_ids.push(parseInt(all_trainees[i].id))
+        }
+    });
+
+    var checked_ids = [];
+    function radioCallback(trainee_id){
+        delete all_studs[trainee_id]
+    }
+
+    function checkAttendance(){
+        if(Object.keys(all_studs).length > 0){
+            for(i in all_studs){
+                Materialize.toast(all_studs[i], 8000, 'rounded');
+            }
+            return false
+        }
+        else{
+            return true
+        }  
+    }
+
+</script>
 {% endblock script_tag %}
