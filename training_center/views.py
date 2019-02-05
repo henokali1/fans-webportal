@@ -487,11 +487,13 @@ def take_attendance(request, class_name, subject_name):
         return render(request, 'training_center/take_attendance.html', {'trainees': students.order_by('-pk')}) 
 
 # Head of training base view
+@login_required
 def head_of_training(request):
     args = {}
     return render(request, 'training_center/head_of_training.html', args)
 
 # All Classes
+@login_required
 def all_classes(request, msg=''):
     classes = ClassName.objects.all().order_by('-pk')
     args = {
@@ -501,6 +503,7 @@ def all_classes(request, msg=''):
     return render(request, 'training_center/classes.html', args)
 
 # Create new class (by head of training)
+@login_required
 def create_class(request):
     args = {
         'courses': helper.get_all_courses(Course.objects.all()),
@@ -519,6 +522,7 @@ def create_class(request):
 
 
 # Edit Classes
+@login_required
 def edit_class(request, pk):
     if request.method == 'POST':        
         ClassName.objects.filter(pk=pk).update(
@@ -541,6 +545,7 @@ def edit_class(request, pk):
         return render(request, 'training_center/edit_class.html', args)
 
 # Create New Subject
+@login_required
 def create_subject(request):
     if request.method == 'POST':
         new_subject = Subject()
@@ -560,6 +565,7 @@ def create_subject(request):
         return render(request, 'training_center/create_subject.html', args)
 
 # All Subjects
+@login_required
 def all_subjects(request, msg=''):
     args = {
         'subjects': Subject.objects.all().order_by('-pk'),
@@ -583,6 +589,7 @@ def edit_subject(request, pk):
 
 
 # Create Course
+@login_required
 def create_course(request):
     args = {
         'subjects': Subject.objects.all().order_by('-pk'),
@@ -601,6 +608,7 @@ def create_course(request):
         return render(request, 'training_center/create_course.html', args)
 
 # All Courses
+@login_required
 def all_courses(request, msg=''):
     args = {
         'courses': Course.objects.all().order_by('-pk'),
@@ -609,6 +617,7 @@ def all_courses(request, msg=''):
     return render(request, 'training_center/all_courses.html', args)
 
 # Edit Course
+@login_required
 def edit_course(request, pk):
     if request.method == 'POST':
         Course.objects.filter(pk=pk).update(
@@ -630,3 +639,13 @@ def edit_course(request, pk):
             subjects_pk_int.append(int(i))
         args['subjects_pk_int'] = subjects_pk_int
         return render(request, 'training_center/edit_course.html', args)
+
+# VIEW ALL ATTENDANCE RECORDS OF A SPECIFIC CLASS AND SUBJECT
+@login_required
+def view_attendance(request, class_name, subject_name):
+    records = TraineeAttendance.objects.all().filter(
+        attended_class = class_name,
+        attended_subject = subject_name
+    ).order_by('-pk')
+    print(class_name, subject_name)
+    return render(request, 'training_center/view_attendance.html', {'records': records})

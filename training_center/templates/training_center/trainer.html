@@ -39,11 +39,17 @@
         
     </div>
     <div class="col s12 m6">
-            <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
-                <i class="material-icons right">add</i>
-                Take Attendance
-            </a>
-        </div>
+        <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
+            <i class="material-icons right">add</i>
+            Take Attendance
+        </a>
+    </div>
+    <div class="col s12 m6">
+        <a onclick="viewAttendanceCheck()" class="waves-effect waves-light btn-large blue">
+            <i class="material-icons right">remove_red_eye</i>
+            View Attendance
+        </a>
+    </div>
 </div>
 {% endblock content %}
 
@@ -58,6 +64,21 @@
 <script>
     function takeAttendance() {
         var url = "/training_center/take_attendance/"
+        var class_val = $('#class option:selected').text()
+        var subject_val = $('#subject option:selected').text()
+        if(class_val == 'Select Class'){
+            Materialize.toast('Select Class', 5000, 'rounded')
+        }
+        else if(subject_val == 'Select Subject'){
+            Materialize.toast('Select Subject', 5000, 'rounded')
+        }
+        else{
+            window.open(url + class_val + '/' + subject_val + '/', "_self")
+        }
+    }
+
+    function viewAttendanceCheck() {
+        var url = "/training_center/view_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
         if(class_val == 'Select Class'){
