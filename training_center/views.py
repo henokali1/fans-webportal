@@ -646,16 +646,15 @@ def view_attendance(request, class_name, subject_name):
     records = TraineeAttendance.objects.all().filter(
         attended_class = class_name,
         attended_subject = subject_name
-    ).order_by('-pk')
+    )
     
     formatted = {}
-
+    cntr = []
     for i in records:
         tot_cls = helper.get_att_count(i.student_id, class_name, subject_name, i.attendance_stat)
-
+        cntr.append(str(i.att_date)[:19])
         per = (tot_cls*100.0)/len(records)
         per = str(round(per, 2))
-        print(per)
         formatted[i.pk] = {
             'stud_id': i.student_id,
             'attendance_stat': i.attendance_stat,
@@ -670,7 +669,10 @@ def view_attendance(request, class_name, subject_name):
         'formatted': formatted,
         'msg': '',
     }
-
+    
+    for i in cntr:
+        print(i)
+    print(len(set(cntr)), 'cntr')
     if len(formatted) == 0:
         args['msg']="No Records Found"
     

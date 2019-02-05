@@ -117,7 +117,7 @@ class EnrollTrainee(models.Model):
 class TraineeAttendance(models.Model):
     student_id = models.CharField(max_length=10, default='')
     attendance_stat = models.CharField(max_length=20, default='')
-    att_date = models.DateField(auto_now=True)
+    att_date = models.DateTimeField(auto_now=True)
     attended_class = models.CharField(max_length=250, default='')
     attended_subject = models.CharField(max_length=250, default='')
 
