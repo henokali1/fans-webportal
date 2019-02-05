@@ -1,4 +1,5 @@
 from users.models import CustomUser, SetupUserAccount
+from training_center.models import EnrollTrainee, TraineeAttendance
 import time
 import pytz
 
@@ -43,3 +44,17 @@ def get_all_courses(course_object):
         ret[i.course_name]=i.course_details
     return ret
     
+# Returns full name of a given(pk/id) trainee
+def get_trainee_name(pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
+    return trainee.first_name + ' ' + trainee.last_name
+
+# Returns total count of attended classes of a given class
+def get_att_count(student_id, class_name, subject_name, attendance_stat):
+    att = TraineeAttendance.objects.all().filter(
+        attended_class = class_name,
+        attended_subject = subject_name,
+        student_id = student_id,
+        attendance_stat = 'present',
+    )
+    return len(att)

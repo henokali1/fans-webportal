@@ -647,5 +647,31 @@ def view_attendance(request, class_name, subject_name):
         attended_class = class_name,
         attended_subject = subject_name
     ).order_by('-pk')
-    print(class_name, subject_name)
-    return render(request, 'training_center/view_attendance.html', {'records': records})
+    
+    formatted = {}
+
+    for i in records:
+        tot_cls = helper.get_att_count(i.student_id, class_name, subject_name, i.attendance_stat)
+
+        per = (tot_cls*100.0)/len(records)
+        per = str(round(per, 2))
+        print(per)
+        formatted[i.pk] = {
+            'stud_id': i.student_id,
+            'attendance_stat': i.attendance_stat,
+            'att_date': i.att_date,
+            'attended_class': i.attended_class,
+            'attended_subject': i.attended_subject,
+            'name': helper.get_trainee_name(i.student_id),
+            'per': per
+        }
+
+    args={
+        'formatted': formatted,
+        'msg': '',
+    }
+
+    if len(formatted) == 0:
+        args['msg']="No Records Found"
+    
+    return render(request, 'training_center/view_attendance.html', args)

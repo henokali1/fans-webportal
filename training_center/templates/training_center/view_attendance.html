@@ -8,28 +8,28 @@
 
 {% block content %}
 <div class="container">
-    <h3 class="center">VIEW ATTENDANCE RECORDS</h3>
-    {% for i in records %}
-    <p>{{i}}</p>
-    {% endfor %}
+    <h3 class="center">DAILY ATTENDANCE RECORDS</h3>
+    
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
     <table class="bordered highlight responsive-table">
         <thead>
             <tr>
                 <th>ID Number</th>
                 <th>Full Name</th>
+                <th>Attendance Status</th>
                 <th>Attendance Date</th>
                 <th>%</th>
             </tr>
         </thead>
         <tbody>
-            {% for trainee in records %}
-            <div id="{{trainee.pk}}" class="trainee">
+            {% for record_id, record_details in formatted.items %}
+            <div>
                 <tr>
-                    <th>00{{ trainee.id }}</th>
-                    <th id="th_{{ trainee.id }}">{{ trainee.first_name|title }} {{ trainee.last_name|title }}</th>
-                    <th>12/02/2019 08:47AM</th>
-                    <th>{{trainee.pk}}%</th>
+                    <th>2019{{ record_details.stud_id }}</th>
+                    <th>{{record_details.name}}</th>
+                    <th>{{ record_details.attendance_stat|title }}</th>
+                    <th>{{ record_details.att_date }}</th>
+                    <th>{{ record_details.per }}%</th>
                 </tr>
             </div>
             {% endfor %}
