@@ -1,0 +1,54 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} View Attendance {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h3 class="center">ATTENDANCE RECORD</h3>
+    <h5>
+        <span><strong>Class: </strong> {{class_name}}</span>
+        <span class="right"> <strong>Subject: {{subject_name}}</strong> </span>
+    </h5>
+    <h6>
+        <span><strong>Sessions: </strong>{{sessions}}</span>
+    </h6>
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <table class="bordered highlight responsive-table">
+        <thead>
+            <tr>
+                <th>ID Number</th>
+                <th>Full Name</th>
+                <th class="right">%</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record_id, record_details in filtered_att.items %}
+            <div>
+                <tr>
+                    <th>{{ record_details.stud_id }}</th>
+                    <th>{{record_details.name}}</th>
+                    <th class="right">{{ record_details.per }}%</th>
+                </tr>
+            </div>
+            {% endfor %}
+        </tbody>
+    </table>
+<br>
+<br>
+<br>
+<br>
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+{% endblock script_tag %}
