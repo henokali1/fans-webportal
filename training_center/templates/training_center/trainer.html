@@ -38,6 +38,16 @@
         
         
     </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <!-- Date -->
+            <div class="input-field">
+                <i class="material-icons prefix">date_range</i>
+                <input type="text" class="datepicker" id="date" name="date" value="">
+                <label for="date">Date</label>
+            </div>
+        </div>
+    </div>
     <div class="col s12 m6">
         <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
             <i class="material-icons right">add</i>
@@ -48,6 +58,15 @@
         <a onclick="viewAttendanceCheck()" class="waves-effect waves-light btn-large blue">
             <i class="material-icons right">remove_red_eye</i>
             View Attendance
+        </a>
+    </div>
+
+    <br>
+    
+    <div class="col s12 m6">
+        <a onclick="viewAttendanceDateCheck()" class="waves-effect waves-light btn-large blue">
+            <i class="material-icons right">remove_red_eye</i>
+            View Attendance(Date)
         </a>
     </div>
 </div>
@@ -78,7 +97,7 @@
     }
 
     function viewAttendanceCheck() {
-        var url = "/training_center/view_attendance/"
+        var url = "/training_center/view_subject_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
         if(class_val == 'Select Class'){
@@ -89,6 +108,25 @@
         }
         else{
             window.open(url + class_val + '/' + subject_val + '/', "_self")
+        }
+    }
+
+    function viewAttendanceDateCheck() {
+        var url = "/training_center/view_attendance_subj_date/"
+        var class_val = $('#class option:selected').text()
+        var subject_val = $('#subject option:selected').text()
+        var date_val = $('#date').val()
+        if(class_val == 'Select Class'){
+            Materialize.toast('Select Class', 5000, 'rounded')
+        }
+        else if(subject_val == 'Select Subject'){
+            Materialize.toast('Select Subject', 5000, 'rounded')
+        }
+        else if(date_val == ''){
+            Materialize.toast('Select Date', 5000, 'rounded')
+        }
+        else{
+            window.open(url + class_val + '/' + subject_val + '/' + date_val + '/', "_self")
         }
     }
 </script>

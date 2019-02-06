@@ -234,7 +234,6 @@ def approve(request, msg=''):
     else:
         args = {'trainees': trainees, 'msg': msg}
     
-    print(EnrollTrainee.objects.filter(course_name='052'))
     return render(request, 'training_center/approve.html', args)
 
 # Approve applications by PK
@@ -467,6 +466,7 @@ def trainer(request, msg=''):
 @login_required
 def take_attendance(request, class_name, subject_name):
     if request.method == 'POST':
+        ident = str(time.time())
         for key in request.POST:
             if 'attendance' in key:
                 # Attendance Status (Present, Absent, Excused, Late)
@@ -477,7 +477,7 @@ def take_attendance(request, class_name, subject_name):
                 attendance.student_id = key[key.find('_')+1:]
                 attendance.attended_class = class_name
                 attendance.attended_subject = subject_name
-
+                attendance.ident = ident
                 # Commit to DB
                 attendance.save()            
         return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
@@ -642,38 +642,25 @@ def edit_course(request, pk):
 
 # VIEW ALL ATTENDANCE RECORDS OF A SPECIFIC CLASS AND SUBJECT
 @login_required
-def view_attendance(request, class_name, subject_name):
-    records = TraineeAttendance.objects.all().filter(
-        attended_class = class_name,
-        attended_subject = subject_name
-    )
+def view_subject_attendance(request, class_name, subject_name):
+    filtered_att, sessions = helper.get_filtered_att(class_name, subject_name)
     
-    formatted = {}
-    cntr = []
-    for i in records:
-        tot_cls = helper.get_att_count(i.student_id, class_name, subject_name, i.attendance_stat)
-        cntr.append(str(i.att_date)[:19])
-        per = (tot_cls*100.0)/len(records)
-        per = str(round(per, 2))
-        formatted[i.pk] = {
-            'stud_id': i.student_id,
-            'attendance_stat': i.attendance_stat,
-            'att_date': i.att_date,
-            'attended_class': i.attended_class,
-            'attended_subject': i.attended_subject,
-            'name': helper.get_trainee_name(i.student_id),
-            'per': per
-        }
-
     args={
-        'formatted': formatted,
+        'filtered_att': filtered_att,
         'msg': '',
+        'class_name': class_name,
+        'subject_name': subject_name,
+        'sessions': sessions,
     }
     
-    for i in cntr:
-        print(i)
-    print(len(set(cntr)), 'cntr')
-    if len(formatted) == 0:
+    
+    if len(filtered_att) == 0:
         args['msg']="No Records Found"
     
-    return render(request, 'training_center/view_attendance.html', args)
+    return render(request, 'training_center/view_subject_attendance.html', args)
+
+# View Attendance Recordes of a Given classs, Subject and ID
+def view_attendance_subj_date(request, class_name, subject_name, date):
+    print(class_name, subject_name, date)
+    args = {}
+    return render(request, 'training_center/view_attendance_subj_date.html', args)

@@ -120,7 +120,8 @@ class TraineeAttendance(models.Model):
     att_date = models.DateTimeField(auto_now=True)
     attended_class = models.CharField(max_length=250, default='')
     attended_subject = models.CharField(max_length=250, default='')
+    ident = models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class) + ' - ' + str(self.attended_subject)
+        return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class) + ' - ' + str(self.attended_subject) + ' - ' + str(self.ident)
 

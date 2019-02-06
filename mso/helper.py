@@ -58,3 +58,62 @@ def get_att_count(student_id, class_name, subject_name, attendance_stat):
         attendance_stat = 'present',
     )
     return len(att)
+
+# Returns only unique students from a given attendance record
+def get_unique_trainee_ids(records):
+    all_student_ids = []
+    for i in records:
+        if not i.student_id in all_student_ids:
+            all_student_ids.append(i.student_id)
+    return(all_student_ids)
+
+# Returns total number of classes for a given subject
+def get_tot_classes(records):
+    given_classes = []
+    for i in records:
+        if not i.ident in given_classes:
+            given_classes.append(i.ident)
+    return len(given_classes)
+
+# Returns the total number of classeds attended by a given id number and attendance record
+def get_tot_cls_attended(stu_id, records):
+    cntr = 0
+    for i in records:
+        if (i.student_id == stu_id) and (i.attendance_stat == 'present'):
+            cntr += 1
+    return cntr
+
+# Returns % of total classes attended out of all given classes
+def get_per(tca, tcg):
+    return int(tca*100.0/tcg)
+
+# Returns formatted ID number(Year + DB PK) of a given student
+def get_stud_id(pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
+    return str(trainee.enrolled_on)[:4] + str(pk)
+
+# Returns total count of a given subject
+def get_filtered_att(class_name, subject_name):
+    filtered_att = {}
+    records = TraineeAttendance.objects.all().filter(
+        attended_class = class_name,
+        attended_subject = subject_name,
+    )
+    # Total classes given
+    tcg = get_tot_classes(records)
+
+
+    ids = get_unique_trainee_ids(records)
+    for i in ids:
+        
+        # Total classes attended
+        tca = get_tot_cls_attended(i, records)
+        filtered_att[i] = {
+            'stud_id': get_stud_id(i),
+            'name': get_trainee_name(i),
+            'per': get_per(tca, tcg),
+        }
+
+    
+    return filtered_att, tcg
+    
