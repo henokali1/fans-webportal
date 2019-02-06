@@ -13,7 +13,6 @@ import datetime
 from django.shortcuts import redirect
 
 
-
 # Training Center
 @login_required
 def training_center(request):
@@ -520,7 +519,6 @@ def create_class(request):
     else:
         return render(request, 'training_center/create_class.html', args)
 
-
 # Edit Classes
 @login_required
 def edit_class(request, pk):
@@ -586,7 +584,6 @@ def edit_subject(request, pk):
     else:
         args = {'subject': Subject.objects.all().filter(pk=pk)[0]}
         return render(request, 'training_center/edit_subject.html', args)
-
 
 # Create Course
 @login_required
@@ -659,8 +656,19 @@ def view_subject_attendance(request, class_name, subject_name):
     
     return render(request, 'training_center/view_subject_attendance.html', args)
 
-# View Attendance Recordes of a Given classs, Subject and ID
+# View Attendance Recordes of a Given classs, Subject and Date
 def view_attendance_subj_date(request, class_name, subject_name, date):
-    print(class_name, subject_name, date)
-    args = {}
+    filtered_att = helper.get_filtered_att_date(class_name, subject_name, date)
+    args = {
+        'filtered_att': filtered_att,
+        'msg': '',
+        'class_name': class_name,
+        'subject_name': subject_name,
+        'date': date,
+    }
+
+    if len(filtered_att) == 0:
+        args['msg']="No Records Found"
+
+        
     return render(request, 'training_center/view_attendance_subj_date.html', args)

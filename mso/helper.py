@@ -1,6 +1,7 @@
 from users.models import CustomUser, SetupUserAccount
 from training_center.models import EnrollTrainee, TraineeAttendance
 import time
+import datetime
 import pytz
 
 
@@ -92,7 +93,13 @@ def get_stud_id(pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
     return str(trainee.enrolled_on)[:4] + str(pk)
 
-# Returns total count of a given subject
+# Returns attendance status(present, absent....) of a given student pk
+def get_att_stat(pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
+    return trainee.attendance_stat
+
+# Returns a formated dict with student id, student 
+# name and % of atteded classes of a given class and subject
 def get_filtered_att(class_name, subject_name):
     filtered_att = {}
     records = TraineeAttendance.objects.all().filter(
@@ -102,10 +109,8 @@ def get_filtered_att(class_name, subject_name):
     # Total classes given
     tcg = get_tot_classes(records)
 
-
     ids = get_unique_trainee_ids(records)
     for i in ids:
-        
         # Total classes attended
         tca = get_tot_cls_attended(i, records)
         filtered_att[i] = {
@@ -113,7 +118,26 @@ def get_filtered_att(class_name, subject_name):
             'name': get_trainee_name(i),
             'per': get_per(tca, tcg),
         }
-
-    
     return filtered_att, tcg
+
+# Returns a formated dict with student id, student 
+# name and attendance status of atteded classes of a given class and subject
+def get_filtered_att_date(class_name, subject_name, date):
+    filtered_att = {}
+    date_sp = date.split('-')
+    records = TraineeAttendance.objects.filter(
+        att_date__startswith = datetime.date(int(date_sp[2]), int(date_sp[1]), int(date_sp[0])),
+        attended_class = class_name,
+        attended_subject = subject_name,
+    )
     
+    cnter = 0
+    for i in records:
+        cnter += 1
+        filtered_att[cnter] = {
+            'stud_id': get_stud_id(i.student_id),
+            'attendance_stat': i.attendance_stat,
+            'name': get_trainee_name(i.student_id),
+        }
+
+    return(filtered_att)

@@ -43,7 +43,7 @@
             <!-- Date -->
             <div class="input-field">
                 <i class="material-icons prefix">date_range</i>
-                <input type="text" class="datepicker" id="date" name="date" value="">
+                <input type="text" class="datepicker_cust" id="date" name="date" value="">
                 <label for="date">Date</label>
             </div>
         </div>
@@ -79,6 +79,16 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
+
+<script>
+    // INIT DATEPICKER
+    $('.datepicker_cust').pickadate({
+        selectMonths: true,
+        selectYears: 15,
+        closeOnSelect: true,
+        format: 'dd-mm-yyyy'
+      });
+</script>
 
 <script>
     function takeAttendance() {

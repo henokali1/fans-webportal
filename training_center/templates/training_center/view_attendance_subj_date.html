@@ -14,7 +14,7 @@
         <span class="right"> <strong>Subject: {{subject_name}}</strong> </span>
     </h5>
     <h6>
-        <span><strong>Date: </strong>{{sessions}}</span>
+        <span><strong>Date: </strong>{{date}}</span>
     </h6>
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
     <table class="bordered highlight responsive-table">
@@ -31,7 +31,7 @@
                 <tr>
                     <th>{{ record_details.stud_id }}</th>
                     <th>{{record_details.name}}</th>
-                    <th class="right">{{ record_details.per }}%</th>
+                    <th class="right">{{ record_details.attendance_stat|title }}</th>
                 </tr>
             </div>
             {% endfor %}
