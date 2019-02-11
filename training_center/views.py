@@ -481,9 +481,10 @@ def take_attendance(request, class_name, subject_name):
                 attendance.save()            
         return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
     else:
-        class_name = ClassName.objects.filter(class_name=class_name)
-        students = EnrollTrainee.objects.filter(course_name=class_name[0].courses)
-        return render(request, 'training_center/take_attendance.html', {'trainees': students.order_by('-pk')}) 
+        args = {
+            'filtered_stds': helper.get_stud_lst(class_name, subject_name)
+        }
+        return render(request, 'training_center/take_attendance.html', args) 
 
 # Head of training base view
 @login_required
@@ -672,3 +673,8 @@ def view_attendance_subj_date(request, class_name, subject_name, date):
 
         
     return render(request, 'training_center/view_attendance_subj_date.html', args)
+
+# View Attendance Record Filtered by Class Name Only
+def view_attendance_cls(request, class_name):
+    args = {}
+    return render(request, 'training_center/view_attendance_cls.html', args)

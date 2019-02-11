@@ -19,7 +19,7 @@
                 </div>
             </div>
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
-<table class="bordered highlight responsive-table">
+<table class="bordered striped striped highlight responsive-table">
     <thead>
         <tr>
             <th>ID Number</th>
@@ -27,21 +27,21 @@
         </tr>
     </thead>
     <tbody>
-        {% for trainee in trainees %}
-        <div id="{{trainee.pk}}" class="trainee">
+        {% for id, record_details in filtered_stds.items %}
+        <div id="{{id}}" class="trainee">
             <tr>
-                <th>00{{ trainee.id }}</th>
-                <th id="th_{{ trainee.id }}">{{ trainee.first_name|title }} {{ trainee.last_name|title }}</th>
+                <th>{{record_details.stud_id}}</th>
+                <th id="th_{{ id }}">{{ record_details.name }}</th>
                 <th class="right">
                     <!-- RADIO BUTTONS -->
-                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="absent_{{trainee.pk}}" value="absent" onclick="att()">
-                    <label for="absent_{{trainee.pk}}">Absent</label>
-                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="present_{{trainee.pk}}" value="present">
-                    <label for="present_{{trainee.pk}}">Present </label>
-                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="excused_{{trainee.pk}}" value="excused">
-                    <label for="excused_{{trainee.pk}}">Excused </label>
-                    <input onclick="radioCallback({{trainee.pk}})" class="att_radio with-gap" type="radio" name="attendance_{{trainee.pk}}" id="late_{{trainee.pk}}" value="late">
-                    <label for="late_{{trainee.pk}}">Late </label>
+                    <input onclick="radioCallback({{id}})" class="att_radio with-gap" type="radio" name="attendance_{{id}}" id="absent_{{id}}" value="absent" onclick="att()">
+                    <label for="absent_{{id}}">Absent</label>
+                    <input onclick="radioCallback({{id}})" class="att_radio with-gap" type="radio" name="attendance_{{id}}" id="present_{{id}}" value="present">
+                    <label for="present_{{id}}">Present </label>
+                    <input onclick="radioCallback({{id}})" class="att_radio with-gap" type="radio" name="attendance_{{id}}" id="excused_{{id}}" value="excused">
+                    <label for="excused_{{id}}">Excused </label>
+                    <input onclick="radioCallback({{id}})" class="att_radio with-gap" type="radio" name="attendance_{{id}}" id="late_{{id}}" value="late">
+                    <label for="late_{{id}}">Late </label>
                 </th>
             </tr>
         </div>

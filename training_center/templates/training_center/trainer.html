@@ -69,6 +69,13 @@
             View Attendance(Date)
         </a>
     </div>
+    <br>
+    <div class="col s12 m6">
+        <a onclick="viewAttendanceClassCheck()" class="waves-effect waves-light btn-large blue">
+            <i class="material-icons right">remove_red_eye</i>
+            View Attendance(Only Class)
+        </a>
+    </div>
 </div>
 {% endblock content %}
 
@@ -137,6 +144,17 @@
         }
         else{
             window.open(url + class_val + '/' + subject_val + '/' + date_val + '/', "_self")
+        }
+    }
+
+    function viewAttendanceClassCheck() {
+        var url = "/training_center/view_attendance_cls/"
+        var class_val = $('#class option:selected').text()
+        if(class_val == 'Select Class'){
+            Materialize.toast('Select Class', 5000, 'rounded')
+        }
+        else{
+            window.open(url + class_val + '/', "_self")
         }
     }
 </script>

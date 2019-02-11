@@ -1,5 +1,5 @@
 from users.models import CustomUser, SetupUserAccount
-from training_center.models import EnrollTrainee, TraineeAttendance
+from training_center.models import *
 import time
 import datetime
 import pytz
@@ -141,3 +141,21 @@ def get_filtered_att_date(class_name, subject_name, date):
         }
 
     return(filtered_att)
+
+# Returns a ditct of all the student id's and names of a given class and subject
+def get_stud_lst(class_name, subject_name):
+    stud_lst = {}
+    class_name = ClassName.objects.filter(class_name=class_name)
+    print(class_name[0].courses)
+    students = EnrollTrainee.objects.filter(
+        course_name=class_name[0].courses,
+        approval = 'Accepted',
+    )
+    cntr = 0
+    for i in students:
+        cntr += 1
+        stud_lst[i.pk] = {
+            'stud_id': get_stud_id(i.pk),
+            'name': get_trainee_name(i.pk),
+        }
+    return(stud_lst)
