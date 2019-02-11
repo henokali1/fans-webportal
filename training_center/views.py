@@ -670,11 +670,19 @@ def view_attendance_subj_date(request, class_name, subject_name, date):
 
     if len(filtered_att) == 0:
         args['msg']="No Records Found"
-
         
     return render(request, 'training_center/view_attendance_subj_date.html', args)
 
 # View Attendance Record Filtered by Class Name Only
 def view_attendance_cls(request, class_name):
-    args = {}
+    filtered_att = helper.get_stud_lst_cls(class_name)
+    args = {
+        'filtered_att': filtered_att,
+        'msg': '',
+        'class_name': class_name,
+    }
+
+    if len(filtered_att) == 0:
+        args['msg']="No Records Found"
+
     return render(request, 'training_center/view_attendance_cls.html', args)
