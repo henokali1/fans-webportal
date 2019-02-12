@@ -160,20 +160,35 @@ def get_stud_lst(class_name, subject_name):
         }
     return(stud_lst)
 
+# Returns total sessions for a given class name
+def get_tot_sessions(class_name):
+    all_cls = TraineeAttendance.objects.filter(attended_class=class_name)
+    
+
 # Returns a dict of all the student id's, names and over all attendance %  of a given class
 def get_stud_lst_cls(class_name):
+    org_cls_name = class_name
     stud_lst = {}
     class_name = ClassName.objects.filter(class_name=class_name)
-    print(class_name[0].courses)
     students = EnrollTrainee.objects.filter(
         course_name=class_name[0].courses,
         approval = 'Accepted',
     )
-    cntr = 0
-    for i in students:
-        cntr += 1
-        stud_lst[i.pk] = {
-            'stud_id': get_stud_id(i.pk),
-            'name': get_trainee_name(i.pk),
+    
+    records = TraineeAttendance.objects.all().filter(
+        attended_class = org_cls_name,
+    )
+
+    # Total classes given
+    tcg = get_tot_classes(records)
+    ids = get_unique_trainee_ids(records)
+    for i in ids:
+        # Total classes attended
+        tca = get_tot_cls_attended(i, records)
+        stud_lst[i] = {
+            'stud_id': get_stud_id(i),
+            'name': get_trainee_name(i),
+            'per': get_per(tca, tcg),
         }
+    
     return(stud_lst)
