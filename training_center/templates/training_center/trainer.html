@@ -14,12 +14,12 @@
             <div class="input-field">
                 <i class="material-icons prefix">library_books</i>
                 <select name="class" id="class">
-                    <option value="" disabled selected>Select Class</option>
+                    <option value="" disabled selected>Select Batch</option>
                     {% for i in clases %}
                     <option value="{{ i.class_name }}">{{ i.class_name }}</option>
                     {% endfor %}
                 </select>
-                <label>Class</label>
+                <label>Batch</label>
             </div>
         </div>
 
@@ -73,7 +73,7 @@
     <div class="col s12 m6">
         <a onclick="viewAttendanceClassCheck()" class="waves-effect waves-light btn-large blue">
             <i class="material-icons right">remove_red_eye</i>
-            View Attendance(Only Class)
+            View Attendance(Only Batch)
         </a>
     </div>
 </div>
@@ -102,8 +102,8 @@
         var url = "/training_center/take_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
-        if(class_val == 'Select Class'){
-            Materialize.toast('Select Class', 5000, 'rounded')
+        if(class_val == 'Select Batch'){
+            Materialize.toast('Select Batch', 5000, 'rounded')
         }
         else if(subject_val == 'Select Subject'){
             Materialize.toast('Select Subject', 5000, 'rounded')
@@ -117,8 +117,8 @@
         var url = "/training_center/view_subject_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
-        if(class_val == 'Select Class'){
-            Materialize.toast('Select Class', 5000, 'rounded')
+        if(class_val == 'Select Batch'){
+            Materialize.toast('Select Batch', 5000, 'rounded')
         }
         else if(subject_val == 'Select Subject'){
             Materialize.toast('Select Subject', 5000, 'rounded')
@@ -133,8 +133,8 @@
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
         var date_val = $('#date').val()
-        if(class_val == 'Select Class'){
-            Materialize.toast('Select Class', 5000, 'rounded')
+        if(class_val == 'Select Batch'){
+            Materialize.toast('Select Batch', 5000, 'rounded')
         }
         else if(subject_val == 'Select Subject'){
             Materialize.toast('Select Subject', 5000, 'rounded')
@@ -150,8 +150,8 @@
     function viewAttendanceClassCheck() {
         var url = "/training_center/view_attendance_cls/"
         var class_val = $('#class option:selected').text()
-        if(class_val == 'Select Class'){
-            Materialize.toast('Select Class', 5000, 'rounded')
+        if(class_val == 'Select Batch'){
+            Materialize.toast('Select Batch', 5000, 'rounded')
         }
         else{
             window.open(url + class_val + '/', "_self")

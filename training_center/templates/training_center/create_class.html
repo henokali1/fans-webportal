@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Create New Class {% endblock title %}
+{% block title %} Create New Batch {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -8,16 +8,16 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="center">Add New Class</h4>
+    <h4 class="center">Add New Batch</h4>
     <form method="POST" action="">
         {% csrf_token %}
         <div class="row">
             <div class="col m6 s12">
-                <!-- Class Name -->
+                <!-- Batch Name -->
                 <div class="input-field">
                     <i class="material-icons prefix">library_books</i>
                     <input id="class_name" type="text" name="class_name" value=""  required>
-                    <label for="class_name">Class Name</label>
+                    <label for="class_name">Batch Name</label>
                 </div>
             </div>
             
