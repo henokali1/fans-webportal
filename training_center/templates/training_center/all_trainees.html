@@ -12,16 +12,22 @@
     <table class="bordered highlight responsive-table">
         <thead>
             <tr>
-                <th>SN. - Full Name</th>
+                <th>ID. - Full Name</th>
                 <th>Email</th>
-                <th>Course</th>
+                <th>Enrolled Course</th>
             </tr>
         </thead>
         <tbody>
             {% for trainee in trainees %}
             <tr>
-                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }}
-                    {{ trainee.last_name|title }}</a></th>
+                <th class="left">
+                    <a href="/training_center/trainee/{{ trainee.id }}">
+                        <div class="chip">
+                                <img src="{{trainee.passport_size_photo.url}}" alt="Contact Person">{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}
+                        </div>
+                    </a>
+                </th>
+                
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}/edit" class="green-text tooltipped"
@@ -80,5 +86,11 @@
         });
         $('.tooltipped').tooltip();
     });
+</script>
+
+<script>
+    function getYear(date){
+        console.log(date)
+    }
 </script>
 {% endblock script_tag %}

@@ -22,7 +22,13 @@
         <tbody>
             {% for trainee in trainees %}
             <tr>
-                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.id }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}</a></th>
+                <th class="left">
+                    <a href="/training_center/trainee/{{ trainee.id }}">
+                        <div class="chip">
+                                <img src="{{trainee.passport_size_photo.url}}" alt="Contact Person">{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}
+                        </div>
+                    </a>
+                </th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
                 {% if trainee.approval == 'Accepted'  %}
