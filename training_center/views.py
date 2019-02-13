@@ -452,6 +452,7 @@ def edit_trainee(request, pk):
         return render(request, 'training_center/edit_trainee.html', args)
 
 # Trainer View
+@login_required
 def trainer(request, msg=''):
     args = {
         'clases': ClassName.objects.all().order_by('-pk'),
@@ -573,6 +574,7 @@ def all_subjects(request, msg=''):
     return render(request, 'training_center/all_subjects.html', args)
 
 # Edit Subject
+@login_required
 def edit_subject(request, pk):
     if request.method == 'POST':
         Subject.objects.filter(pk=pk).update(
@@ -658,6 +660,7 @@ def view_subject_attendance(request, class_name, subject_name):
     return render(request, 'training_center/view_subject_attendance.html', args)
 
 # View Attendance Recordes of a Given classs, Subject and Date
+@login_required
 def view_attendance_subj_date(request, class_name, subject_name, date):
     filtered_att = helper.get_filtered_att_date(class_name, subject_name, date)
     args = {
@@ -674,6 +677,7 @@ def view_attendance_subj_date(request, class_name, subject_name, date):
     return render(request, 'training_center/view_attendance_subj_date.html', args)
 
 # View Attendance Record Filtered by Class Name Only
+@login_required
 def view_attendance_cls(request, class_name):
     filtered_att = helper.get_stud_lst_cls(class_name)
     args = {
@@ -686,3 +690,9 @@ def view_attendance_cls(request, class_name):
         args['msg']="No Records Found"
 
     return render(request, 'training_center/view_attendance_cls.html', args)
+
+# Dashboard 
+@login_required
+def dashboard(request):
+    args={}
+    return render(request, 'training_center/dashboard.html', args)

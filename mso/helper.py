@@ -146,7 +146,6 @@ def get_filtered_att_date(class_name, subject_name, date):
 def get_stud_lst(class_name, subject_name):
     stud_lst = {}
     class_name = ClassName.objects.filter(class_name=class_name)
-    print(class_name[0].courses)
     students = EnrollTrainee.objects.filter(
         course_name=class_name[0].courses,
         approval = 'Accepted',
