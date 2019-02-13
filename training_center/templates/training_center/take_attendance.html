@@ -71,20 +71,19 @@
         var all_trainees = $('.trainee')
         for(var i = 0; i <= all_trainees.length-1; i++){
             all_ids.push(parseInt(all_trainees[i].id))
+            all_studs[all_trainees[i].id] = $('#th_'+all_trainees[i].id).text()
         }
-        console.log(all_ids)
     });
 
     var checked_ids = [];
     function radioCallback(trainee_id){
         delete all_studs[trainee_id]
-        console.log(all_studs)
     }
 
     function checkAttendance(){
         if(Object.keys(all_studs).length > 0){
             for(i in all_studs){
-                Materialize.toast(all_studs[i], 8000, 'rounded');
+                Materialize.toast('Check ' + all_studs[i] + '\'s Attendance', 8000, 'rounded');
             }
             return false
         }
