@@ -8,7 +8,85 @@
 
 {% block content %}
 <div class="container">
-    <h3 class="center">Dashboard</h3>
+    <br>
+
+    <div class="row">
+        <a href="#">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="black-text text-lighten-1 large material-icons">person</i>
+                    <span class="white-text">Admission
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="black-text text-lighten-1 large material-icons">person</i>
+                    <span class="white-text">Trainee Details
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="black-text text-lighten-1 large material-icons">person</i>
+                    <span class="white-text">Admission Applications
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="row">
+            <a href="#">
+                <div class="col s12 m4">
+                    <div class="card-panel blue">
+                        <i class="black-text text-lighten-1 large material-icons">person</i>
+                        <span class="white-text">Attendance
+                        </span>
+                    </div>
+                </div>
+            </a>
+    
+            <a href="#">
+                <div class="col s12 m4">
+                    <div class="card-panel blue">
+                        <i class="black-text text-lighten-1 large material-icons">person</i>
+                        <span class="white-text">Trainee Details
+                        </span>
+                    </div>
+                </div>
+            </a>
+    
+            <a href="#">
+                <div class="col s12 m4">
+                    <div class="card-panel blue">
+                        <i class="black-text text-lighten-1 large material-icons">person</i>
+                        <span class="white-text">------
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+        <div class="fixed-action-btn">
+                <a class="btn-floating btn-large blue" id="fab">
+                  <i class="large material-icons" id="fab_ico">add</i>
+                </a>
+                <ul>
+                  <li><a class="tooltipped btn-floating red" href="/training_center/trainee/new" data-position="left" data-tooltip="New Trainee"><i class="material-icons">person_add</i></a></li>
+                  <li><a class="tooltipped btn-floating yellow darken-1" href="/training_center/courses/new/" data-position="left" data-tooltip="New Course"><i class="material-icons">school</i></a></li>
+                  <li><a class="tooltipped btn-floating green" href="/training_center/subjects/new" data-position="left" data-tooltip="New Subject"><i class="material-icons">book</i></a></li>
+                  <li><a class="tooltipped btn-floating teal" href="/training_center/create_class" data-position="left" data-tooltip="New Batch"><i class="material-icons">people</i></a></li>
+                </ul>
+              </div>
+        
 </div>
 {% endblock content %}
 
@@ -19,4 +97,9 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
+<script>
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+    });
+</script>
 {% endblock script_tag %}

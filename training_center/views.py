@@ -487,9 +487,7 @@ def take_attendance(request, class_name, subject_name):
         }
         return render(request, 'training_center/take_attendance.html', args) 
 
-# Head of training base view
-@login_required
-def head_of_training(request):
+
     args = {}
     return render(request, 'training_center/head_of_training.html', args)
 
