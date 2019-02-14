@@ -692,8 +692,6 @@ def view_attendance_cls(request, class_name):
 # Dashboard 
 @login_required
 def dashboard(request):
-    args={
-        'msg': 'Dashboard',
-    }
+    args={}
     return render(request, 'training_center/dashboard.html', args)
     
