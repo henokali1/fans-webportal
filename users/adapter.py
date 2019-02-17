@@ -22,12 +22,8 @@ def get_redirect_url(email):
     department = get_department(email)
     if (job_title or department) == (-1):
         return '/user/setup-account/'
-    elif (department == 'Admin'):
+    elif (department == 'Admin' or (job_title == 'Head of Training') or (job_title == 'Trainer')):
         return('/training_center/dashboard/')
-    elif (job_title == 'Head of Training'):
-        return('/training_center/dashboard/')
-    elif (job_title == 'Trainer'):
-        return('/training_center/trainer/')
     elif (job_title == 'ATC Manager' and department == 'ATC'):
         return('/mso/dashboard/')
     elif department == 'CNS':

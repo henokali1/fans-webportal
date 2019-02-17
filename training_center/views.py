@@ -16,7 +16,11 @@ from django.shortcuts import redirect
 # Training Center
 @login_required
 def training_center(request):
-    return render(request, 'training_center/training_center.html', {})
+    args={
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
+    }
+    return render(request, 'training_center/training_center.html', args)
 
 # Enroll New Trainee
 @login_required
@@ -34,6 +38,8 @@ def enroll_trainee(request):
         'department': str(department),
         'job_title': str(job_title),
         'courses': courses,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     } 
 
     if request.method == 'POST':
@@ -198,7 +204,11 @@ def enroll_trainee(request):
 # Training Center Admin Dashboard
 @login_required
 def admin(request):
-    return render(request, 'training_center/admin.html', {})
+    args = {
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
+    }
+    return render(request, 'training_center/admin.html', args)
 
 # All Trainees
 @login_required
@@ -216,6 +226,8 @@ def all_trainees(request, msg=''):
         'msg': msg,
         'job_title': helper.get_job_title(request.user),
         'department': helper.get_department(request.user),
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
 
     return render(request, 'training_center/all_trainees.html', args)
@@ -232,9 +244,18 @@ def approve(request, msg=''):
     trainees = paginator.get_page(page)
 
     if msg == "":
-        args = {'trainees': trainees}
+        args = {
+            'trainees': trainees,
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
+        }
     else:
-        args = {'trainees': trainees, 'msg': msg}
+        args = {
+            'trainees': trainees,
+            'msg': msg,
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
+        }
     
     return render(request, 'training_center/approve.html', args)
 
@@ -297,6 +318,8 @@ def trainee_detail(request, pk):
         'imgs': imgs,
         'len':len(imgs),
         'checkmark':"<p>sdfg</p>",
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/course_enrolment_form_pdf.html', args)
 
@@ -451,6 +474,8 @@ def edit_trainee(request, pk):
         args = {
             'trainee': trainee[0],
             'courses': courses,
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         return render(request, 'training_center/edit_trainee.html', args)
 
@@ -461,6 +486,8 @@ def trainer(request, msg=''):
         'clases': ClassName.objects.all().order_by('-pk'),
         'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     
     return render(request, 'training_center/trainer.html', args) 
@@ -486,7 +513,9 @@ def take_attendance(request, class_name, subject_name):
         return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
     else:
         args = {
-            'filtered_stds': helper.get_stud_lst(class_name, subject_name)
+            'filtered_stds': helper.get_stud_lst(class_name, subject_name),
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         return render(request, 'training_center/take_attendance.html', args) 
 
@@ -501,6 +530,8 @@ def all_classes(request, msg=''):
     args = {
         'classes': classes,
         'msg': msg,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/classes.html', args)
 
@@ -509,6 +540,8 @@ def all_classes(request, msg=''):
 def create_class(request):
     args = {
         'courses': helper.get_all_courses(Course.objects.all()),
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     if request.method == 'POST':
         new_class = ClassName()
@@ -533,6 +566,8 @@ def edit_class(request, pk):
 
         args = {
             'courses': helper.get_all_courses(Course.objects.all()),
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         return redirect('/training_center/all_classes/', msg=str(request.POST['class_name']) + ' Updated Successfully')
 
@@ -542,6 +577,8 @@ def edit_class(request, pk):
             'class_name': course.class_name,
             'priv_course': course.courses,
             'courses': helper.get_all_courses(Course.objects.all()),
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         return render(request, 'training_center/edit_class.html', args)
 
@@ -558,11 +595,16 @@ def create_subject(request):
         new_subject.save()
 
         args = {
-            'msg': request.POST['subject_name'] + ' Added Successfully'
+            'msg': request.POST['subject_name'] + ' Added Successfully',
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         return render(request, 'training_center/create_subject.html', args)
     else:
-        args = {}
+        args = {
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
+        }
         return render(request, 'training_center/create_subject.html', args)
 
 # All Subjects
@@ -571,6 +613,8 @@ def all_subjects(request, msg=''):
     args = {
         'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/all_subjects.html', args)
 
@@ -586,7 +630,11 @@ def edit_subject(request, pk):
 
         return redirect('/training_center/subjects/all/', msg='Subject - ' + str(pk) + ' Updated Successfully.')
     else:
-        args = {'subject': Subject.objects.all().filter(pk=pk)[0]}
+        args = {
+            'subject': Subject.objects.all().filter(pk=pk)[0],
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
+        }
         return render(request, 'training_center/edit_subject.html', args)
 
 # Create Course
@@ -594,6 +642,8 @@ def edit_subject(request, pk):
 def create_course(request):
     args = {
         'subjects': Subject.objects.all().order_by('-pk'),
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     if request.method == 'POST':
         new_course = Course()
@@ -614,6 +664,8 @@ def all_courses(request, msg=''):
     args = {
         'courses': Course.objects.all().order_by('-pk'),
         'msg': msg,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/all_courses.html', args)
 
@@ -632,6 +684,8 @@ def edit_course(request, pk):
         args = {
             'course': Course.objects.all().filter(pk=pk)[0],
             'subjects': Subject.objects.all().order_by('-pk'),
+            'current_user_name': helper.get_full_name(request.user),
+            'current_user_email': request.user,
         }
         subjects = Subject.objects.all()
         subjects_pk = eval(args['course'].course_subjects_pk)
@@ -652,6 +706,8 @@ def view_subject_attendance(request, class_name, subject_name):
         'class_name': class_name,
         'subject_name': subject_name,
         'sessions': sessions,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     
     
@@ -670,6 +726,8 @@ def view_attendance_subj_date(request, class_name, subject_name, date):
         'class_name': class_name,
         'subject_name': subject_name,
         'date': date,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
 
     if len(filtered_att) == 0:
@@ -685,6 +743,8 @@ def view_attendance_cls(request, class_name):
         'filtered_att': filtered_att,
         'msg': '',
         'class_name': class_name,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
 
     if len(filtered_att) == 0:
@@ -698,6 +758,8 @@ def dashboard(request):
     args={
         'job_title': helper.get_job_title(request.user),
         'department': helper.get_department(request.user),
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/dashboard.html', args)
     
