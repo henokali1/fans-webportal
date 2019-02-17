@@ -23,16 +23,18 @@
                 <th class="left">
                     <a href="/training_center/trainee/{{ trainee.id }}">
                         <div class="chip">
-                                <img src="{{trainee.passport_size_photo.url}}" alt="Contact Person">{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}
+                            <img src="{{trainee.passport_size_photo.url}}" alt="Contact Person">
+                            {{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }}
+                            {{ trainee.last_name|title }}
                         </div>
                     </a>
                 </th>
-                
+
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}/edit" class="green-text tooltipped"
                         data-position="center" data-tooltip="Update {{ trainee.first_name|title }}'s Details"><i class="material-icons right">edit</i></a>
-                    </th>
+                </th>
             </tr>
             {% endfor %}
         </tbody>
@@ -55,7 +57,6 @@
 
             {% if trainees.has_next %}
 
-            <!-- <a href="?page={{ trainees.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a> -->
             <li class="waves-effect">
                 <a href="?page={{ trainees.next_page_number }}">
                     <i class="material-icons large">chevron_right</i>
@@ -66,6 +67,13 @@
     </div>
     <br>
     <br>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue tooltipped" data-tooltip="Enroll New Trainee" href="/training_center/trainee/new"
+            data-position="left">
+            <i class="large material-icons" id="fab_ico">add</i>
+        </a>
+    </div>
 </div>
 {% endblock content %}
 
@@ -88,9 +96,4 @@
     });
 </script>
 
-<script>
-    function getYear(date){
-        console.log(date)
-    }
-</script>
 {% endblock script_tag %}
