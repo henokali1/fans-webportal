@@ -68,12 +68,14 @@
     <br>
     <br>
 
+    {% if job_title == 'Head of Training' or department == 'Admin' %}
     <div class="fixed-action-btn">
         <a class="btn-floating btn-large blue tooltipped" data-tooltip="Enroll New Trainee" href="/training_center/trainee/new"
             data-position="left">
             <i class="large material-icons" id="fab_ico">add</i>
         </a>
     </div>
+    {% endif %}
 </div>
 {% endblock content %}
 

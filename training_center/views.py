@@ -211,10 +211,13 @@ def all_trainees(request, msg=''):
     page = request.GET.get('page')
     trainees = paginator.get_page(page)
 
-    if msg == "":
-        args = {'trainees': trainees}
-    else:
-        args = {'trainees': trainees, 'msg': msg}
+    args = {
+        'trainees': trainees,
+        'msg': msg,
+        'job_title': helper.get_job_title(request.user),
+        'department': helper.get_department(request.user),
+    }
+
     return render(request, 'training_center/all_trainees.html', args)
 
 # Approve application
@@ -692,6 +695,9 @@ def view_attendance_cls(request, class_name):
 # Dashboard 
 @login_required
 def dashboard(request):
-    args={}
+    args={
+        'job_title': helper.get_job_title(request.user),
+        'department': helper.get_department(request.user),
+    }
     return render(request, 'training_center/dashboard.html', args)
     
