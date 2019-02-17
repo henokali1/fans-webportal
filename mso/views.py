@@ -129,7 +129,7 @@ def delete_mso(request, pk):
 @login_required
 def approve(request, msg=''):
     job_title = helper.get_job_title(request.user)
-    if job_title == 'CNS Manager':
+    if job_title == 'CNS Manager' or 'ATC Manager':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(manager_approval=False)
     elif job_title == 'CNS Supervisor':
         all_msos = MsoCns.objects.all().order_by('-pk').filter(supervisor_approval=False)
@@ -240,3 +240,11 @@ def mso_preview(request, pk, mso=''):
     }
     
     return render(request, 'mso/mso_preview.html', args)
+
+# Dashboard
+def dashboard(request):
+    args = {
+        'job_title': helper.get_job_title(request.user),
+        'department': helper.get_department(request.user),
+    }
+    return render(request, 'mso/dashboard.html', args)

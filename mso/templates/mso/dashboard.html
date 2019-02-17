@@ -1,0 +1,153 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <br>
+    {% if job_title == 'ATC Manager' or job_title == 'CNS Manager' or job_title == 'CNS Chief Engineer' or job_title == 'CNS Supervisor' %}
+    <div class="row">
+        <a href="/mso/approve/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">spellcheck</i>
+                    <span class="white-text">Approve MSO's
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/mso/all/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">contacts</i>
+                    <span class="white-text">All MSO's
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/logbook/all/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">people</i>
+                    <span class="white-text">CNS Logbooks
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue">
+            <i class="large material-icons" id="fab_ico">add</i>
+        </a>
+        <ul>
+            <li><a class="tooltipped btn-floating red" href="/mso/new/" data-position="left"
+                    data-tooltip="New MSO"><i class="material-icons">person_add</i></a></li>
+            <li><a class="tooltipped btn-floating yellow darken-1" href="/logbook/new/" data-position="left"
+                    data-tooltip="Log New Data"><i class="material-icons">school</i></a></li>
+        </ul>
+    </div>
+
+    {% elif job_title == 'CNS Engineer' or job_title == 'CNS Technician' or job_title == 'CNS Helper' %}
+    <div class="row">
+        <a href="/mso/new/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">spellcheck</i>
+                    <span class="white-text">New MSO
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/mso/all/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">contacts</i>
+                    <span class="white-text">All MSO's
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/mso/my/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">people</i>
+                    <span class="white-text">My MSO's
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="row">
+        <a href="/logbook/all/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">spellcheck</i>
+                    <span class="white-text">Logbook
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/logbook/new/">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">contacts</i>
+                    <span class="white-text">Log New Data
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    {% elif job_title == 'Trainer' %}
+    
+    <div class="row">
+        <a href="/training_center/trainees/all">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">contacts</i>
+                    <span class="white-text">Trainees
+                    </span>
+                </div>
+            </div>
+        </a>
+
+        <a href="/training_center/trainer">
+            <div class="col s12 m4">
+                <div class="card-panel blue">
+                    <i class="white-text text-lighten-1 large material-icons">assignment</i>
+                    <span class="white-text">Attendance Records
+                    </span>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+<script>
+    $(document).ready(function () {
+        $('.tooltipped').tooltip();
+    });
+</script>
+{% endblock script_tag %}

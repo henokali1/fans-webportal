@@ -12,4 +12,5 @@ urlpatterns = [
     path('edit/<int:pk>/', views.edit_mso, name='edit_mso.html'),
     path('delete/<int:pk>/', views.delete_mso),
     path('approve_mso/<int:pk>/<str:job_title>/', views.approve_mso),
+    path('dashboard/', views.dashboard, name="dashboard.html"),
 ]

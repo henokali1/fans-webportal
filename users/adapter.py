@@ -28,11 +28,13 @@ def get_redirect_url(email):
         return('/training_center/dashboard/')
     elif (job_title == 'Trainer'):
         return('/training_center/trainer/')
+    elif (job_title == 'ATC Manager' and department == 'ATC'):
+        return('/mso/dashboard/')
     elif department == 'CNS':
         if job_title in ['CNS Manager', 'CNS Chief Engineer', 'CNS Supervisor']:
-            return '/mso/approve/'
+            return '/mso/dashboard/'
         elif job_title in ['CNS Engineer', 'CNS Technician', 'CNS Helper']:
-            return '/mso/'
+            return '/mso/dashboard/'
         else:
             return '/user/setup-account/'
     else:
