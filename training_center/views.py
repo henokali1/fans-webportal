@@ -490,7 +490,7 @@ def trainer(request, msg=''):
         'current_user_email': request.user,
     }
     
-    return render(request, 'training_center/trainer.html', args) 
+    return render(request, 'training_center/attendance.html', args) 
 
 # Take Attendance
 @login_required
@@ -510,7 +510,7 @@ def take_attendance(request, class_name, subject_name):
                 attendance.ident = ident
                 # Commit to DB
                 attendance.save()            
-        return redirect('/training_center/trainer/', msg='Attendance Taken Successfully')
+        return redirect('/training_center/attendance/', msg='Attendance Taken Successfully')
     else:
         args = {
             'filtered_stds': helper.get_stud_lst(class_name, subject_name),

@@ -111,6 +111,18 @@
         if((class_val == 'Select Batch') && (subject_val == 'Select Subject') && (date_val == '')){
             Materialize.toast('Select Batch', 5000, 'rounded')
         }
+        if((class_val == 'Select Batch') && (subject_val != 'Select Subject') && (date_val != '')){
+            Materialize.toast('Select Batch', 5000, 'rounded')
+        }
+        if((class_val == 'Select Batch') && (subject_val != 'Select Subject') && (date_val == '')){
+            Materialize.toast('Select Batch', 5000, 'rounded')
+        }
+        if((class_val == 'Select Batch') && (subject_val == 'Select Subject') && (date_val != '')){
+            Materialize.toast('Select Batch', 5000, 'rounded')
+        }
+        if((class_val != 'Select Batch') && (subject_val == 'Select Subject') && (date_val != '')){
+            Materialize.toast('Select Subject', 5000, 'rounded')
+        }
         if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (date_val != '')){
             window.open(url_date + class_val + '/' + subject_val + '/' + date_val + '/', "_self")
         }
@@ -121,45 +133,7 @@
             window.open(url_cls + class_val + '/', "_self")
         }
         
-        // if(class_val == 'Select Batch'){
-        //     Materialize.toast('Select Batch', 5000, 'rounded')
-        // }
-        // else if(subject_val == 'Select Subject'){
-        //     Materialize.toast('Select Subject', 5000, 'rounded')
-        // }
-        // else{
-        //     window.open(url + class_val + '/' + subject_val + '/', "_self")
-        // }
     }
 
-    function viewAttendanceDateCheck() {
-        var url = "/training_center/view_attendance_subj_date/"
-        var class_val = $('#class option:selected').text()
-        var subject_val = $('#subject option:selected').text()
-        var date_val = $('#date').val()
-        if(class_val == 'Select Batch'){
-            Materialize.toast('Select Batch', 5000, 'rounded')
-        }
-        else if(subject_val == 'Select Subject'){
-            Materialize.toast('Select Subject', 5000, 'rounded')
-        }
-        else if(date_val == ''){
-            Materialize.toast('Select Date', 5000, 'rounded')
-        }
-        else{
-            window.open(url + class_val + '/' + subject_val + '/' + date_val + '/', "_self")
-        }
-    }
-
-    function viewAttendanceClassCheck() {
-        var url = "/training_center/view_attendance_cls/"
-        var class_val = $('#class option:selected').text()
-        if(class_val == 'Select Batch'){
-            Materialize.toast('Select Batch', 5000, 'rounded')
-        }
-        else{
-            window.open(url + class_val + '/', "_self")
-        }
-    }
 </script>
 {% endblock script_tag %}
