@@ -12,6 +12,8 @@ def all_logs(request, msg=''):
         'department': get_department(request.user),
         'job_title': get_job_title(request.user),
         'logs': NewLog.objects.all().order_by('-pk'),
+        'current_user_name': get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'logbook/all_logs.html', args)
 
@@ -40,6 +42,8 @@ def new_log(request):
             'all_logbook_names':  LogbookName.objects.all(),
             'department': get_department(request.user),
             'job_title': get_job_title(request.user),
+            'current_user_name': get_full_name(request.user),
+            'current_user_email': request.user,
         }
 
         return render(request, 'logbook/new_log.html', args)

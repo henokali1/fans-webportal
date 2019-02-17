@@ -10,7 +10,7 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m5">
             <div class="input-field">
                 <i class="material-icons prefix">library_books</i>
                 <select name="class" id="class">
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="col s12 m6">
+        <div class="col s12 m5">
             <div class="input-field">
                 <i class="material-icons prefix">library_books</i>
                 <select name="subject" id="subject">
@@ -36,10 +36,7 @@
             </div>
         </div>
         
-        
-    </div>
-    <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m2">
             <!-- Date -->
             <div class="input-field">
                 <i class="material-icons prefix">date_range</i>
@@ -47,13 +44,9 @@
                 <label for="date">Date</label>
             </div>
         </div>
+        
     </div>
-    <div class="col s12 m6">
-        <a onclick="takeAttendance()" class="waves-effect waves-light btn-large blue right">
-            <i class="material-icons right">add</i>
-            Take Attendance
-        </a>
-    </div>
+    
     <div class="col s12 m6">
         <a onclick="viewAttendanceCheck()" class="waves-effect waves-light btn-large blue">
             <i class="material-icons right">remove_red_eye</i>
@@ -62,20 +55,13 @@
     </div>
 
     <br>
-    
-    <div class="col s12 m6">
-        <a onclick="viewAttendanceDateCheck()" class="waves-effect waves-light btn-large blue">
-            <i class="material-icons right">remove_red_eye</i>
-            View Attendance(Date)
+    <div class="fixed-action-btn">
+        <a onclick="takeAttendance()" class="btn-floating btn-large blue tooltipped" data-position="left" data-tooltip="New Attendance">
+            <i class="large material-icons" id="fab_ico">add</i>
         </a>
     </div>
-    <br>
-    <div class="col s12 m6">
-        <a onclick="viewAttendanceClassCheck()" class="waves-effect waves-light btn-large blue">
-            <i class="material-icons right">remove_red_eye</i>
-            View Attendance(Only Batch)
-        </a>
-    </div>
+
+
 </div>
 {% endblock content %}
 
@@ -115,17 +101,35 @@
 
     function viewAttendanceCheck() {
         var url = "/training_center/view_subject_attendance/"
+        var url_date = "/training_center/view_attendance_subj_date/"
+        var url_cls = "/training_center/view_attendance_cls/"
+
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
-        if(class_val == 'Select Batch'){
+        var date_val = $('#date').val()
+
+        if((class_val == 'Select Batch') && (subject_val == 'Select Subject') && (date_val == '')){
             Materialize.toast('Select Batch', 5000, 'rounded')
         }
-        else if(subject_val == 'Select Subject'){
-            Materialize.toast('Select Subject', 5000, 'rounded')
+        if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (date_val != '')){
+            window.open(url_date + class_val + '/' + subject_val + '/' + date_val + '/', "_self")
         }
-        else{
+        if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (date_val == '')){
             window.open(url + class_val + '/' + subject_val + '/', "_self")
         }
+        if((class_val != 'Select Batch') && (subject_val == 'Select Subject') && (date_val == '')){
+            window.open(url_cls + class_val + '/', "_self")
+        }
+        
+        // if(class_val == 'Select Batch'){
+        //     Materialize.toast('Select Batch', 5000, 'rounded')
+        // }
+        // else if(subject_val == 'Select Subject'){
+        //     Materialize.toast('Select Subject', 5000, 'rounded')
+        // }
+        // else{
+        //     window.open(url + class_val + '/' + subject_val + '/', "_self")
+        // }
     }
 
     function viewAttendanceDateCheck() {
