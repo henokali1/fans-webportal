@@ -21,166 +21,167 @@
 </head>
 
 <body>
-        <header>
-                <div class="navbar-fixed">
-                    <nav class="blue">
-                        <div class="nav-wrapper">
-                                <a href="#home" class="brand-logo center">
-                                    <img src="{% static "pages/img/fans-logo.png" %}"  width="140" height="70">
-                                </a>
-                            <a href="/" data-activates="mobile-demo" class="button-collapse show-on-large">
-                                <i class="material-icons">menu</i>
-                            </a>
-                            <ul class="right hide-on-med-and-down">
-                            {% if user.is_authenticated %}
-                            {% if job_title == "CNS Chief Engineer" or job_title == "CNS Supervisor" or job_title == "CNS Manager" or job_title == "ATC Manager" %}
-                                <li>
-                                    <a href="/mso/approve">Approve</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/new">New MSO</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/all">All MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/my">My MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/all">Logbook</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/new">Log New Data</a>
-                                </li>
-                                <li>
-                                    <a href="/accounts/logout">Logout</a>
-                                </li>
-                            
-                            {% elif job_title == "CNS Helper" or job_title == "CNS Technician" or job_title == "CNS Engineer" %}
-                                <li>
-                                    <a href="/mso/new">New MSO</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/all">All MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/my">My MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/all">Logbook</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/new">Log New Data</a>
-                                </li>
-                                <li>
-                                    <a href="/accounts/logout">Logout</a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <a href="/training_center/dashboard/">
-                                    <i class="material-icons right">dashboard</i>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/accounts/logout">Logout</a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        </div>
-                    </nav>
-                </div>
-                <!-- Move the sidenav outside of .navbar-fixed -->
-                <ul class="side-nav" id="mobile-demo">
-                        <ul id="slide-out" class="sidenav">
+    <header>
+        <div class="navbar-fixed">
+            <nav class="blue">
+                <div class="nav-wrapper">
+                    <a href="#home" class="brand-logo center">
+                        <img src="{% static "pages/img/fans-logo.png" %}"  width="140" height="70">
+                    </a>
+                    <a href="/" data-activates="mobile-demo" class="button-collapse show-on-large">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
+                    {% if job_title == "CNS Chief Engineer" or job_title == "CNS Supervisor" or job_title == "CNS Manager" or job_title == "ATC Manager" %}
+                        <li>
+                            <a href="/mso/approve">Approve</a>
+                        </li>
+                        <li>
+                            <a href="/mso/new">New MSO</a>
+                        </li>
+                        <li>
+                            <a href="/mso/all">All MSO's</a>
+                        </li>
+                        <li>
+                            <a href="/mso/my">My MSO's</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/all">Logbook</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/new">Log New Data</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout">Logout</a>
+                        </li>
                     
+                    {% elif job_title == "CNS Helper" or job_title == "CNS Technician" or job_title == "CNS Engineer" %}
                         <li>
-                            <div class="user-view">
-                                <div class="background">
-                                        <img src="{% static "pages/img/ocean.jpg" %}" alt="">
-                                </div>
-                                <a href="#user">                                                             
-                                    {% if current_user_gender == 'male' %}
-                                        <img class="circle" src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">
-                                    {% else %}
-                                        <img class="circle" src="{% static "pages/img/female_profile_default.png" alt="female_profile_default" %}">
-                                    {% endif %}
-                                </a>
-                                <a href="#name">
-                                        <span class="white-text name">{{ current_user_name }}</span>
-                                    </a>
-                                    <a href="#email">
-                                        <span class="white-text email">{{ current_user_email }}</span>
-                                    </a>
-                            </div>
-                        </li>
-                                
-                        {% if job_title == "CNS Chief Engineer" or job_title == "CNS Supervisor" or job_title == "CNS Manager" or job_title == "ATC Manager" %}
-                                <li>
-                                    <a href="/mso/approve">Approve</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/new">New MSO</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/all">All MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/my">My MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/all">Logbook</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/new">Log New Data</a>
-                                </li>
-                                <li>
-                                    <a href="/accounts/logout">Logout</a>
-                                </li>
-                            
-                            {% elif job_title == "CNS Helper" or job_title == "CNS Technician" or job_title == "CNS Engineer" %}
-                            <li>
-                                    <a href="/mso/new">New MSO</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/all">All MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/mso/my">My MSO's</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/all">Logbook</a>
-                                </li>
-                                <li>
-                                    <a href="/logbook/new">Log New Data</a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <a href="/accounts/logout">Logout</a>
-                                <a href="/training_center/trainee/approve">Approve Applications</a>
-                                <a href="/training_center/trainees/all">All Trainees</a>
-                                <a href="/training_center/trainee/new">New Trainee</a>
-                                <a href="/training_center/attendance">Attendance</a>
-                                <a href="/training_center/courses/new/">New Course</a>
-                                <a href="/training_center/courses/all/">All Courses</a>
-                                <a href="/training_center/create_class">Add New Batch</a>
-                                <a href="/training_center/all_classes">All Batches</a>
-                                <a href="/training_center/subjects/new">New Subject</a>
-                                <a href="/training_center/subjects/all">All Subjects</a>
-                                <a href="/training_center/dashboard/">Dashboard</a>
-                            </li>
-                                {% endif %}
-                        <li>
-                            <div class="divider"></div>
+                            <a href="/mso/new">New MSO</a>
                         </li>
                         <li>
-                            <p></p>
+                            <a href="/mso/all">All MSO's</a>
                         </li>
-                    </ul>
+                        <li>
+                            <a href="/mso/my">My MSO's</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/all">Logbook</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/new">Log New Data</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout">Logout</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="/training_center/dashboard/">
+                            <i class="material-icons left">dashboard</i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/accounts/logout">
+                            <i class="material-icons left">account_box</i>
+                            Logout</a>
+                    </li>
+                    {% endif %}
                 </ul>
-        
-            </header>
+                </div>
+            </nav>
+        </div>
+        <!-- Move the sidenav outside of .navbar-fixed -->
+        <ul class="side-nav" id="mobile-demo">
+                <ul id="slide-out" class="sidenav">
+            {% if user.is_authenticated %}
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                                <img src="{% static "pages/img/ocean.jpg" %}" alt="">
+                        </div>
+                        <a href="#user">                                                             
+                            {% if current_user_gender == 'male' %}
+                                <img class="circle" src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">
+                            {% else %}
+                                <img class="circle" src="{% static "pages/img/female_profile_default.png" alt="female_profile_default" %}">
+                            {% endif %}
+                        </a>
+                        <a href="#name">
+                                <span class="white-text name">{{ current_user_name }}</span>
+                            </a>
+                            <a href="#email">
+                                <span class="white-text email">{{ current_user_email }}</span>
+                            </a>
+                    </div>
+                </li>
+                        
+                {% if job_title == "CNS Chief Engineer" or job_title == "CNS Supervisor" or job_title == "CNS Manager" or job_title == "ATC Manager" %}
+                    <li>
+                        <a href="/mso/approve">Approve</a>
+                    </li>
+                    <li>
+                        <a href="/mso/new">New MSO</a>
+                    </li>
+                    <li>
+                        <a href="/mso/all">All MSO's</a>
+                    </li>
+                    <li>
+                        <a href="/mso/my">My MSO's</a>
+                    </li>
+                    <li>
+                        <a href="/logbook/all">Logbook</a>
+                    </li>
+                    <li>
+                        <a href="/logbook/new">Log New Data</a>
+                    </li>
+                    <li>
+                        <a href="/accounts/logout">Logout</a>
+                    </li>
+                    
+                    {% elif job_title == "CNS Helper" or job_title == "CNS Technician" or job_title == "CNS Engineer" %}
+                    <li>
+                            <a href="/mso/new">New MSO</a>
+                        </li>
+                        <li>
+                            <a href="/mso/all">All MSO's</a>
+                        </li>
+                        <li>
+                            <a href="/mso/my">My MSO's</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/all">Logbook</a>
+                        </li>
+                        <li>
+                            <a href="/logbook/new">Log New Data</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="/accounts/logout">Logout</a>
+                        <a href="/training_center/trainee/approve">Approve Applications</a>
+                        <a href="/training_center/trainees/all">All Trainees</a>
+                        <a href="/training_center/trainee/new">New Trainee</a>
+                        <a href="/training_center/attendance">Attendance</a>
+                        <a href="/training_center/courses/new/">New Course</a>
+                        <a href="/training_center/courses/all/">All Courses</a>
+                        <a href="/training_center/create_class">Add New Batch</a>
+                        <a href="/training_center/all_classes">All Batches</a>
+                        <a href="/training_center/subjects/new">New Subject</a>
+                        <a href="/training_center/subjects/all">All Subjects</a>
+                        <a href="/training_center/dashboard/">Dashboard</a>
+                    </li>
+                        {% endif %}
+                <li>
+                    <div class="divider"></div>
+                </li>
+                <li>
+                    <p></p>
+                </li>
+            </ul>
+        </ul>
+    
+        </header>
 
     {% block content %}
     {% endblock content %}

@@ -27,4 +27,5 @@ urlpatterns = [
     path('view_attendance_subj_date/<str:class_name>/<str:subject_name>/<str:date>/', views.view_attendance_subj_date, name='view_attendance_subj_date.html'),
     path('view_attendance_cls/<str:class_name>/', views.view_attendance_cls, name='view_attendance_cls.html'),
     path('dashboard/', views.dashboard, name='dashboard.html'),
+    path('icons/', views.icons, name='icons.html'),
 ]

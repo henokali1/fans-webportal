@@ -13,6 +13,10 @@ import datetime
 from django.shortcuts import redirect
 
 
+# Icons
+def icons(request):
+    return render(request, 'training_center/icons.html', {})
+
 # Training Center
 @login_required
 def training_center(request):
