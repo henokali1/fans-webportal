@@ -767,3 +767,8 @@ def dashboard(request):
     }
     return render(request, 'training_center/dashboard.html', args)
     
+# Grades
+@login_required
+def grades(request):
+    args = {}
+    return render(request, 'training_center/grades.html', args)
