@@ -67,13 +67,16 @@
         var url = "/training_center/take_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
-        if(class_val == 'Select Batch'){
+        if((class_val == 'Select Batch') && (subject_val == 'Select Subject')){
             Materialize.toast('Select Batch', 5000, 'rounded')
         }
-        else if(subject_val == 'Select Subject'){
+        if((class_val == 'Select Batch') && (subject_val != 'Select Subject')){
+            Materialize.toast('Select Batch', 5000, 'rounded')
+        }
+        if((class_val != 'Select Batch') && (subject_val == 'Select Subject')){
             Materialize.toast('Select Subject', 5000, 'rounded')
         }
-        else{
+        if((class_val != 'Select Batch') && (subject_val != 'Select Subject')){
             window.open(url + class_val + '/' + subject_val + '/', "_self")
         }
     }
