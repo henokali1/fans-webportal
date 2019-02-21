@@ -769,6 +769,28 @@ def dashboard(request):
     
 # Grades
 @login_required
-def grades(request):
-    args = {}
+def grades(request, msg=''):
+    args = {
+        'clases': ClassName.objects.all().order_by('-pk'),
+        'subjects': Subject.objects.all().order_by('-pk'),
+        'msg': msg,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
+    }
     return render(request, 'training_center/grades.html', args)
+
+# All Grades
+@login_required
+def all_grades(request, batch_name):   
+    filtered_trainees =  helper.get_all_std_grades(batch_name)
+    args={
+        'filtered_trainees': filtered_trainees,
+        'msg': '',
+        'batch_name': batch_name,
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
+    }
+    
+    if len(filtered_trainees) == 0:
+        args['msg']="No Records Found"
+    return render(request, 'training_center/all_grades.html', args)

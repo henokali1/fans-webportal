@@ -191,3 +191,22 @@ def get_stud_lst_cls(class_name):
         }
     
     return(stud_lst)
+
+# Returns a dict of all trainees(filtered by class name) with their grades
+def get_all_std_grades(batch_name):
+    filtered_trainees = {}
+    batch_name = ClassName.objects.filter(class_name=batch_name)
+    students = EnrollTrainee.objects.filter(
+        course_name=batch_name[0].courses,
+        approval = 'Accepted',
+    )
+
+    for i in students:
+        id_num = get_stud_id(i.pk)
+        filtered_trainees[id_num] = {
+            'first_name': i.first_name,
+            'last_name': i.last_name,
+            'psp_url': i.passport_size_photo.url,
+            'grade': 87,
+        }
+    return filtered_trainees

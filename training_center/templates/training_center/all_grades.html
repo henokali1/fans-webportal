@@ -8,30 +8,35 @@
 
 {% block content %}
 <div class="container">
-    <h3 class="center">ATTENDANCE RECORD</h3>
+    <h3 class="center">GRADES</h3>
     <h5>
-        <span><strong>Batch: </strong> {{class_name}}</span>
-        <span class="right"> <strong>Subject: {{subject_name}}</strong> </span>
+        <span><strong>Batch: </strong> {{batch_name}}</span>
     </h5>
-    <h6>
-        <span><strong>Sessions: </strong>{{sessions}}</span>
-    </h6>
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
     <table class="bordered highlight responsive-table">
         <thead>
             <tr>
+                <th>Name</th>
                 <th>ID Number</th>
-                <th>Full Name</th>
-                <th class="right">%</th>
+                <th class="right">Grade</th>
             </tr>
         </thead>
         <tbody>
-            {% for record_id, record_details in filtered_att.items %}
+            {% for id_num, trainee_details in filtered_trainees.items %}
             <div>
                 <tr>
-                    <th>{{ record_details.stud_id }}</th>
-                    <th>{{record_details.name}}</th>
-                    <th class="right">{{ record_details.per }}%</th>
+                    <th class="left">
+                        <a href="/training_center/trainee/{{ trainee.id }}">
+                            <div class="chip">
+                                <img src="{{trainee_details.psp_url}}" alt="">
+                                {{ trainee_details.first_name|title }}
+                                {{ trainee_details.last_name|title }}
+                            </div>
+                        </a>
+                    </th>
+
+                    <th>{{ id_num }}</th>
+                    <th class="right">{{ trainee_details.grade }}%</th>
                 </tr>
             </div>
             {% endfor %}

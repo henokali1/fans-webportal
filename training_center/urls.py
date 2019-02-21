@@ -28,5 +28,6 @@ urlpatterns = [
     path('view_attendance_cls/<str:class_name>/', views.view_attendance_cls, name='view_attendance_cls.html'),
     path('dashboard/', views.dashboard, name='dashboard.html'),
     path('grades/', views.grades, name='grades.html'),
+    path('grades/all/<str:batch_name>/', views.all_grades, name='all_grades.html'),
     path('icons/', views.icons, name='icons.html'),
 ]
