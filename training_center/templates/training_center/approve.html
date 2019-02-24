@@ -34,6 +34,7 @@
                     </a>
                 </th>
                 <th>
+                    {% if trainee.batch|length == 0 %}
                     <div class="input-field">
                         <i class="material-icons prefix">library_books</i>
                         <select name="class" id="{{ trainee.id }}_batch">
@@ -44,6 +45,18 @@
                         </select>
                         <label>Batch</label>
                     </div>
+                    {% else %}
+                    <div class="input-field">
+                        <i class="material-icons prefix">library_books</i>
+                        <select name="class" id="{{ trainee.id }}_batch">
+                            <option value="{{trainee.batch}}" selected>{{trainee.batch}}</option>
+                            {% for i in batches %}
+                            <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Batch</label>
+                    </div>
+                    {% endif %}
                 </th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
                 {% if trainee.approval == 'Accepted'  %}
@@ -112,7 +125,6 @@
 <script>
     function approve(pk) {
         var batch_val = $('#' + pk + '_batch option:selected').text()
-        console.log(batch_val)
         if(batch_val == 'Select Batch'){
             Materialize.toast('Select Batch', 5000, 'rounded');
         }
