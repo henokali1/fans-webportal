@@ -50,16 +50,6 @@ def get_trainee_name(pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
     return trainee.first_name + ' ' + trainee.last_name
 
-# Returns total count of attended classes of a given class
-def get_att_count(student_id, class_name, subject_name, attendance_stat):
-    att = TraineeAttendance.objects.all().filter(
-        attended_class = class_name,
-        attended_subject = subject_name,
-        student_id = student_id,
-        attendance_stat = 'present',
-    )
-    return len(att)
-
 # Returns only unique students from a given attendance record
 def get_unique_trainee_ids(records):
     all_student_ids = []
@@ -157,11 +147,6 @@ def get_stud_lst(batch, subject_name):
             'name': get_trainee_name(i.pk),
         }
     return(stud_lst)
-
-# Returns total sessions for a given class name
-def get_tot_sessions(class_name):
-    all_cls = TraineeAttendance.objects.filter(attended_class=class_name)
-    
 
 # Returns a dict of all the student id's, names and over all attendance %  of a given class
 def get_stud_lst_cls(batch):
