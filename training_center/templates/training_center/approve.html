@@ -12,7 +12,6 @@
     <table class="bordered highlight responsive-table">
         <thead>
             <tr>
-                <th>ID Number</th>
                 <th>Name</th>
                 <th>Batch</th>
                 <th>Course</th>
@@ -22,10 +21,6 @@
         <tbody>
             {% for trainee in trainees %}
             <tr>
-                <th>
-                    {{ trainee.enrolled_on.year }}{{ trainee.pk }}
-                </th>
-
                 <th class="left">
                     <a href="/training_center/trainee/{{ trainee.id }}">
                         <div class="chip" style="margin-top: 25px;">
