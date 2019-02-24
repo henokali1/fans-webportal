@@ -122,12 +122,12 @@ def get_filtered_att(batch, subject_name):
 
 # Returns a formated dict with student id, student 
 # name and attendance status of atteded classes of a given class and subject
-def get_filtered_att_date(class_name, subject_name, date):
+def get_filtered_att_date(batch, subject_name, date):
     filtered_att = {}
     date_sp = date.split('-')
     records = TraineeAttendance.objects.filter(
         att_date__startswith = datetime.date(int(date_sp[2]), int(date_sp[1]), int(date_sp[0])),
-        attended_class = class_name,
+        attended_class = batch,
         attended_subject = subject_name,
     )
     

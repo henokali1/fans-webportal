@@ -725,12 +725,12 @@ def view_subject_attendance(request, batch, subject_name):
 
 # View Attendance Recordes of a Given classs, Subject and Date
 @login_required
-def view_attendance_subj_date(request, class_name, subject_name, date):
-    filtered_att = helper.get_filtered_att_date(class_name, subject_name, date)
+def view_attendance_subj_date(request, batch, subject_name, date):
+    filtered_att = helper.get_filtered_att_date(batch, subject_name, date)
     args = {
         'filtered_att': filtered_att,
         'msg': '',
-        'class_name': class_name,
+        'batch': batch,
         'subject_name': subject_name,
         'date': date,
         'current_user_name': helper.get_full_name(request.user),
