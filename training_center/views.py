@@ -501,7 +501,7 @@ def trainer(request, msg=''):
 
 # Take Attendance
 @login_required
-def take_attendance(request, class_name, subject_name):
+def take_attendance(request, batch, subject_name):
     if request.method == 'POST':
         ident = str(time.time())
         for key in request.POST:
@@ -512,7 +512,7 @@ def take_attendance(request, class_name, subject_name):
                 attendance = TraineeAttendance()
                 attendance.attendance_stat = value
                 attendance.student_id = key[key.find('_')+1:]
-                attendance.attended_class = class_name
+                attendance.attended_class = batch
                 attendance.attended_subject = subject_name
                 attendance.ident = ident
                 # Commit to DB
@@ -520,7 +520,7 @@ def take_attendance(request, class_name, subject_name):
         return redirect('/training_center/attendance/', msg='Attendance Taken Successfully')
     else:
         args = {
-            'filtered_stds': helper.get_stud_lst(class_name, subject_name),
+            'filtered_stds': helper.get_stud_lst(batch, subject_name),
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
         }

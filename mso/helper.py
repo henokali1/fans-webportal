@@ -143,11 +143,10 @@ def get_filtered_att_date(class_name, subject_name, date):
     return(filtered_att)
 
 # Returns a dict of all the student id's and names of a given class and subject
-def get_stud_lst(class_name, subject_name):
+def get_stud_lst(batch, subject_name):
     stud_lst = {}
-    class_name = ClassName.objects.filter(class_name=class_name)
     students = EnrollTrainee.objects.filter(
-        course_name=class_name[0].courses,
+        batch=batch,
         approval = 'Accepted',
     )
     cntr = 0
