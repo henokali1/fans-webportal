@@ -164,12 +164,11 @@ def get_tot_sessions(class_name):
     
 
 # Returns a dict of all the student id's, names and over all attendance %  of a given class
-def get_stud_lst_cls(class_name):
-    org_cls_name = class_name
+def get_stud_lst_cls(batch):
+    org_cls_name = batch
     stud_lst = {}
-    class_name = ClassName.objects.filter(class_name=class_name)
     students = EnrollTrainee.objects.filter(
-        course_name=class_name[0].courses,
+        course_name=batch,
         approval = 'Accepted',
     )
     
