@@ -100,10 +100,10 @@ def get_att_stat(pk):
 
 # Returns a formated dict with student id, student 
 # name and % of atteded classes of a given class and subject
-def get_filtered_att(class_name, subject_name):
+def get_filtered_att(batch, subject_name):
     filtered_att = {}
     records = TraineeAttendance.objects.all().filter(
-        attended_class = class_name,
+        attended_class = batch,
         attended_subject = subject_name,
     )
     # Total classes given

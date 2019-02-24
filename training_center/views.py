@@ -704,13 +704,13 @@ def edit_course(request, pk):
 
 # VIEW ALL ATTENDANCE RECORDS OF A SPECIFIC CLASS AND SUBJECT
 @login_required
-def view_subject_attendance(request, class_name, subject_name):
-    filtered_att, sessions = helper.get_filtered_att(class_name, subject_name)
+def view_subject_attendance(request, batch, subject_name):
+    filtered_att, sessions = helper.get_filtered_att(batch, subject_name)
     
     args={
         'filtered_att': filtered_att,
         'msg': '',
-        'class_name': class_name,
+        'batch': batch,
         'subject_name': subject_name,
         'sessions': sessions,
         'current_user_name': helper.get_full_name(request.user),
