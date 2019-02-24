@@ -193,10 +193,9 @@ def get_stud_lst_cls(batch):
 # Returns a dict of all trainees(filtered by class name) with their grades
 def get_all_std_grades(batch_name):
     filtered_trainees = {}
-    batch_name = ClassName.objects.filter(class_name=batch_name)
     if(len(batch_name) != 0):
         students = EnrollTrainee.objects.filter(
-            course_name=batch_name[0].courses,
+            batch = batch_name,
             approval = 'Accepted',
         )
 
