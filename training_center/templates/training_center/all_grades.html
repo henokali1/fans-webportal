@@ -26,13 +26,11 @@
             <div>
                 <tr>
                     <th class="left">
-                        <a href="/training_center/trainee/{{ trainee.id }}">
-                            <div class="chip">
-                                <img src="{{trainee_details.psp_url}}" alt="">
-                                {{ trainee_details.first_name|title }}
-                                {{ trainee_details.last_name|title }}
-                            </div>
-                        </a>
+                        <div class="chip">
+                            <img src="{{trainee_details.psp_url}}" alt="">
+                            {{ trainee_details.first_name|title }}
+                            {{ trainee_details.last_name|title }}
+                        </div>
                     </th>
 
                     <th>{{ id_num }}</th>
