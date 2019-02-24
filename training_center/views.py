@@ -252,6 +252,7 @@ def approve(request, msg=''):
             'trainees': trainees,
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
+            'batches': ClassName.objects.all().order_by('-pk'),
         }
     else:
         args = {
@@ -259,18 +260,20 @@ def approve(request, msg=''):
             'msg': msg,
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
+            'batches': ClassName.objects.all().order_by('-pk'),
         }
     
     return render(request, 'training_center/approve.html', args)
 
-# Approve applications by PK
+# Approve applications by PK through AJAX
 @login_required
-def approve_application(request, pk):
+def approve_application(request, pk, batch):
     replay = 'Application ' + str(pk) + ' - Accepted'
     EnrollTrainee.objects.filter(pk=pk).update(
         approval = 'Accepted',
         approval_date = datetime.datetime.now(tz=timezone.utc),
         approved_by = helper.get_full_name(request.user),
+        batch = batch,
     )
     return HttpResponse(replay)
 

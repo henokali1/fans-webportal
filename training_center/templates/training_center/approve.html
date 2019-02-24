@@ -8,13 +8,13 @@
 
 {% block content %}
 <div class="container">
-
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
     <table class="bordered highlight responsive-table">
         <thead>
             <tr>
-                <th>SN. - Full Name</th>
-                <th>Email</th>
+                <th>ID Number</th>
+                <th>Name</th>
+                <th>Batch</th>
                 <th>Course</th>
                 <th class="left">Application Status</th>
             </tr>
@@ -22,14 +22,29 @@
         <tbody>
             {% for trainee in trainees %}
             <tr>
+                <th>
+                    {{ trainee.enrolled_on.year }}{{ trainee.pk }}
+                </th>
+
                 <th class="left">
                     <a href="/training_center/trainee/{{ trainee.id }}">
-                        <div class="chip">
-                                <img src="{{trainee.passport_size_photo.url}}" alt="Contact Person">{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }} {{ trainee.last_name|title }}
+                        <div class="chip" style="margin-top: 25px;">
+                                <img src="{{trainee.passport_size_photo.url}}" alt="">{{ trainee.first_name|title }} {{ trainee.last_name|title }}
                         </div>
                     </a>
                 </th>
-                <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.email }}</a></th>
+                <th>
+                    <div class="input-field">
+                        <i class="material-icons prefix">library_books</i>
+                        <select name="class" id="{{ trainee.id }}_batch">
+                            <option value="" disabled selected>Select Batch</option>
+                            {% for i in batches %}
+                            <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Batch</label>
+                    </div>
+                </th>
                 <th><a href="/training_center/trainee/{{ trainee.id }}">{{ trainee.course_details|title }}</a></th>
                 {% if trainee.approval == 'Accepted'  %}
                 <th class="left"><div class="chip green"><span id="{{ trainee.id }}_chip">Accepted</span></div></th>
@@ -62,7 +77,6 @@
 
             {% if trainees.has_next %}
 
-            <!-- <a href="?page={{ trainees.paginator.num_pages }}" class="waves-effect waves-light blue btn modal-trigger">last &raquo;</a> -->
             <li class="waves-effect">
                 <a href="?page={{ trainees.next_page_number }}">
                     <i class="material-icons large">chevron_right</i>
@@ -97,12 +111,19 @@
 
 <script>
     function approve(pk) {
-        $('#' + pk +'_chip').text('Accepted')
-        $('#' + pk +'_chip').parent( ".chip" ).addClass('green').removeClass('red')
-        var url = 'http://127.0.0.1:8000/training_center/trainee/approve_application/' + pk + '/'
-        $.get(url, function(data, status){
-            Materialize.toast(data, 8000, 'rounded');
-        });
+        var batch_val = $('#' + pk + '_batch option:selected').text()
+        console.log(batch_val)
+        if(batch_val == 'Select Batch'){
+            Materialize.toast('Select Batch', 5000, 'rounded');
+        }
+        else {
+            $('#' + pk +'_chip').text('Accepted')
+            $('#' + pk +'_chip').parent( ".chip" ).addClass('green').removeClass('red')
+            var url = 'http://127.0.0.1:8000/training_center/trainee/approve_application/' + pk + '/' + batch_val + '/'
+            $.get(url, function(data, status){
+                Materialize.toast(data, 8000, 'rounded');
+            });
+        }
     }
 
     function reject(pk) {

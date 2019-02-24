@@ -108,6 +108,7 @@ class EnrollTrainee(models.Model):
     approval = models.CharField(max_length=50, default='Approval Pending')
     approval_date = models.DateTimeField(auto_now=False, null=True)
     approved_by = models.CharField(max_length=250, default='')
+    batch = models.CharField(max_length=250, default='')
 
     def __str__(self):
         return str(self.pk) + ' - ' + self.first_name.capitalize() + ' ' + self.last_name.capitalize()
