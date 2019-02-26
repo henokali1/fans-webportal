@@ -808,7 +808,7 @@ def feedback(request):
 @login_required
 def trainee_grade(request, pk):
     subjects = {
-        'AERODROMES (AGA-AD)': {'grade':78},
+        'AERODROMES (AGA-AD)': str(time.time())[-2:],
         'PROFESIONAL ENVIRONMENT(PEN-AD)': {'grade':81},
         'HUMAN FACTORS (HUM - AD)': {'grade':86},
         'EQUIPMENT AND SYSTEMS (EQPS-AD)': {'grade':97},
@@ -822,6 +822,7 @@ def trainee_grade(request, pk):
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
         'attendance': 88,
+        'overall_grade': 89,
         'subjects': subjects,
     }
     return render(request, 'training_center/trainee_grade.html', args)
