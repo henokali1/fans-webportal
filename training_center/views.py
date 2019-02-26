@@ -807,5 +807,21 @@ def feedback(request):
 # Trainee Grade Detail View
 @login_required
 def trainee_grade(request, pk):
-    args={}
+    subjects = {
+        'AERODROMES (AGA-AD)': {'grade':78},
+        'PROFESIONAL ENVIRONMENT(PEN-AD)': {'grade':81},
+        'HUMAN FACTORS (HUM - AD)': {'grade':86},
+        'EQUIPMENT AND SYSTEMS (EQPS-AD)': {'grade':97},
+        'AIRCRAFT(ACFT-AD)': 23,
+        'NAVIGATION (NAV-AD)': 23,
+        'METEOROLOGY (MET –AD)': 43,
+        'ABNORMAL AND EMERGENCY SITUATIONS (ABES-AD)': 82,
+        'AIR TRAFFIC MANAGEMENT (ATM-AD)':34,
+    }
+    args={
+        'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
+        'id_num': helper.get_stud_id(pk),
+        'attendance': 88,
+        'subjects': subjects,
+    }
     return render(request, 'training_center/trainee_grade.html', args)
