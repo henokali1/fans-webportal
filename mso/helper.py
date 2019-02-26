@@ -193,3 +193,20 @@ def get_all_std_grades(batch_name):
                 'grade': str(time.time())[-2:],
             }
     return filtered_trainees
+
+# Returns a ditc of trainee ID and it's grade(out of 100) from a given .TXT file
+def get_result(file_name="C:/Users/Henok/Desktop/a.txt"):
+    with open (file_name, 'r') as f:
+        raw_data = f.read()
+    data =  raw_data.split('\n')
+    grades = {}
+    for i in data:
+        if i != '':
+            student_data = i.split(',')
+            grades[student_data[2]] = student_data[-1]
+    return grades
+
+grades = get_result()
+print(grades)
+for i in grades:
+    print(i, grades[i])
