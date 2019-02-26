@@ -13,11 +13,11 @@
         <img src="{{trainee.passport_size_photo.url}}" width="132" height="172">
     </div>
     <div style="float:left; margin:10px">
-        <p>Name: {{ trainee.first_name|title }} {{ trainee.last_name|title }}</p>
-        <p>Email: {{trainee.email|lower}}</p>
-        <p>ID Number: {{ id_num }}</p>
-        <p>Attendance: {{ attendance }}%</p>
-        <p>Overall Grade: {{ overall_grade }}%</p>
+        <p><strong>Name: {{ trainee.first_name|title }} {{ trainee.last_name|title }}</strong></p>
+        <p><strong>Email: {{trainee.email|lower}}</strong></p>
+        <p><strong>ID Number: {{ id_num }}</strong></p>
+        <p><strong>Attendance: {{ attendance }}%</strong></p>
+        <p><strong>Overall Grade: {{ overall_grade }}%</strong></p>
     </div>
 
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
