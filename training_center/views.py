@@ -797,3 +797,8 @@ def all_grades(request, batch_name):
     if len(filtered_trainees) == 0:
         args['msg']="No Records Found"
     return render(request, 'training_center/all_grades.html', args)
+
+# Feedback's
+def feedback(request):
+    args = {}
+    return render(request, 'training_center/feedback.html', args)

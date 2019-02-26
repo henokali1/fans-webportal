@@ -29,5 +29,6 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard.html'),
     path('grades/', views.grades, name='grades.html'),
     path('grades/all/<str:batch_name>/', views.all_grades, name='all_grades.html'),
+    path('feedback/', views.feedback, name='feedback.html'),
     path('icons/', views.icons, name='icons.html'),
 ]
