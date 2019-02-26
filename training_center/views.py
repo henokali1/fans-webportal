@@ -799,6 +799,13 @@ def all_grades(request, batch_name):
     return render(request, 'training_center/all_grades.html', args)
 
 # Feedback's
+@login_required
 def feedback(request):
     args = {}
     return render(request, 'training_center/feedback.html', args)
+
+# Trainee Grade Detail View
+@login_required
+def trainee_grade(request, pk):
+    args={}
+    return render(request, 'training_center/trainee_grade.html', args)

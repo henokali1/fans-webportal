@@ -187,6 +187,7 @@ def get_all_std_grades(batch_name):
         for i in students:
             id_num = get_stud_id(i.pk)
             filtered_trainees[id_num] = {
+                'pk': i.pk,
                 'first_name': i.first_name,
                 'last_name': i.last_name,
                 'psp_url': i.passport_size_photo.url,
@@ -205,8 +206,3 @@ def get_result(file_name="C:/Users/Henok/Desktop/a.txt"):
             student_data = i.split(',')
             grades[student_data[2]] = student_data[-1]
     return grades
-
-grades = get_result()
-print(grades)
-for i in grades:
-    print(i, grades[i])

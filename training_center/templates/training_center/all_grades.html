@@ -18,7 +18,7 @@
             <tr>
                 <th>Name</th>
                 <th>ID Number</th>
-                <th class="right">Grade</th>
+                <th class="right">Overall Grade</th>
             </tr>
         </thead>
         <tbody>
@@ -26,15 +26,25 @@
             <div>
                 <tr>
                     <th class="left">
-                        <div class="chip">
-                            <img src="{{trainee_details.psp_url}}" alt="">
-                            {{ trainee_details.first_name|title }}
-                            {{ trainee_details.last_name|title }}
-                        </div>
+                        <a href="/training_center/grade/{{ trainee_details.pk }}/">
+                            <div class="chip">
+                                <img src="{{trainee_details.psp_url}}" alt="">
+                                {{ trainee_details.first_name|title }}
+                                {{ trainee_details.last_name|title }}
+                            </div>
+                        </a>
                     </th>
 
-                    <th>{{ id_num }}</th>
-                    <th class="right">{{ trainee_details.grade }}%</th>
+                    <th>
+                        <a href="/training_center/grade/{{ trainee_details.pk }}/">
+                            {{ id_num }}
+                        </a>
+                    </th>
+                    <th class="right">
+                        <a href="/training_center/grade/{{ trainee_details.pk }}/">
+                            {{ trainee_details.grade }}%
+                        </a>
+                    </th>
                 </tr>
             </div>
             {% endfor %}
