@@ -12,7 +12,7 @@ class Course(models.Model):
         return self.course_name + ' - ' + self.course_details
 
 
-# Class
+# Classes(Batches)
 class ClassName(models.Model):
     class_name = models.CharField(max_length=250, default='')
     courses = models.CharField(max_length=250, default='')

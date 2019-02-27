@@ -786,9 +786,11 @@ def grades(request, msg=''):
 
         exported_grades = request.FILES['txt_file'].read()
 
-        a=helper.get_result(exported_grades.decode("utf-8"))
-        for i in a:
-            print(i, a[i])
+        extracted_results = helper.get_result(exported_grades.decode("utf-8"))
+        if 'err' in extracted_results:
+            args['msg'] = "WRONG FILE FORMAT. PLEASE EXPORT THE RESULTS FROM EXAM VIEW AND IMPORT THE FILE AGAIN."
+        else:
+            args['results'] = extracted_results
         
         return render(request, 'training_center/import_grades.html', args)
     return render(request, 'training_center/grades.html', args)
