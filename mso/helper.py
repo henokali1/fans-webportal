@@ -81,7 +81,12 @@ def get_per(tca, tcg):
 # Returns formatted ID number(Year + DB PK) of a given student
 def get_stud_id(pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
-    return str(trainee.enrolled_on)[:4] + str(pk)
+    if int(pk) <= 100:
+        id_sq = '0' + str(pk)
+    else:
+        id_sq = str(pk)
+
+    return str(trainee.enrolled_on)[:4] + id_sq
 
 # Returns attendance status(present, absent....) of a given student pk
 def get_att_stat(pk):
