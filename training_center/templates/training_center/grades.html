@@ -9,6 +9,8 @@
 {% block content %}
 <div class="container">
     <br>
+    <form name="new_trainee_form" method="POST" action="" onsubmit="return validateForm()" enctype="multipart/form-data">
+        {% csrf_token %}
     <div class="row">
         <div class="col s12 m6">
             <div class="input-field">
@@ -60,12 +62,12 @@
         </div>
         
         <div style="float:left;">
-            <a onclick="importGrades()" class="waves-effect waves-light btn-large blue">
+            <button class="btn btn-large blue waves-effect waves-light right" type="submit" name="action">Import Grades
                 <i class="material-icons right">cloud_upload</i>
-                Import Grades
-            </a>
+            </button>
         </div>
     </div>
+</form>
 </div>
 {% endblock content %}
 
@@ -78,25 +80,30 @@
 {% endif %}
 
 <script>
-    function importGrades() {
+    function validateForm() {
         var url = "/training_center/take_attendance/"
         var class_val = $('#class option:selected').text()
         var subject_val = $('#subject option:selected').text()
         var file_upload_val = $('#fileUpload')
         if((class_val == 'Select Batch') && (subject_val == 'Select Subject')){
             Materialize.toast('Select Batch & Subject', 5000, 'rounded')
+            return false
         }
         if((class_val == 'Select Batch') && (subject_val != 'Select Subject')){
             Materialize.toast('Select Batch', 5000, 'rounded')
+            return false
         }
         if((class_val != 'Select Batch') && (subject_val == 'Select Subject')){
             Materialize.toast('Select Subject', 5000, 'rounded')
+            return false
         }
         if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (file_upload_val[0].value == '')){
             Materialize.toast('Upload File', 5000, 'rounded')
+            return false
         }
         if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (file_upload_val[0].value != '')){
-            window.open(url + class_val + '/' + subject_val + '/', "_self")
+            // window.open(url + class_val + '/' + subject_val + '/', "_self")
+            return true
         }
     }
 

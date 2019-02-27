@@ -780,6 +780,11 @@ def grades(request, msg=''):
         'current_user_name': helper.get_full_name(request.user),
         'current_user_email': request.user,
     }
+    if request.method == 'POST':
+        args['class'] = request.POST['class']
+        args['subject'] = request.POST['subject']
+        
+        return render(request, 'training_center/import_grades.html', args)
     return render(request, 'training_center/grades.html', args)
 
 # All Grades
@@ -826,3 +831,10 @@ def trainee_grade(request, pk):
         'subjects': subjects,
     }
     return render(request, 'training_center/trainee_grade.html', args)
+
+# Import Grades (Exported From Exam View Text File)
+def import_grades(request):
+    args={}
+    if request.method == 'POST':
+        print('post data')
+    return render(request, 'training_center/import_grades.html', args)
