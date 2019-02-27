@@ -783,6 +783,12 @@ def grades(request, msg=''):
     if request.method == 'POST':
         args['class'] = request.POST['class']
         args['subject'] = request.POST['subject']
+
+        exported_grades = request.FILES['txt_file'].read()
+
+        a=helper.get_result(exported_grades.decode("utf-8"))
+        for i in a:
+            print(i, a[i])
         
         return render(request, 'training_center/import_grades.html', args)
     return render(request, 'training_center/grades.html', args)
