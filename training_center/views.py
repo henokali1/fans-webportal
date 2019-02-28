@@ -780,6 +780,7 @@ def grades(request, msg=''):
         'current_user_name': helper.get_full_name(request.user),
         'current_user_email': request.user,
     }
+
     if request.method == 'POST':
         args['batch'] = request.POST['batch']
         args['subject'] = request.POST['subject']
@@ -791,6 +792,7 @@ def grades(request, msg=''):
             args['msg'] = "WRONG FILE FORMAT. PLEASE EXPORT THE RESULTS FROM EXAM VIEW AND IMPORT THE FILE AGAIN."
         else:
             args['results'] = extracted_results
+            args['msg'] = 'Results Imported Successfully'
         
         return render(request, 'training_center/import_grades.html', args)
     return render(request, 'training_center/grades.html', args)
