@@ -7,8 +7,12 @@
 
 
 {% block content %}
-<div class="container" style="width:30%">
+<div class="container">
     <h3 class="center">Imported Results</h3>
+    <h5>
+        <span><strong>Batch: </strong> {{batch}}</span>
+        <span class="right"> <strong>Subject: {{subject}}</strong> </span>
+    </h5>
     <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
     <table class="bordered highlight responsive-table">
         <thead>

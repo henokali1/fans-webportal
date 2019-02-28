@@ -781,7 +781,7 @@ def grades(request, msg=''):
         'current_user_email': request.user,
     }
     if request.method == 'POST':
-        args['class'] = request.POST['class']
+        args['batch'] = request.POST['batch']
         args['subject'] = request.POST['subject']
 
         exported_grades = request.FILES['txt_file'].read()

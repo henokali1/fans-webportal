@@ -15,7 +15,7 @@
         <div class="col s12 m6">
             <div class="input-field">
                 <i class="material-icons prefix">library_books</i>
-                <select name="class" id="class">
+                <select name="batch" id="class">
                     <option value="" disabled selected>Select Batch</option>
                     {% for i in clases %}
                     <option value="{{ i.class_name }}">{{ i.class_name }}</option>
@@ -31,7 +31,7 @@
                 <select name="subject" id="subject">
                     <option value="" disabled selected>Select Subject</option>
                     {% for i in subjects %}
-                    <option value="{{ i.pk }}">{{ i.subject_name }}</option>
+                    <option value="{{ i.subject_name }}">{{ i.subject_name }}</option>
                     {% endfor %}
                 </select>
                 <label>Subject</label>
@@ -56,7 +56,7 @@
                   <input type="file" accept=".TXT" name="txt_file">
                 </div>
                 <div class="file-path-wrapper">
-                  <input id="fileUpload" class="file-path validate" type="text" placeholder="Upload File Here">
+                  <input id="fileUpload" class="file-path validate" type="text" placeholder="Upload Result File Here">
                 </div>
             </div>
         </div>
@@ -102,7 +102,6 @@
             return false
         }
         if((class_val != 'Select Batch') && (subject_val != 'Select Subject') && (file_upload_val[0].value != '')){
-            // window.open(url + class_val + '/' + subject_val + '/', "_self")
             return true
         }
     }

@@ -126,3 +126,15 @@ class TraineeAttendance(models.Model):
     def __str__(self):
         return str(self.pk) + ' - ' + str(self.student_id) + ' - ' + str(self.att_date) + ' - ' + str(self.attended_class) + ' - ' + str(self.attended_subject) + ' - ' + str(self.ident)
 
+# Trainee Grades
+class Grade(models.Model):
+    value = models.FloatField(max_length=100, default=0)
+    batch = models.CharField(max_length=250, default='')
+    subject = models.CharField(max_length=250, default='')
+    trainee_pk = models.CharField(max_length=100, default='')
+    greaded_date = models.DateTimeField(auto_now=True)
+    greaded_by = models.EmailField(max_length=254, default='')
+
+    def __str__(self):
+        return str(self.pk) + ' - ' + str(self.value) + ' - ' + str(self.trainee_pk) + ' - ' + str(self.batch) + ' - ' + str(self.subject)
+    
