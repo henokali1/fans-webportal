@@ -793,6 +793,15 @@ def grades(request, msg=''):
         else:
             args['results'] = extracted_results
             args['msg'] = 'Results Imported Successfully'
+
+            for i in extracted_results:
+                new_grade = Grade()
+                new_grade.subject = request.POST['subject']
+                new_grade.batch = request.POST['batch']
+                new_grade.trainee_pk = helper.get_trainee_pk(i)
+                new_grade.value = float(extracted_results[i])
+                new_grade.greaded_by = request.user
+                new_grade.save()
         
         return render(request, 'training_center/import_grades.html', args)
     return render(request, 'training_center/grades.html', args)

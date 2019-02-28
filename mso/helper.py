@@ -214,7 +214,7 @@ def get_result(raw_data):
     return grades
 
 # Returns trainee pk from a given ID number
-def get_pk(id_num):
+def get_trainee_pk(id_num):
     if id_num[4] == '0':
         return id_num[5:]
     else:
