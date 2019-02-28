@@ -30,7 +30,7 @@ class Subject(models.Model):
     subject_discription = models.TextField()
 
     def __str__(self):
-        return self.subject_name
+        return str(self.pk) + ' - ' + self.subject_name
 
 
 # Enroll New Trainee

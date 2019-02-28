@@ -830,18 +830,17 @@ def feedback(request):
 
 # Trainee Grade Detail View
 @login_required
-def trainee_grade(request, pk):
-    subjects = {
-        'AERODROMES (AGA-AD)': str(time.time())[-2:],
-        'PROFESIONAL ENVIRONMENT(PEN-AD)': {'grade':81},
-        'HUMAN FACTORS (HUM - AD)': {'grade':86},
-        'EQUIPMENT AND SYSTEMS (EQPS-AD)': {'grade':97},
-        'AIRCRAFT(ACFT-AD)': 23,
-        'NAVIGATION (NAV-AD)': 23,
-        'METEOROLOGY (MET –AD)': 43,
-        'ABNORMAL AND EMERGENCY SITUATIONS (ABES-AD)': 82,
-        'AIR TRAFFIC MANAGEMENT (ATM-AD)':34,
-    }
+def trainee_grade(request, pk, batch_name):
+    batch = ClassName.objects.all().filter(class_name=batch_name)[0]
+    course = Course.objects.all().filter(course_name=batch.courses)[0]
+    subjects = course.course_subjects_pk
+    subjects_list = eval(subjects)
+    print(subjects_list)
+    subjects = {}
+    for i in subjects_list:
+        subject_obj = Subject.objects.all().filter(pk=i)[0]
+        subjects[subject_obj.subject_name] = {'grade':81}
+        
     args={
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
@@ -849,6 +848,7 @@ def trainee_grade(request, pk):
         'overall_grade': 89,
         'subjects': subjects,
     }
+    helper.get_overall_grade(pk, batch_name)
     return render(request, 'training_center/trainee_grade.html', args)
 
 # Import Grades (Exported From Exam View Text File)

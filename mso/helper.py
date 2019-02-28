@@ -219,3 +219,11 @@ def get_trainee_pk(id_num):
         return id_num[5:]
     else:
         return id_num[4:]
+
+# Returns overall grade(out of 100%) of a given trainee and batch
+def get_overall_grade(trainee_pk, batch_name):
+    greades = Grade.objects.all().filter(trainee_pk=trainee_pk, batch=batch_name)
+    total = 0
+    for i in greades:
+        total += i.value
+    # print(total)
