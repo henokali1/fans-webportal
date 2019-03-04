@@ -155,7 +155,6 @@ def get_stud_lst(batch, subject_name):
 
 # Returns a dict of all the student id's, names and over all attendance %  of a given class
 def get_stud_lst_cls(batch):
-    org_cls_name = batch
     stud_lst = {}
     students = EnrollTrainee.objects.filter(
         course_name=batch,
@@ -163,7 +162,7 @@ def get_stud_lst_cls(batch):
     )
     
     records = TraineeAttendance.objects.all().filter(
-        attended_class = org_cls_name,
+        attended_class = batch,
     )
 
     # Total classes given

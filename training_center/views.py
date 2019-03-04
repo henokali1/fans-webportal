@@ -842,7 +842,7 @@ def trainee_grade(request, pk, batch_name):
     args={
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
-        'attendance': 88,
+        'attendance': helper.get_stud_lst_cls(batch_name)[str(pk)]['per'],
         'overall_grade': helper.get_overall_grade(pk, batch_name),
         'subjects': subject_grades,
     }
