@@ -842,9 +842,12 @@ def trainee_grade(request, pk, batch_name):
     args={
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
-        'attendance': helper.get_stud_lst_cls(batch_name)[str(pk)]['per'],
         'overall_grade': helper.get_overall_grade(pk, batch_name),
         'subjects': subject_grades,
     }
+    try:
+        args['attendance'] = helper.get_stud_lst_cls(batch_name)[str(pk)]['per']
+    except:
+        args['attendance'] = 0
     
     return render(request, 'training_center/trainee_grade.html', args)
