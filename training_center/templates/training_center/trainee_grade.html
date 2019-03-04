@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} {{trainee.first_name|title}}'s Grades {% endblock title %}
+{% block title %} Grades ({{trainee.first_name|title}} {{ trainee.last_name|title}}) {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -29,14 +29,14 @@
                 </tr>
             </thead>
             <tbody>
-                {% for i in subjects %}
+                {% for subject_name,result in subjects.items %}
                 <div>
                     <tr>
                         <th>
-                            {{i}}
+                            {{ subject_name }}
                         </th>
                         
-                        <th class="right">91%
+                        <th class="right">{{ result.grade }}%
                         </th>
                     </tr>
                 </div>

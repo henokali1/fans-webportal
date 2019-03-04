@@ -828,32 +828,23 @@ def feedback(request):
     args = {}
     return render(request, 'training_center/feedback.html', args)
 
-# Trainee Grade Detail View
-@login_required
-def trainee_grade(request, pk, batch_name):
-    batch = ClassName.objects.all().filter(class_name=batch_name)[0]
-    course = Course.objects.all().filter(course_name=batch.courses)[0]
-    subjects = course.course_subjects_pk
-    subjects_list = eval(subjects)
-    print(subjects_list)
-    subjects = {}
-    for i in subjects_list:
-        subject_obj = Subject.objects.all().filter(pk=i)[0]
-        subjects[subject_obj.subject_name] = {'grade':81}
-        
-    args={
-        'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
-        'id_num': helper.get_stud_id(pk),
-        'attendance': 88,
-        'overall_grade': 89,
-        'subjects': subjects,
-    }
-    helper.get_overall_grade(pk, batch_name)
-    return render(request, 'training_center/trainee_grade.html', args)
-
 # Import Grades (Exported From Exam View Text File)
 def import_grades(request):
     args={}
     if request.method == 'POST':
         print('post data')
     return render(request, 'training_center/import_grades.html', args)
+
+# Trainee Grade Detail View
+@login_required
+def trainee_grade(request, pk, batch_name):
+    subject_grades = helper.get_course_grades(pk, batch_name)
+    args={
+        'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
+        'id_num': helper.get_stud_id(pk),
+        'attendance': 88,
+        'overall_grade': helper.get_overall_grade(pk, batch_name),
+        'subjects': subject_grades,
+    }
+    
+    return render(request, 'training_center/trainee_grade.html', args)

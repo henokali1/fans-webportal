@@ -196,11 +196,11 @@ def get_all_std_grades(batch_name):
                 'first_name': i.first_name,
                 'last_name': i.last_name,
                 'psp_url': i.passport_size_photo.url,
-                'grade': str(time.time())[-2:],
+                'grade': get_overall_grade(i.pk, batch_name),
             }
     return filtered_trainees
 
-# Returns a ditc of trainee ID and it's grade(out of 100) from a given .TXT file
+# Returns a ditc of trainee ID and it's grade(out of 100%) from a given .TXT file
 def get_result(raw_data):
     data =  raw_data.split('\n')
     grades = {}
@@ -220,10 +220,43 @@ def get_trainee_pk(id_num):
     else:
         return id_num[4:]
 
+# Returns a list of pk of subjects for a given batch
+def get_subjects_pk_lst(batch_name):
+    batch = ClassName.objects.all().filter(class_name=batch_name)[0]
+    course = Course.objects.all().filter(course_name=batch.courses)[0]
+    subjects = course.course_subjects_pk
+    return eval(subjects)
+
+# Returns Gread of a student for a given batch, subject and trainee pk
+def get_trainee_gread(batch_name, subject_name, pk):
+    try:
+        grades_obj = Grade.objects.all().filter(
+            batch = batch_name,
+            subject = subject_name,
+            trainee_pk = pk
+        )[0]
+        return grades_obj.value
+    except:
+        return 0.0
+
+# Returns grade of all the subjects for a given course and trainee
+def get_course_grades(pk, batch_name):
+    subjects_pk_list = get_subjects_pk_lst(batch_name)
+    subjects = {}
+    for i in subjects_pk_list:
+        subject_obj = Subject.objects.all().filter(pk=i)[0]
+        grade_val = get_trainee_gread(batch_name, subject_obj.subject_name, pk)
+        subjects[subject_obj.subject_name] = {'grade': grade_val}
+    return subjects
+
 # Returns overall grade(out of 100%) of a given trainee and batch
 def get_overall_grade(trainee_pk, batch_name):
-    greades = Grade.objects.all().filter(trainee_pk=trainee_pk, batch=batch_name)
-    total = 0
-    for i in greades:
-        total += i.value
-    # print(total)
+    total = 0.0
+    course_grades = get_course_grades(trainee_pk, batch_name)
+    for i in course_grades:
+        total += course_grades[i]['grade']
+
+    num_subjects = len(course_grades)
+    avg = round(total/num_subjects, 2)
+    return avg
+        
