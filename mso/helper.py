@@ -236,7 +236,7 @@ def get_trainee_gread(batch_name, subject_name, pk):
         )[0]
         return grades_obj.value
     except:
-        return 0.0
+        return 0
 
 # Returns grade of all the subjects for a given course and trainee
 def get_course_grades(pk, batch_name):
@@ -245,7 +245,10 @@ def get_course_grades(pk, batch_name):
     for i in subjects_pk_list:
         subject_obj = Subject.objects.all().filter(pk=i)[0]
         grade_val = get_trainee_gread(batch_name, subject_obj.subject_name, pk)
-        subjects[subject_obj.subject_name] = {'grade': grade_val}
+        subjects[subject_obj.subject_name] = {
+            'grade': grade_val,
+            'subject_pk': subject_obj.pk,
+        }
     return subjects
 
 # Returns overall grade(out of 100%) of a given trainee and batch

@@ -844,6 +844,7 @@ def trainee_grade(request, pk, batch_name):
         'id_num': helper.get_stud_id(pk),
         'overall_grade': helper.get_overall_grade(pk, batch_name),
         'subjects': subject_grades,
+        'user': request.user,
     }
     try:
         args['attendance'] = helper.get_stud_lst_cls(batch_name)[str(pk)]['per']
@@ -851,3 +852,34 @@ def trainee_grade(request, pk, batch_name):
         args['attendance'] = 0
     
     return render(request, 'training_center/trainee_grade.html', args)
+
+# Edit / Add Grades Manulally 
+def edit_grades(request, pk, batch_name):
+    if request.method == 'POST':
+        for key in request.POST:
+            if 'subj_ident_' in key:
+                # Subject PK
+                value = request.POST[key]
+                subject_pk = key.strip('subject_pk_ident_')
+                grade_obj = Grade.objects.filter(
+                    trainee_pk=pk,
+                    batch = batch_name,
+                    subject = Subject.objects.all().filter(pk=subject_pk)[0].subject_name
+                )
+                grade_obj.update(value = request.POST[key])
+
+    
+    subject_grades = helper.get_course_grades(pk, batch_name)
+    
+    args={
+        'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
+        'id_num': helper.get_stud_id(pk),
+        'overall_grade': helper.get_overall_grade(pk, batch_name),
+        'subjects': subject_grades,
+    }
+    try:
+        args['attendance'] = helper.get_stud_lst_cls(batch_name)[str(pk)]['per']
+    except:
+        args['attendance'] = 0
+    
+    return render(request, 'training_center/edit_grades.html', args)
