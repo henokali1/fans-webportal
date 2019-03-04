@@ -867,10 +867,10 @@ def edit_grades(request, pk, batch_name):
                     subject = Subject.objects.all().filter(pk=subject_pk)[0].subject_name
                 )
                 grade_obj.update(value = request.POST[key])
-
+        redirect_url = '/training_center/grade/' + str(pk) + '/' + str(batch_name) + '/'
+        return redirect(redirect_url , msg='Grade Updated Successfully')
     
     subject_grades = helper.get_course_grades(pk, batch_name)
-    
     args={
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
