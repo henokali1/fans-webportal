@@ -1,0 +1,76 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Edit Grade ({{trainee.first_name|title}} {{ trainee.last_name|title}}) {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+<div class="container">
+    <h3 class="center">GRADES</h3>
+    <div style="float:left; margin:23px">
+        <img src="{{trainee.passport_size_photo.url}}" width="132" height="172">
+    </div>
+    <div style="float:left; margin:10px">
+        <p><strong>Name: {{ trainee.first_name|title }} {{ trainee.last_name|title }}</strong></p>
+        <p><strong>Email: {{trainee.email|lower}}</strong></p>
+        <p><strong>ID Number: {{ id_num }}</strong></p>
+        <p><strong>Overall Attendance: {{ attendance }}%</strong></p>
+        <p><strong>Overall Grade: {{ overall_grade }}%</strong></p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div style="float:right; margin:10px">
+                <button class="btn btn-large blue waves-effect waves-light right" type="submit" name="action">Save
+                        <i class="material-icons right">save</i>
+                    </button>
+        </div>
+    
+
+
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <table class="bordered highlight responsive-table">
+            <thead>
+                <tr>
+                    <th>SUBJECT</th>
+                    <th class="right">Grade Out of 100%</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subject_name,result in subjects.items %}
+                <div>
+                    <tr>
+                        <th>
+                            {{ subject_name }}
+                        </th>
+                        
+                        <th class="right" style="width: 70px;">
+                            <div class="input-field">
+                                <input type="number" name="subj_ident_{{result.subject_pk}}" value="{{ result.grade }}">
+                            </div>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    <br>
+    <br>
+    <br>
+</form>
+</div>
+{% endblock content %}
+
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+{% endblock script_tag %}
