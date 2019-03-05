@@ -40,13 +40,11 @@
             </thead>
             <tbody>
                 {% for subject_name,result in subjects.items %}
-                    {% if result.has_data %}
                     <div>
                         <tr>
                             <th>
                                 {{ subject_name }}
                             </th>
-                            
                             
                             <th class="right" style="width: 70px;">                            
                                 <div class="input-field">
@@ -57,7 +55,6 @@
                             </th>
                         </tr>
                     </div>
-                    {% endif %}
                 {% endfor %}
             </tbody>
         </table>

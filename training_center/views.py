@@ -854,19 +854,30 @@ def trainee_grade(request, pk, batch_name):
     return render(request, 'training_center/trainee_grade.html', args)
 
 # Edit / Add Grades Manulally 
+@login_required
 def edit_grades(request, pk, batch_name):
     if request.method == 'POST':
         for key in request.POST:
+            # Subject PK
+            value = request.POST[key]
+            subject_pk = key.strip('subject_pk_ident_')
             if 'subj_ident_' in key:
-                # Subject PK
-                value = request.POST[key]
-                subject_pk = key.strip('subject_pk_ident_')
                 grade_obj = Grade.objects.filter(
                     trainee_pk=pk,
                     batch = batch_name,
                     subject = Subject.objects.all().filter(pk=subject_pk)[0].subject_name
                 )
-                grade_obj.update(value = request.POST[key])
+                if len(grade_obj) == 0:
+                    new_grade = Grade()
+                    new_grade.subject = Subject.objects.all().filter(pk=subject_pk)[0].subject_name
+                    new_grade.batch = batch_name
+                    new_grade.trainee_pk = pk
+                    new_grade.value = float(request.POST[key])
+                    new_grade.greaded_by = request.user
+                    new_grade.save()
+
+                else:
+                    grade_obj.update(value = request.POST[key])
         redirect_url = '/training_center/grade/' + str(pk) + '/' + str(batch_name) + '/'
         return redirect(redirect_url , msg='Grade Updated Successfully')
     
