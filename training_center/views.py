@@ -822,7 +822,7 @@ def all_grades(request, batch_name):
         args['msg']="No Records Found"
     return render(request, 'training_center/all_grades.html', args)
 
-# Feedback's
+# Feedback
 @login_required
 def feedback(request):
     args = {}

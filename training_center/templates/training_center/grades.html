@@ -8,6 +8,7 @@
 
 {% block content %}
 <div class="container">
+    <h3 class="center">Grades</h3>
     <br>
     <form name="new_trainee_form" method="POST" action="" onsubmit="return validateForm()" enctype="multipart/form-data">
         {% csrf_token %}
@@ -38,8 +39,46 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div style="float:left;" class="col s12 m4">
+            <a onclick="viewGradesCheck()" class="waves-effect waves-light btn-large blue">
+                <i class="material-icons right">remove_red_eye</i>
+                View
+            </a>
+        </div>
 
-    <div style="float:left;">
+        <div class="col s12 m3">
+            <a class="waves-effect waves-light btn-large blue left">
+                <i class="material-icons right">add</i>
+                Add
+            </a>
+        </div>
+
+        <div class="col s12 m5">
+            <div style="float:right;">
+                <div style="float:left;">
+                    <!-- TXT File Exported From Exam View -->
+                    <div class="file-field input-field">
+                        <div>
+                            <input type="file" accept=".TXT" name="txt_file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input id="fileUpload" class="file-path validate" type="text" placeholder="Upload Result File Here">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="float:left;">
+                    <button class="btn btn-large blue waves-effect waves-light right" type="submit" name="action">Import
+                        <i class="material-icons right">cloud_upload</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div style="float:left;">
         <div class="col s12 m6">
             <a onclick="viewGradesCheck()" class="waves-effect waves-light btn-large blue">
                 <i class="material-icons right">remove_red_eye</i>
@@ -50,7 +89,6 @@
     
     <div style="float:right;">
         <div style="float:left;">
-            <!-- TXT File Exported From Exam View -->
             <div class="file-field input-field">
                 <div>
                   <input type="file" accept=".TXT" name="txt_file">
@@ -66,7 +104,7 @@
                 <i class="material-icons right">cloud_upload</i>
             </button>
         </div>
-    </div>
+    </div> -->
 </form>
 </div>
 {% endblock content %}

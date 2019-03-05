@@ -48,7 +48,7 @@
                         
                         <th class="right" style="width: 70px;">
                             <div class="input-field">
-                                <input type="number" name="subj_ident_{{result.subject_pk}}" value="{{ result.grade }}">
+                                <input type="number" name="subj_ident_{{result.subject_pk}}" value="{{ result.grade }}" min="0" max="100.0" step="0.01">
                             </div>
                         </th>
                         <th>
