@@ -43,7 +43,11 @@
                             {{ subject_name }}
                         </th>
                         
-                        <th class="right">{{ result.grade }}%
+                        {% if result.has_data %}
+                            <th class="right">{{ result.grade }}%
+                        {% else %}
+                            <th class="right">-
+                        {% endif %}
                         </th>
                     </tr>
                 </div>
