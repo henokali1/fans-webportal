@@ -248,6 +248,7 @@ def get_course_grades(pk, batch_name):
         subjects[subject_obj.subject_name] = {
             'grade': grade_val,
             'subject_pk': subject_obj.pk,
+            'has_data': (str(grade_val) != '0')
         }
     return subjects
 
