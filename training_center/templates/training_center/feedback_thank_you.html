@@ -22,26 +22,4 @@
     Materialize.toast('{{ msg }}', 8000, 'rounded');
 </script>
 {% endif %}
-
-<script>
-    function verifyForm(){
-        subject_type_val = $('#subject_type option:selected').text()
-        course_details_val = $('#course_details').val()
-        course_name_val = $('#course_name').val()
-        course_subjects_val = $('#course_subjects').val()
-        if (course_details_val == ''){
-            Materialize.toast('Please Fill Course Details', 8000, 'rounded');
-            return false
-        }
-        if (course_name_val == ''){
-            Materialize.toast('Please Fill Course Name', 8000, 'rounded');
-            return false
-        }
-        if (course_subjects_val == ''){
-            Materialize.toast('Please Select Subjects', 8000, 'rounded');
-            return false
-        }
-    }
-</script>
-
 {% endblock script_tag %}

@@ -897,10 +897,13 @@ def feedback(request):
     return render(request, 'training_center/feedback.html', args)
 
 # Trainee Feedback Form
-def trainee_feedback_form(request, pk, batch_name, subject_name):
-    args={
-        'subject_name': subject_name,
-    }
+def trainee_feedback_form(request, pk, batch_name):
+    try:
+        args={
+            'corse_name': ClassName.objects.all().filter(class_name=batch_name)[0].courses,
+        }
+    except:
+        args={'corse_name': ''}
     return render(request, 'training_center/trainee_feedback_form.html', args)
 
 # Trainee Feedback Thank You Page
