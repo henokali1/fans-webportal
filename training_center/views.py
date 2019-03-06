@@ -822,11 +822,6 @@ def all_grades(request, batch_name):
         args['msg']="No Records Found"
     return render(request, 'training_center/all_grades.html', args)
 
-# Feedback
-@login_required
-def feedback(request):
-    args = {}
-    return render(request, 'training_center/feedback.html', args)
 
 # Import Grades (Exported From Exam View Text File)
 def import_grades(request):
@@ -894,3 +889,16 @@ def edit_grades(request, pk, batch_name):
         args['attendance'] = 0
     
     return render(request, 'training_center/edit_grades.html', args)
+
+# Feedback
+@login_required
+def feedback(request):
+    args = {}
+    return render(request, 'training_center/feedback.html', args)
+
+# Trainee Feedback Form
+def trainee_feedback_form(request, pk, batch_name, subject_name):
+    args={
+        'subject_name': subject_name,
+    }
+    return render(request, 'training_center/trainee_feedback_form.html', args)

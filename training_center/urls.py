@@ -29,9 +29,10 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard.html'),
     path('grades/', views.grades, name='grades.html'),
     path('grades/all/<str:batch_name>/', views.all_grades, name='all_grades.html'),
-    path('feedback/', views.feedback, name='feedback.html'),
     path('grade/<int:pk>/<str:batch_name>/', views.trainee_grade, name='trainee_grade.html'),
     path('grade/<int:pk>/<str:batch_name>/edit/', views.edit_grades, name='edit_grades.html'),
     path('grades/import/', views.import_grades, name='import_grades.html'),
+    path('feedback/', views.feedback, name='feedback.html'),
+    path('feedback/<int:pk>/<str:batch_name>/<str:subject_name>/', views.trainee_feedback_form, name='trainee_feedback_form.html'),
     path('icons/', views.icons, name='icons.html'),
 ]

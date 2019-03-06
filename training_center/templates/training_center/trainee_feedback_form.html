@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Feedback {% endblock title %}
+{% block title %} Feedback ({{ subject_name }}) {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
@@ -8,8 +8,11 @@
 
 {% block content %}
 <div class="container">
+    <h3 class="center">Feedback Form ({{ subject_name }})</h3>
     <br>
-    <a class="btn blue btn-large" href="23/batch/subject/">Feedback Form</a>
+    <form name="new_trainee_form" method="POST" action="" onsubmit="return validateForm()" enctype="multipart/form-data">
+        {% csrf_token %}
+    </form>
 </div>
 {% endblock content %}
 
