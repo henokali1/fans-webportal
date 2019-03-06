@@ -12,6 +12,760 @@
     <br>
     <form name="new_trainee_form" method="POST" action="" onsubmit="return validateForm()" enctype="multipart/form-data">
         {% csrf_token %}
+        <h5 class="center">Administration</h5>
+        <div class="row">
+            <div class="col s12">
+                <span>1. Did you find your Induction Day useful?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q1" id="q1a1" value="Poor">
+                <label for="q1a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q1" id="q1a2" value="Good">
+                <label for="q1a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q1" id="q1a3" value="Very Good">
+                <label for="q1a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q1" id="q1a4" value="Excellent">
+                <label for="q1a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>2. Did you find the Administration staff customer friendly and accessible?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q2" id="q2a1" value="Poor">
+                <label for="q2a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q2" id="q2a2" value="Good">
+                <label for="q2a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q2" id="q2a3" value="Very Good">
+                <label for="q2a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q2" id="q2a4" value="Excellent">
+                <label for="q2a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <h5 class="center">Accounts</h5>
+        <div class="row">
+            <div class="col s12">
+                <span>3. Did you find the Accounts department to be efficient when dealing with your account?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q3" id="q3a1" value="Poor">
+                <label for="q3a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q3" id="q3a2" value="Good">
+                <label for="q3a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q3" id="q3a3" value="Very Good">
+                <label for="q3a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q3" id="q3a4" value="Excellent">
+                <label for="q3a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>4. Did you experience any problems with the handling of your account?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q4" id="q4a1" value="Poor">
+                <label for="q4a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q4" id="q4a2" value="Good">
+                <label for="q4a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q4" id="q4a3" value="Very Good">
+                <label for="q4a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q4" id="q4a4" value="Excellent">
+                <label for="q4a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>5. Did you find the accounts department customer friendly?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q5" id="q5a1" value="Poor">
+                <label for="q5a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q5" id="q5a2" value="Good">
+                <label for="q5a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q5" id="q5a3" value="Very Good">
+                <label for="q5a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q5" id="q5a4" value="Excellent">
+                <label for="q5a4">Excellent</label>
+            </div>
+        </div>
+
+        <h5 class="center">Theory training </h5>
+        <div class="row">
+            <div class="col s12">
+                <span>6. Classroom size (both physical and for the number of students)</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q6" id="q6a1" value="Poor">
+                <label for="q6a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q6" id="q6a2" value="Good">
+                <label for="q6a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q6" id="q6a3" value="Very Good">
+                <label for="q6a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q6" id="q6a4" value="Excellent">
+                <label for="q6a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>7. Availability of restroom and refreshment facilities</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q7" id="q7a1" value="Poor">
+                <label for="q7a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q7" id="q7a2" value="Good">
+                <label for="q7a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q7" id="q7a3" value="Very Good">
+                <label for="q7a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q7" id="q7a4" value="Excellent">
+                <label for="q7a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>8. Quality of teaching aids – were they suitable? Could they be improved</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q8" id="q8a1" value="Poor">
+                <label for="q8a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q8" id="q8a2" value="Good">
+                <label for="q8a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q8" id="q8a3" value="Very Good">
+                <label for="q8a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q8" id="q8a4" value="Excellent">
+                <label for="q8a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>9. Quality of the Course Notes</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q9" id="q9a1" value="Poor">
+                <label for="q9a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q9" id="q9a2" value="Good">
+                <label for="q9a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q9" id="q9a3" value="Very Good">
+                <label for="q9a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q9" id="q9a4" value="Excellent">
+                <label for="q9a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>10. How did you find your weekly / daily programme?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q10" id="q10a1" value="Poor">
+                <label for="q10a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q10" id="q10a2" value="Good">
+                <label for="q10a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q10" id="q10a3" value="Very Good">
+                <label for="q10a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q10" id="q10a4" value="Excellent">
+                <label for="q10a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <h5 class="center">ATC instructors  </h5>
+        <div class="row">
+            <div class="col s12">
+                <span>11. Were the instructors effective in their teaching?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q11" id="q11a1" value="Poor">
+                <label for="q11a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q11" id="q11a2" value="Good">
+                <label for="q11a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q11" id="q11a3" value="Very Good">
+                <label for="q11a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q11" id="q11a4" value="Excellent">
+                <label for="q11a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>12. Did they empathies with the students?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q12" id="q12a1" value="Poor">
+                <label for="q12a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q12" id="q12a2" value="Good">
+                <label for="q12a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q12" id="q12a3" value="Very Good">
+                <label for="q12a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q12" id="q12a4" value="Excellent">
+                <label for="q12a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>13. Did they cover the entire syllabus as per the Learning Objectives?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q13" id="q13a1" value="Poor">
+                <label for="q13a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q13" id="q13a2" value="Good">
+                <label for="q13a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q13" id="q13a3" value="Very Good">
+                <label for="q13a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q13" id="q13a4" value="Excellent">
+                <label for="q13a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>14. If you failed an examination, do you feel that the follow up by the 
+                    instructors &staff was sufficient to help you through the rest?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q14" id="q14a1" value="Poor">
+                <label for="q14a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q14" id="q14a2" value="Good">
+                <label for="q14a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q14" id="q14a3" value="Very Good">
+                <label for="q14a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q14" id="q14a4" value="Excellent">
+                <label for="q14a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>15. Did you have adequate accessibility to your instructors and senior staff?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q15" id="q15a1" value="Poor">
+                <label for="q15a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q15" id="q15a2" value="Good">
+                <label for="q15a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q15" id="q15a3" value="Very Good">
+                <label for="q15a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q15" id="q15a4" value="Excellent">
+                <label for="q15a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>16. Were you happy with the programme of training and were you kept informed of your Training programme?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q16" id="q16a1" value="Poor">
+                <label for="q16a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q16" id="q16a2" value="Good">
+                <label for="q16a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q16" id="q16a3" value="Very Good">
+                <label for="q16a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q16" id="q16a4" value="Excellent">
+                <label for="q16a4">Excellent</label>
+            </div>
+        </div>
+
+        <h5 class="center">Practical Training</h5>
+        <div class="row">
+            <div class="col s12">
+                <span>17. How did you find the practical training in terms of: Introductory briefings – 
+                    were they comprehensive enough?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q17" id="q17a1" value="Poor">
+                <label for="q17a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q17" id="q17a2" value="Good">
+                <label for="q17a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q17" id="q17a3" value="Very Good">
+                <label for="q17a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q17" id="q17a4" value="Excellent">
+                <label for="q17a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>18. Study Material – was it suitable? Could it be improved?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q18" id="q18a1" value="Poor">
+                <label for="q18a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q18" id="q18a2" value="Good">
+                <label for="q18a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q18" id="q18a3" value="Very Good">
+                <label for="q18a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q18" id="q18a4" value="Excellent">
+                <label for="q18a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>19. Did the pre- briefings prepare you sufficiently for every practical training?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q19" id="q19a1" value="Poor">
+                <label for="q19a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q19" id="q19a2" value="Good">
+                <label for="q19a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q19" id="q19a3" value="Very Good">
+                <label for="q19a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q19" id="q19a4" value="Excellent">
+                <label for="q19a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>20. Are you happy with the practical instruction that you received?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q20" id="q20a1" value="Poor">
+                <label for="q20a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q20" id="q20a2" value="Good">
+                <label for="q20a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q20" id="q20a3" value="Very Good">
+                <label for="q20a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q20" id="q20a4" value="Excellent">
+                <label for="q20a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>21. Were your post-ATC simulation de-briefs constructive?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q21" id="q21a1" value="Poor">
+                <label for="q21a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q21" id="q21a2" value="Good">
+                <label for="q21a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q21" id="q21a3" value="Very Good">
+                <label for="q21a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q21" id="q21a4" value="Excellent">
+                <label for="q21a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>22. Do you think you received adequate and comprehensive familiarization on the ATC Simulator?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q22" id="q22a1" value="Poor">
+                <label for="q22a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q22" id="q22a2" value="Good">
+                <label for="q22a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q22" id="q22a3" value="Very Good">
+                <label for="q22a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q22" id="q22a4" value="Excellent">
+                <label for="q22a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>23. Do you think the standard of briefing and instruction you received from 
+                    the ATC practical training instructors was to an adequate and high standard?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q23" id="q23a1" value="Poor">
+                <label for="q23a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q23" id="q23a2" value="Good">
+                <label for="q23a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q23" id="q23a3" value="Very Good">
+                <label for="q23a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="q23" id="q23a4" value="Excellent">
+                <label for="q23a4">Excellent</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <span>24. Were you happy with the practical training facilities?</span>
+            </div>
+            <br>
+            <br>
+            <!-- ANSWER RADIO BUTTONS -->
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="24" id="24a1" value="Poor">
+                <label for="24a1">Poor</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="24" id="24a2" value="Good">
+                <label for="24a2">Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="24" id="24a3" value="Very Good">
+                <label for="24a3">Very Good</label>
+            </div>
+
+            <div class="col s12 m3">
+                <input class="att_radio with-gap" type="radio" name="24" id="24a4" value="Excellent">
+                <label for="24a4">Excellent</label>
+            </div>
+        </div>
+
+        <h5 class="center">Do you have any suggestions?</h5>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col s12">
+                <!-- COURSE DESCRIPTION  -->
+                <div class="input-field">
+                    <textarea id="administration_suggestions" class="materialize-textarea" name="administration_suggestions"></textarea>
+                    <label for="administration_suggestions">Administration</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <!-- COURSE DESCRIPTION  -->
+                <div class="input-field">
+                    <textarea id="th_training_suggestions" class="materialize-textarea" name="th_training_suggestions"></textarea>
+                    <label for="th_training_suggestions">Theoretical Training</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <!-- COURSE DESCRIPTION  -->
+                <div class="input-field">
+                    <textarea id="pr_training_suggestions" class="materialize-textarea" name="pr_training_suggestions"></textarea>
+                    <label for="pr_training_suggestions">Practical Training</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <!-- COURSE DESCRIPTION  -->
+                <div class="input-field">
+                    <textarea id="constructive_training_suggestions" class="materialize-textarea" 
+                    name="constructive_training_suggestions"></textarea>
+                    <label for="constructive_training_suggestions">Do you have any further comments 
+                        that you feel would be constructive for future students?</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col s12">
+                <div>
+                    <input type="submit" value="Submit" class="btn right blue btn-large"  onclick="return verifyForm()">
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock content %}
