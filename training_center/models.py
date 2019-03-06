@@ -138,3 +138,41 @@ class Grade(models.Model):
     def __str__(self):
         return str(self.pk) + ' - ' + str(self.value) + ' - ' + str(self.trainee_pk) + ' - ' + str(self.batch) + ' - ' + str(self.subject)
     
+
+# Trainee Feedback
+class TraineeFeedback(models.Model):
+    date = models.DateTimeField(auto_now=True)
+    trainee_pk = models.CharField(max_length=100, default='')
+    batch = models.CharField(max_length=100, default='')
+    q1a = models.CharField(max_length=10, default='')
+    q2a = models.CharField(max_length=10, default='')
+    q3a = models.CharField(max_length=10, default='')
+    q4a = models.CharField(max_length=10, default='')
+    q5a = models.CharField(max_length=10, default='')
+    q6a = models.CharField(max_length=10, default='')
+    q7a = models.CharField(max_length=10, default='')
+    q8a = models.CharField(max_length=10, default='')
+    q9a = models.CharField(max_length=10, default='')
+    q10a = models.CharField(max_length=10, default='')
+    q11a = models.CharField(max_length=10, default='')
+    q12a = models.CharField(max_length=10, default='')
+    q13a = models.CharField(max_length=10, default='')
+    q14a = models.CharField(max_length=10, default='')
+    q15a = models.CharField(max_length=10, default='')
+    q16a = models.CharField(max_length=10, default='')
+    q17a = models.CharField(max_length=10, default='')
+    q18a = models.CharField(max_length=10, default='')
+    q19a = models.CharField(max_length=10, default='')
+    q20a = models.CharField(max_length=10, default='')
+    q21a = models.CharField(max_length=10, default='')
+    q22a = models.CharField(max_length=10, default='')
+    q23a = models.CharField(max_length=10, default='')
+    q24a = models.CharField(max_length=10, default='')
+
+    q25a = models.TextField(default='')
+    q26a = models.TextField(default='')
+    q27a = models.TextField(default='')
+    q28a = models.TextField(default='')
+
+    def __str__(self):
+        return str(self.pk) + ' - ' + str(self.trainee_pk) + ' - ' + self.batch
