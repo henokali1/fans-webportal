@@ -898,12 +898,12 @@ def feedback(request):
 
 # Trainee Feedback Form
 def trainee_feedback_form(request, pk, batch_name):
+    args = {}
     try:
-        args={
-            'corse_name': ClassName.objects.all().filter(class_name=batch_name)[0].courses,
-        }
+        args['corse_name'] = ClassName.objects.all().filter(class_name=batch_name)[0].courses
     except:
-        args={'corse_name': ''}
+        args['corse_name'] = 'corse_name'
+    
     return render(request, 'training_center/trainee_feedback_form.html', args)
 
 # Trainee Feedback Thank You Page
