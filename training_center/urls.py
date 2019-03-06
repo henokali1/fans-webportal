@@ -34,5 +34,6 @@ urlpatterns = [
     path('grades/import/', views.import_grades, name='import_grades.html'),
     path('feedback/', views.feedback, name='feedback.html'),
     path('feedback/<int:pk>/<str:batch_name>/<str:subject_name>/', views.trainee_feedback_form, name='trainee_feedback_form.html'),
+    path('feedback/thank_you/', views.feedback_thank_you, name='feedback_thank_you.html'),
     path('icons/', views.icons, name='icons.html'),
 ]

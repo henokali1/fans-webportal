@@ -902,3 +902,8 @@ def trainee_feedback_form(request, pk, batch_name, subject_name):
         'subject_name': subject_name,
     }
     return render(request, 'training_center/trainee_feedback_form.html', args)
+
+# Trainee Feedback Thank You Page
+def feedback_thank_you(request):
+    args={}
+    return render(request, 'training_center/feedback_thank_you.html', args)
