@@ -903,7 +903,46 @@ def trainee_feedback_form(request, pk, batch_name):
         args['corse_name'] = ClassName.objects.all().filter(class_name=batch_name)[0].courses
     except:
         args['corse_name'] = 'corse_name'
-    
+    if request.method == 'POST':
+        new_feedback = TraineeFeedback()
+
+        new_feedback.trainee_pk = pk
+        new_feedback.batch = batch_name
+        new_feedback.q1a = 'a1'
+        new_feedback.q2a = request.POST['q2']
+        new_feedback.q3a = request.POST['q3']
+        new_feedback.q4a = request.POST['q4']
+        new_feedback.q5a = request.POST['q5']
+        new_feedback.q6a = request.POST['q6']
+        new_feedback.q7a = request.POST['q7']
+        new_feedback.q8a = request.POST['q8']
+        new_feedback.q9a = request.POST['q9']
+        new_feedback.q10a = request.POST['q10']
+        new_feedback.q11a = request.POST['q11']
+        new_feedback.q12a = request.POST['q12']
+        new_feedback.q13a = request.POST['q13']
+        new_feedback.q14a = request.POST['q14']
+        new_feedback.q15a = request.POST['q15']
+        new_feedback.q16a = request.POST['q16']
+        new_feedback.q17a = request.POST['q17']
+        new_feedback.q18a = request.POST['q18']
+        new_feedback.q19a = request.POST['q19']
+        new_feedback.q20a = request.POST['q20']
+        new_feedback.q21a = request.POST['q21']
+        new_feedback.q22a = request.POST['q22']
+        new_feedback.q23a = request.POST['q23']
+        new_feedback.q24a = request.POST['q24']
+
+        new_feedback.q25a = request.POST['administration_suggestions']
+        new_feedback.q26a = request.POST['th_training_suggestions']
+        new_feedback.q27a = request.POST['pr_training_suggestions']
+        new_feedback.q28a = request.POST['constructive_training_suggestions']
+
+        print(request.POST['q24'])
+        new_feedback.save()
+
+
+
     return render(request, 'training_center/trainee_feedback_form.html', args)
 
 # Trainee Feedback Thank You Page

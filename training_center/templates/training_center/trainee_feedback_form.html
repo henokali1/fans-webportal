@@ -693,22 +693,22 @@
             <br>
             <!-- ANSWER RADIO BUTTONS -->
             <div class="col s12 m3">
-                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="24" id="24a1" value="Poor">
+                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="q24" id="24a1" value="Poor">
                 <label for="24a1">Poor</label>
             </div>
 
             <div class="col s12 m3">
-                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="24" id="24a2" value="Good">
+                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="q24" id="24a2" value="Good">
                 <label for="24a2">Good</label>
             </div>
 
             <div class="col s12 m3">
-                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="24" id="24a3" value="Very Good">
+                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="q24" id="24a3" value="Very Good">
                 <label for="24a3">Very Good</label>
             </div>
 
             <div class="col s12 m3">
-                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="24" id="24a4" value="Excellent">
+                <input onclick="radioCallback(24)" class="fed_radio with-gap" type="radio" name="q24" id="24a4" value="Excellent">
                 <label for="24a4">Excellent</label>
             </div>
         </div>
@@ -789,7 +789,6 @@
     function removeItm(item){
         var index = all_ans_ids.indexOf(item);
         if (index !== -1) all_ans_ids.splice(index, 1);
-        console.log(all_ans_ids)
     }
 
     function verifyForm(){
