@@ -824,6 +824,7 @@ def all_grades(request, batch_name):
 
 
 # Import Grades (Exported From Exam View Text File)
+@login_required
 def import_grades(request):
     args={}
     if request.method == 'POST':
@@ -908,7 +909,7 @@ def trainee_feedback_form(request, pk, batch_name):
 
         new_feedback.trainee_pk = pk
         new_feedback.batch = batch_name
-        new_feedback.q1a = 'a1'
+        new_feedback.q1a = request.POST['q1']
         new_feedback.q2a = request.POST['q2']
         new_feedback.q3a = request.POST['q3']
         new_feedback.q4a = request.POST['q4']
@@ -941,11 +942,14 @@ def trainee_feedback_form(request, pk, batch_name):
         print(request.POST['q24'])
         new_feedback.save()
 
-
-
     return render(request, 'training_center/trainee_feedback_form.html', args)
 
 # Trainee Feedback Thank You Page
 def feedback_thank_you(request):
     args={}
     return render(request, 'training_center/feedback_thank_you.html', args)
+
+# Create New Survey Invitation
+def new_feedback(request):
+    args = {}
+    return render(request, 'training_center/new_feedback.html', args)
