@@ -1,0 +1,35 @@
+{% extends 'cns_base.html' %}
+{% load static %}
+{% block title %} Email Feedback {% endblock title %}
+
+{% block linktag %}
+<link rel="stylesheet" type="text/css" href="{% static "pages/css/mso.css" %}"> {% endblock linktag %}
+
+
+{% block content %}
+    <div class="container">
+        {% if email_adds %}
+        <br>
+        <br>
+        <h5>Email sent to the following trainees:</h5>
+        <br>
+        <br>
+            {% for email in email_adds %}
+            <ul>
+                <li>
+                    <span>{{ email }}</span>
+                </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% block script_tag %}
+<script src="{% static "pages/js/mso.js" %}" type="text/javascript"></script>
+{% if msg %}
+<script>
+    Materialize.toast('{{ msg }}', 8000, 'rounded');
+</script>
+{% endif %}
+{% endblock script_tag %}

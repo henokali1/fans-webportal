@@ -271,6 +271,10 @@ def get_course_name(batch_name):
     except:
         return -1
 
-# Returns a list of all servays made so far
-def get_all_serveys():
-    all_ser = TraineeFeedback.objects.all()
+# Returns email addresses of a given batch
+def get_email_addresses(batch):
+    emails = []
+    trainees = EnrollTrainee.objects.all().filter(batch=batch)
+    for i in trainees:
+        emails.append(i.email)
+    return emails

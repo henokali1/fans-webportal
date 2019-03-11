@@ -36,5 +36,7 @@ urlpatterns = [
     path('feedback/<int:pk>/<str:batch_name>/', views.trainee_feedback_form, name='trainee_feedback_form.html'),
     path('feedback/thank_you/', views.feedback_thank_you, name='feedback_thank_you.html'),
     path('feedback/new/', views.new_feedback, name='new_feedback.html'),
+    path('feedback/<str:batch_name>/', views.feedback_detail, name='feedback_detail.html'),
+    path('feedback/email/<str:batch_name>/', views.feedback_email, name='feedback_email.html'),
     path('icons/', views.icons, name='icons.html'),
 ]

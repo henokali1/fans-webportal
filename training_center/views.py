@@ -902,10 +902,6 @@ def feedback(request):
             'batch': i.batch,
             'course_code': helper.get_course_name(i.batch),
         }
-
-        for i in serveys:
-            print(serveys[i]['course_code'])
-
     args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
 
@@ -963,5 +959,19 @@ def feedback_thank_you(request):
 
 # Create New Survey Invitation
 def new_feedback(request):
-    args = {}
+    all_batches = ClassName.objects.all()
+    batch_names = [] 
+    for i in all_batches:
+        batch_names.append(i.class_name)
+    args = {'batch_names': batch_names}
     return render(request, 'training_center/new_feedback.html', args)
+
+# Feedback/Servey Detail
+def feedback_detail(request, batch_name):
+    args={}
+    return render(request, 'training_center/feedback_detail.html', args)
+
+# Sends servey email for the given batch name
+def feedback_email(request, batch_name):
+    args={'email_adds': helper.get_email_addresses(batch_name)}
+    return render(request, 'training_center/feedback_email.html', args)
