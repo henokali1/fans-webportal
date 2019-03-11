@@ -894,7 +894,19 @@ def edit_grades(request, pk, batch_name):
 # Feedback
 @login_required
 def feedback(request):
-    args = {}
+    serveys  ={}
+    all_serveys = TraineeFeedback.objects.all()
+    for i in all_serveys:
+        serveys[i.pk] = {
+            'pk': i.pk,
+            'batch': i.batch,
+            'course_code': helper.get_course_name(i.batch),
+        }
+
+        for i in serveys:
+            print(serveys[i]['course_code'])
+
+    args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
 
 # Trainee Feedback Form

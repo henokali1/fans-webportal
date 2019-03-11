@@ -9,13 +9,35 @@
 {% block content %}
 <div class="container">
     <br>
-    <a class="btn blue btn-large" href="86/BT-Q2-2019">Feedback Form</a>
+    <a href="86/BT-Q2-2019">Feedback Form</a>
     <br>
-    <br>
-    <div>
-        <a href="new/" class="waves-effect waves-light btn-large blue">
-            <i class="material-icons right">add</i>
-            New Survey
+
+
+    <h4 class="center">All Serveys</h4>
+    <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
+    <div >
+            <table class="bordered highlight responsive-table" style="width:50%; margin-left: auto; margin-right: auto;">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th class="right">Batch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, val in all_serveys.items %}
+                        <tr>
+                            <th><a href="{{ key }}/">{{ val.course_code }}</a></th>
+                            <th class="right"><a href="{{ key }}/">{{val.batch}}</a></th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large blue tooltipped" data-tooltip="New Survey" href="new/"
+            data-position="left">
+            <i class="large material-icons" id="fab_ico">add</i>
         </a>
     </div>
 </div>

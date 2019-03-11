@@ -263,3 +263,14 @@ def get_overall_grade(trainee_pk, batch_name):
     avg = round(total/num_subjects, 2)
     return avg
         
+# Returns Course Name From a Given Batch Name
+def get_course_name(batch_name):
+    try:
+        batch_obj = ClassName.objects.all().filter(class_name=batch_name)[0]
+        return batch_obj.courses
+    except:
+        return -1
+
+# Returns a list of all servays made so far
+def get_all_serveys():
+    all_ser = TraineeFeedback.objects.all()
