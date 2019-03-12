@@ -906,7 +906,7 @@ def feedback(request):
     return render(request, 'training_center/feedback.html', args)
 
 # Trainee Feedback Form
-def trainee_feedback_form(request, pk, batch_name):
+def feedback_form(request, pk, batch_name):
     args = {}
     try:
         args['corse_name'] = ClassName.objects.all().filter(class_name=batch_name)[0].courses
@@ -950,7 +950,7 @@ def trainee_feedback_form(request, pk, batch_name):
         print(request.POST['q24'])
         new_feedback.save()
 
-    return render(request, 'training_center/trainee_feedback_form.html', args)
+    return render(request, 'training_center/feedback_form.html', args)
 
 # Trainee Feedback Thank You Page
 def feedback_thank_you(request):
@@ -968,7 +968,7 @@ def new_feedback(request):
 
 # Feedback/Servey Detail
 def feedback_detail(request, batch_name):
-    args={}
+    args={'batch': batch_name}
     return render(request, 'training_center/feedback_detail.html', args)
 
 # Sends servey email for the given batch name
