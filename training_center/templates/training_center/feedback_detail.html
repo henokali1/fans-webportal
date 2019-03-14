@@ -479,10 +479,10 @@
     function drawChart() {
       var data = google.visualization.arrayToDataTable([
       ['', ''],
-      ['Poor', 2],
-      ['Good', 4],
-      ['Very Good', 9],
-      ['Excellent', 15],
+      ['Poor', {{chart_cntr.Poor}}],
+      ['Good', {{chart_cntr.Good}}],
+      ['Very Good', {{chart_cntr.vg}}],
+      ['Excellent', {{chart_cntr.Excellent}}],
     ]);
     
       // Optional; add a title and set the width and height of the chart

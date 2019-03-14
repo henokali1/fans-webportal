@@ -275,6 +275,32 @@ def get_course_name(batch_name):
 def get_email_addresses(batch):
     emails = []
     trainees = EnrollTrainee.objects.all().filter(batch=batch)
-    for i in trainees:
-        emails.append(i.email)
+    emails = [i.email for i in trainees]
     return emails
+
+def ans_cntr(batch):
+    feedback_obj = TraineeFeedback.objects.filter(batch=batch).values()
+    
+    chart_cntr = b = {'Poor':0, 'Good':0, 'Very Good':0, 'Excellent':0}
+    
+    cntr = {
+        'q6a': [], 'q1a': [], 'q12a': [], 'q23a': [], 'q19a': [],
+        'q7a': [], 'q21a': [], 'q14a': [], 'q18a': [],
+        'q9a': [], 'q5a': [], 'q22a': [], 'q3a': [],
+        'q4a': [], 'q16a': [], 'q24a': [], 'q8a': [], 'q26a': [], 'q2a': [],
+        'q28a': [], 'q13a': [], 'q15a': [], 'q11a': [], 'q25a': [],
+        'q20a': [], 'q27a': [], 'q17a': [], 'q10a': []
+    }
+
+    for i in feedback_obj:
+        for j in i:
+            if j in cntr:
+                cntr[j].append(i[j])
+    
+    for q in cntr:
+        for val in cntr[q]:
+            if val in chart_cntr:
+                chart_cntr[val] += 1
+
+    chart_cntr['vg']=chart_cntr['Very Good']
+    return {'chart_cntr':chart_cntr}
