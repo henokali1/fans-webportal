@@ -278,11 +278,25 @@ def get_email_addresses(batch):
     emails = [i.email for i in trainees]
     return emails
 
+#Returns Suggession Answers
+def get_suggestion_ans(serv_dict):
+    suggestions = {}
+    sug_qs = ['q25a', 'q26a', 'q27a', 'q28a']
+    for i in serv_dict:
+        if i in sug_qs:
+            suggestions[i]=serv_dict[i]
+    return suggestions
+    
 def ans_cntr(batch):
     feedback_obj = TraineeFeedback.objects.filter(batch=batch).values()
     
-    chart_cntr = b = {'Poor':0, 'Good':0, 'Very Good':0, 'Excellent':0}
-    
+    chart_cntr = {'Poor':0, 'Good':0, 'Very Good':0, 'Excellent':0}
+
+    q25a = []
+    q26a = []
+    q27a = []
+    q28a = []
+
     cntr = {
         'q6a': [], 'q1a': [], 'q12a': [], 'q23a': [], 'q19a': [],
         'q7a': [], 'q21a': [], 'q14a': [], 'q18a': [],
@@ -303,4 +317,8 @@ def ans_cntr(batch):
                 chart_cntr[val] += 1
 
     chart_cntr['vg']=chart_cntr['Very Good']
-    return {'chart_cntr':chart_cntr}
+    for i in cntr:
+        if i == 'q25a':
+            q25a = cntr[i]
+    
+    return {'chart_cntr':chart_cntr, 'suggestions':get_suggestion_ans(cntr)}

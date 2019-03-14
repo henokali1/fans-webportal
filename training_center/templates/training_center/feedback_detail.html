@@ -390,53 +390,26 @@
             <br>
             <h5>Administration</h5>
             <dl style="margin-left:20px;">
-                <li>
-                    <span>Lorem, ipsum dolor sit amet consectetur adipisicing.</span>
-                </li>
-                <li>
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </li>
-                <li>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo.</span>
-                </li>
-                <li>
-                    <span>Lorem, ipsum dolor.</span>
-                </li>
+                {% for i in suggestions.q25a %}
+                    <li>{{i}}</li>
+                {% endfor %}
             </dl>
     
             <div class="row">
                 <h5>Theoretical Training</h5>
                 <dl style="margin-left:20px;">
-                    <li>
-                        <span>Lorem, ipsum dolor sit amet consectetur adipisicing.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo.</span>
-                    </li>
-                    <li>
-                        <span>Lorem, ipsum dolor.</span>
-                    </li>
+                    {% for i in suggestions.q26a %}
+                        <li>{{i}}</li>
+                    {% endfor %}
                 </dl>
             </div>
     
             <div class="row">
                 <h5>Practical Training</h5>
                 <dl style="margin-left:20px;">
-                    <li>
-                        <span>Lorem, ipsum dolor sit amet consectetur adipisicing.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo.</span>
-                    </li>
-                    <li>
-                        <span>Lorem, ipsum dolor.</span>
-                    </li>
+                    {% for i in suggestions.q27a %}
+                        <li>{{i}}</li>
+                    {% endfor %}
                 </dl>
             </div>
     
@@ -444,18 +417,9 @@
                 <h5>Do you have any further comments 
                     that you feel would be constructive for future students?</h5>
                 <dl style="margin-left:20px;">
-                    <li>
-                        <span>Lorem, ipsum dolor sit amet consectetur adipisicing.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet.</span>
-                    </li>
-                    <li>
-                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo.</span>
-                    </li>
-                    <li>
-                        <span>Lorem, ipsum dolor.</span>
-                    </li>
+                    {% for i in suggestions.q28a %}
+                        <li>{{i}}</li>
+                    {% endfor %}
                 </dl>
             </div>
 </div>
