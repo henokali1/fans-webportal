@@ -972,6 +972,7 @@ def feedback_detail(request, batch_name):
     ans = helper.ans_cntr(batch_name)
     args['chart_cntr'] = ans['chart_cntr']
     args['suggestions'] = ans['suggestions']
+    args['rad_btn_ans'] = ans['rad_btn_ans']
     return render(request, 'training_center/feedback_detail.html', args)
 
 # Sends servey email for the given batch name

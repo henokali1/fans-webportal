@@ -278,7 +278,7 @@ def get_email_addresses(batch):
     emails = [i.email for i in trainees]
     return emails
 
-#Returns Suggession Answers
+# Returns Suggession Answers for a Given Feedback Dict
 def get_suggestion_ans(serv_dict):
     suggestions = {}
     sug_qs = ['q25a', 'q26a', 'q27a', 'q28a']
@@ -286,16 +286,38 @@ def get_suggestion_ans(serv_dict):
         if i in sug_qs:
             suggestions[i]=serv_dict[i]
     return suggestions
-    
+
+# Returns Radio Button Answers for a Given Feedback Dict
+def get_red_ans(serv_dict):
+    rad_but_ans = {
+        'q6a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q1a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q12a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q23a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q19a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q7a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q21a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q14a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q18a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q9a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q5a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q22a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q3a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q4a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q16a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q24a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q8a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q2a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q13a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q15a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q11a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q20a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+        'q17a': {'ex':0, 'vg':0, 'gd':0, 'pr':0}, 'q10a': {'ex':0, 'vg':0, 'gd':0, 'pr':0},
+    }
+
+    for i in serv_dict:
+        try:
+            rad_but_ans[i]['ex'] = serv_dict[i].count('Excellent')
+            rad_but_ans[i]['vg'] = serv_dict[i].count('Very Good')
+            rad_but_ans[i]['gd'] = serv_dict[i].count('Good')
+            rad_but_ans[i]['pr'] = serv_dict[i].count('Poor')
+        except:
+            pass
+    return rad_but_ans
+
 def ans_cntr(batch):
     feedback_obj = TraineeFeedback.objects.filter(batch=batch).values()
     
     chart_cntr = {'Poor':0, 'Good':0, 'Very Good':0, 'Excellent':0}
-
-    q25a = []
-    q26a = []
-    q27a = []
-    q28a = []
 
     cntr = {
         'q6a': [], 'q1a': [], 'q12a': [], 'q23a': [], 'q19a': [],
@@ -315,10 +337,5 @@ def ans_cntr(batch):
         for val in cntr[q]:
             if val in chart_cntr:
                 chart_cntr[val] += 1
-
-    chart_cntr['vg']=chart_cntr['Very Good']
-    for i in cntr:
-        if i == 'q25a':
-            q25a = cntr[i]
-    
-    return {'chart_cntr':chart_cntr, 'suggestions':get_suggestion_ans(cntr)}
+    chart_cntr['vg'] = chart_cntr['Very Good']
+    return {'chart_cntr':chart_cntr, 'suggestions':get_suggestion_ans(cntr), 'rad_btn_ans': get_red_ans(cntr)}
