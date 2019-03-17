@@ -897,11 +897,15 @@ def feedback(request):
     serveys  ={}
     all_serveys = TraineeFeedback.objects.all()
     for i in all_serveys:
-        serveys[i.pk] = {
-            'pk': i.pk,
-            'batch': i.batch,
-            'course_code': helper.get_course_name(i.batch),
-        }
+        if not i.batch in u_batches:
+            u_batches.append(i.batch)
+            serveys[i.pk] = {
+                'pk': i.pk,
+                'batch': i.batch,
+                'course_code': helper.get_course_name(i.batch),
+            }
+        if not i.pk in u_pk:
+            u_pk.append(i.pk)
     args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
 

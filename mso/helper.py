@@ -314,6 +314,7 @@ def get_red_ans(serv_dict):
             pass
     return rad_but_ans
 
+# Returns a dict of counted servey answers for a given batch
 def ans_cntr(batch):
     feedback_obj = TraineeFeedback.objects.filter(batch=batch).values()
     
