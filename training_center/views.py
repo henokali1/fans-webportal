@@ -904,7 +904,7 @@ def feedback(request):
                 'pk': i.pk,
                 'batch': i.batch,
                 'course_code': helper.get_course_name(i.batch),
-                'tot': len(TraineeFeedback.objects.all().filter(batch=i.batch))
+                'tot': len(TraineeFeedback.objects.all().filter(batch=i.batch)),
             }
     args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
