@@ -895,6 +895,7 @@ def edit_grades(request, pk, batch_name):
 @login_required
 def feedback(request):
     serveys  ={}
+    u_batches = []
     all_serveys = TraineeFeedback.objects.all()
     for i in all_serveys:
         if not i.batch in u_batches:
@@ -904,8 +905,6 @@ def feedback(request):
                 'batch': i.batch,
                 'course_code': helper.get_course_name(i.batch),
             }
-        if not i.pk in u_pk:
-            u_pk.append(i.pk)
     args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
 
