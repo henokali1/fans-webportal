@@ -895,11 +895,9 @@ def edit_grades(request, pk, batch_name):
 @login_required
 def feedback(request):
     serveys  ={}
-    u_batches = []
     all_serveys = TraineeFeedback.objects.all()
     for i in all_serveys:
         if not i.batch in u_batches:
-            u_batches.append(i.batch)
             serveys[i.pk] = {
                 'pk': i.pk,
                 'batch': i.batch,
