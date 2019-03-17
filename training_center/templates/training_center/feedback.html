@@ -20,14 +20,16 @@
                 <thead>
                     <tr>
                         <th>Batch</th>
-                        <th class="right">Course</th>
+                        <th class="center">Course</th>
+                        <th class="right">Total Responses</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for key, val in all_serveys.items %}
                         <tr>
                             <th><a href="{{ val.batch }}/">{{val.batch}}</a></th>
-                            <th class="right"><a href="{{ val.batch }}/">{{ val.course_code }}</a></th>
+                            <th class="center"><a href="{{ val.batch }}/">{{ val.course_code }}</a></th>
+                            <th class="right"><a href="{{ val.batch }}/">{{val.tot}}</a></th>
                         </tr>
                     {% endfor %}
                 </tbody>

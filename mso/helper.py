@@ -340,3 +340,12 @@ def ans_cntr(batch):
                 chart_cntr[val] += 1
     chart_cntr['vg'] = chart_cntr['Very Good']
     return {'chart_cntr':chart_cntr, 'suggestions':get_suggestion_ans(cntr), 'rad_btn_ans': get_red_ans(cntr)}
+
+# Returns total count of trainees of a servey for a given batch
+def total_trainees(batch):
+    tot = len(TraineeFeedback.objects.all().filter(batch=batch))
+    if tot < 2:
+        return '{} Response'.format(tot)
+    else:
+        return '{} Responses'.format(tot)
+    return(len())

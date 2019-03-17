@@ -896,12 +896,15 @@ def edit_grades(request, pk, batch_name):
 def feedback(request):
     serveys  ={}
     all_serveys = TraineeFeedback.objects.all()
+    u_batches = []
     for i in all_serveys:
         if not i.batch in u_batches:
+            u_batches.append(i.batch)
             serveys[i.pk] = {
                 'pk': i.pk,
                 'batch': i.batch,
                 'course_code': helper.get_course_name(i.batch),
+                'tot': len(TraineeFeedback.objects.all().filter(batch=i.batch))
             }
     args = {'all_serveys': serveys}
     return render(request, 'training_center/feedback.html', args)
@@ -974,6 +977,7 @@ def feedback_detail(request, batch_name):
     args['chart_cntr'] = ans['chart_cntr']
     args['suggestions'] = ans['suggestions']
     args['rad_btn_ans'] = ans['rad_btn_ans']
+    args['resp'] = helper.total_trainees(batch_name)
     return render(request, 'training_center/feedback_detail.html', args)
 
 # Sends servey email for the given batch name
