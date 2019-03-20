@@ -988,6 +988,7 @@ def feedback_email(request, batch_name):
 def c(request):
     args={
         'name': 'Test Student',
+        'course_name': '058 ATC Gsllae Apttaea',
         'date_from': '07-01-2019',
         'date_to': '21-05-2019',
         'hrs_training': 56,
