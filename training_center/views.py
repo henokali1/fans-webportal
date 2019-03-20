@@ -984,3 +984,12 @@ def feedback_detail(request, batch_name):
 def feedback_email(request, batch_name):
     args={'email_adds': helper.get_email_addresses(batch_name)}
     return render(request, 'training_center/feedback_email.html', args)
+
+def c(request):
+    args={
+        'name': 'Test Student',
+        'date_from': '07-01-2019',
+        'date_to': '21-05-2019',
+        'hrs_training': 56,
+    }
+    return render(request, 'training_center/certificate_pdf.html', args)

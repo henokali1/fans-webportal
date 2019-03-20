@@ -38,5 +38,6 @@ urlpatterns = [
     path('feedback/new/', views.new_feedback, name='new_feedback.html'),
     path('feedback/<str:batch_name>/', views.feedback_detail, name='feedback_detail.html'),
     path('feedback/email/<str:batch_name>/', views.feedback_email, name='feedback_email.html'),
+    path('c/', views.c, name='certificate_pdf.html'),
     path('icons/', views.icons, name='icons.html'),
 ]

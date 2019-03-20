@@ -1,0 +1,124 @@
+{% load static %}
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <link rel="shortcut icon" href="{% static "pages/img/fans-logo.png" %}" />
+	<title>Certificate - {{name}}</title>
+	<script src="{% static "pages/js/jspdf.min.js" %}" type="text/javascript"></script>
+	<script src="{% static "pages/js/jquery-3.2.1.min.js" %}" type="text/javascript"></script>
+	<script type="text/javascript">
+		(window.onload = function (api, $) {
+			'use strict';
+			api.writeText = function (x, y, text, options) {
+				options = options || {};
+
+				var defaults = {
+					align: 'left',
+					width: this.internal.pageSize.width
+				}
+
+				var settings = $.extend({}, defaults, options);
+
+				// Get current font size
+				var fontSize = this.internal.getFontSize();
+
+				// Get the actual text's width
+				/* You multiply the unit width of your string by your font size and divide
+				* by the internal scale factor. The division is necessary
+				* for the case where you use units other than 'pt' in the constructor
+				* of jsPDF.
+				*/
+				var txtWidth = this.getStringUnitWidth(text) * fontSize / this.internal.scaleFactor;
+
+				if (settings.align === 'center')
+					x += (settings.width - txtWidth) / 2;
+				else if (settings.align === 'right')
+					x += (settings.width - txtWidth);
+
+				//default is 'left' alignment
+				this.text(text, x, y);
+
+			}
+			})(jsPDF.API, jQuery);
+    </script>
+    
+	<script type="text/javascript">
+		window.onload = function () {
+			//var doc = new jsPDF('l');
+			//var doc = new jsPDF('landscape');//Horizontal
+            var doc = new jsPDF('l', 'mm', [574, 396]);
+
+			doc.setProperties({//Set the document properties
+				title: 'Title',
+				subject: 'This is the subject',
+				author: 'Dragon',
+				keywords: 'javascript, web 2.0, ajax',
+				creator: 'MEEE'
+			});
+            
+
+			var fans_logo = document.getElementById('fans_logo');
+
+			//doc.addImage(cert_img, 'jpg', 0, 0, 0, 0);
+			//doc.addImage(fans_logo, 'png', 226, 33.5, 0, 0);
+			doc.addImage(fans_logo, 'png', 236, 33.5, 0, 0);
+            
+
+            doc.setDrawColor(101, 171, 222)
+			doc.setLineWidth(2)
+
+			doc.rect(22.3, 20, 528, 353)
+
+			doc.setLineWidth(1)
+			doc.rect(25, 22.5, 523, 348)
+
+			doc.setFontSize(29)
+			doc.setFontType('normal')
+			//doc.text(242, 139.5, 'This is to certify that')
+			doc.writeText(0, 139.5 ,'This is to certify that', { align: 'center' });
+
+			doc.setFontType("italic")
+			doc.setFontSize(58)
+			doc.writeText(0, 172 ,'{{ name }}', { align: 'center' });
+
+			doc.setFontType('normal')
+			doc.setFontSize(29)
+			doc.writeText(0, 198 ,'successfully completed the', { align: 'center' });
+
+			// Course Name
+			doc.setFontSize(41)
+			doc.setFontType("italic")
+			doc.writeText(10, 224 ,'ICAO 051 ATC Basic Course', { align: 'center' });
+
+			// Date
+			doc.setFontSize(29)
+			doc.setFontType('normal')
+			doc.writeText(0, 254.8 ,'from {{date_from}} to {{date_to}} ({{date_from}} Hours of Training)', { align: 'center' });
+			doc.writeText(0, 268 ,'at FANS AIR TRAFFIC CONTROL TRAINING ORGANISATION', { align: 'center' });
+
+
+			doc.setFontSize(24)
+			doc.text(67, 335, 'Head of Training - FANS ATCTO')
+			
+			doc.setFontSize(24)
+			doc.text(362, 335, 'Accountable Manager - FANS ATCTO')
+
+			doc.setFontSize(14)
+			doc.text(465, 365, 'FANS/ATCTO/051-CERT/190001')
+
+
+			//doc.output('datauri');//Direct output to a new web page
+			document.getElementById("iframe123").src = doc.output('datauristring');//Display in iframe
+		}
+    </script>
+    
+
+</head>
+
+<body>
+    <iframe id="iframe123" frameborder="0" width="100%" height="100%"></iframe>
+    <img style="display: none;" id="fans_logo" src="{% static "pages/img/fans-logo-cert.png" %}" alt="">
+</body>
+
+</html>
