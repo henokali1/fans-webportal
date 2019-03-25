@@ -962,6 +962,7 @@ def feedback_thank_you(request):
     return render(request, 'training_center/feedback_thank_you.html', args)
 
 # Create New Survey Invitation
+@login_required
 def new_feedback(request):
     all_batches = ClassName.objects.all()
     batch_names = [] 
@@ -971,6 +972,7 @@ def new_feedback(request):
     return render(request, 'training_center/new_feedback.html', args)
 
 # Feedback/Servey Detail
+@login_required
 def feedback_detail(request, batch_name):
     args={'batch': batch_name}
     ans = helper.ans_cntr(batch_name)
@@ -981,10 +983,13 @@ def feedback_detail(request, batch_name):
     return render(request, 'training_center/feedback_detail.html', args)
 
 # Sends servey email for the given batch name
+@login_required
 def feedback_email(request, batch_name):
     args={'email_adds': helper.get_email_addresses(batch_name)}
     return render(request, 'training_center/feedback_email.html', args)
 
+# Certificate Test
+@login_required
 def c(request):
     args={
         'name': 'Test Student',
@@ -994,3 +999,15 @@ def c(request):
         'hrs_training': 56,
     }
     return render(request, 'training_center/certificate_pdf.html', args)
+
+# Certificate
+@login_required
+def certificate(request):
+    args={
+        'name': 'Test Student',
+        'course_name': '058 ATC Gsllae Apttaea',
+        'date_from': '07-01-2019',
+        'date_to': '21-05-2019',
+        'hrs_training': 56,
+    }
+    return render(request, 'training_center/certificate.html', args)
