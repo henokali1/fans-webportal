@@ -113,12 +113,22 @@
         });
         $('.tooltipped').tooltip();
 
+        function sendItem(val) {
+            alert(val);
+        }
+        data = {}
+        {% for trainee in all_trns %}
+        name = "{{ trainee.first_name|title }}" + "{{ trainee.last_name|title }}"
+        p_pict = "{{trainee.passport_size_photo.url}}"
+        data[name] = p_pict,
+        {% endfor %}
+        console.log(data)
         $('input.autocomplete').autocomplete({
-            data: {
-                "Apple": null,
-                "Microsoft": null,
-                "Google": 'https://developers.google.com/identity/images/g-logo.png'
+            data,
+            onAutocomplete: function(txt) {
+            sendItem(txt);
             },
+            limit: 20,
         });
     });
 </script>

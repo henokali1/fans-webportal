@@ -7,7 +7,6 @@ from .models import *
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 import time
-import json
 from django.utils import timezone
 import datetime
 from django.shortcuts import redirect
@@ -1013,6 +1012,7 @@ def certificate(request, msg=''):
 
     args = {
         'trainees': trainees,
+        'all_trns': EnrollTrainee.objects.all(),
         'msg': msg,
         'job_title': helper.get_job_title(request.user),
         'department': helper.get_department(request.user),

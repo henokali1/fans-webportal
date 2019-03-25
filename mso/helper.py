@@ -262,7 +262,7 @@ def get_overall_grade(trainee_pk, batch_name):
     num_subjects = len(course_grades)
     avg = round(total/num_subjects, 2)
     return avg
-        
+
 # Returns Course Name From a Given Batch Name
 def get_course_name(batch_name):
     try:
