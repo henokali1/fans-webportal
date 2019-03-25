@@ -990,7 +990,7 @@ def feedback_email(request, batch_name):
 
 # Certificate Test
 @login_required
-def c(request):
+def certificate_pdf(request, pk):
     args={
         'name': 'Test Student',
         'course_name': '058 ATC Gsllae Apttaea',
@@ -1002,12 +1002,21 @@ def c(request):
 
 # Certificate
 @login_required
-def certificate(request):
-    args={
-        'name': 'Test Student',
-        'course_name': '058 ATC Gsllae Apttaea',
-        'date_from': '07-01-2019',
-        'date_to': '21-05-2019',
-        'hrs_training': 56,
+def certificate(request, msg=''):
+    all_trainees = EnrollTrainee.objects.all().order_by('-pk')
+
+    # Pagination
+    paginator = Paginator(all_trainees, 10)
+
+    page = request.GET.get('page')
+    trainees = paginator.get_page(page)
+
+    args = {
+        'trainees': trainees,
+        'msg': msg,
+        'job_title': helper.get_job_title(request.user),
+        'department': helper.get_department(request.user),
+        'current_user_name': helper.get_full_name(request.user),
+        'current_user_email': request.user,
     }
     return render(request, 'training_center/certificate.html', args)

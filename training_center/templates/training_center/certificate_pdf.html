@@ -3,6 +3,9 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	<!-- Link Favicon -->
+	<link rel="shortcut icon" href="{% static "pages/img/fans-logo.png" %}" />
+	<!-- Title -->
 	<title>Certificate - {{name}}</title>
 	<script src="{% static "pages/js/jspdf.min.js" %}" type="text/javascript"></script>
 	<script src="{% static "pages/js/jquery-3.2.1.min.js" %}" type="text/javascript"></script>
@@ -48,7 +51,7 @@
             var doc = new jsPDF('l', 'mm', [574, 396]);
             
 			doc.setProperties({//Set the document properties
-				title: 'Title',
+				title: 'ID',
 				subject: 'This is the subject',
 				author: 'Dragon',
 				keywords: 'javascript, web 2.0, ajax',
