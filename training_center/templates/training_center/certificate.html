@@ -55,8 +55,7 @@
                 
                                 <th class="center"><a href="/training_center/certificate_pdf/22">89%</a></th>
                                 <th class="center"><a href="/training_center/certificate_pdf/22">96%</a></th>
-                                <th><a href="/training_center/certificate_pdf/22" class="black-text tooltipped"
-                                        data-position="center" data-tooltip="Print {{ trainee.first_name|title }}'s Certificate">
+                                <th><a href="/training_center/certificate_pdf/22" class="black-text">
                                         <i class="material-icons right">local_printshop</i></a>
                                 </th>
                             </tr>
@@ -111,14 +110,13 @@
             inDuration: 300,
             outDuration: 200
         });
-        $('.tooltipped').tooltip();
 
         function sendItem(val) {
             alert(val);
         }
         data = {}
         {% for trainee in all_trns %}
-        name = "{{ trainee.first_name|title }}" + "{{ trainee.last_name|title }}"
+        name = "{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }}" + " " + "{{ trainee.last_name|title }}"
         p_pict = "{{trainee.passport_size_photo.url}}"
         data[name] = p_pict,
         {% endfor %}
