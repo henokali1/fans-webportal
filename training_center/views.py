@@ -1013,3 +1013,9 @@ def certificate(request, msg=''):
         'current_user_email': request.user,
     }
     return render(request, 'training_center/certificate.html', args)
+
+
+# Certificate Preview
+def certificate_preview(request, pk):
+    args={}
+    return render(request, 'training_center/certificate_preview.html', args)

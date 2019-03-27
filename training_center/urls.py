@@ -39,6 +39,7 @@ urlpatterns = [
     path('feedback/<str:batch_name>/', views.feedback_detail, name='feedback_detail.html'),
     path('feedback/email/<str:batch_name>/', views.feedback_email, name='feedback_email.html'),
     path('certificate_pdf/<int:pk>', views.certificate_pdf, name='certificate_pdf.html'),
-    path('certificate/', views.certificate, name='certificate.html'),
+    path('certificate/all/', views.certificate, name='certificate.html'),
+    path('certificate/<str:pk>/', views.certificate_preview, name='certificate_preview.html'),
     path('icons/', views.icons, name='icons.html'),
 ]
