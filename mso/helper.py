@@ -160,7 +160,7 @@ def get_stud_lst_cls(batch):
         course_name=batch,
         approval = 'Accepted',
     )
-    
+
     records = TraineeAttendance.objects.all().filter(
         attended_class = batch,
     )
@@ -350,10 +350,16 @@ def total_trainees(batch):
         return '{} Responses'.format(tot)
     return(len())
 
+# Returns overall attendance(out of 100%) if an attendance record exists, else returns 0
+def get_overall_att(batch_name, pk):
+    try:
+       return get_stud_lst_cls(batch_name)[str(pk)]['per']
+    except:
+       return 0
+
 # Returns a dit of all trainees with their name ID Num attendance and grade
 def get_all_trainee_data():
     all_trainees = EnrollTrainee.objects.all().order_by('-pk').filter(approval = 'Accepted')
-    
     data = {}
     for i in all_trainees:
         try:
@@ -361,10 +367,10 @@ def get_all_trainee_data():
                 'id_num': get_stud_id(i.pk),
                 'name': get_trainee_name(i.pk),
                 'overall_grade': get_overall_grade(i.pk, i.batch),
+                'overall_att': get_overall_att(i.batch, i.pk),
                 'p_photo_url': i.passport_size_photo.url,
             }
         except:
             print('err: fuc: get_all_trainee_data  trainee pk: {}', i.pk)
     
-    #print(data)
     return data
