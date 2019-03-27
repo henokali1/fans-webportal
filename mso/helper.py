@@ -349,3 +349,22 @@ def total_trainees(batch):
     else:
         return '{} Responses'.format(tot)
     return(len())
+
+# Returns a dit of all trainees with their name ID Num attendance and grade
+def get_all_trainee_data():
+    all_trainees = EnrollTrainee.objects.all().order_by('-pk').filter(approval = 'Accepted')
+    
+    data = {}
+    for i in all_trainees:
+        try:
+            data[i.pk] = {
+                'id_num': get_stud_id(i.pk),
+                'name': get_trainee_name(i.pk),
+                'overall_grade': get_overall_grade(i.pk, i.batch),
+                'p_photo_url': i.passport_size_photo.url,
+            }
+        except:
+            print('err: fuc: get_all_trainee_data  trainee pk: {}', i.pk)
+    
+    #print(data)
+    return data

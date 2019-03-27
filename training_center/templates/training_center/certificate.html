@@ -33,63 +33,40 @@
                             <tr>
                                 <th>Name</th>
                                 <th class="center">ID Number</th>
-                                <th class="center">Attendance(100%)</th>
-                                <th class="center">Grade(100%)</th>
+                                <th class="center">Attendance</th>
+                                <th class="center">Grade</th>
                                 <th class="right">Print</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for trainee in trainees %}
-                            <tr>
-                                <th class="left">
-                                    <a href="/training_center/certificate_pdf/22">
-                                        <div class="chip">
-                                            <img src="{{trainee.passport_size_photo.url}}" alt="">
-                                            {{ trainee.first_name|title }} {{ trainee.last_name|title }}
-                                        </div>
-                                    </a>
-                                </th>
-                                <th class="center">
-                                    {{ trainee.enrolled_on.year }}{{ trainee.pk }}
-                                </th>
-                
-                                <th class="center"><a href="/training_center/certificate_pdf/22">89%</a></th>
-                                <th class="center"><a href="/training_center/certificate_pdf/22">96%</a></th>
-                                <th><a href="/training_center/certificate_pdf/22" class="black-text">
-                                        <i class="material-icons right">local_printshop</i></a>
-                                </th>
-                            </tr>
-                            {% endfor %}
+                                {% for key, trainee in formated_data.items %}
+                                <tr>
+                                    <th class="left">
+                                        <a href="/training_center/certificate_pdf/{{key}}">
+                                            <div class="chip">
+                                                <img src="{{trainee.p_photo_url}}" alt="">
+                                                {{ trainee.name|title }}
+                                            </div>
+                                        </a>
+                                    </th>
+                                    <th class="center">
+                                        {{ trainee.id_num }}
+                                    </th>
+                    
+                                    <th class="center"><a href="/training_center/certificate_pdf/{{key}}">{{key}}%</a></th>
+                                    <th class="center"><a href="/training_center/certificate_pdf/{{key}}">{{trainee.overall_grade}}%</a></th>
+                                    <th><a href="/training_center/certificate_pdf/{{key}}" class="black-text">
+                                            <i class="material-icons right">local_printshop</i></a>
+                                    </th>
+                                </tr>
+                                {% endfor %}
+                            
                         </tbody>
                     </table>
         </section>
         <br>
         <br>
 
-        <div class="pagination">
-            <span class="step-links">
-                {% if trainees.has_previous %}
-                <li class="waves-effect material-icons large">
-                    <a href="?page={{ trainees.previous_page_number }}">
-                        <i class="material-icons large">chevron_left</i>
-                    </a>
-                </li>
-                {% endif %}
-    
-                <span class="current">
-                    Page {{ trainees.number }} of {{ trainees.paginator.num_pages }}.
-                </span>
-    
-                {% if trainees.has_next %}
-    
-                <li class="waves-effect">
-                    <a href="?page={{ trainees.next_page_number }}">
-                        <i class="material-icons large">chevron_right</i>
-                    </a>
-                </li>
-                {% endif %}
-            </span>
-        </div>
         <br>
         <br>
 </div>
@@ -115,9 +92,9 @@
             alert(val);
         }
         data = {}
-        {% for trainee in all_trns %}
-        name = "{{ trainee.enrolled_on.year }}{{ trainee.pk }} - {{ trainee.first_name|title }}" + " " + "{{ trainee.last_name|title }}"
-        p_pict = "{{trainee.passport_size_photo.url}}"
+        {% for key, trainee in formated_data.items %}
+        name = "{{ trainee.id_num }} - {{ trainee.name|title }}"
+        p_pict = "{{trainee.p_photo_url}}"
         data[name] = p_pict,
         {% endfor %}
         console.log(data)
@@ -126,7 +103,7 @@
             onAutocomplete: function(txt) {
             sendItem(txt);
             },
-            limit: 20,
+            limit: 6,
         });
     });
 </script>

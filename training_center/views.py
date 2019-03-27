@@ -1002,17 +1002,10 @@ def certificate_pdf(request, pk):
 # Certificate
 @login_required
 def certificate(request, msg=''):
-    all_trainees = EnrollTrainee.objects.all().order_by('-pk')
-
-    # Pagination
-    paginator = Paginator(all_trainees, 10)
-
-    page = request.GET.get('page')
-    trainees = paginator.get_page(page)
+    all_trainees = EnrollTrainee.objects.all().filter(approval="Accepted").order_by('-pk')
 
     args = {
-        'trainees': trainees,
-        'all_trns': EnrollTrainee.objects.all(),
+        'formated_data': helper.get_all_trainee_data(),
         'msg': msg,
         'job_title': helper.get_job_title(request.user),
         'department': helper.get_department(request.user),
