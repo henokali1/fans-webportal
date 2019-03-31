@@ -89,8 +89,19 @@
             outDuration: 200
         });
 
+        function getId(val){
+            sliced = val.split(' ')[0]
+            if(sliced[4] == '0'){
+                return sliced.slice(5,)
+            } else {
+                return sliced.slice(4,)
+            }
+        }
+
         function sendItem(val) {
-            alert(val);
+            var url = "http://127.0.0.1:8000/training_center/certificate/"
+            alert(getId(val))
+            window.open(url + getId(val) + '/',"_self")
         }
         data = {}
         {% for key, trainee in formated_data.items %}
@@ -98,20 +109,13 @@
         p_pict = "{{trainee.p_photo_url}}"
         data[name] = p_pict,
         {% endfor %}
-        console.log(data)
         $('input.autocomplete').autocomplete({
             data,
             onAutocomplete: function(txt) {
             sendItem(txt);
             },
-            limit: 6,
+            limit: 10,
         });
     });
-</script>
-<script>
-    function search_btn(){
-        alert('Search Clicked')
-        $('#search-input').val('')
-    }
 </script>
 {% endblock script_tag %}

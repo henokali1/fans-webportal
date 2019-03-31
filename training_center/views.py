@@ -1018,5 +1018,15 @@ def certificate(request, msg=''):
 # Certificate Preview
 @login_required
 def certificate_preview(request, pk):
+    if request.method == 'POST':
+        args={
+            'name': request.POST['full_name'],
+            'course_name': request.POST['course_name'],
+            'date_from': request.POST['course_data_from'],
+            'date_to': request.POST['course_date_to'],
+            'hrs_training': request.POST['hours'],
+        }
+        return render(request, 'training_center/certificate_pdf.html', args)
+        
     details = helper.get_cet_preview_details(pk)
     return render(request, 'training_center/certificate_preview.html', details)
