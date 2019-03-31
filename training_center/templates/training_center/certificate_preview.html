@@ -8,9 +8,67 @@
 
 {% block content %}
 <div class="container">
-    <!-- <h4 class="center">Certificate</h4> -->
-        <!-- BORDERED, HIGHTLIGHTED & RESPONSIVE TABLE -->
-        <br>
+    <h4 class="center">Please Verify That The Following Details Are Correct</h4>
+    <div class="container login-logout-container white z-depth-2">
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+            
+                <div class="row" style="padding: 20px;">
+                    <!-- Full Name -->
+                    <div class="col s12">
+                        <div class="input-field">
+                            <input id="full_name" type="text" name="full_name" value="{{full_name}}" required>
+                            <label for="full_name">Full Name</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Name -->
+                    <div class="col s12">
+                        <div class="input-field">
+                            <input id="course_name" type="text" name="course_name" value="{{course_name}}" required>
+                            <label for="course_name">Course</label>
+                        </div>
+                    </div>
+
+                    <div class="col m6 s12">
+                        <!-- Course Date From -->
+                        <div class="input-field">
+                            <input type="text" class="datepicker" id="course_data_from" name="course_data_from">
+                            <label for="course_data_from">Course Date(From)</label>
+                        </div>
+                    </div>
+
+                    <div class="col m6 s12">
+                        <!-- Course Date To -->
+                        <div class="input-field">
+                            <input type="text" class="datepicker" id="course_date_to" name="course_date_to">
+                            <label for="course_date_to">Course Date (To)</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Hours -->
+                    <div class="col s12">
+                        <div class="input-field">
+                            <input id="hours" type="number" name="hours" value="{{hours}}" required>
+                            <label for="hours">Hours of Training</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="row">
+                        <br>
+                        <div class="col s12">
+                            <button class="btn btn-large blue waves-effect waves-light right" type="submit" name="action">Print
+                                <i class="material-icons right">print</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock content %}
 
@@ -30,5 +88,12 @@
             outDuration: 200
         });
     });
+
+    // INIT DATEPICKER
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 115,
+        closeOnSelect: true
+      });
 </script>
 {% endblock script_tag %}

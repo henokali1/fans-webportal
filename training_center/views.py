@@ -1016,6 +1016,7 @@ def certificate(request, msg=''):
 
 
 # Certificate Preview
+@login_required
 def certificate_preview(request, pk):
-    args={}
-    return render(request, 'training_center/certificate_preview.html', args)
+    details = helper.get_cet_preview_details(pk)
+    return render(request, 'training_center/certificate_preview.html', details)

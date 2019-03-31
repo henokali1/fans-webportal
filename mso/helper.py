@@ -374,3 +374,12 @@ def get_all_trainee_data():
             print('err: fuc: get_all_trainee_data  trainee pk: {}', i.pk)
     
     return data
+
+# Certificate Preview Details
+def get_cet_preview_details(trainee_pk):
+    trainee = EnrollTrainee.objects.all().filter(pk=trainee_pk)[0]
+    details = {
+        'full_name': get_trainee_name(trainee_pk),
+        'course_name': trainee.course_details,
+    }
+    return details
