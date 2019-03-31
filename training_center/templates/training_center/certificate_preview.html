@@ -8,13 +8,15 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="center">Please Verify That The Following Details Are Correct</h4>
+    <br>
+    <br>
     <div class="container login-logout-container white z-depth-2">
-        <div class="form-container">
-            <form method="POST">
+        <div class="form-container" style="padding: 20px;">
+            <h4 class="center">Please Make Sure That All the Fields Are Filled And Correct</h4>
+            <form name="cert_trainee_form" method="POST" action="" onsubmit="return validateForm()" >
                 {% csrf_token %}
             
-                <div class="row" style="padding: 20px;">
+                <div class="row">
                     <!-- Full Name -->
                     <div class="col s12">
                         <div class="input-field">
@@ -34,7 +36,7 @@
                     <div class="col m6 s12">
                         <!-- Course Date From -->
                         <div class="input-field">
-                            <input type="text" class="datepicker" id="course_data_from" name="course_data_from">
+                            <input type="text" class="datepicker" id="course_date_from" name="course_data_from">
                             <label for="course_data_from">Course Date(From)</label>
                         </div>
                     </div>
@@ -95,5 +97,21 @@
         selectYears: 115,
         closeOnSelect: true
       });
+</script>
+
+<script>
+    function validateForm(){
+        var course_date_from = document.forms["cert_trainee_form"]["course_date_from"].value;
+        var course_date_to = document.forms["cert_trainee_form"]["course_date_to"].value;
+        if(course_date_from == ''){
+            Materialize.toast('Please Fill in Course Date(From)', 8000, 'rounded');
+            return false
+        }
+        if(course_date_to == ''){
+            Materialize.toast('Please Fill in Course Date(To)', 8000, 'rounded');
+            return false
+        }
+    }
+    
 </script>
 {% endblock script_tag %}
