@@ -61,12 +61,17 @@
                     <div class="row">
                         <br>
                         <div class="col s12">
+                            {% if can_print %}
                             <button class="btn btn-large blue waves-effect waves-light right" type="submit" name="action">Print
                                 <i class="material-icons right">print</i>
                             </button>
+                            {% else %}
+                            <button class="btn btn-large blue waves-effect waves-light disabled right" type="submit" name="action">Print
+                                    <i class="material-icons right">print</i>
+                                </button>
+                            {% endif %}
                         </div>
                     </div>
-
                 </div>
             </form>
         </div>

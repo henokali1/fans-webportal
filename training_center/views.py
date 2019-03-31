@@ -987,18 +987,6 @@ def feedback_email(request, batch_name):
     args={'email_adds': helper.get_email_addresses(batch_name)}
     return render(request, 'training_center/feedback_email.html', args)
 
-# Certificate Test
-@login_required
-def certificate_pdf(request, pk):
-    args={
-        'name': 'Test Student',
-        'course_name': '058 ATC Gsllae Apttaea',
-        'date_from': '07-01-2019',
-        'date_to': '21-05-2019',
-        'hrs_training': 56,
-    }
-    return render(request, 'training_center/certificate_pdf.html', args)
-
 # Certificate
 @login_required
 def certificate(request, msg=''):
@@ -1018,6 +1006,12 @@ def certificate(request, msg=''):
 # Certificate Preview
 @login_required
 def certificate_preview(request, pk):
+    trainee_details = helper.get_all_trainee_data()[int(pk)]
+    overall_att = trainee_details['overall_att']
+    overall_grade = trainee_details['overall_grade']
+    can_print = (overall_att >= 85) and (overall_grade >= 75 )
+    print(can_print)
+    
     if request.method == 'POST':
         args={
             'name': request.POST['full_name'],
@@ -1026,7 +1020,7 @@ def certificate_preview(request, pk):
             'date_to': request.POST['course_date_to'],
             'hrs_training': request.POST['hours'],
         }
-        return render(request, 'training_center/certificate_pdf.html', args)
-        
-    details = helper.get_cet_preview_details(pk)
-    return render(request, 'training_center/certificate_preview.html', details)
+    else:
+        details = helper.get_cet_preview_details(pk)
+        details['can_print'] = can_print
+        return render(request, 'training_center/certificate_preview.html', details)

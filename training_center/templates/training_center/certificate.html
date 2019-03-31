@@ -43,7 +43,7 @@
                                 {% for key, trainee in formated_data.items %}
                                 <tr>
                                     <th class="left">
-                                        <a href="/training_center/certificate_pdf/{{key}}">
+                                        <a href="/training_center/certificate/{{key}}">
                                             <div class="chip">
                                                 <img src="{{trainee.p_photo_url}}" alt="">
                                                 {{ trainee.name|title }}
@@ -51,12 +51,14 @@
                                         </a>
                                     </th>
                                     <th class="center">
-                                        {{ trainee.id_num }}
+                                        <a href="/training_center/certificate/{{key}}">
+                                            {{ trainee.id_num }}
+                                        </a>
                                     </th>
                     
-                                    <th class="center"><a href="/training_center/certificate_pdf/{{key}}">{{trainee.overall_att}}%</a></th>
-                                    <th class="center"><a href="/training_center/certificate_pdf/{{key}}">{{trainee.overall_grade}}%</a></th>
-                                    <th><a href="/training_center/certificate_pdf/{{key}}" class="black-text">
+                                    <th class="center"><a href="/training_center/certificate/{{key}}">{{trainee.overall_att}}%</a></th>
+                                    <th class="center"><a href="/training_center/certificate/{{key}}">{{trainee.overall_grade}}%</a></th>
+                                    <th><a href="/training_center/certificate/{{key}}" class="black-text">
                                             <i class="material-icons right">local_printshop</i></a>
                                     </th>
                                 </tr>
@@ -100,9 +102,9 @@
 
         function sendItem(val) {
             var url = "http://127.0.0.1:8000/training_center/certificate/"
-            alert(getId(val))
             window.open(url + getId(val) + '/',"_self")
         }
+
         data = {}
         {% for key, trainee in formated_data.items %}
         name = "{{ trainee.id_num }} - {{ trainee.name|title }}"
