@@ -112,11 +112,11 @@
         var course_date_from = document.forms["cert_trainee_form"]["course_date_from"].value;
         var course_date_to = document.forms["cert_trainee_form"]["course_date_to"].value;
         if(course_date_from == ''){
-            Materialize.toast('Please Fill in Course Date(From)', 8000, 'rounded');
+            Materialize.toast('Please Fill in Course Start Date', 8000, 'rounded');
             return false
         }
         if(course_date_to == ''){
-            Materialize.toast('Please Fill in Course Date(To)', 8000, 'rounded');
+            Materialize.toast('Please Fill in Course End Date', 8000, 'rounded');
             return false
         }
     }
