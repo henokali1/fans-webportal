@@ -8,11 +8,14 @@
 
 {% block content %}
 <div class="container">
+    {% for i in details %}
+    <p>{{i}}</p>
+    {% endfor %}
     <br>
     <br>
     <div class="container login-logout-container white z-depth-2">
         <div class="form-container" style="padding: 20px;">
-            <h4 class="center">Please Make Sure That All the Fields Are Filled And Correct</h4>
+            <h4 class="center">Please Make Sure That All The Fields Are Filled And Correct</h4>
             <form name="cert_trainee_form" method="POST" action="" onsubmit="return validateForm()" >
                 {% csrf_token %}
             
@@ -37,7 +40,7 @@
                         <!-- Course Date From -->
                         <div class="input-field">
                             <input type="text" class="datepicker" id="course_date_from" name="course_data_from">
-                            <label for="course_data_from">Course Date(From)</label>
+                            <label for="course_data_from">Course Start Date</label>
                         </div>
                     </div>
 
@@ -45,7 +48,7 @@
                         <!-- Course Date To -->
                         <div class="input-field">
                             <input type="text" class="datepicker" id="course_date_to" name="course_date_to">
-                            <label for="course_date_to">Course Date (To)</label>
+                            <label for="course_date_to">Course End Date</label>
                         </div>
                     </div>
                     

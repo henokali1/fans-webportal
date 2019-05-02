@@ -41,5 +41,6 @@ urlpatterns = [
     path('certificate_pdf/certificate', views.certificate_preview, name='certificate_preview.html'),
     path('certificate/all/', views.certificate, name='certificate.html'),
     path('certificate/<str:pk>/', views.certificate_preview, name='certificate_preview.html'),
+    path('c/', views.c, name='certificate_pdf.html'),
     path('icons/', views.icons, name='icons.html'),
 ]

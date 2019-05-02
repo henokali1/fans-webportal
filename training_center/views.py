@@ -1010,7 +1010,6 @@ def certificate_preview(request, pk):
     overall_att = trainee_details['overall_att']
     overall_grade = trainee_details['overall_grade']
     can_print = (overall_att >= 85) and (overall_grade >= 75 )
-    print(can_print)
     
     if request.method == 'POST':
         args={
@@ -1020,7 +1019,10 @@ def certificate_preview(request, pk):
             'date_to': request.POST['course_date_to'],
             'hrs_training': request.POST['hours'],
         }
+        
+        return render(request, 'training_center/certificate_pdf.html', args)
     else:
         details = helper.get_cet_preview_details(pk)
         details['can_print'] = can_print
         return render(request, 'training_center/certificate_preview.html', details)
+
