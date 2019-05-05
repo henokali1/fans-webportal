@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from mso import helper
 from .models import (
     SetupUserAccount,
     CustomUser,
@@ -11,7 +12,11 @@ from .models import (
 # User Account Setup
 @login_required
 def profile(request, pk):
-    args={}
+    args={
+        'last_name': helper.get_last_name(request.user),
+        'first_name': helper.get_first_name(request.user),
+        'current_user_email': request.user,
+    }
     return render(request, 'users/profile.html', args)
 
 # User Account Setup

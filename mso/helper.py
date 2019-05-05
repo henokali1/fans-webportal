@@ -11,6 +11,16 @@ def get_full_name(email):
     last_name = CustomUser.objects.values_list('last_name', flat=True).filter(email=email)[0].lower()    
     return first_name.capitalize() + ' ' + last_name.capitalize()
 
+# Returns first name of a given user(emal)
+def get_first_name(email):
+    first_name = CustomUser.objects.values_list('first_name', flat=True).filter(email=email)[0].lower()
+    return first_name.capitalize()
+
+# Returns last name of a given user(emal)
+def get_last_name(email):
+    last_name = CustomUser.objects.values_list('last_name', flat=True).filter(email=email)[0].lower()
+    return last_name.capitalize()
+
 # Returns job title of a given user(emal)
 def get_job_title(email):
     job_title = SetupUserAccount.objects.values_list('job_title', flat=True).filter(email=email)[0]
