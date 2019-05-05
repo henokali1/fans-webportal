@@ -8,6 +8,11 @@ from .models import (
     PageAccess,
 )
 
+# User Account Setup
+@login_required
+def profile(request, pk):
+    args={}
+    return render(request, 'users/profile.html', args)
 
 # User Account Setup
 @login_required
