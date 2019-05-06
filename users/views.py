@@ -1,5 +1,7 @@
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
+from django.shortcuts import render
+from users.models import *
 from mso import helper
 from .models import *
 
@@ -16,19 +18,31 @@ def profile(request, pk):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         email = request.POST['current_user_email']
+        CustomUser.objects.filter(pk=pk).update(
+            first_name = first_name,
+            last_name = last_name,
+        )
 
+        SetupUserAccount.objects.filter(pk=pk).update(
+            email = email,
+        )
+
+        fs = FileSystemStorage()
         # Get Profile Picture
         try:
             profile_pic = request.FILES['profile_picture']
             profile_pict_file_name = fs.save(profile_pic.name, profile_pic)
-            new_trainee.profile_pic = profile_pict_file_name
+            SetupUserAccount.objects.filter(pk=pk).update(
+                profile_pict = profile_pict_file_name,
+            )            
+            #new_trainee.profile_pic = profile_pict_file_name
             print(profile_pict_file_name)
         except:
             print('Couldn\'t find Profile Pic' )
-        print(first_name, last_name, email)
-        
-        return render(request, 'users/profile.html', args)
 
+
+        print('first_name: ', first_name, '\nlast_name:  ', last_name, '\nemail:      ',email)
+        
     return render(request, 'users/profile.html', args)
 
 # User Account Setup

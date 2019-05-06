@@ -18,6 +18,7 @@ class SetupUserAccount(models.Model):
     department = models.CharField(max_length=50, default='')
     job_title = models.CharField(max_length=50, default='')
     page_access = models.CharField(max_length=100, default='')
+    profile_pict = models.FileField(upload_to = 'media/')
 
     def __str__(self):
         return self.email
