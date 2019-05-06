@@ -66,6 +66,7 @@ def setup_account(request):
             request,
             'users/setup_account.html',
             {
+                'pk': helper.get_user_pk(request.user),
                 'all_users': all_users,
                 'all_departments': all_departments,
                 'all_job_titles': all_job_titles,
@@ -77,6 +78,7 @@ def setup_account(request):
             request,
             'users/setup_account.html',
             {
+                'pk': helper.get_user_pk(request.user),
                 'all_users': all_users,
                 'all_departments': all_departments,
                 'all_job_titles': all_job_titles,
