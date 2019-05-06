@@ -101,11 +101,7 @@
                                 <img src="{% static "pages/img/ocean.jpg" %}" alt="">
                         </div>
                         <a href="/user/profile/{{pk}}">                                                             
-                            {% if current_user_gender == 'male' %}
-                                <img class="circle" src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">
-                            {% else %}
-                                <img class="circle" src="{% static "pages/img/female_profile_default.png" alt="female_profile_default" %}">
-                            {% endif %}
+                            <img class="circle" src="{{user_detail.profile_pict.url}}" alt="profile_pict">
                         </a>
                         <a href="#name">
                                 <span class="white-text name">{{ current_user_name }}</span>

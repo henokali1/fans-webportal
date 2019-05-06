@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+from django.shortcuts import redirect
 from django.shortcuts import render
 from users.models import *
 from mso import helper
@@ -11,37 +12,36 @@ def profile(request, pk):
     args={
         'last_name': helper.get_last_name(request.user),
         'first_name': helper.get_first_name(request.user),
+        'job_title': helper.get_job_title(request.user),
+        'department': helper.get_department(request.user),
         'current_user_email': request.user,
-        'pk': helper.get_user_pk(request.user)
+        'pk': helper.get_user_pk(request.user),
+        'user_detail': SetupUserAccount.objects.all().filter(email=request.user)[0],
     }
+    
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        email = request.POST['current_user_email']
-        CustomUser.objects.filter(pk=pk).update(
+        CustomUser.objects.filter(email=request.user).update(
             first_name = first_name,
             last_name = last_name,
         )
 
-        SetupUserAccount.objects.filter(pk=pk).update(
-            email = email,
-        )
 
         fs = FileSystemStorage()
         # Get Profile Picture
         try:
             profile_pic = request.FILES['profile_picture']
             profile_pict_file_name = fs.save(profile_pic.name, profile_pic)
-            SetupUserAccount.objects.filter(pk=pk).update(
+            SetupUserAccount.objects.filter(email=request.user).update(
                 profile_pict = profile_pict_file_name,
             )            
             #new_trainee.profile_pic = profile_pict_file_name
             print(profile_pict_file_name)
         except:
             print('Couldn\'t find Profile Pic' )
-
-
-        print('first_name: ', first_name, '\nlast_name:  ', last_name, '\nemail:      ',email)
+        return redirect('/training_center/dashboard/', args)
+        #return render(request, 'training_center/dashboard.html', args)
         
     return render(request, 'users/profile.html', args)
 
@@ -85,6 +85,7 @@ def setup_account(request):
                 'all_departments': all_departments,
                 'all_job_titles': all_job_titles,
                 'all_pages': all_pages,
+                'user': SetupUserAccount.objects.all().filter(email=request.user)[0],
             }
         )
     else:
@@ -97,5 +98,6 @@ def setup_account(request):
                 'all_departments': all_departments,
                 'all_job_titles': all_job_titles,
                 'all_pages': all_pages,
+                'user': SetupUserAccount.objects.all().filter(email=request.user)[0],
             }
         )

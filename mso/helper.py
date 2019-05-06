@@ -21,6 +21,11 @@ def get_last_name(email):
     last_name = CustomUser.objects.values_list('last_name', flat=True).filter(email=email)[0].lower()
     return last_name.capitalize()
 
+# Returns Profile Pic of a given user(email)
+def get_profile_pict(email):
+    user = SetupUserAccount.objects.all().filter(email=email)[0]
+    return user.profile_pict
+
 # Returns PK of a given user(email)
 def get_user_pk(email):
     user = CustomUser.objects.all().filter(email=email)[0]
