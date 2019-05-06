@@ -35,6 +35,7 @@ def enroll_trainee(request):
     current_user_name = helper.get_full_name(request.user)
     job_title = helper.get_job_title(request.user)  
     args = {
+        'pk': helper.get_user_pk(request.user),
         'current_user_name': str(current_user_name),
         'current_user_email': str(request.user),
         'current_user_gender': str(gender),
@@ -208,6 +209,7 @@ def enroll_trainee(request):
 @login_required
 def admin(request):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'current_user_name': helper.get_full_name(request.user),
         'current_user_email': request.user,
     }
@@ -225,6 +227,7 @@ def all_trainees(request, msg=''):
     trainees = paginator.get_page(page)
 
     args = {
+        'pk': helper.get_user_pk(request.user),
         'trainees': trainees,
         'msg': msg,
         'job_title': helper.get_job_title(request.user),
@@ -261,7 +264,7 @@ def approve(request, msg=''):
             'current_user_email': request.user,
             'batches': ClassName.objects.all().order_by('-pk'),
         }
-    
+    args['pk'] = helper.get_user_pk(request.user)
     return render(request, 'training_center/approve.html', args)
 
 # Approve applications by PK through AJAX
@@ -320,6 +323,7 @@ def trainee_detail(request, pk):
     
     
     args = {
+        'pk': helper.get_user_pk(request.user),
         'trainee': trainee[0],
         'imgs': imgs,
         'len':len(imgs),
@@ -478,6 +482,7 @@ def edit_trainee(request, pk):
     else:
         trainee = EnrollTrainee.objects.all().filter(pk=pk)
         args = {
+            'pk': helper.get_user_pk(request.user),
             'trainee': trainee[0],
             'courses': courses,
             'current_user_name': helper.get_full_name(request.user),
@@ -489,6 +494,7 @@ def edit_trainee(request, pk):
 @login_required
 def trainer(request, msg=''):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'clases': ClassName.objects.all().order_by('-pk'),
         'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
@@ -515,10 +521,12 @@ def take_attendance(request, batch, subject_name):
                 attendance.attended_subject = subject_name
                 attendance.ident = ident
                 # Commit to DB
-                attendance.save()            
+                attendance.save()      
+        args={'pk': helper.get_user_pk(request.user)}      
         return redirect('/training_center/attendance/', msg='Attendance Taken Successfully')
     else:
         args = {
+            'pk': helper.get_user_pk(request.user),
             'filtered_stds': helper.get_stud_lst(batch, subject_name),
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
@@ -526,7 +534,7 @@ def take_attendance(request, batch, subject_name):
         return render(request, 'training_center/take_attendance.html', args) 
 
 
-    args = {}
+    args = {'pk': helper.get_user_pk(request.user),}
     return render(request, 'training_center/head_of_training.html', args)
 
 # All Classes
@@ -534,6 +542,7 @@ def take_attendance(request, batch, subject_name):
 def all_classes(request, msg=''):
     classes = ClassName.objects.all().order_by('-pk')
     args = {
+        'pk': helper.get_user_pk(request.user),
         'classes': classes,
         'msg': msg,
         'current_user_name': helper.get_full_name(request.user),
@@ -545,6 +554,7 @@ def all_classes(request, msg=''):
 @login_required
 def create_class(request):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'courses': helper.get_all_courses(Course.objects.all()),
         'current_user_name': helper.get_full_name(request.user),
         'current_user_email': request.user,
@@ -571,6 +581,7 @@ def edit_class(request, pk):
         )
 
         args = {
+            'pk': helper.get_user_pk(request.user),
             'courses': helper.get_all_courses(Course.objects.all()),
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
@@ -580,6 +591,7 @@ def edit_class(request, pk):
     else:
         course = ClassName.objects.all().filter(pk=pk)[0]
         args = {
+            'pk': helper.get_user_pk(request.user),
             'class_name': course.class_name,
             'priv_course': course.courses,
             'courses': helper.get_all_courses(Course.objects.all()),
@@ -601,6 +613,7 @@ def create_subject(request):
         new_subject.save()
 
         args = {
+            'pk': helper.get_user_pk(request.user),
             'msg': request.POST['subject_name'] + ' Added Successfully',
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
@@ -608,6 +621,7 @@ def create_subject(request):
         return render(request, 'training_center/create_subject.html', args)
     else:
         args = {
+            'pk': helper.get_user_pk(request.user),
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
         }
@@ -617,6 +631,7 @@ def create_subject(request):
 @login_required
 def all_subjects(request, msg=''):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
         'current_user_name': helper.get_full_name(request.user),
@@ -637,6 +652,7 @@ def edit_subject(request, pk):
         return redirect('/training_center/subjects/all/', msg='Subject - ' + str(pk) + ' Updated Successfully.')
     else:
         args = {
+            'pk': helper.get_user_pk(request.user),
             'subject': Subject.objects.all().filter(pk=pk)[0],
             'current_user_name': helper.get_full_name(request.user),
             'current_user_email': request.user,
@@ -647,6 +663,7 @@ def edit_subject(request, pk):
 @login_required
 def create_course(request):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'subjects': Subject.objects.all().order_by('-pk'),
         'current_user_name': helper.get_full_name(request.user),
         'current_user_email': request.user,
@@ -668,6 +685,7 @@ def create_course(request):
 @login_required
 def all_courses(request, msg=''):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'courses': Course.objects.all().order_by('-pk'),
         'msg': msg,
         'current_user_name': helper.get_full_name(request.user),
@@ -688,6 +706,7 @@ def edit_course(request, pk):
         return redirect('/training_center/courses/all/', msg='Course Updated Successfully')
     else:
         args = {
+            'pk': helper.get_user_pk(request.user),
             'course': Course.objects.all().filter(pk=pk)[0],
             'subjects': Subject.objects.all().order_by('-pk'),
             'current_user_name': helper.get_full_name(request.user),
@@ -727,6 +746,7 @@ def view_subject_attendance(request, batch, subject_name):
 def view_attendance_subj_date(request, batch, subject_name, date):
     filtered_att = helper.get_filtered_att_date(batch, subject_name, date)
     args = {
+        'pk': helper.get_user_pk(request.user),
         'filtered_att': filtered_att,
         'msg': '',
         'batch': batch,
@@ -746,6 +766,7 @@ def view_attendance_subj_date(request, batch, subject_name, date):
 def view_attendance_cls(request, batch):
     filtered_att = helper.get_stud_lst_cls(batch)
     args = {
+        'pk': helper.get_user_pk(request.user),
         'filtered_att': filtered_att,
         'msg': '',
         'batch': batch,
@@ -762,6 +783,7 @@ def view_attendance_cls(request, batch):
 @login_required
 def dashboard(request):
     args={
+        'pk': helper.get_user_pk(request.user),
         'job_title': helper.get_job_title(request.user),
         'department': helper.get_department(request.user),
         'current_user_name': helper.get_full_name(request.user),
@@ -773,6 +795,7 @@ def dashboard(request):
 @login_required
 def grades(request, msg=''):
     args = {
+        'pk': helper.get_user_pk(request.user),
         'clases': ClassName.objects.all().order_by('-pk'),
         'subjects': Subject.objects.all().order_by('-pk'),
         'msg': msg,
@@ -810,6 +833,7 @@ def grades(request, msg=''):
 def all_grades(request, batch_name):   
     filtered_trainees =  helper.get_all_std_grades(batch_name)
     args={
+        'pk': helper.get_user_pk(request.user),
         'filtered_trainees': filtered_trainees,
         'msg': '',
         'batch_name': batch_name,
@@ -825,7 +849,7 @@ def all_grades(request, batch_name):
 # Import Grades (Exported From Exam View Text File)
 @login_required
 def import_grades(request):
-    args={}
+    args={'pk': helper.get_user_pk(request.user),}
     if request.method == 'POST':
         print('post data')
     return render(request, 'training_center/import_grades.html', args)
@@ -835,6 +859,7 @@ def import_grades(request):
 def trainee_grade(request, pk, batch_name):
     subject_grades = helper.get_course_grades(pk, batch_name)
     args={
+        'pk': helper.get_user_pk(request.user),
         'trainee': EnrollTrainee.objects.all().filter(pk=pk)[0],
         'id_num': helper.get_stud_id(pk),
         'overall_grade': helper.get_overall_grade(pk, batch_name),
@@ -905,12 +930,15 @@ def feedback(request):
                 'course_code': helper.get_course_name(i.batch),
                 'tot': len(TraineeFeedback.objects.all().filter(batch=i.batch)),
             }
-    args = {'all_serveys': serveys}
+    args = {
+        'pk': helper.get_user_pk(request.user),
+        'all_serveys': serveys,
+    }
     return render(request, 'training_center/feedback.html', args)
 
 # Trainee Feedback Form
 def feedback_form(request, pk, batch_name):
-    args = {}
+    args = {'pk': helper.get_user_pk(request.user),}
     try:
         args['corse_name'] = ClassName.objects.all().filter(class_name=batch_name)[0].courses
     except:
@@ -957,7 +985,7 @@ def feedback_form(request, pk, batch_name):
 
 # Trainee Feedback Thank You Page
 def feedback_thank_you(request):
-    args={}
+    args={'pk': helper.get_user_pk(request.user),}
     return render(request, 'training_center/feedback_thank_you.html', args)
 
 # Create New Survey Invitation
@@ -967,7 +995,10 @@ def new_feedback(request):
     batch_names = [] 
     for i in all_batches:
         batch_names.append(i.class_name)
-    args = {'batch_names': batch_names}
+    args = {
+        'pk': helper.get_user_pk(request.user),
+        'batch_names': batch_names,
+    }
     return render(request, 'training_center/new_feedback.html', args)
 
 # Feedback/Servey Detail
@@ -979,12 +1010,16 @@ def feedback_detail(request, batch_name):
     args['suggestions'] = ans['suggestions']
     args['rad_btn_ans'] = ans['rad_btn_ans']
     args['resp'] = helper.total_trainees(batch_name)
+    args['pk'] = helper.get_user_pk(request.user)
     return render(request, 'training_center/feedback_detail.html', args)
 
 # Sends servey email for the given batch name
 @login_required
 def feedback_email(request, batch_name):
-    args={'email_adds': helper.get_email_addresses(batch_name)}
+    args={
+        'pk': helper.get_user_pk(request.user),
+        'email_adds': helper.get_email_addresses(batch_name),
+    }
     return render(request, 'training_center/feedback_email.html', args)
 
 # Certificate
@@ -993,6 +1028,7 @@ def certificate(request, msg=''):
     all_trainees = EnrollTrainee.objects.all().filter(approval="Accepted").order_by('-pk')
 
     args = {
+        'pk': helper.get_user_pk(request.user),
         'formated_data': helper.get_all_trainee_data(),
         'msg': msg,
         'job_title': helper.get_job_title(request.user),
@@ -1013,6 +1049,7 @@ def certificate_preview(request, pk):
     
     if request.method == 'POST':
         args={
+            'pk': helper.get_user_pk(request.user),
             'name': request.POST['full_name'],
             'course_name': request.POST['course_name'],
             'date_from': request.POST['course_data_from'],

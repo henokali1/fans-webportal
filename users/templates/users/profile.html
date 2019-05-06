@@ -1,6 +1,6 @@
 {% extends 'cns_base.html' %}
 {% load static %}
-{% block title %} Dashboard {% endblock title %}
+{% block title %} Edit Profile {% endblock title %}
 
 {% block linktag %}
 <link rel="stylesheet" type="text/css" href="{% static "pages/css/home_style.css" %}"> {% endblock linktag %}
@@ -10,6 +10,8 @@
 <br>
 <div class="container white z-depth-2">
         <div class="form-container">
+                <form method="post">
+                {% csrf_token %}
                 <center><h3>Edit Profile</h3></center>
                 <div style="display: inline-block">
                         
@@ -23,35 +25,32 @@
                         <!-- TXT File Exported From Exam View -->
                         <div class="file-field input-field">
                             <div>
-                                <input type="file" accept="image/*" name="txt_file">
+                                <input type="file" accept="image/*" name="profile_picture">
                             </div>
                             <div class="file-path-wrapper">
                                 <input id="fileUpload" class="file-path validate" type="text" placeholder="Change Profile Picture">
                             </div>
                         </div>
-                    </div>
-                    
-                            </div>
                         </div>
+                        </div>
+                    </div>
                  </div>
                 <div style="display: inline-block; float: right;">
-                        <form method="post">
-                                {% csrf_token %}
                                       <div class="row">
                                           <div class="col s12 m6">
                                                 <div class="input-field">
-                                                    <input id="first_name" type="text" value="{{first_name}}" required>
+                                                    <input id="first_name" type="text" name="first_name" value="{{first_name}}" required>
                                                     <label for="first_name">First Name</label>
                                                 </div>
                                           </div>
                                           <div class="col s12 m6">
                                                 <div class="input-field">
-                                                    <input id="last_name" type="text" value="{{last_name}}" required>
+                                                    <input id="last_name" type="text" name="last_name" value="{{last_name}}" required>
                                                     <label for="last_name">Last Name</label>
                                                 </div>
                                           </div>
                                           <div class="input-field col s12">
-                                            <input id="email" type="email" value="{{current_user_email}}" class="validate">
+                                            <input id="email" type="email" name="current_user_email" value="{{current_user_email}}" class="validate">
                                             <label for="email">Email</label>
                                         </div>
                                       </div>

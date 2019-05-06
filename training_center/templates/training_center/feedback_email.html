@@ -11,16 +11,16 @@
         {% if email_adds %}
         <br>
         <br>
-        <h5>Email sent to the following trainees:</h5>
+        <h5>Survey Invitation Email Sent Sucessfully</h5>
         <br>
         <br>
+        <ol>
             {% for email in email_adds %}
-            <ul>
                 <li>
                     <span>{{ email }}</span>
                 </li>
-            </ul>
             {% endfor %}
+        </ol>
         {% endif %}
     </div>
 {% endblock content %}

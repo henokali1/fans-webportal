@@ -5,23 +5,28 @@ import datetime
 import pytz
 
 
-# Returns full name of a given user(emal)
+# Returns full name of a given user(email)
 def get_full_name(email):
     first_name = CustomUser.objects.values_list('first_name', flat=True).filter(email=email)[0].lower()
     last_name = CustomUser.objects.values_list('last_name', flat=True).filter(email=email)[0].lower()    
     return first_name.capitalize() + ' ' + last_name.capitalize()
 
-# Returns first name of a given user(emal)
+# Returns first name of a given user(email)
 def get_first_name(email):
     first_name = CustomUser.objects.values_list('first_name', flat=True).filter(email=email)[0].lower()
     return first_name.capitalize()
 
-# Returns last name of a given user(emal)
+# Returns last name of a given user(email)
 def get_last_name(email):
     last_name = CustomUser.objects.values_list('last_name', flat=True).filter(email=email)[0].lower()
     return last_name.capitalize()
 
-# Returns job title of a given user(emal)
+# Returns PK of a given user(email)
+def get_user_pk(email):
+    user = CustomUser.objects.all().filter(email=email)[0]
+    return user.pk
+
+# Returns job title of a given user(email)
 def get_job_title(email):
     job_title = SetupUserAccount.objects.values_list('job_title', flat=True).filter(email=email)[0]
     return job_title

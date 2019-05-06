@@ -100,7 +100,7 @@
                         <div class="background">
                                 <img src="{% static "pages/img/ocean.jpg" %}" alt="">
                         </div>
-                        <a href="/users/profile/edit/">                                                             
+                        <a href="/user/profile/{{pk}}">                                                             
                             {% if current_user_gender == 'male' %}
                                 <img class="circle" src="{% static "pages/img/male_profile_default.png" %}" alt="male_profile_default">
                             {% else %}
