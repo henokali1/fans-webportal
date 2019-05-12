@@ -25,7 +25,7 @@ SECRET_KEY = '47810=r-9h=hn@fs017l0eqq(-wpy)phf9x=e)8-95fm3lejb^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['139.59.31.242']
+ALLOWED_HOSTS = ['46.101.144.34', 'localhost']
 
 
 # Application definition
@@ -91,11 +91,13 @@ WSGI_APPLICATION = 'webportal.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db', # set in docker-compose.yml
+        'PORT': 5432 # default postgres port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

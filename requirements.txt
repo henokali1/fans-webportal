@@ -1,3 +1,5 @@
 Django==2.1.5
 gunicorn==19.6.0
 django-allauth==0.38.0
+#pillow==6.0.0
+#psycopg2==2.7.4
