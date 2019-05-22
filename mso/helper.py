@@ -101,7 +101,9 @@ def get_per(tca, tcg):
 # Returns formatted ID number(Year + DB PK) of a given student
 def get_stud_id(pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]
-    if int(pk) <= 100:
+    if int(pk) < 10:
+        id_sq = '00' + str(pk)
+    elif int(pk) < 100:
         id_sq = '0' + str(pk)
     else:
         id_sq = str(pk)
