@@ -23,7 +23,7 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<body>
+<body {% block body_style %}{% endblock body_style %}>
     <style>
         @media only screen and (max-width: 1007px) {
             #hide-on-small {
