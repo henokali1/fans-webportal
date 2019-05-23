@@ -9,8 +9,8 @@ def fans_index(request):
     return render(request, 'pages/fans_index.html')
 
 # Who we are
-def who_we_are(request):
-    return render(request, 'pages/who_we_are.html')
+def courses(request):
+    return render(request, 'pages/courses.html')
 
 # Training center
 def training_center(request):

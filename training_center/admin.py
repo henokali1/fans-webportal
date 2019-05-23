@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import *
 
+admin.site.site_header = 'SYS Administration'
+
+
 admin.site.register(EnrollTrainee)
 admin.site.register(Course)
 admin.site.register(ClassName)
