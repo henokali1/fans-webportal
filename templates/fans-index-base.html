@@ -22,6 +22,15 @@
     {% block linktag %} {% endblock linktag %}
     <!-- Title block -->
     <title>{% block title %}{% endblock title %}</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140857514-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-140857514-1');
+    </script>
 </head>
 
 <body {% block body_style %}{% endblock body_style %}>
@@ -146,9 +155,8 @@
     <!-- Footer -->
     {% block footer %}
     <footer class="page-footer blue lighten-2">
-        <div class="container">
             <div class="row">
-                <div class="col l6 s12">
+                <div class="col l6 s12" style="padding-left: 20px;">
                     <h4>Follow Us</h4>
                     <a target="_blank" href="https://www.facebook.com/FujairahANS/" target="_blank" class="white-text">
                         <i class="fab fa-facebook fa-4x"></i>
@@ -161,7 +169,7 @@
                     </a>
                 </div>
                 <!-- Footer Links -->
-                <div class="col l4 offset-l2 s12">
+                <div class="col l4 offset-l2 s12 right" style="padding-left: 20px;">
                     <ul>
                         <li>
                             <a class="grey-text text-lighten-3" href="/">Home</a>
@@ -190,7 +198,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
         <div class="footer-copyright blue lighten-0">
             <div class="container center">
                 <strong><a class="flow-text" style="color: white" href="http://fans.ae">fans.ae</a> &copy;</strong>
