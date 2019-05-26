@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}" media="screen,projection" />
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/fans_index_style.css" %}">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Lalezar&display=swap" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Additional Linktags -->
@@ -43,9 +44,9 @@
             <div class="col s5">
                 <div align="left" class="logo-header">
                     <div style="display: inline-block; padding-left: 10px;">
-                        <font size="6" style="font-size:1.5vw;"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
+                        <font size="6" style="font-size:1.5vw; font-family: 'Bungee', cursive;"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
                         <br>
-                        <font size="4" style="font-size:1.2vw;"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
+                        <font size="4" style="font-size:1.2vw; font-family: 'Bungee', cursive;"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
                     </div>
                 </div>
             </div>
@@ -58,9 +59,9 @@
             <div class="col s5">
                 <div align="right" class="logo-header">
                     <div style="display: inline-block; padding-right: 10px;">
-                        <font size="6" style="font-size:1.5vw;"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
+                        <font style="font-family: 'Lalezar', cursive;" size="6" style="font-size:1.5vw;"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
                         <br>
-                        <font size="4" style="font-size:1.5vw;"><b>دائرة الطيران المدني</b></font>
+                        <font style="font-family: 'Lalezar', cursive;" size="4" style="font-size:1.5vw;"><b>دائرة الطيران المدني</b></font>
                     </div>
                 </div>
             </div>
@@ -136,9 +137,11 @@
         </li>
         {% endblock side-navbar-li %}
     </ul>
-
+    <div class="container">
+        <br>
     {% block content %}
     {% endblock content %}
+
 
     <!-- Footer -->
     {% block footer %}
@@ -213,7 +216,8 @@
         </li>
     </ul>
     {% endblock dropdown-menu %}
-
+    <!-- End of container -->
+    </div>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="{% static "pages/js/fontawesome-all.js" %}" type="text/javascript"></script>
