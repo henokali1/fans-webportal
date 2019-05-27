@@ -13,3 +13,6 @@
     width: 100%;  /* The width is the width of the web page */
    }
    
+#header_en,#header_ar {
+  color: rgb(130,129,134);
+}

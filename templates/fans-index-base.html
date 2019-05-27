@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}" media="screen,projection" />
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/fans_index_style.css" %}">
-    <link href="https://fonts.googleapis.com/css?family=Bungee|Lalezar&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Amiri&display=swap" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Additional Linktags -->
@@ -34,6 +34,7 @@
 </head>
 
 <body {% block body_style %}{% endblock body_style %}>
+    <div class="container">
     <style>
         @media only screen and (max-width: 1007px) {
             #hide-on-small {
@@ -53,9 +54,9 @@
             <div class="col s5">
                 <div align="left" class="logo-header">
                     <div style="display: inline-block; padding-left: 10px;">
-                        <font size="6" style="font-size:1.5vw; font-family: 'Bungee', cursive;"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
+                        <font id="header_en" size="6" style="font-size:1.5vw; font-family: 'Oswald', cursive;"><b>FUJAIRAH AIR NAVIGATION SERVICES</b></font>
                         <br>
-                        <font size="4" style="font-size:1.2vw; font-family: 'Bungee', cursive;"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
+                        <font id="header_en" size="4" style="font-size:1.2vw; font-family: 'Oswald', cursive;"><b>DEPARTMENT OF CIVIL AVIATION</b></font>
                     </div>
                 </div>
             </div>
@@ -68,9 +69,9 @@
             <div class="col s5">
                 <div align="right" class="logo-header">
                     <div style="display: inline-block; padding-right: 10px;">
-                        <font style="font-family: 'Lalezar', cursive;" size="6" style="font-size:1.5vw;"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
+                        <font id="header_ar" style="font-family: 'Amiri', cursive;" size="6" style="font-size:1.5vw;"><b>الفجيرة لخدمات الملاحة الجوية</b></font>
                         <br>
-                        <font style="font-family: 'Lalezar', cursive;" size="4" style="font-size:1.5vw;"><b>دائرة الطيران المدني</b></font>
+                        <font id="header_ar" style="font-family: 'Amiri', cursive;" size="4" style="font-size:1.5vw;"><b>دائرة الطيران المدني</b></font>
                     </div>
                 </div>
             </div>
@@ -86,7 +87,7 @@
 
     {% endblock head-content %}
     <div class="navbar">
-        <nav class="blue lighten-2">
+        <nav class="blue lighten-2 z-depth-5">
             <div class="nav-wrapper">
                 <a href="#" data-activates="mobile-nav" class="button-collapse">
                     <i class="material-icons">menu</i>
@@ -146,7 +147,6 @@
         </li>
         {% endblock side-navbar-li %}
     </ul>
-    <div class="container">
         <br>
     {% block content %}
     {% endblock content %}
