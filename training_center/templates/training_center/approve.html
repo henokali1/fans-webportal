@@ -124,7 +124,7 @@
         else {
             $('#' + pk +'_chip').text('Accepted')
             $('#' + pk +'_chip').parent( ".chip" ).addClass('green').removeClass('red')
-            var url = 'http://46.101.144.34:8000/training_center/trainee/approve_application/' + pk + '/' + batch_val + '/'
+            var url = 'http://fans.ae/training_center/trainee/approve_application/' + pk + '/' + batch_val + '/'
             $.get(url, function(data, status){
                 Materialize.toast(data, 8000, 'rounded');
             });
@@ -134,7 +134,7 @@
     function reject(pk) {
         $('#' + pk +'_chip').text('Rejected')
         $('#' + pk +'_chip').parent( ".chip" ).addClass('red').removeClass('green')
-        var url = 'http://46.101.144.34:8000/training_center/trainee/reject_application/' + pk + '/'
+        var url = 'http://fans.ae/training_center/trainee/reject_application/' + pk + '/'
         $.get(url, function(data, status){
             Materialize.toast(data, 8000, 'rounded');
         });
