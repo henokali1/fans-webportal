@@ -1103,3 +1103,6 @@ def certificate_preview(request, pk):
         details['can_print'] = can_print
         return render(request, 'training_center/certificate_preview.html', details)
 
+def a(request):
+    args={}
+    return render(request, 'training_center/a.html', args)
