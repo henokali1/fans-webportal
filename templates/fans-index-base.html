@@ -39,12 +39,14 @@
         @media only screen and (max-width: 1007px) {
             #hide-on-small {
                 display: none;
+                background-color: red;
             }
         }
 
         @media only screen and (min-width: 1007px) {
             #show-on-small {
                 display: none;
+                background-color: blue;
             }
         }
     </style>
@@ -62,7 +64,7 @@
             </div>
             <div class="col s2 center">
                 <div style="display: inline-block">
-                    <img class="responsive-img" alt="" src="{% static "pages/img/fans-logo-04.png"%}" height="400"
+                    <img class="responsive-img" alt="" src="{% static "pages/img/fans-logo-06.png"%}" height="400"
                         width="160">
                 </div>
             </div>
@@ -87,7 +89,7 @@
 
     {% endblock head-content %}
     <div class="navbar">
-        <nav class="blue lighten-2 z-depth-5">
+        <nav class="blue lighten-2">
             <div class="nav-wrapper">
                 <a href="#" data-activates="mobile-nav" class="button-collapse">
                     <i class="material-icons">menu</i>
