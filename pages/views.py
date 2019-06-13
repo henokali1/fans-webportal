@@ -32,6 +32,7 @@ def photo_gallery(request):
 def t(request):
     args={
         'announcement_exists': True,
-        'announcement': 'Asdf lsdfi ksdfi asdfija. Lkladsfuj ikwjnmc lab lasdfihlasdf lksadufkjhlasdf.',
+        'announcement': 'We will have 30 days off for the Eid Al Adha holiday.',
+        'announcement_url': 'https://www.google.com',
     }
     return render(request, 'pages/t.html', args)
