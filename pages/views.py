@@ -31,7 +31,7 @@ def photo_gallery(request):
 # Testing Template
 def t(request):
     args={
-        'announcement_exists': True,
+        'show_announcement': True,
         'announcement': 'We will have 30 days off for the Eid Al Adha holiday.',
         'announcement_url': 'https://www.google.com',
     }

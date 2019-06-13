@@ -37,7 +37,7 @@
 
 <body {% block body_style %}{% endblock body_style %}>
     <div class="container">
-        {% if announcement_exists %}
+        {% if show_announcement %}
             <div id="page-wrap">
             <div id="note" class="container">
                 <a class="white-text" href="{{announcement_url}}">📣  <u>{{announcement}}</u></a> <a id="close">[close]</a>
