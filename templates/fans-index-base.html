@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/materialize.min.css" %}" media="screen,projection" />
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/main.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "pages/css/fans_index_style.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "pages/css/announcement_style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Amiri&display=swap" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +23,7 @@
     {% block linktag %} {% endblock linktag %}
     <!-- Title block -->
     <title>{% block title %}{% endblock title %}</title>
+    <script src="{% static "pages/js/modernizr.custom.80028.js" %}" type="text/javascript"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140857514-1"></script>
     <script>
@@ -34,6 +36,11 @@
 </head>
 
 <body {% block body_style %}{% endblock body_style %}>
+    <div class="container">
+        {% if announcement_exists %}
+        <p>{{announcement}}</p>
+        {% endif %}
+    </div>
     <div class="container">
     <style>
         @media only screen and (max-width: 1007px) {
@@ -231,7 +238,6 @@
         	var width = window.innerWidth
         	var navbar = document.getElementById("navBar");
         	var logo = document.getElementById("logoTxt");
-        	console.log(width)
         	if(width <= 992) {
         		$("#logoTxt").text("FANS");
         	} else {
@@ -253,7 +259,6 @@
 	        var width = window.innerWidth
         	var navbar = document.getElementById("navBar");
         	var logo = document.getElementById("logoTxt");
-        	console.log(width)
         	if(width <= 992) {
         		$("#logoTxt").text("FANS");
         	} else {

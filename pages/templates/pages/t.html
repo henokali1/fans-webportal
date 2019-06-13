@@ -1,0 +1,238 @@
+{% extends 'fans-index-base.html' %}
+{% load static %}
+{% block linktag %} <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"> {% endblock linktag %}
+<title>{% block title %}FANS{% endblock title %}</title>
+
+<!-- Body Content -->
+{% block content %}
+<!-- Section: Slider -->
+<div class="slider">
+    <ul class="slides">
+        <li>
+            <a href="#">
+                <img class="responsive-img" src="{% static "pages/img/fans-logo-04.jpg" %}">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img class="responsive-img" src="{% static "pages/img/dca-banner.jpg" %}">
+                <!-- LEFT ALIGN CAPTION -->
+                <div class="caption left-align">
+                    <h3 class="light grey-text text-lighten-3">Fujairah Air Navigation Services</h3>
+                    <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img class="responsive-img" src="{% static "pages/img/fujairah-atc1.jpg" %}">
+            </a>
+            <!-- LEFT ALIGN CAPTION -->
+            <div class="caption left-align">
+                <h3 class="light grey-text text-lighten-3">Fujairah Air Navigation Services</h3>
+                <h5 class="light grey-text text-lighten-3">Department of Civil Aviation</h5>
+            </div>
+        </li>
+        <li>
+            <a href="#">
+                <img src="{% static "pages/img/1.jpg" %}">
+                <!-- RIGHT ALIGN CAPTION -->
+                <div class="caption right-align">
+                    <h3 class="light black-text text-lighten-3">Fujairah Air Navigation Services</h3>
+                    <h5 class="light black-text text-lighten-3">Department of Civil Aviation</h5>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="{% static "pages/img/5.jpg" %}">
+                <!-- RIGHT ALIGN CAPTION -->
+                <div class="caption right-align">
+                    <h3 class="light gray-text text-lighten-3">Fujairah Air Navigation Services</h3>
+                    <h5 class="light gray-text text-lighten-3">Department of Civil Aviation</h5>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- Welcome to FANS Card -->
+<section>
+    <div class="row">
+        <div class="col l12">
+            <div class="card-panel white darken-1  z-depth-5" style="background-color: #FAFFF7;">
+                <h4 class="center blue-text lighten-2" style="font-family: 'Oxygen', cursive;">Welcome To Fujairah Air Navigation Services</h4>
+                <font size="3">Fujairah Air Navigation Services (FANS) is an Air Navigation Services provider (ANSP) based in Fujairah. Fujairah Air Navigation Services was established under the directives and support of H.H. Shaikh Saleh Bin Mohammed Al Sharqi Chairman of the Department of Industry and Economy and with the vision and guidance of H.E Mohammed Al Salami chairman of Department of Civil Aviation.</font>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cards -->
+<div class="row">
+
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card blue lighten-2 z-depth-5">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/rrdg4y4d54.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator"><strong>Training Center</strong>
+                    <i class="material-icons">more_vert</i>
+                </span>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Training Center</strong>
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Our Training Center is specialized in delivering career–focused, innovative and comprehensive portfolio of training courses in Air Traffic Management.</p>
+                <p>We offer a wide range of operational, management and leadership courses that are benchmarked against international standards and best practices to meet the training needs of the global aviation community.</p>
+                <p><a href="/training_center" class="activator white-text">Read More</a></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card blue lighten-2 z-depth-5">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/hp-tc-2.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator"><strong>Air Traffic Services</strong>
+                    <i class="material-icons">more_vert</i>
+                </span>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Air Traffic Services</strong>
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Air Traffic Services is a general term used to refer to a variety of services, including service (area control service, approach control service, aerodrome control service), flight information services, air traffic advisory services and alerting services.</p>
+                <p><a class="activator white-text" href="/">Read More</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12 m4">
+        <!-- CARD REVEAL -->
+        <div class="card blue lighten-2 z-depth-5">
+            <div class="card-image waves-effect waves-light waves-block">
+                <img class="activator" src="{% static "pages/img/dvor.jpg" %}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator"><strong>CNS SERVICES</strong>
+                    <i class="material-icons">more_vert</i>
+                </span>
+            </div>
+            <!-- inside of reveal -->
+            <div class="card-reveal blue lighten-2">
+                <span class="card-title"><strong>Communication Navigation and Surveillance Services</strong>
+                    <i class="material-icons">close</i>
+                </span>
+                <p>Our CNS Engineering department, provides 24/7 equipment monitoring, repairing and maintenance coverage for all of our operational units. Our primary purpose is to provide a safe and orderly environment for air traffic services operations through the application of ICAO and GCAA Regulatory publications.</p>
+                <p><a href="/" class="activator white-text">Read More</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<!-- Section: Partners -->
+<section>
+    <div class="row">
+        <div class="col l12">
+            <img src="{% static "pages/img/partners.png" %}" class="responsive-img" style="opacity: 0.6;" alt="">
+        </div>
+    </div>
+</section>
+<br>
+
+<!-- Section: Contact 2 -->
+<section id="contact" class="section-contact scrollspy">
+    <div class="row">
+        <div class="col m12 l4">
+            <div class="card-panel grey lighten-3 z-depth-5" id="address_card">
+                <h5 class="section-title center">Contact Information</h5>
+                <p></p><strong><a class="black-text" href="tel:+97192055795"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;"
+                            class="material-icons small black-text">phone</i>+97192055795</a></strong></p>
+                <p></p><strong><a class="black-text" href="mailto:admin.fans@fia.ae"><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;"
+                            class="material-icons small black-text">email</i> admin.fans@fia.ae</a></strong></p>
+                <p><strong><i style="display: inline-flex; vertical-align: middle; padding-right: 3%;" class="material-icons small black-text">location_on</i>Fujairah
+                        - United Arab Emirates</strong></p>
+
+
+                <form>
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="section-title center">Contact Us</h5>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix blue-text text-darken-4">account_circle</i>
+                            <input id="name" type="text" required>
+                            <label class="black-text" for="name">Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix blue-text text-darken-4">mail</i>
+                            <input id="email" type="email" required>
+                            <label class="black-text" for="email">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-4">comment</i>
+                            <textarea id="message" class="materialize-textarea" style="height: 45px;" required></textarea>
+                            <label class="black-text" for="message">Message</label>
+                            <button class="btn blue waves-effect waves-light btn-large right z-depth-5" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contact us form -->
+        <div class="col s12 m12 l8" class="card-panel grey lighten-3 z-depth-5">
+            <!--The div element for the map -->
+            <div id="map" class="z-depth-5"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+
+{% block script_tag %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO-aH9HPdNdSdI2XgvZ1j_iInQ-jE5ZiM&callback=initMap"> </script>
+
+<script>
+    $(document).ready(function () {
+        // Init Slider
+        $('.slider').slider({
+            indicators: true,
+            height: 400,
+            transition: 700,
+            interval: 3000
+        });
+
+        // Init Scrollspy
+        $('.scrollspy').scrollSpy();
+
+        // Makes address card height the same as contact us card
+        $('#map').outerHeight($('#address_card').outerHeight());
+    });
+</script>
+<script>
+    function initMap() {
+        // The location of fans
+        var fans = { lat: 25.111784, lng: 56.334965 };
+        // The map, centered at FANS
+        var map = new google.maps.Map(
+            document.getElementById('map'), { zoom: 14, center: fans }
+        );
+        // The marker, positioned at FANS
+        var marker = new google.maps.Marker({ position: fans, map: map });
+    }
+</script>
+{% endblock script_tag %}

@@ -27,3 +27,11 @@ def services_engineering(request):
 # Photo Gallery
 def photo_gallery(request):
     return render(request, 'pages/photo_gallery.html')
+
+# Testing Template
+def t(request):
+    args={
+        'announcement_exists': True,
+        'announcement': 'Asdf lsdfi ksdfi asdfija. Lkladsfuj ikwjnmc lab lasdfihlasdf lksadufkjhlasdf.',
+    }
+    return render(request, 'pages/t.html', args)
