@@ -112,9 +112,9 @@ WSGI_APPLICATION = 'webportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': '@tmsqe!1321',
+        'NAME': 'webportal_db',
+        'USER': 'webportal_db_user',
+        'PASSWORD': 'Fans@n$1p$w',
         'HOST': 'localhost',
         'PORT': '',
     }
