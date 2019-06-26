@@ -33,7 +33,7 @@ SECRET_KEY = '47810=r-9h=hn@fs017l0eqq(-wpy)phf9x=e)8-95fm3lejb^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['46.101.144.34', 'localhost', 'fans.ae', 'www.fans.ae', 'henok.io', '34.234.235.117']
+ALLOWED_HOSTS = ['localhost', 'fans.ae', 'www.fans.ae', '34.234.235.117']
 
 
 # Application definition
