@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+import hlp
 
 # sentry error tracking
 sentry_sdk.init(
-    dsn="https://2375248a675f497295409d5f5fb22b57@sentry.io/1467818",
+    dsn=hlp.get_key('dsn'),
     integrations=[DjangoIntegration()]
 )
 
@@ -28,10 +29,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '47810=r-9h=hn@fs017l0eqq(-wpy)phf9x=e)8-95fm3lejb^'
+SECRET_KEY = hlp.get_key('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'fans.ae', 'www.fans.ae', '34.234.235.117']
 
@@ -112,9 +113,9 @@ WSGI_APPLICATION = 'webportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'webportal_db',
-        'USER': 'webportal_db_user',
-        'PASSWORD': 'Fans@n$1p$w',
+        'NAME': hlp.get_key('db_name.txt'),
+        'USER': hlp.get_key('db_user_name'),
+        'PASSWORD': hlp.get_key('db_psw'),
         'HOST': 'localhost',
         'PORT': '',
     }
