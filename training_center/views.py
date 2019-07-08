@@ -12,8 +12,7 @@ from .models import *
 import datetime
 import time
 
-
-# Icons
+# Material Icons
 def icons(request):
     return render(request, 'training_center/icons.html', {})
 
@@ -31,7 +30,7 @@ def training_center(request):
 @login_required
 def enroll_trainee(request):
     # Get courses dict
-    courses = helper.get_all_courses(Course.objects.all()) 
+    courses = helper.get_all_courses(Course.objects.all())
     gender = helper.get_gender(request.user)
     department = helper.get_department(request.user)
     current_user_name = helper.get_full_name(request.user)
@@ -1102,6 +1101,36 @@ def certificate_preview(request, pk):
         details = helper.get_cet_preview_details(pk)
         details['can_print'] = can_print
         return render(request, 'training_center/certificate_preview.html', details)
+
+# List of Courses(Course Materials)
+def courses_list(request):
+    courses = helper.get_all_courses(Course.objects.all())
+    print(courses)
+    args = {
+        'courses': courses,
+    }
+    return render(request, 'training_center/list_courses.html', args)
+
+# List of Subjects(Course Materials)
+def subjects_list(request, course):
+    subjects = helper.get_subjects(course)
+    args = {
+        'subjects': subjects,
+    }
+    return render(request, 'training_center/list_subjects.html', args)
+
+# List Course Materials of a Given Subject
+def list_course_mat(request, course, subject):
+    course_materials = helper.get_course_material(subject)
+    args = {'course_materials': course_materials}
+    return render(request, 'training_center/list_course_mat.html', args)
+
+# Renders(embeds) the given course material from google drive
+def render_course_mat(request, course, subject, file_name):
+    drive_url = helper.get_drive_url(course, subject, file_name)
+    print(drive_url)
+    args = {'drive_url': drive_url}
+    return render(request, 'training_center/render_course_mat.html', args)
 
 def a(request):
     args={}

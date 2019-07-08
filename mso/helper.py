@@ -3,6 +3,7 @@ from training_center.models import *
 import time
 import datetime
 import pytz
+import ast
 
 
 # Returns full name of a given user(email)
@@ -58,13 +59,52 @@ def parse_date(timestamp):
 def get_timestamp():
     return str(int(time.time()))
 
+# Returns subjects of a given course
+def get_subjects(course):
+    subjects_lst_obj = Course.objects.all().filter(course_name=course)[0]
+    subjects_lst_str = subjects_lst_obj.course_subjects_pk
+    lst = ast.literal_eval(subjects_lst_str)
+    lst = lst[::-1]
+    subjects_pk = []
+    [subjects_pk.append(int(i)) for i in lst]
+    print(subjects_pk)
+
+    subjects = {}
+    all_subjects = Subject.objects.all()
+    for i in subjects_pk:
+        subject_name = all_subjects[i-1].subject_name
+        subjects[i] = subject_name
+    return subjects
+
+# Returns Course Materials of a given subject
+def get_course_material(subject):
+    mat_object = CourseMaterial.objects.all()
+    c_mats = {}
+    for i in mat_object:
+        if i.subject.subject_name == subject:
+            c_mats[i] = {
+                'file_name': i.file_name,
+                'drive_url': i.drive_url,
+            }
+            # print(i.subject.subject_name, i.drive_url)
+    return c_mats
+
+# Returns drive URL of a given file
+def get_drive_url(course, subject, file_name):
+    course_mat = get_course_material(subject)
+    drive_url = ''
+    for i in course_mat:
+        if i.file_name == file_name:
+            drive_url = i.drive_url
+    return drive_url
+
 # Returns a dict of all courses with course name as a key and course detail as a value
 def get_all_courses(course_object):
     ret = {}
     for i in course_object:
         ret[i.course_name]=i.course_details
     return ret
-    
+
 # Returns full name of a given(pk/id) trainee
 def get_trainee_name(pk):
     trainee = EnrollTrainee.objects.all().filter(pk=pk)[0]

@@ -17,7 +17,6 @@ class ClassName(models.Model):
     class_name = models.CharField(max_length=250, default='')
     courses = models.CharField(max_length=250, default='')
     courses_list = models.CharField(max_length=250, default='')
-    
 
     def __str__(self):
         return self.class_name
@@ -32,6 +31,14 @@ class Subject(models.Model):
     def __str__(self):
         return str(self.pk) + ' - ' + self.subject_name
 
+# Course Material Google Drive URL
+class CourseMaterial(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    file_name = models.CharField(max_length=50, default='')
+    drive_url = models.CharField(max_length=250, default='')
+
+    def __str__(self):
+        return self.subject.subject_name + ' - ' + self.file_name
 
 # Enroll New Trainee
 class EnrollTrainee(models.Model):

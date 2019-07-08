@@ -41,6 +41,10 @@ urlpatterns = [
     path('certificate_pdf/certificate', views.certificate_preview, name='certificate_preview.html'),
     path('certificate/all/', views.certificate, name='certificate.html'),
     path('certificate/<str:pk>/', views.certificate_preview, name='certificate_preview.html'),
+    path('course_mats/', views.courses_list, name='list_courses.html'),
+    path('course_mats/<str:course>/', views.subjects_list, name='list_subjects.html'),
+    path('course_mats/<str:course>/<str:subject>/', views.list_course_mat, name='list_course_mat.html'),
+    path('course_mats/<str:course>/<str:subject>/<str:file_name>/', views.render_course_mat, name='render_course_mat.html'),
     path('icons/', views.icons, name='icons.html'),
     path('a/', views.a, name='a.html'),
 ]

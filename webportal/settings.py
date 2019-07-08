@@ -13,11 +13,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-import hlp
 
 # sentry error tracking
 sentry_sdk.init(
-    dsn=hlp.get_key('dsn'),
+    dsn='https://03b228c7866a43f18c58f12366a8ae52@sentry.io/1491533',
     integrations=[DjangoIntegration()]
 )
 
@@ -29,10 +28,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = hlp.get_key('SECRET_KEY')
+SECRET_KEY = '47810=r-9h=hn@fs017l0eqq(-wpy)phf9x=e)8-95fm3lejb^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', 'fans.ae', 'www.fans.ae', '34.234.235.117']
 
@@ -95,27 +94,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'webportal.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-# Docker DB
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'HOST': 'db', # set in docker-compose.yml
-#         'PORT': 5432 # default postgres port
-#     }
-# }
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': hlp.get_key('db_name.txt'),
-        'USER': hlp.get_key('db_user_name'),
-        'PASSWORD': hlp.get_key('db_psw'),
+        'NAME': 'webportal_db',
+        'USER': 'webportal_db_user',
+        'PASSWORD': 'Fans@n$1p$w',
         'HOST': 'localhost',
         'PORT': '',
     }
