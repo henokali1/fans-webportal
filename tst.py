@@ -44,7 +44,7 @@ def update_permission(file_id):
 		return 'err'
 
 
-def upload_tst(file_name):
+def save_on_drive(file_name):
 	file_metadata = {
 		'name': file_name,
 	}
@@ -56,7 +56,29 @@ def upload_tst(file_name):
 	print('update_permission', update_permission(file_id))
 	print('disable_copy_download', disable_copy_download(file_id))
 
+def list_files():
+	r = service.files().list(pageSize=10, fields="nextPageToken, files(id, name)").execute()
+	items = r.get('files', [])
+	if not items:
+		print('No files found.')
+	else:
+		print('Files:')
+		for item in items:
+			print(u'{0} ({1})'.format(item['name'], item['id']))
+
+def delete_drive_file(file_id):
+	"""
+	Permanently delete a file, skipping the trash.
+
+	Args:
+	file_id: ID of the file to delete.
+	"""
+	try:
+		service.files().delete(fileId=file_id).execute()
+		print(i, 'Deleted')
+	except:
+		print('Err')
 
 
+print(list_files())
 
-upload_tst('p.PNG')
