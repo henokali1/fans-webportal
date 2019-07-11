@@ -67,7 +67,6 @@ def get_subjects(course):
     lst = lst[::-1]
     subjects_pk = []
     [subjects_pk.append(int(i)) for i in lst]
-    print(subjects_pk)
 
     subjects = {}
     all_subjects = Subject.objects.all()

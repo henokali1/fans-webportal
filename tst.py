@@ -1,24 +1,62 @@
-import google.oauth2.credentials
-import google_auth_oauthlib.flow
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+from apiclient.http import MediaFileUpload
+from apiclient import errors
+import mimetypes
 
-# Use the client_secret.json file to identify the application requesting
-# authorization. The client ID (from that file) and access scopes are required.
-flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-    'client_secret.json',
-    scope=['https://www.googleapis.com/auth/drive.metadata.readonly'])
 
-# Indicate where the API server will redirect the user after the user completes
-# the authorization flow. The redirect URI is required. The value must exactly
-# match one of the authorized redirect URIs for the OAuth 2.0 client, which you
-# configured in the API Console. If this value doesn't match an authorized URI,
-# you will get a 'redirect_uri_mismatch' error.
-flow.redirect_uri = 'https://www.example.com/oauth2callback'
+SCOPES = ['https://www.googleapis.com/auth/drive']
+SERVICE_ACCOUNT_FILE = '/etc/drive-api-service-key.json'
 
-# Generate URL for request to Google's OAuth 2.0 server.
-# Use kwargs to set optional request parameters.
-authorization_url, state = flow.authorization_url(
-    # Enable offline access so that you can refresh an access token without
-    # re-prompting the user for permission. Recommended for web server apps.
-    access_type='offline',
-    # Enable incremental authorization. Recommended as a best practice.
-    include_granted_scopes='true')
+creds = service_account.Credentials.from_service_account_file(
+        SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+
+service = build('drive', 'v3', credentials=creds)
+
+
+def get_mime_type(file_name):
+	mimetypes.init()
+	file_ext = '.' + file_name.split('.')[-1]
+	return mimetypes.types_map[file_ext.lower()]
+
+
+
+def disable_copy_download(file_id):
+	try:
+		p = {
+			'type': 'anyone',
+			'role': 'reader',
+		}
+		service.files().update(fileId=file_id, body={'copyRequiresWriterPermission': True}).execute()
+		return 'Copy & Download Permisson Disabled: ' + file_id
+	except:
+		return 'err'
+
+
+def update_permission(file_id):
+	perm = {
+		'type': 'anyone',
+		'role': 'reader',
+	}
+	try:
+		return service.permissions().create(fileId=file_id, body=perm, fields='id').execute()
+	except:
+		return 'err'
+
+
+def upload_tst(file_name):
+	file_metadata = {
+		'name': file_name,
+	}
+	mime_type = get_mime_type(file_name)
+	media = MediaFileUpload(file_name, mimetype=mime_type)
+	file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+	file_id = file.get('id')
+	print('File ID: %s' % file.get('id'))
+	print('update_permission', update_permission(file_id))
+	print('disable_copy_download', disable_copy_download(file_id))
+
+
+
+
+upload_tst('p.PNG')
