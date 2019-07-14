@@ -36,6 +36,7 @@ class CourseMaterial(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     file_name = models.CharField(max_length=50, default='')
     drive_url = models.CharField(max_length=250, default='')
+    drive_file_id = models.CharField(max_length=50, default='')
 
     def __str__(self):
         return self.subject.subject_name + ' - ' + self.file_name

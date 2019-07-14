@@ -6,11 +6,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 from django.conf import settings
+from helper import g_drive as gd
 from users.models import *
 from mso import helper
 from .models import *
 import datetime
 import time
+import os
 
 # Material Icons
 def icons(request):
@@ -1131,6 +1133,42 @@ def render_course_mat(request, course, subject, file_name):
     print(drive_url)
     args = {'drive_url': drive_url}
     return render(request, 'training_center/render_course_mat.html', args)
+
+# Upload Course Material
+def add_course_mat(request):
+    args = {
+        'courses': Course.objects.all().order_by('-pk'),
+        'subjects': Subject.objects.all().order_by('-pk'),
+    }
+    if request.method == 'POST':
+        fs = FileSystemStorage()
+
+        subject = request.POST['subject']
+        # cou_mat_file = request.FILES['cou_mat_file'].read()
+
+        cou_mat_file = request.FILES['cou_mat_file']
+        cou_mat_file_name = fs.save(cou_mat_file.name, cou_mat_file)
+        
+        # Save to Google Drive
+        drive_file_id = gd.save_on_drive(cou_mat_file_name)
+        drive_url = "https://drive.google.com/file/d/" + drive_file_id + "/preview"
+        print(drive_url)
+
+        # Delete File from Local Disk
+        os.remove('/home/ubuntu/fansWebportalEnv/fans-webportal/media/' + cou_mat_file_name)
+
+        # Save Lables on DB
+        course_mat_db = CourseMaterial()
+
+        course_mat_db.subject = Subject.objects.all().filter(subject_name=subject)[0]
+        course_mat_db.file_name = cou_mat_file_name
+        course_mat_db.drive_url = drive_url
+        course_mat_db.drive_file_id = drive_file_id
+
+        course_mat_db.save()
+
+
+    return render(request, 'training_center/add_course_mat.html', args)
 
 def a(request):
     args={}

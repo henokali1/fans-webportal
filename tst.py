@@ -13,13 +13,10 @@ creds = service_account.Credentials.from_service_account_file(
 
 service = build('drive', 'v3', credentials=creds)
 
-
 def get_mime_type(file_name):
 	mimetypes.init()
 	file_ext = '.' + file_name.split('.')[-1]
 	return mimetypes.types_map[file_ext.lower()]
-
-
 
 def disable_copy_download(file_id):
 	try:
@@ -32,7 +29,6 @@ def disable_copy_download(file_id):
 	except:
 		return 'err'
 
-
 def update_permission(file_id):
 	perm = {
 		'type': 'anyone',
@@ -42,7 +38,6 @@ def update_permission(file_id):
 		return service.permissions().create(fileId=file_id, body=perm, fields='id').execute()
 	except:
 		return 'err'
-
 
 def save_on_drive(file_name):
 	file_metadata = {
@@ -55,6 +50,7 @@ def save_on_drive(file_name):
 	print('File ID: %s' % file.get('id'))
 	print('update_permission', update_permission(file_id))
 	print('disable_copy_download', disable_copy_download(file_id))
+	return file_id
 
 def list_files():
 	r = service.files().list(pageSize=10, fields="nextPageToken, files(id, name)").execute()
@@ -64,7 +60,7 @@ def list_files():
 	else:
 		print('Files:')
 		for item in items:
-			print(u'{0} ({1})'.format(item['name'], item['id']))
+			print(u'{1} - {0}'.format(item['name'], item['id']))
 
 def delete_drive_file(file_id):
 	"""
@@ -81,4 +77,3 @@ def delete_drive_file(file_id):
 
 
 print(list_files())
-
