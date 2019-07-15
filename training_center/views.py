@@ -1105,6 +1105,7 @@ def certificate_preview(request, pk):
         return render(request, 'training_center/certificate_preview.html', details)
 
 # List of Courses(Course Materials)
+@login_required
 def courses_list(request):
     courses = helper.get_all_courses(Course.objects.all())
     print(courses)
@@ -1114,6 +1115,7 @@ def courses_list(request):
     return render(request, 'training_center/list_courses.html', args)
 
 # List of Subjects(Course Materials)
+@login_required
 def subjects_list(request, course):
     subjects = helper.get_subjects(course)
     args = {
@@ -1122,12 +1124,14 @@ def subjects_list(request, course):
     return render(request, 'training_center/list_subjects.html', args)
 
 # List Course Materials of a Given Subject
+@login_required
 def list_course_mat(request, course, subject):
     course_materials = helper.get_course_material(subject)
     args = {'course_materials': course_materials}
     return render(request, 'training_center/list_course_mat.html', args)
 
 # Renders(embeds) the given course material from google drive
+@login_required
 def render_course_mat(request, course, subject, file_name):
     drive_url = helper.get_drive_url(course, subject, file_name)
     print(drive_url)
@@ -1135,10 +1139,12 @@ def render_course_mat(request, course, subject, file_name):
     return render(request, 'training_center/render_course_mat.html', args)
 
 # Upload Course Material
+@login_required
 def add_course_mat(request):
     args = {
         'courses': Course.objects.all().order_by('-pk'),
         'subjects': Subject.objects.all().order_by('-pk'),
+        'msg': '',
     }
     if request.method == 'POST':
         fs = FileSystemStorage()
@@ -1164,9 +1170,9 @@ def add_course_mat(request):
         course_mat_db.file_name = cou_mat_file_name
         course_mat_db.drive_url = drive_url
         course_mat_db.drive_file_id = drive_file_id
-
         course_mat_db.save()
 
+        args['msg'] = 'Course Material Added Successfully'
 
     return render(request, 'training_center/add_course_mat.html', args)
 
