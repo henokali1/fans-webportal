@@ -12,11 +12,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import sentry_sdk
+from helper.secret import get_sec
 from sentry_sdk.integrations.django import DjangoIntegration
-
+ 
 # sentry error tracking
 sentry_sdk.init(
-    dsn='https://03b228c7866a43f18c58f12366a8ae52@sentry.io/1491533',
+    dsn=get_sec('dsn'),
     integrations=[DjangoIntegration()]
 )
 
@@ -28,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '47810=r-9h=hn@fs017l0eqq(-wpy)phf9x=e)8-95fm3lejb^'
+SECRET_KEY = get_sec('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -97,9 +98,9 @@ WSGI_APPLICATION = 'webportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'webportal_db',
-        'USER': 'webportal_db_user',
-        'PASSWORD': 'Fans@n$1p$w',
+        'NAME': get_sec('db_name'),
+        'USER': get_sec('db_user_name'),
+        'PASSWORD': get_sec('db_psw'),
         'HOST': 'localhost',
         'PORT': '',
     }

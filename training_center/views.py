@@ -1154,7 +1154,7 @@ def add_course_mat(request):
 
         cou_mat_file = request.FILES['cou_mat_file']
         cou_mat_file_name = fs.save(cou_mat_file.name, cou_mat_file)
-        
+
         # Save to Google Drive
         drive_file_id = gd.save_on_drive(cou_mat_file_name)
         drive_url = "https://drive.google.com/file/d/" + drive_file_id + "/preview"
