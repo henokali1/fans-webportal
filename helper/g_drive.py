@@ -6,7 +6,7 @@ import mimetypes
 
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = '/etc/drive-api-service-key.json'
+SERVICE_ACCOUNT_FILE = '/etc/fans-drive-drive-service-e09581e98544.json'
 FILE_PATH = '/home/ubuntu/fansWebportalEnv/fans-webportal/media/'
 
 creds = service_account.Credentials.from_service_account_file(

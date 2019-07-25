@@ -1171,7 +1171,6 @@ def add_course_mat(request):
         course_mat_db.drive_url = drive_url
         course_mat_db.drive_file_id = drive_file_id
         course_mat_db.save()
-
         args['msg'] = 'Course Material Added Successfully'
 
     return render(request, 'training_center/add_course_mat.html', args)
