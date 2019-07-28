@@ -814,8 +814,12 @@ def dashboard(request):
         'current_user_email': request.user,
         'user_detail': SetupUserAccount.objects.all().filter(email=request.user)[0],
     }
+    dashboard = Dashboard.objects.all()
+    fab = Fab.objects.all()
+    args['dashboard'] = dashboard
+    args['fab'] = fab
     return render(request, 'training_center/dashboard.html', args)
-    
+
 # Grades
 @login_required
 def grades(request, msg=''):
