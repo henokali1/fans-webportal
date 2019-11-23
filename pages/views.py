@@ -6,6 +6,15 @@ class HomePageView(TemplateView):
     template_name = 'home.html'
 
 def fans_index(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        msg = request.POST['msg']
+
+        args = {'msg', 'Your Message Has Been Received Successfully. We Will Get Back To You Shortly.'}
+        return render(request, 'pages/fans_index.html', args=args)
+
     return render(request, 'pages/fans_index.html')
 
 # Who we are

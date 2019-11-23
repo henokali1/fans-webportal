@@ -14,6 +14,7 @@ import datetime
 import time
 import os
 
+
 # Material Icons
 def icons(request):
     return render(request, 'training_center/icons.html', {})

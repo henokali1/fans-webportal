@@ -1,6 +1,9 @@
 {% extends 'fans-index-base.html' %}
 {% load static %}
-{% block linktag %} <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet"> {% endblock linktag %}
+{% block linktag %}
+<link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+{% endblock linktag %}
 <title>{% block title %}FANS{% endblock title %}</title>
 
 <!-- Body Content -->
@@ -169,24 +172,38 @@
                         <div class="col s12">
                             <h5 class="section-title center">Contact Us</h5>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s12">
                             <i class="material-icons prefix blue-text text-darken-4">account_circle</i>
                             <input id="name" type="text" required>
                             <label class="black-text" for="name">Name</label>
                         </div>
-                        <div class="input-field col s6">
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-4">phone</i>
+                            <input id="phone_num" type="number" required>
+                            <label class="black-text" for="phone_num">Phone</label>
+                        </div>
+
+                        <div class="input-field col s12">
                             <i class="material-icons prefix blue-text text-darken-4">mail</i>
                             <input id="email" type="email" required>
                             <label class="black-text" for="email">Email</label>
                         </div>
+
                         <div class="input-field col s12">
                             <i class="material-icons prefix blue-text text-darken-4">comment</i>
                             <textarea id="message" class="materialize-textarea" style="height: 45px;" required></textarea>
                             <label class="black-text" for="message">Message</label>
-                            <button class="btn blue waves-effect waves-light btn-large right z-depth-5" type="submit" name="action">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
                         </div>
+
+                        <div class="input-field col s12">
+                            <div class="g-recaptcha" id="rcaptcha" data-sitekey="6LeBg7EUAAAAAHsO_JDpfU9Y79kme0IFcIR19my7" data-callback="correctCaptcha" async defer></div>
+                            <br/>
+                        </div>
+
+                        <button class="btn blue waves-effect waves-light btn-large right z-depth-5 disabled" type="submit" name="action" onclick="formValidation()" id="frmSub">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -234,5 +251,21 @@
         // The marker, positioned at FANS
         var marker = new google.maps.Marker({ position: fans, map: map });
     }
+</script>
+
+<script type="text/javascript">
+	var correctCaptcha = function(response) {
+        // console.log(response);
+        if (response.length > 0){
+        	var element = document.getElementById("frmSub");
+  			element.classList.remove("disabled");
+        }
+    };
+</script>
+
+<script type="text/javascript">
+	function formValidation(){
+		var response = grecaptcha.getResponse();
+	}
 </script>
 {% endblock script_tag %}
